@@ -68,6 +68,9 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
   poi l'**Adriatico** ("due mari, una sola regia"). L'**estero** (Scozia, Olanda, Grecia, Croazia, Turchia)
   è solo un **plus, quasi alla fine**.
 - Voce **naturale**: frasi brevi, una frase per "beat", pause calibrate (voice.py con `text` come lista).
+  ATTENZIONE: la voce multilingue legge le **liste di nomi isolati** con accento straniero ("Trigley, Alisai").
+  Scrivere sempre con articoli e congiunzioni: "ci sono le triglie e le alici, i calamari e i gamberi…".
+  Prima di renderizzare, provare le frasi delicate con Whisper (sigle, nomi, liste).
 - Tantissimi **esempi animati** (confronto offerte, ordine diviso tra fornitori, mare grosso → Adriatico, etichetta pesce,
   calcoli che si costruiscono). Nessuna foto, nessun logo di terzi (Coop solo come testo).
 - Precisione: verificare i numeri (i conti del GDO v6 tornano: 7.000 €×4×52 = 1.456.000 €; utile 7% 25–54k,
