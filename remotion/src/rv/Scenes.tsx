@@ -198,9 +198,9 @@ export const ZoneMap: React.FC<{dur: number; t0: number; cam0: Cam; cam1: Cam; p
 export const Calibro: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
   const {f, at} = useAt(t0);
   const big = f >= at(35.9);
-  const smallIn = at(33.8);
+  const smallIn = at(31.3);
   const title = sp(f - at(32.92), 9, 220);
-  const tray = sp(f - at(33.5), 14, 170);
+  const tray = sp(f - at(30.7), 14, 170);
   const chip = (txt: string, s: number, y: number, bg: string) => {
     const p = sp(f - at(s));
     if (f < at(s)) return null;
@@ -237,7 +237,7 @@ export const Calibro: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
           <span style={{fontFamily: 'Inter', fontWeight: 900, fontSize: 56, color: C.orange, WebkitTextStroke: '8px #000', paintOrder: 'stroke fill', marginLeft: 18}}>= PEZZI/KG</span>
         </div>
       )}
-      {f >= at(33.5) && (
+      {f >= at(30.7) && (
         <div style={{position: 'absolute', left: 100, top: 600, width: 880, height: 470, borderRadius: 30, background: 'linear-gradient(180deg, #cfd5de, #8f98a6)', boxShadow: 'inset 0 0 0 10px #e9edf2, 0 30px 80px rgba(0,0,0,.55)', transform: `scale(${tray})`}}>
           <div style={{position: 'absolute', right: -20, top: -34, background: C.navy, color: '#fff', fontFamily: 'Inter', fontWeight: 900, fontSize: 46, padding: '8px 24px', borderRadius: 14, border: '4px solid #fff'}}>1 KG</div>
         </div>
