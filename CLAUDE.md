@@ -3,6 +3,23 @@
 In questo repository si montano i **video per i progetti Argo Maris**. Obiettivo fisso:
 **lasciare a bocca aperta chi guarda**.
 
+## REGOLA FISSA: usare SEMPRE tutti e 7 i programmi
+In **ogni** video Argo Maris si usano sempre, tutti insieme:
+**Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, yt-dlp, headroom.**
+Ruolo di ciascuno in ogni produzione:
+1. **OpenMontage** — regia: scegli la pipeline (`tools/OpenMontage/pipeline_defs/`, di solito
+   `animated-explainer`), leggi il suo `AGENT_GUIDE.md` e le skill di stage per struttura, script e revisione.
+2. **yt-dlp** — scarica i video/audio di riferimento o le sorgenti fornite dall'utente (solo come
+   riferimento di ritmo e stile, mai nel video finale: niente immagini né crediti).
+3. **Whisper** (faster-whisper) — trascrive riferimenti e registrazioni vocali, dà i tempi parola per parola,
+   e fa il controllo finale del video renderizzato.
+4. **headroom** — comprime trascrizioni e log lunghi (riferimenti, output Whisper) prima di analizzarli.
+5. **Remotion** — motore principale delle scene animate, sincronizzate con la voce.
+6. **HyperFrames** — scene/inserti in HTML (titoli, grafiche cinetiche, schede numeriche) renderizzati e
+   montati con Remotion/ffmpeg; usa anche `hyperframes beats` / `hyperframes audio` per analizzare il ritmo.
+7. **ffmpeg** — mix voce/ambiente/effetti, ducking, mastering −14 LUFS / −1.5 dBTP, montaggio e mux finale.
+Se uno strumento non può funzionare (per esempio la rete blocca un sito), dirlo all'utente e chiedere di sbloccarlo, senza saltarlo in silenzio.
+
 ## Regole creative (sempre)
 - **Voce**: sociale, calda, bella, in italiano, dà del "tu". Default `it-IT-GiuseppeMultilingualNeural`
   (alternative: `it-IT-IsabellaNeural`, `it-IT-DiegoNeural`, `it-IT-ElsaNeural`), rate `+6%`.
