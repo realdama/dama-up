@@ -77,6 +77,12 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - Tagli di frase in `pipeline/audio_cut_clean.py`: CUTS = (tieni fino a, riprendi da) dentro i
   silenzi, pausa generata 0,08 s; verificare il punto di ripresa con large-v3 su clip montati.
 
+## Server MCP del progetto (`.mcp.json`)
+- firecrawl, tavily, perplexity (npx) e posthog (remoto). Nessuna chiave nel file: le chiavi
+  vere vanno salvate come segreti di rete dell'ambiente dama-up (host api.firecrawl.dev,
+  api.tavily.com, api.perplexity.ai, mcp.posthog.com, header Authorization: Bearer), il proxy
+  le inserisce. Finché non ci sono le chiavi questi server non funzionano.
+
 ## Struttura repo
 - `remotion/src/timeline.ts`: tempi foto, etichette, scene (secondi sulla voce montata).
 - `remotion/src/words.json`: sottotitoli (gruppi di parole con tempi).
