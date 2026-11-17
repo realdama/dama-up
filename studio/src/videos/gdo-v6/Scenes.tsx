@@ -3,6 +3,7 @@ import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame, int
 import {C, FONT, MONO, rand, clamp, SP, useScene, useIn, ez, Title, Card, Icon, Fish, SPECIES, Emblem, Truck, Boat, W, H} from '../../lib/wide/ui';
 import {MapView, Port, pt, Route, Fleet} from '../../lib/wide/MapView';
 import {Svg, Pill, Big, Adriatico as AdriaticoCoop, Estero as EsteroCoop} from '../coop-etruria/Scenes';
+import {MarinerieTirreno, ConsegnaDiagram} from '../../lib/wide/Shared';
 
 const eur = (n: number, dec = 0) => {
   const [i, d] = n.toFixed(dec).split('.');
@@ -326,74 +327,72 @@ export const Car: React.FC<SP> = (p) => {
   );
 };
 
-/* 10 ─ TIRRENO */
+/* 10 ─ TIRRENO: 11 marinerie + specie */
 export const Tirreno: React.FC<SP> = (p) => {
   const {f, B, Wd} = useScene(p);
-  const P = (k: string) => pt('lazio', k);
-  const car = P('car');
   const fish = [['triglia', 'triglie'], ['alice', 'alici'], ['calamaro', 'calamari'], ['gambero', 'gamberi'], ['ricciola', 'ricciole'], ['spada', 'spada']];
   return (
-    <AbsoluteFill>
-      <MapView view="lazio" cam={[{s: 1.3, x: 60, y: 60}, {s: 1, x: 0, y: -40}]} camAt={[0, 110]}>
-        <Port x={P('civitavecchia')[0]} y={P('civitavecchia')[1]} at={Wd('civitavecchia')} label="Civitavecchia" big />
-        <Port x={P('fiumicino')[0]} y={P('fiumicino')[1]} at={Wd('fiumicino')} label="Fiumicino" big />
-        <Port x={P('anzio')[0]} y={P('anzio')[1]} at={Wd('anzio')} label="Anzio" big />
-        <Fleet to={P('civitavecchia')} from={[560, 560]} at={Wd('civitavecchia')} n={3} />
-        <Fleet to={P('fiumicino')} from={[820, 760]} at={Wd('fiumicino')} n={3} />
-        <Fleet to={P('anzio')} from={[1080, 960]} at={Wd('anzio')} n={3} />
-        <Port x={car[0]} y={car[1]} at={Wd('mercato')} label="Mercato di Roma" side="r" color={C.aqua} big />
-        {(['civitavecchia', 'fiumicino', 'anzio'] as const).map((k, i) => <Route key={k} a={P(k)} b={car} at={Wd('ora') + i * 8} color={C.aqua} bend={0.12} />)}
-      </MapView>
-      <Title kicker="Il nostro mare" title="Il Tirreno" at={B(0) - 6} size={90} />
-      <Pill at={Wd('ora') + 20} x={1440} y={660} text="≈ 1 ora o poco più" color={C.aqua} icon="clock" size={32} dark />
-      <div style={{position: 'absolute', left: 90, top: 760, display: 'flex', gap: 6, padding: '10px 18px', borderRadius: 26, background: 'rgba(2,11,26,0.8)', opacity: ez(f, B(2), B(2) + 10)}}>
+    <MarinerieTirreno {...p} kicker="Il nostro mare" title="Le marinerie del Tirreno" routesAt={B(3)}>
+      <div style={{position: 'absolute', left: 60, top: 600, display: 'flex', flexWrap: 'wrap', width: 520, gap: 4, padding: '10px 14px', borderRadius: 26, background: 'rgba(2,11,26,0.85)', opacity: ez(f, B(3), B(3) + 10)}}>
         {fish.map(([sp, k], i) => {
           const q = ez(f, Wd(k) - 4, Wd(k) + 14);
-          return <div key={i} style={{textAlign: 'center', opacity: q, transform: `translateY(${(1 - q) * 30}px)`}}>
-            <svg width={150} height={84}><Fish sp={sp} x={75} y={42} s={0.55} /></svg>
-            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 22, color: C.foam}}>{SPECIES[sp].name}</div>
+          return <div key={i} style={{textAlign: 'center', width: 160, opacity: q, transform: `translateY(${(1 - q) * 30}px)`}}>
+            <svg width={150} height={74}><Fish sp={sp} x={75} y={37} s={0.5} /></svg>
+            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 21, color: C.foam}}>{SPECIES[sp].name}</div>
           </div>;
         })}
       </div>
-      <Big at={B(3)} x={1340} y={330} text="Chilometri pochi, freschezza tanta." size={50} color={C.gold} />
-    </AbsoluteFill>
+      <Pill at={B(4)} x={1420} y={260} text="Chilometri pochi, freschezza tanta" color={C.gold} icon="star" size={28} />
+    </MarinerieTirreno>
   );
 };
 
 /* 11 ─ ADRIATICO (stessa scena del video Coop) */
 export const Adriatico = AdriaticoCoop;
 
-/* 12 ─ COMPRARE ALLA FONTE */
+/* 12 ─ COMPRARE ALLA FONTE: tre canali */
 export const Fonte: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
   const clk = (at: number, hours: number, x: number, label: string, c: string) => {
     const q = ez(f, at, at + 50);
-    const a = q * Math.PI * 2 * (hours / 24) * 2;
+    const a = q * Math.PI * 2 * (hours / 24) * 2 * 0.5;
     return (
       <g transform={`translate(${x} 0)`} opacity={ez(f, at - 6, at + 4)}>
-        <circle r={70} fill={C.abyss} stroke={c} strokeWidth={6} />
-        <path d={`M 0 0 L 0 -70 A 70 70 0 ${a > Math.PI ? 1 : 0} 1 ${Math.sin(a) * 70} ${-Math.cos(a) * 70} Z`} fill={c} opacity={0.35} />
-        <text y={14} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={44} fill={C.foam}>{Math.round(q * hours)}h</text>
-        <text y={112} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={26} fill={c}>{label}</text>
+        <circle r={56} fill={C.abyss} stroke={c} strokeWidth={5} />
+        <path d={`M 0 0 L 0 -56 A 56 56 0 ${a > Math.PI ? 1 : 0} 1 ${Math.sin(a) * 56} ${-Math.cos(a) * 56} Z`} fill={c} opacity={0.35} />
+        <text y={12} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={36} fill={C.foam}>{Math.round(q * hours)}h</text>
+        <text y={90} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={22} fill={c}>{label}</text>
       </g>
     );
   };
+  const guarantee = ez(f, B(3) + 10, B(3) + 50);
   return (
     <AbsoluteFill>
-      <Title kicker="Alla fonte" title="Aste e barche: come si compra" at={B(0) - 6} size={66} />
-      <Card at={B(1)} x={120} y={300} w={820} h={250} icon="gavel" title="Alle aste" sub="Pesce appena sbarcato. Registrazione come acquirente presso il mercato; pagamenti secondo le regole di ogni mercato." />
-      <Card at={B(2)} x={980} y={300} w={820} h={250} icon="boat" color={C.gold} title="Dalle barche" sub="Registrazione come acquirente sul portale del Ministero dell'Agricoltura." />
-      <div style={{position: 'absolute', left: 120, top: 590, width: 820, height: 290, borderRadius: 26, background: 'rgba(6,36,74,0.7)', border: `2px solid ${C.coral}`, padding: 24, opacity: ez(f, B(3), B(3) + 12)}}>
-        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 32, color: C.foam}}>Nota di vendita → Capitaneria di Porto</div>
-        <svg width={780} height={230} style={{marginTop: 4}}><g transform="translate(0 100)">{clk(B(3) + 20, 24, 200, 'ONLINE', C.aqua)}{clk(B(3) + 40, 48, 540, 'SU CARTA', C.coral)}</g></svg>
+      <Title kicker="Alla fonte" title="Come si compra: tre canali" at={B(0) - 6} size={66} />
+      <Card at={B(1)} x={120} y={280} w={540} h={300} num="1" icon="warehouse" title="Grossisti del mercato" sub="Un conto con ognuno. Contratto scritto: paghi a 30 giorni dalla consegna (legge sui deperibili)." />
+      <Card at={B(2)} x={690} y={280} w={540} h={300} num="2" icon="gavel" color={C.gold} title="Aste" sub="Registrazione al mercato ittico. Regolamento del mercato: spesso garanzia (deposito o fideiussione) e tempi di pagamento." />
+      <Card at={B(4)} x={1260} y={280} w={540} h={300} num="3" icon="boat" color={C.coral} title="Barche" sub="Prima vendita: registrazione come acquirente sul portale del Ministero dell'Agricoltura." />
+      <div style={{position: 'absolute', left: 120, top: 610, width: 540, height: 270, borderRadius: 26, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.gold}`, padding: 22, opacity: ez(f, B(3), B(3) + 12)}}>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold}}>Fideiussione = la banca garantisce per te</div>
+        <svg width={500} height={170} style={{marginTop: 6}}>
+          <g transform="translate(70 90)"><Icon name="user" size={80} color={C.foam} /></g>
+          <g transform="translate(240 90)" opacity={guarantee}><Icon name="bank" size={90} color={C.gold} /></g>
+          <g transform="translate(420 90)"><Icon name="gavel" size={80} color={C.foam} /></g>
+          <path d={`M 120 90 L ${120 + 70 * guarantee} 90`} stroke={C.gold} strokeWidth={5} />
+          <path d={`M 300 90 L ${300 + 70 * guarantee} 90`} stroke={C.gold} strokeWidth={5} />
+          <text x={250} y={165} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={22} fill={C.foam} opacity={guarantee}>se non paghi tu, paga la banca</text>
+        </svg>
       </div>
-      <div style={{position: 'absolute', left: 980, top: 590, width: 820, height: 130, borderRadius: 26, background: 'rgba(6,36,74,0.7)', border: `2px solid ${C.aqua}`, padding: '22px 26px', display: 'flex', alignItems: 'center', gap: 24, opacity: ez(f, B(4), B(4) + 12)}}>
-        <svg width={170} height={70}>{Array.from({length: 40}).map((_, i) => <rect key={i} x={i * 4.2} y={0} width={rand(i) > 0.5 ? 3 : 1.5} height={70 * ez(f, B(4) + i, B(4) + i + 6)} fill={C.foam} />)}</svg>
-        <div><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.foam}}>Ogni lotto, il suo codice</div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: C.aqua}}>tracciabilità</div></div>
+      <div style={{position: 'absolute', left: 690, top: 610, width: 540, height: 270, borderRadius: 26, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.coral}`, padding: 22, opacity: ez(f, B(5), B(5) + 12)}}>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 28, color: C.foam}}>Nota di vendita → Capitaneria</div>
+        <svg width={500} height={190}><g transform="translate(0 80)">{clk(B(5) + 20, 24, 110, 'ONLINE', C.aqua)}{clk(B(5) + 40, 48, 270, 'SU CARTA', C.coral)}</g>
+          <g transform="translate(380 40)" opacity={ez(f, B(5) + 60, B(5) + 70)}>{Array.from({length: 22}).map((_, i) => <rect key={i} x={i * 4.5} y={0} width={rand(i) > 0.5 ? 3 : 1.5} height={70} fill={C.foam} />)}<text x={50} y={100} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={20} fill={C.aqua}>codice lotto</text></g>
+        </svg>
       </div>
-      <div style={{position: 'absolute', left: 980, top: 750, width: 820, height: 130, borderRadius: 26, background: 'rgba(6,36,74,0.7)', border: `2px solid ${C.gold}`, padding: '22px 26px', display: 'flex', alignItems: 'center', gap: 24, opacity: ez(f, B(5), B(5) + 12)}}>
-        <Icon name="globe" size={70} color={C.gold} />
-        <div><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.foam}}>Borsa Merci telematica</div><div style={{fontFamily: FONT, fontWeight: 700, fontSize: 24, color: C.gold}}>iscrizione gratuita · aperta agli intermediari</div></div>
+      <div style={{position: 'absolute', left: 1260, top: 610, width: 540, height: 270, borderRadius: 26, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.aqua}`, padding: 26, opacity: ez(f, B(6), B(6) + 12)}}>
+        <Icon name="globe" size={70} color={C.aqua} />
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 32, color: C.foam, marginTop: 10}}>Borsa Merci Telematica</div>
+        <div style={{fontFamily: FONT, fontWeight: 700, fontSize: 24, color: C.aqua}}>iscrizione gratuita · aperta agli intermediari</div>
       </div>
     </AbsoluteFill>
   );
@@ -405,12 +404,12 @@ export const Budget: React.FC<SP> = (p) => {
   const cash = interpolate(f, [B(5), B(5) + 30, B(6), B(6) + 40], [0, 21000, 21000, 4200], clamp);
   return (
     <AbsoluteFill>
-      <Title kicker="Poco budget" title="Comprare senza anticipare tanto" at={B(0) - 6} size={66} />
-      {[['Solo su ordine', 'Niente magazzino, niente invenduto.', 'order'], ['30 giorni anche ai fornitori', 'Pagamenti allineati alla catena quando possibile.', 'calendar'], ["All'asta solo una parte", 'Il resto da mercato e barche.', 'gavel']].map(([t, s, i], k) => (
+      <Title kicker="Poco capitale" title="Tutte le opzioni, dalla più semplice" at={B(0) - 6} size={62} />
+      {[['Solo su ordine', 'Niente magazzino, niente invenduto.', 'order'], ['Usa i 30 giorni', 'Paghi i fornitori quando incassi dalla catena.', 'calendar'], ['Parti dal mercato di Roma', 'Poi aggiungi aste e barche.', 'gavel']].map(([t, s, i], k) => (
         <Card key={k} at={B(k + 1)} x={120} y={300 + k * 190} w={760} h={170} num={String(k + 1)} title={t} sub={s} color={[C.aqua, C.gold, C.coral][k]} />
       ))}
       <div style={{position: 'absolute', left: 960, top: 300, width: 840, height: 580, borderRadius: 28, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.gold}`, padding: 34, opacity: ez(f, B(4), B(4) + 12)}}>
-        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, letterSpacing: 3}}>ESEMPIO</div>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, letterSpacing: 3}}>4 · ALL'ASTA SOLO UNA PARTE</div>
         <div style={{display: 'flex', alignItems: 'center', gap: 30, marginTop: 20}}>
           <svg width={180} height={180} viewBox="-90 -90 180 180">
             <circle r={80} fill="rgba(28,143,214,0.35)" />
@@ -609,54 +608,193 @@ export const Soldi: React.FC<SP> = (p) => {
   );
 };
 
-/* 19 ─ ASSICURAZIONI */
-export const Assicurazioni: React.FC<SP> = (p) => {
+/* 18b ─ STRUMENTI FINANZIARI */
+export const Strumenti: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
-  const cards = [['Crediti', 'Se il cliente non paga, rimborso di solito 80–90%. Premio in % sul fatturato.', 'euro'], ['RC prodotti', 'Danni a terzi da prodotto difettoso, con estensione al ritiro dal mercato.', 'shield'], ['Merci trasportate', 'Copre anche mancato freddo, perdite e avarie.', 'truck']];
-  const para = ['Solo su ordine', 'Più fornitori', 'Cassa di sicurezza', 'Pro soluto per i clienti a rischio'];
+  const adv = ez(f, B(1) + 20, B(1) + 50) * 0.8;
+  const risk = ez(f, B(2) + 40, B(2) + 70);
+  const fido = ez(f, B(3) + 20, B(3) + 50);
   return (
     <AbsoluteFill>
-      <Title kicker="Protezioni" title="Tre assicurazioni e i paracadute" at={B(0) - 6} size={66} />
-      {cards.map(([t, s, i], k) => <Card key={k} at={B(k + 1)} x={120 + k * 570} y={300} w={540} h={330} num={String(k + 1)} title={t} sub={s} icon={i} color={[C.aqua, C.gold, C.coral][k]} />)}
-      <div style={{position: 'absolute', left: 120, top: 690, opacity: ez(f, B(4), B(4) + 10), fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, letterSpacing: 3}}>I PARACADUTE</div>
-      {para.map((t, i) => <Pill key={i} at={B(4) + 15 + i * 16} x={[250, 600, 960, 1490][i]} y={790} text={t} color="#7CF29A" icon="check" size={26} dark />)}
+      <Title kicker="Strumenti finanziari" title="Spiegati semplici" at={B(0) - 6} />
+      <Card at={B(1)} x={120} y={280} w={820} h={300} num="1" icon="bank" title="Anticipo fatture" sub="Fatturi alla catena: la banca ti anticipa subito il 70–80%. Quando la catena paga, la banca si riprende i soldi.">
+        <div style={{height: 34, borderRadius: 10, background: 'rgba(232,251,255,0.1)', marginTop: 18}}><div style={{height: 34, width: `${adv * 100}%`, borderRadius: 10, background: C.aqua}} /></div>
+      </Card>
+      <Card at={B(2)} x={980} y={280} w={820} h={300} num="2" icon="shield" color={C.gold} title="Factoring pro soluto" sub="Vendi la fattura al factor: ti paga subito e, se la catena non paga, il rischio è suo. Costo 1–3%.">
+        <svg width={760} height={60} style={{marginTop: 10}}><text x={0} y={40} fontFamily={FONT} fontWeight={800} fontSize={24} fill={C.foam}>rischio</text>
+          <g transform={`translate(${130 + risk * 480} 30)`}><circle r={22} fill={C.coral} /><text y={8} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={24} fill={C.abyss}>!</text></g>
+          <text x={760} y={40} textAnchor="end" fontFamily={FONT} fontWeight={800} fontSize={24} fill={C.gold} opacity={risk}>al factor</text></svg>
+      </Card>
+      <Card at={B(3)} x={120} y={610} w={820} h={290} num="3" icon="money" color="#7CF29A" title="Fido bancario + Fondo di Garanzia PMI" sub="Una riserva di cassa. Il Fondo di Garanzia per le PMI garantisce alla banca una parte del prestito.">
+        <svg width={760} height={50} style={{marginTop: 8}}><rect x={0} y={10} width={740} height={30} rx={10} fill="rgba(232,251,255,0.1)" /><rect x={0} y={10} width={740 * fido} height={30} rx={10} fill="#7CF29A" opacity={0.35} /><rect x={0} y={10} width={740 * fido * 0.6} height={30} rx={10} fill="#7CF29A" />
+          <text x={12} y={33} fontFamily={FONT} fontWeight={800} fontSize={18} fill={C.abyss} opacity={fido}>parte garantita dal Fondo</text></svg>
+      </Card>
+      <Card at={B(4)} x={980} y={610} w={820} h={290} num="4" icon="star" color={C.violet} title="Finanziamenti agevolati" sub="Per le nuove imprese, per esempio Invitalia, se hai i requisiti. Da verificare con il commercialista." />
     </AbsoluteFill>
   );
 };
 
-/* 20 ─ REGOLE E QUALIFICHE */
-export const Regole: React.FC<SP> = (p) => {
+/* 19 ─ ASSICURAZIONI con esempi */
+export const Assicurazioni: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
-  const items = [['Notifica ASL + HACCP', 'intermediario senza deposito · piano di autocontrollo', 'doc'], ['Registrazione Ministero', 'acquirente di prima vendita, per comprare dalle barche', 'boat'], ['Qualifica della catena', 'documenti · contratto scritto · requisiti richiesti', 'handshake']];
-  const badge = useIn(B(4), {damping: 10});
+  const para = ['Solo su ordine', 'Più fornitori', 'Cassa di sicurezza', 'Pro soluto per i clienti a rischio'];
+  const refund = ez(f, B(1) + 60, B(1) + 100);
+  const temp = interpolate(f, [B(3) + 30, B(3) + 90], [0, 14], clamp);
   return (
     <AbsoluteFill>
-      <Title kicker="In regola" title="Certificazioni e qualifiche" at={B(0) - 6} />
-      {items.map(([t, s, i], k) => {
+      <Title kicker="Protezioni" title="Tre assicurazioni, tre esempi" at={B(0) - 6} size={66} />
+      <Card at={B(1)} x={120} y={280} w={540} h={420} num="1" icon="euro" title="Crediti" sub="Il cliente non ti paga? Rimborso di solito tra l'80 e il 90%. Premio: piccola % del fatturato.">
+        <div style={{marginTop: 18, fontFamily: MONO, fontWeight: 700, fontSize: 30, color: C.coral, opacity: ez(f, B(1) + 30, B(1) + 40)}}>fattura non pagata: 10.000 €</div>
+        <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 34, color: '#7CF29A', opacity: refund}}>rimborso: {eur(8000 * refund)}–{eur(9000 * refund)} €</div>
+      </Card>
+      <Card at={B(2)} x={690} y={280} w={540} h={420} num="2" icon="shield" color={C.gold} title="RC prodotti" sub="Un lotto difettoso fa stare male qualcuno: copre i danni. Con l'estensione, anche il ritiro dagli scaffali.">
+        <svg width={480} height={110} style={{marginTop: 10}} opacity={ez(f, B(2) + 40, B(2) + 50)}>
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={20 + i * 70} y={20} width={56} height={60} rx={8} fill={i === 2 ? C.coral : 'rgba(232,251,255,0.3)'} transform={i === 2 ? `translate(${ez(f, B(2) + 80, B(2) + 110) * 200} ${-ez(f, B(2) + 80, B(2) + 110) * 10})` : ''} />)}
+          <rect x={10} y={84} width={300} height={8} fill="#8DA2B5" />
+          <text x={400} y={60} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={24} fill={C.coral} opacity={ez(f, B(2) + 100, B(2) + 110)}>RITIRO</text>
+        </svg>
+      </Card>
+      <Card at={B(3)} x={1260} y={280} w={540} h={420} num="3" icon="truck" color={C.coral} title="Merci trasportate" sub="Di notte il camion perde il freddo e il carico si rovina: copre la merce persa, perdite e avarie.">
+        <div style={{display: 'flex', alignItems: 'center', gap: 18, marginTop: 14}}>
+          <Icon name="thermo" size={70} color={temp > 6 ? C.coral : C.aqua} />
+          <span style={{fontFamily: MONO, fontWeight: 700, fontSize: 52, color: temp > 6 ? C.coral : C.aqua}}>{temp.toFixed(0)} °C</span>
+          <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 26, color: '#7CF29A', opacity: ez(f, B(3) + 100, B(3) + 110)}}>coperto ✓</span>
+        </div>
+      </Card>
+      <div style={{position: 'absolute', left: 120, top: 740, opacity: ez(f, B(4), B(4) + 10), fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, letterSpacing: 3}}>I PARACADUTE</div>
+      {para.map((t, i) => <Pill key={i} at={B(4) + 15 + i * 16} x={[250, 600, 960, 1490][i]} y={830} text={t} color="#7CF29A" icon="check" size={26} dark />)}
+    </AbsoluteFill>
+  );
+};
+
+/* 20 ─ IN REGOLA: passo per passo */
+export const Regole: React.FC<SP> = (p) => {
+  const {f, B} = useScene(p);
+  const steps = [
+    {t: 'Notifica sanitaria', s: 'SCIA al SUAP del comune → trasmessa all\'ASL, come intermediario senza deposito', i: 'doc', flow: ['SCIA', 'SUAP', 'ASL']},
+    {t: 'HACCP', s: 'corso e piano di autocontrollo: controlli, registri, rintracci ogni lotto', i: 'check'},
+    {t: 'Registrazione al Ministero', s: 'acquirente di prima vendita, per comprare dalle barche', i: 'boat'},
+    {t: 'Qualifica della catena', s: 'questionario fornitore: visura, documenti, assicurazioni, contratto', i: 'handshake'},
+  ];
+  return (
+    <AbsoluteFill>
+      <Title kicker="In regola" title="Passo per passo" at={B(0) - 6} />
+      {steps.map((st, k) => {
         const q = useIn(B(k + 1), {damping: 13});
         return (
-          <div key={k} style={{position: 'absolute', left: 120, top: 310 + k * 175, width: 1000, height: 150, borderRadius: 24, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.aqua}`, display: 'flex', alignItems: 'center', gap: 24, padding: '0 30px', opacity: q, transform: `translateX(${(1 - q) * -60}px)`}}>
-            <Icon name={i} size={64} />
-            <div style={{flex: 1}}><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 36, color: C.foam}}>{t}</div><div style={{fontFamily: FONT, fontWeight: 600, fontSize: 24, color: 'rgba(232,251,255,0.75)'}}>{s}</div></div>
-            <Icon name="check" size={58} color="#7CF29A" sw={6} />
+          <div key={k} style={{position: 'absolute', left: 120, top: 280 + k * 160, width: 1680, height: 140, borderRadius: 24, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.aqua}`, display: 'flex', alignItems: 'center', gap: 24, padding: '0 30px', opacity: q, transform: `translateX(${(1 - q) * -60}px)`}}>
+            <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 40, color: C.abyss, background: C.aqua, borderRadius: 16, width: 64, height: 64, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{k + 1}</div>
+            <Icon name={st.i} size={60} />
+            <div style={{width: 760}}><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 36, color: C.foam}}>{st.t}</div><div style={{fontFamily: FONT, fontWeight: 600, fontSize: 23, color: 'rgba(232,251,255,0.75)'}}>{st.s}</div></div>
+            {st.flow && <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
+              {st.flow.map((x, i) => <React.Fragment key={i}>
+                <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 28, color: C.abyss, background: [C.aqua, C.gold, '#7CF29A'][i], borderRadius: 14, padding: '8px 18px', opacity: ez(f, B(1) + 20 + i * 18, B(1) + 30 + i * 18)}}>{x}</span>
+                {i < 2 && <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.foam, opacity: ez(f, B(1) + 28 + i * 18, B(1) + 36 + i * 18)}}>→</span>}
+              </React.Fragment>)}
+            </div>}
+            <div style={{marginLeft: 'auto'}}><Icon name="check" size={56} color="#7CF29A" sw={6} /></div>
           </div>
         );
       })}
-      <div style={{position: 'absolute', left: 1240, top: 330, width: 560, height: 520, borderRadius: 30, background: 'linear-gradient(160deg, rgba(255,201,74,0.2), rgba(6,36,74,0.85))', border: `3px solid ${C.gold}`, padding: 34, opacity: badge, transform: `scale(${0.8 + badge * 0.2})`}}>
-        <svg width={140} height={140} viewBox="-70 -70 140 140" style={{display: 'block', margin: '0 auto'}}>
-          {Array.from({length: 16}).map((_, i) => <path key={i} d="M 0 -66 L 8 -54 L -8 -54 Z" fill={C.gold} transform={`rotate(${i * 22.5 + f * 0.5})`} />)}
-          <circle r={52} fill={C.gold} /><text y={14} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={34} fill={C.abyss}>IFS</text>
-        </svg>
-        <div style={{textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 42, color: C.foam, marginTop: 12}}>IFS Broker</div>
-        {['Standard per gli intermediari', 'Audit di ente accreditato', 'Rinnovo ogni anno, anche a distanza', 'Preparazione: alcuni mesi'].map((t, i) => (
-          <div key={i} style={{fontFamily: FONT, fontWeight: 700, fontSize: 25, color: C.foam, marginTop: 14, opacity: ez(f, B(4) + 20 + i * 25, B(4) + 30 + i * 25)}}>• {t}</div>
-        ))}
-      </div>
     </AbsoluteFill>
   );
 };
 
-/* 21 ─ COSTI SOCIETÀ */
+/* 20b ─ IFS BROKER: come si ottiene */
+export const Ifs: React.FC<SP> = (p) => {
+  const {f, B} = useScene(p);
+  const badge = useIn(B(0) + 10, {damping: 10});
+  const steps = [{t: 'Ente accreditato', s: 'scegli chi ti certifica', i: 'search', b: 1}, {t: 'Procedure', s: 'fornitori · tracciabilità · reclami · ritiro', i: 'doc', b: 2}, {t: 'Audit', s: 'anche a distanza', i: 'check', b: 3}, {t: 'Certificato', s: 'vale 1 anno · rinnovo annuale', i: 'star', b: 3}];
+  return (
+    <AbsoluteFill>
+      <Title kicker="Certificazione" title="IFS Broker: come si ottiene" at={B(0) - 6} />
+      <svg width={1920} height={1080} style={{position: 'absolute'}}>
+        <g transform={`translate(330 560) scale(${badge})`}>
+          {Array.from({length: 20}).map((_, i) => <path key={i} d="M 0 -150 L 16 -124 L -16 -124 Z" fill={C.gold} transform={`rotate(${i * 18 + f * 0.4})`} />)}
+          <circle r={118} fill={C.gold} /><circle r={100} fill="none" stroke={C.abyss} strokeWidth={4} />
+          <text y={10} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={64} fill={C.abyss}>IFS</text>
+          <text y={56} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={30} fill={C.abyss}>BROKER</text>
+        </g>
+        <line x1={640} x2={640 + 1100 * ez(f, B(1), B(3) + 60)} y1={560} y2={560} stroke={C.aqua} strokeWidth={8} strokeLinecap="round" />
+      </svg>
+      {steps.map((st, k) => {
+        const q = useIn(B(st.b) + (k === 3 ? 60 : 0), {damping: 11});
+        const x = 700 + k * 340;
+        return (
+          <div key={k} style={{position: 'absolute', left: x - 140, top: 470, width: 280, textAlign: 'center', opacity: q, transform: `translateY(${(1 - q) * 40}px)`}}>
+            <div style={{width: 120, height: 120, margin: '0 auto', borderRadius: 60, background: C.abyss, border: `5px solid ${k === 3 ? C.gold : C.aqua}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Icon name={st.i} size={64} color={k === 3 ? C.gold : C.aqua} /></div>
+            <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 32, color: C.foam, marginTop: 16}}>{st.t}</div>
+            <div style={{fontFamily: FONT, fontWeight: 700, fontSize: 22, color: 'rgba(232,251,255,0.75)', marginTop: 6}}>{st.s}</div>
+          </div>
+        );
+      })}
+      <Pill at={B(4)} x={760} y={850} text="Preparazione: alcuni mesi" color={C.aqua} icon="calendar" size={28} dark />
+      <Pill at={B(4) + 50} x={1360} y={850} text="Una leva forte con le catene" color={C.gold} icon="star" size={28} />
+    </AbsoluteFill>
+  );
+};
+
+/* 20c ─ CONSEGNA: piattaforma, hub, diretta */
+export const Consegna: React.FC<SP> = (p) => {
+  const {B} = useScene(p);
+  return <ConsegnaDiagram {...p} kicker="Logistica" title="Dove consegni: tre strade" platAt={B(1)} hubAt={B(2)} directAt={B(3)} prosAt={B(4)} consAt={B(4) + 60} tipAt={B(5)}
+    tip="Parti dalla piattaforma; proponi la diretta per i negozi vicini o il pesce più delicato." />;
+};
+
+/* 20d ─ LEVE */
+export const Leve: React.FC<SP> = (p) => {
+  const {f, B} = useScene(p);
+  const lv = [['Prezzo', '10 cent/kg cambiano il suo margine', 'euro'], ['Continuità', 'due mari + mercato di Roma, a rotazione', 'storm'], ['Freschezza', 'pesce locale e consegna diretta', 'snow'], ['Semplicità', '1 fornitore · 1 referente · 1 fattura', 'handshake'], ['Sicurezza', 'contratto · tracciabilità · assicurazioni · IFS', 'shield']];
+  const tilt = interpolate(f, [B(1), B(5) + 40], [12, -8], clamp);
+  return (
+    <AbsoluteFill>
+      <Title kicker="Trattativa" title="Su cosa fare leva con la catena" at={B(0) - 6} size={64} />
+      <svg width={1920} height={1080} style={{position: 'absolute'}}>
+        <g transform="translate(330 640)">
+          <polygon points="-40,120 40,120 0,40" fill={C.gold} />
+          <g transform={`translate(0 40) rotate(${tilt})`}><rect x={-260} y={-14} width={520} height={28} rx={10} fill={C.aqua} /></g>
+          <g transform={`translate(${-220} ${40 - Math.sin((tilt * Math.PI) / 180) * 220 - 70})`}><rect x={-60} y={0} width={120} height={56} rx={10} fill={C.coral} /><text y={38} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={24} fill={C.abyss}>CATENA</text></g>
+        </g>
+      </svg>
+      <div style={{position: 'absolute', left: 520, top: 760, transform: 'translate(-50%,-50%)'}}><Emblem size={110} /></div>
+      {lv.map(([t, s, i], k) => {
+        const q = useIn(B(k + 1), {damping: 12});
+        return (
+          <div key={k} style={{position: 'absolute', left: 760, top: 280 + k * 128, width: 1040, height: 112, borderRadius: 22, background: 'rgba(6,36,74,0.78)', border: `2px solid ${k === 0 ? C.gold : C.aqua}`, display: 'flex', alignItems: 'center', gap: 22, padding: '0 26px', opacity: q, transform: `translateX(${(1 - q) * 80}px)`}}>
+            <Icon name={i} size={54} color={k === 0 ? C.gold : C.aqua} />
+            <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 36, color: C.foam, width: 260}}>{t}</span>
+            <span style={{fontFamily: FONT, fontWeight: 700, fontSize: 26, color: 'rgba(232,251,255,0.8)'}}>{s}</span>
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+/* 20e ─ GLOSSARIO */
+export const Glossario: React.FC<SP> = (p) => {
+  const {B, Wd} = useScene(p);
+  const terms: [string, string, number][] = [
+    ['Buying agent', 'compri a nome tuo, rivendi con il tuo margine', B(1)],
+    ['Broker senza deposito', 'niente magazzino: dal fornitore al cliente', B(2)],
+    ['Prima vendita', 'il primo acquisto del pescato, appena sbarcato', B(3)],
+    ['Nota di vendita', 'il documento che registra la prima vendita', Wd('nota')],
+    ['Anticipo fatture', 'la banca ti anticipa i soldi della fattura', B(4)],
+    ['Pro soluto', 'il rischio del mancato pagamento passa al factor', Wd('soluto')],
+    ['Piattaforma', 'il magazzino centrale della catena', B(5)],
+    ['Consegna diretta', 'dritto al punto vendita', Wd('consegna')],
+  ];
+  return (
+    <AbsoluteFill>
+      <Title kicker="Ripasso" title="Le parole del mestiere" at={B(0) - 6} />
+      {terms.map(([t, s, at], k) => (
+        <Card key={k} at={at} x={120 + (k % 2) * 850} y={280 + Math.floor(k / 2) * 160} w={820} h={140} title={t} sub={s} color={k % 2 ? C.gold : C.aqua} />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+/* 21 ─ COSTI SOCIETÀ *//* 21 ─ COSTI SOCIETÀ */
 export const Societa: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
   const rec = useIn(B(1), {damping: 13});
@@ -777,11 +915,12 @@ export const SCENES: Record<string, React.FC<SP>> = {
   intro: Intro, idea: Idea, modello: Modello, motivi: Motivi, margini: Margini, coop: Coop, giornata: Giornata, split: Split, car: Car,
   tirreno: Tirreno, adriatico: Adriatico, fonte: Fonte, budget: Budget, chilo: Chilo, trasporti: Trasporti, utile: Utile, centesimi: Centesimi,
   soldi: Soldi, assicurazioni: Assicurazioni, regole: Regole, societa: Societa, stipendio: Stipendio, estero: Estero, roadmap: Roadmap, fine: Fine,
+  consegna: Consegna, strumenti: Strumenti, ifs: Ifs, leve: Leve, glossario: Glossario,
 };
 export const CHAPTERS: Record<string, string> = {
   intro: 'Il progetto', idea: 'Il modello', modello: 'Il modello', motivi: 'Perché conviene', margini: 'Perché conviene', coop: 'Perché conviene',
-  giornata: 'La giornata', split: 'La giornata', car: 'Dove compriamo', tirreno: 'Dove compriamo', adriatico: 'Dove compriamo', fonte: 'Dove compriamo',
-  budget: 'I numeri', chilo: 'I numeri', trasporti: 'I numeri', utile: 'I numeri', centesimi: 'I numeri', soldi: 'Soldi e protezioni',
+  giornata: 'La giornata', split: 'La giornata', car: 'Dove compriamo', tirreno: 'Il Tirreno', adriatico: "L'Adriatico", fonte: 'Dove compriamo',
+  budget: 'Poco capitale', strumenti0: '', chilo: 'I numeri', trasporti: 'I numeri', utile: 'I numeri', centesimi: 'I numeri', soldi: 'Soldi e protezioni',
   assicurazioni: 'Soldi e protezioni', regole: 'Regole e costi', societa: 'Regole e costi', stipendio: 'Quanto resta a te', estero: 'Il plus: estero',
-  roadmap: 'Partenza', fine: 'Argo Maris',
+  roadmap: 'Partenza', fine: 'Argo Maris', consegna: 'La consegna', strumenti: 'Poco capitale', ifs: 'Regole e costi', leve: 'Le tue leve', glossario: 'Le parole',
 };

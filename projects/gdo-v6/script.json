@@ -1,36 +1,352 @@
 {
-  "title": "Argo Maris · Il buyer del pesce per la GDO",
-  "format": "16:9",
-  "fps": 30,
-  "voice": "it-IT-GiuseppeMultilingualNeural",
-  "rate": "+3%",
-  "beatPause": 0.32,
-  "gap": 0.6,
-  "scenes": [
-    {"id": "intro", "text": ["Ciao! Questo è Argo Maris:", "il buyer del pesce per la grande distribuzione.", "In questo video ti spiego tutto il progetto:", "come funziona, perché conviene alla catena, quanto costa partire, e quanto si guadagna."], "rates": {"0": "-2%"}},
-    {"id": "idea", "text": ["L'idea è semplice.", "La catena manda ad Argo Maris un solo ordine.", "Argo Maris compra il pesce migliore, al prezzo giusto: al mercato di Roma, alle aste, e direttamente dalle barche.", "Lo compra a nome suo, e lo rivende alla catena con il suo margine.", "Per la catena: un solo fornitore, un solo referente, una sola fattura."], "pauses": {"0": 0.5}},
-    {"id": "modello", "text": ["Questo modello ha un nome: acquisti in outsourcing.", "Un'azienda esterna fa gli acquisti al posto del cliente.", "Argo Maris è un buying agent: compra a nome suo, rivende, e si prende il rischio.", "Per l'ASL è un intermediario senza deposito, cioè un broker: niente magazzino, niente banco."]},
-    {"id": "motivi", "text": ["Perché una catena dovrebbe comprare il pesce da un'azienda esterna? Per quattro motivi.", "Uno: meno lavoro interno. L'ufficio acquisti gestisce un fornitore, invece di dieci.", "Due: prezzo migliore. Ogni giorno si confronta tutto il mercato, non il listino di un solo grossista.", "Tre: continuità. Se un fornitore non ha la merce, la si trova da un altro.", "Quattro: flessibilità. I volumi si adattano giorno per giorno, senza costi fissi per la catena."]},
-    {"id": "margini", "text": ["E questo conta, perché la grande distribuzione lavora con margini bassi.", "Secondo Mediobanca, nel 2024 il margine operativo dei maggiori gruppi è stato del 2,7 per cento.", "Vuol dire che su cento euro di vendite, ne restano meno di tre.", "Ogni centesimo risparmiato sugli acquisti pesa."], "pauses": {"1": 0.5}},
-    {"id": "coop", "text": ["E perché Coop dovrebbe scegliere proprio Argo Maris?", "Perché conosce già il lavoro: gli ordini Coop, le piattaforme, e i fornitori del mercato di Roma.", "Perché è specializzata solo sul pesce, e ogni giorno sceglie tra tanti fornitori, aste e barche.", "Perché lavora in regola: contratto scritto, tracciabilità di ogni lotto, pagamento entro trenta giorni, e più avanti la certificazione IFS Broker.", "E perché un prezzo migliore aiuta Coop a difendere il suo margine, senza cambiare niente nella sua organizzazione."]},
-    {"id": "giornata", "text": ["Vediamo una giornata di lavoro, con gli orari veri.", "Tra le dieci e mezzogiorno arrivano gli ordini della catena.", "Subito dopo confronto i listini dei fornitori del mercato, e blocco la merce.", "Alle tre del pomeriggio ci sono le aste: lì compro il pesce migliore, o quello che manca.", "In serata preparo conferme e documenti.", "Di notte la merce viene caricata e consegnata.", "E la mattina dopo è nei magazzini della catena. Fresca."]},
-    {"id": "split", "text": ["Ecco il cuore del lavoro: un ordine della catena, diviso tra più fornitori.", "Per esempio: le orate, dal grossista del mercato con il prezzo migliore.", "Le spigole, dall'asta delle tre.", "E il pesce del giorno, direttamente da una barca.", "Alla fine, per la catena: una sola consegna, e una sola fattura."]},
-    {"id": "car", "text": ["Il primo vantaggio è il Centro Agroalimentare di Roma.", "Oltre quattrocento aziende: uno dei più grandi mercati ittici e ortofrutticoli d'Italia.", "Per Argo Maris è come un magazzino virtuale: tanti grossisti, nello stesso posto.", "Non uso sempre gli stessi fornitori: ogni giorno scelgo il prezzo e la qualità migliori.", "E se uno non ha la merce, ce n'è un altro a pochi metri."]},
-    {"id": "tirreno", "text": ["Poi c'è il pesce del nostro mare: il Tirreno.", "Le barche e le aste di Civitavecchia, Fiumicino e Anzio, a un'ora, o poco più, dal mercato di Roma.", "Pesce sbarcato poche ore prima: ci sono le triglie e le alici, i calamari e i gamberi, le ricciole e il pesce spada.", "Chilometri pochi, freschezza tanta."], "pauses": {"0": 0.5}},
-    {"id": "adriatico", "text": ["E poi c'è l'Adriatico.", "Le marinerie e le aste dell'altra costa allargano la scelta.", "Due mari, una sola regia: se il Tirreno è fermo per il mare grosso, l'Adriatico può lavorare.", "Così la catena non resta mai senza pesce."]},
-    {"id": "fonte", "text": ["Ma come si compra, alla fonte?", "Alle aste si compra il pesce appena sbarcato: ci si registra come acquirente presso il mercato, e le condizioni di pagamento le decide ogni mercato.", "Per comprare direttamente dalle barche, ci si registra come acquirente sul portale del Ministero dell'Agricoltura.", "Per ogni acquisto va fatta la nota di vendita: online entro ventiquattro ore, su carta entro quarantotto, alla Capitaneria di Porto.", "E ogni lotto ha il suo codice di tracciabilità.", "C'è anche il mercato telematico della Borsa Merci: iscrizione gratuita, aperto anche agli intermediari."]},
-    {"id": "budget", "text": ["E con poco budget, senza anticipare tanti soldi? Tre regole.", "Prima: compro solo quello che la catena ha già ordinato. Niente magazzino, niente invenduto.", "Seconda: la legge sul pesce fresco vale anche verso i miei fornitori. Si paga entro trenta giorni dalla consegna, e quando il mercato lo permette allineo i pagamenti a quelli della catena.", "Terza: all'asta compro solo una parte.", "Esempio: il venti per cento della merce, circa milleduecento euro al giorno.", "Pagando subito, servono circa ventunomila euro di cassa.", "Con l'anticipo fatture all'ottanta per cento, la cassa necessaria scende a circa quattromiladuecento euro."], "pauses": {"4": 0.45}},
-    {"id": "chilo", "text": ["Vediamo il guadagno al chilo. I prezzi sono indicativi.", "Compro l'orata a sei euro al chilo.", "Con un ricarico del quindici per cento, la vendo a sei euro e novanta.", "Il margine è di novanta centesimi al chilo, prima dei trasporti."]},
-    {"id": "trasporti", "text": ["Ora i trasporti.", "Li valutiamo tra l'uno e il tre per cento del prezzo, su una fattura media di settemila euro al giorno, quattro giorni a settimana.", "All'uno per cento: circa sette centesimi al chilo, settanta euro al giorno, circa quattordicimilacinquecento euro l'anno.", "Al due per cento: quattordici centesimi al chilo, centoquaranta euro al giorno, circa ventinovemila euro l'anno.", "Al tre per cento: ventuno centesimi al chilo, duecentodieci euro al giorno, circa quarantatremilasettecento euro l'anno.", "Ogni punto di trasporto risparmiato vale circa quattordicimilacinquecento euro l'anno. Per questo il trasporto va trattato bene."]},
-    {"id": "utile", "text": ["E l'utile della società?", "Settemila euro al giorno, per quattro giorni, per cinquantadue settimane: circa un milione e quattrocentocinquantaseimila euro l'anno.", "Tolgo i trasporti, l'uno per cento per banca e assicurazione, e circa dodicimila euro l'anno di costi fissi.", "Con un ricarico prudente del sette per cento, l'utile prima delle tasse va da circa venticinquemila a cinquantaquattromila euro l'anno.", "Con il quindici per cento, da circa centoventimila a centoquarantanovemila.", "Con il venti per cento, da circa centosettantaduemila a duecentoduemila.", "Attenzione: valgono solo se la catena accetta il prezzo."], "pauses": {"5": 0.5}},
-    {"id": "centesimi", "text": ["Un esempio che fa capire tutto: dieci centesimi.", "Con questi volumi, a sei euro e novanta, sono circa duecentoundicimila chili di pesce l'anno.", "Dieci centesimi al chilo in più valgono circa ventunomila euro l'anno: più di millesettecento euro al mese.", "Per questo comprare bene, al mercato, alle aste e dalle barche, è tutto."], "pauses": {"0": 0.5}},
-    {"id": "soldi", "text": ["Come girano i soldi?", "La catena paga Argo Maris, e Argo Maris paga i fornitori.", "Per legge, il pesce fresco va pagato entro trenta giorni dalla consegna, con contratto scritto. Vale in tutte e due le direzioni.", "Per avere cassa subito c'è l'anticipo fatture: la banca anticipa dal settanta all'ottanta per cento.", "Oppure il factoring pro soluto: incassi subito, e il rischio che il cliente non paghi passa alla società di factoring. Di solito costa dall'uno al tre per cento."]},
-    {"id": "assicurazioni", "text": ["Come ci si protegge? Con tre assicurazioni.", "Uno: l'assicurazione dei crediti. Se un cliente non paga, rimborsa di solito tra l'ottanta e il novanta per cento. Il premio è una percentuale del fatturato.", "Due: la responsabilità civile prodotti, per i danni a terzi causati da un prodotto difettoso, con l'estensione per il ritiro dal mercato.", "Tre: l'assicurazione delle merci trasportate, che copre anche il mancato freddo, le perdite e le avarie.", "E poi i paracadute: compro solo su ordine, uso più fornitori, tengo una cassa di sicurezza, e per i clienti più rischiosi uso il factoring pro soluto."]},
-    {"id": "regole", "text": ["Cosa serve per essere in regola, e farsi qualificare dalla catena?", "La notifica all'ASL come intermediario senza deposito, e il piano di autocontrollo HACCP.", "La registrazione come acquirente sul portale del Ministero, per comprare dalle barche.", "La qualifica che la catena fa sul fornitore: documenti, contratto scritto, e i requisiti che chiede la catena.", "E la certificazione IFS Broker: lo standard per gli intermediari. Audit di un ente accreditato, rinnovo ogni anno, anche a distanza. Per prepararsi servono di solito alcuni mesi."]},
-    {"id": "societa", "text": ["Quanto costa aprire la società?", "Una SRLS con il modello standard costa circa trecentoventi euro: duecento di imposta di registro, più i diritti della Camera di Commercio, senza onorario del notaio.", "Il capitale parte da un euro, fino a novemilanovecentonovantanove euro.", "Poi, ogni anno: il commercialista, tra mille e tremila euro, e i diritti camerali, circa centoventi, duecento euro."]},
-    {"id": "stipendio", "text": ["E quanto resta a te?", "Prendiamo lo scenario centrale: ricarico del quindici per cento, e trasporti al due.", "L'utile prima delle tasse è di circa centotrentaquattromila euro l'anno.", "La società paga l'IRES al ventiquattro per cento, e l'IRAP, circa il quattro: restano circa novantasettemila euro.", "Se li prendi come dividendo paghi il ventisei per cento: ti restano circa settantunomila euro l'anno. Quasi seimila euro al mese.", "Con il ricarico prudente del sette per cento, invece, sarebbero circa millesettecentosessanta euro al mese.", "Da queste cifre vanno tolti i contributi INPS personali, che dipendono da come ti paghi: compenso o dividendi. Il commercialista sceglie la forma migliore."], "pauses": {"0": 0.5, "4": 0.5}},
-    {"id": "estero", "text": ["E quando serve, c'è un plus: l'estero.", "Dalla Scozia il salmone. Dall'Olanda il pesce del Mare del Nord. Da Grecia, Croazia e Turchia, orate e spigole d'allevamento.", "Sempre con documenti e tracciabilità in regola.", "Non sostituisce il nostro mare: lo completa."]},
-    {"id": "roadmap", "text": ["La tabella di marcia.", "Primo mese: società, ASL, registrazioni, e contratti con fornitori e trasporto.", "Dal secondo mese: i primi ordini della catena, comprando al mercato di Roma.", "Dal quarto mese: aste e barche del Tirreno e dell'Adriatico, con anticipo fatture e assicurazione crediti.", "Entro il primo anno: la certificazione IFS Broker, e più catene."]},
-    {"id": "fine", "text": ["In sintesi: Argo Maris compra bene per la grande distribuzione. Dal mercato di Roma, dalle aste e dalle barche.", "Per la catena: un solo fornitore, prezzi migliori, e tutto in regola.", "Le cifre sono indicative, e vanno verificate con il commercialista.", "Argo Maris. Il mare, scelto per voi.", "Grazie per l'attenzione."], "pauses": {"2": 0.7, "3": 0.6}, "rates": {"3": "-6%"}, "pad": 0.4}
-  ]
+ "title": "Argo Maris · Il buyer del pesce per la GDO",
+ "format": "16:9",
+ "fps": 30,
+ "voice": "it-IT-GiuseppeMultilingualNeural",
+ "rate": "+3%",
+ "beatPause": 0.32,
+ "gap": 0.6,
+ "scenes": [
+  {
+   "id": "intro",
+   "text": [
+    "Ciao! Questo è Argo Maris:",
+    "il buyer del pesce per la grande distribuzione.",
+    "In questo video ti spiego tutto il progetto:",
+    "come funziona, perché conviene alla catena, quanto costa partire, e quanto si guadagna."
+   ],
+   "rates": {
+    "0": "-2%"
+   }
+  },
+  {
+   "id": "idea",
+   "text": [
+    "L'idea è semplice.",
+    "La catena manda ad Argo Maris un solo ordine.",
+    "Argo Maris compra il pesce migliore, al prezzo giusto: al mercato di Roma, alle aste, e direttamente dalle barche.",
+    "Lo compra a nome suo, e lo rivende alla catena con il suo margine.",
+    "Per la catena: un solo fornitore, un solo referente, una sola fattura."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "modello",
+   "text": [
+    "Questo modello ha un nome: acquisti in outsourcing.",
+    "In parole semplici: un'azienda esterna fa gli acquisti al posto del cliente.",
+    "Argo Maris è un buying agent: compra a nome suo, rivende con il suo margine, e si prende il rischio.",
+    "Per l'ASL è un intermediario senza deposito, cioè un broker: niente magazzino, niente banco. La merce va dal fornitore al cliente."
+   ]
+  },
+  {
+   "id": "motivi",
+   "text": [
+    "Perché una catena dovrebbe comprare il pesce da un'azienda esterna? Per quattro motivi.",
+    "Uno: meno lavoro interno. L'ufficio acquisti gestisce un fornitore, invece di dieci.",
+    "Due: prezzo migliore. Ogni giorno si confronta tutto il mercato, non il listino di un solo grossista.",
+    "Tre: continuità. Se un fornitore non ha la merce, la si trova da un altro.",
+    "Quattro: flessibilità. I volumi si adattano giorno per giorno, senza costi fissi per la catena."
+   ]
+  },
+  {
+   "id": "margini",
+   "text": [
+    "E questo conta, perché la grande distribuzione lavora con margini bassi.",
+    "Secondo Mediobanca, nel 2024 il margine operativo dei maggiori gruppi è stato del 2,7 per cento.",
+    "Vuol dire che su cento euro di vendite, ne restano meno di tre.",
+    "Ogni centesimo risparmiato sugli acquisti pesa."
+   ],
+   "pauses": {
+    "1": 0.5
+   }
+  },
+  {
+   "id": "coop",
+   "text": [
+    "E perché Coop dovrebbe scegliere proprio Argo Maris?",
+    "Perché conosce già il lavoro: gli ordini Coop, le piattaforme, e i fornitori del mercato di Roma.",
+    "Perché è specializzata solo sul pesce, e ogni giorno sceglie tra tanti fornitori, aste e barche.",
+    "Perché lavora in regola: contratto scritto, tracciabilità di ogni lotto, pagamento entro trenta giorni, e più avanti la certificazione IFS Broker.",
+    "E perché un prezzo migliore aiuta Coop a difendere il suo margine, senza cambiare niente nella sua organizzazione."
+   ]
+  },
+  {
+   "id": "giornata",
+   "text": [
+    "Vediamo una giornata di lavoro, con gli orari veri.",
+    "Tra le dieci e mezzogiorno arrivano gli ordini della catena.",
+    "Subito dopo confronto i listini dei fornitori del mercato, e blocco la merce.",
+    "Alle tre del pomeriggio ci sono le aste: lì compro il pesce migliore, o quello che manca.",
+    "In serata preparo conferme e documenti.",
+    "Di notte la merce viene caricata e consegnata.",
+    "E la mattina dopo è nei magazzini della catena. Fresca."
+   ]
+  },
+  {
+   "id": "split",
+   "text": [
+    "Ecco il cuore del lavoro: un ordine della catena, diviso tra più fornitori.",
+    "Per esempio: le orate, dal grossista del mercato con il prezzo migliore.",
+    "Le spigole, dall'asta delle tre.",
+    "E il pesce del giorno, direttamente da una barca.",
+    "Alla fine, per la catena: una sola consegna, e una sola fattura."
+   ]
+  },
+  {
+   "id": "consegna",
+   "text": [
+    "E dove consegni? Ci sono tre strade.",
+    "La piattaforma: il centro di distribuzione della catena. Consegni tutto in un solo punto, e la catena smista ai negozi.",
+    "L'hub logistico: un operatore di trasporto a temperatura controllata raccoglie, smista e consegna per te.",
+    "E la consegna diretta: porti il pesce direttamente al punto vendita.",
+    "Più freschezza, meno passaggi. Ma servono mezzi refrigerati, orari di scarico precisi, e i costi di trasporto salgono, perché fai più fermate.",
+    "Il consiglio: parti dalla piattaforma, e proponi la consegna diretta per i negozi più vicini, o per il pesce più delicato."
+   ]
+  },
+  {
+   "id": "car",
+   "text": [
+    "Il primo vantaggio è il Centro Agroalimentare di Roma.",
+    "Oltre quattrocento aziende: uno dei più grandi mercati ittici e ortofrutticoli d'Italia.",
+    "Per Argo Maris è come un magazzino virtuale: tanti grossisti, nello stesso posto.",
+    "Non uso sempre gli stessi fornitori: ogni giorno scelgo il prezzo e la qualità migliori.",
+    "E se uno non ha la merce, ce n'è un altro a pochi metri."
+   ]
+  },
+  {
+   "id": "tirreno",
+   "text": [
+    "Poi c'è il pesce del nostro mare: il Tirreno.",
+    "Le marinerie della costa: da Viareggio a Livorno, da Piombino a Castiglione della Pescaia.",
+    "Poi Porto Santo Stefano e Porto Ercole, Civitavecchia, Fiumicino e Anzio, fino a Terracina e Gaeta.",
+    "Pesce sbarcato poche ore prima: ci sono le triglie e le alici, i calamari e i gamberi, le ricciole e il pesce spada.",
+    "Chilometri pochi, freschezza tanta."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "adriatico",
+   "text": [
+    "E poi c'è l'Adriatico.",
+    "Le marinerie dell'altra costa: da Chioggia a Rimini e Cesenatico, da Fano ad Ancona e Civitanova Marche.",
+    "E poi San Benedetto del Tronto, Giulianova, Pescara e Ortona, fino a Vasto, Termoli e Manfredonia.",
+    "Due mari, una sola regia: se il Tirreno è fermo per il mare grosso, l'Adriatico può lavorare.",
+    "Così la catena non resta mai senza pesce."
+   ]
+  },
+  {
+   "id": "fonte",
+   "text": [
+    "Ma come si compra, alla fonte? Vediamo i tre canali, uno per uno.",
+    "Uno: i grossisti del mercato di Roma. Apri un conto con ognuno e, con contratto scritto, paghi a trenta giorni dalla consegna, come prevede la legge per i prodotti deperibili.",
+    "Due: le aste. Ti registri come acquirente presso il mercato ittico. Ogni mercato ha il suo regolamento: spesso chiede una garanzia, come un deposito o una fideiussione bancaria, e fissa i tempi di pagamento.",
+    "Fideiussione vuol dire che una banca garantisce per te: se tu non paghi, paga la banca.",
+    "Tre: le barche. Per comprare direttamente dal pescatore, cioè alla prima vendita, ti registri come acquirente sul portale del Ministero dell'Agricoltura.",
+    "Per ogni acquisto fai la nota di vendita: online entro ventiquattro ore, su carta entro quarantotto, alla Capitaneria di Porto. E ogni lotto ha il suo codice di tracciabilità.",
+    "C'è anche la Borsa Merci Telematica: iscrizione gratuita, aperta anche agli intermediari."
+   ]
+  },
+  {
+   "id": "budget",
+   "text": [
+    "E se hai poco capitale? Ecco tutte le opzioni, dalla più semplice.",
+    "Prima: compri solo quello che la catena ha già ordinato. Niente magazzino, niente invenduto.",
+    "Seconda: usi i trenta giorni. Paghi i fornitori a trenta giorni, mentre incassi dalla catena: se le date coincidono, la merce si paga quasi da sola.",
+    "Terza: parti dal mercato di Roma, dove con contratto scritto paghi a trenta giorni, e aggiungi aste e barche più avanti.",
+    "Quarta: all'asta compri solo una parte. Esempio: il venti per cento della merce, circa milleduecento euro al giorno.",
+    "Pagando subito, servono circa ventunomila euro di cassa.",
+    "Con l'anticipo fatture all'ottanta per cento, la cassa necessaria scende a circa quattromiladuecento euro."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "4": 0.45
+   }
+  },
+  {
+   "id": "strumenti",
+   "text": [
+    "E gli strumenti finanziari, spiegati semplici.",
+    "L'anticipo fatture: emetti la fattura alla catena, e la banca ti anticipa subito dal settanta all'ottanta per cento. Quando la catena paga, la banca si riprende i soldi.",
+    "Il factoring pro soluto: vendi la fattura a una società di factoring. Ti paga subito e, se la catena non paga, il rischio è suo. Costa di solito dall'uno al tre per cento.",
+    "Il fido bancario: una riserva di cassa da usare quando serve. Per ottenerlo più facilmente c'è il Fondo di Garanzia per le piccole e medie imprese, che garantisce alla banca una parte del prestito.",
+    "E i finanziamenti agevolati per le nuove imprese, per esempio quelli di Invitalia, se hai i requisiti. Da verificare con il commercialista."
+   ]
+  },
+  {
+   "id": "chilo",
+   "text": [
+    "Vediamo il guadagno al chilo. I prezzi sono indicativi.",
+    "Compro l'orata a sei euro al chilo.",
+    "Con un ricarico del quindici per cento, la vendo a sei euro e novanta.",
+    "Il margine è di novanta centesimi al chilo, prima dei trasporti."
+   ]
+  },
+  {
+   "id": "trasporti",
+   "text": [
+    "Ora i trasporti.",
+    "Li valutiamo tra l'uno e il tre per cento del prezzo, su una fattura media di settemila euro al giorno, quattro giorni a settimana.",
+    "All'uno per cento: circa sette centesimi al chilo, settanta euro al giorno, circa quattordicimilacinquecento euro l'anno.",
+    "Al due per cento: quattordici centesimi al chilo, centoquaranta euro al giorno, circa ventinovemila euro l'anno.",
+    "Al tre per cento: ventuno centesimi al chilo, duecentodieci euro al giorno, circa quarantatremilasettecento euro l'anno.",
+    "Ogni punto di trasporto risparmiato vale circa quattordicimilacinquecento euro l'anno. Per questo il trasporto va trattato bene."
+   ]
+  },
+  {
+   "id": "utile",
+   "text": [
+    "E l'utile della società?",
+    "Settemila euro al giorno, per quattro giorni, per cinquantadue settimane: circa un milione e quattrocentocinquantaseimila euro l'anno.",
+    "Tolgo i trasporti, l'uno per cento per banca e assicurazione, e circa dodicimila euro l'anno di costi fissi.",
+    "Con un ricarico prudente del sette per cento, l'utile prima delle tasse va da circa venticinquemila a cinquantaquattromila euro l'anno.",
+    "Con il quindici per cento, da circa centoventimila a centoquarantanovemila.",
+    "Con il venti per cento, da circa centosettantaduemila a duecentoduemila.",
+    "Attenzione: valgono solo se la catena accetta il prezzo."
+   ],
+   "pauses": {
+    "5": 0.5
+   }
+  },
+  {
+   "id": "centesimi",
+   "text": [
+    "Un esempio che fa capire tutto: dieci centesimi.",
+    "Con questi volumi, a sei euro e novanta, sono circa duecentoundicimila chili di pesce l'anno.",
+    "Dieci centesimi al chilo in più valgono circa ventunomila euro l'anno: più di millesettecento euro al mese.",
+    "Per questo comprare bene, al mercato, alle aste e dalle barche, è tutto."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "soldi",
+   "text": [
+    "Come girano i soldi?",
+    "La catena paga Argo Maris, e Argo Maris paga i fornitori.",
+    "Per legge, il pesce fresco va pagato entro trenta giorni dalla consegna, con contratto scritto. Vale in tutte e due le direzioni.",
+    "Se ti serve cassa prima, usi l'anticipo fatture, dal settanta all'ottanta per cento.",
+    "Oppure il factoring pro soluto: incassi subito, e il rischio passa alla società di factoring, per un costo dall'uno al tre per cento."
+   ]
+  },
+  {
+   "id": "assicurazioni",
+   "text": [
+    "Come ci si protegge? Con tre assicurazioni. Vediamole con un esempio ciascuna.",
+    "Uno: l'assicurazione dei crediti. Se un cliente non ti paga una fattura da diecimila euro, l'assicurazione te ne rimborsa di solito tra ottomila e novemila. Il premio è una piccola percentuale del fatturato.",
+    "Due: la responsabilità civile prodotti. Se un lotto difettoso fa stare male qualcuno, copre i danni. Con l'estensione per il ritiro, copre anche i costi per togliere il prodotto dagli scaffali.",
+    "Tre: l'assicurazione delle merci trasportate. Se di notte il camion perde il freddo e il carico si rovina, copre la merce persa, e anche perdite e avarie.",
+    "E poi i paracadute: compri solo su ordine, usi più fornitori, tieni una cassa di sicurezza, e per i clienti più rischiosi usi il factoring pro soluto."
+   ]
+  },
+  {
+   "id": "regole",
+   "text": [
+    "Come ti metti in regola? Passo per passo.",
+    "Passo uno: la notifica sanitaria. Presenti la SCIA al SUAP del tuo comune, che la trasmette all'ASL, come intermediario senza deposito.",
+    "Passo due: il corso HACCP e il piano di autocontrollo, cioè come controlli, registri e rintracci ogni lotto.",
+    "Passo tre: la registrazione come acquirente sul portale del Ministero, per comprare alla prima vendita dalle barche.",
+    "Passo quattro: la qualifica della catena. Ti manda un questionario fornitore: visura camerale, documenti, assicurazioni, e contratto scritto."
+   ]
+  },
+  {
+   "id": "ifs",
+   "text": [
+    "E poi la certificazione IFS Broker: lo standard internazionale per chi intermedia alimenti senza toccarli.",
+    "Come si ottiene? Scegli un ente di certificazione accreditato.",
+    "Prepari le procedure: come scegli e controlli i fornitori, come garantisci la tracciabilità, come gestisci i reclami e il ritiro di un prodotto.",
+    "Poi c'è l'audit: un ispettore verifica tutto, anche a distanza. Se va bene, il certificato vale un anno, e si rinnova ogni anno.",
+    "Per prepararsi servono di solito alcuni mesi. Ed è una leva forte: molte catene la apprezzano, o la chiedono ai loro fornitori."
+   ]
+  },
+  {
+   "id": "societa",
+   "text": [
+    "Quanto costa aprire la società?",
+    "Una SRLS con il modello standard costa circa trecentoventi euro: duecento di imposta di registro, più i diritti della Camera di Commercio, senza onorario del notaio.",
+    "Il capitale parte da un euro, fino a novemilanovecentonovantanove euro.",
+    "Poi, ogni anno: il commercialista, tra mille e tremila euro, e i diritti camerali, circa centoventi, duecento euro."
+   ]
+  },
+  {
+   "id": "stipendio",
+   "text": [
+    "E quanto resta a te?",
+    "Prendiamo lo scenario centrale: ricarico del quindici per cento, e trasporti al due.",
+    "L'utile prima delle tasse è di circa centotrentaquattromila euro l'anno.",
+    "La società paga l'IRES al ventiquattro per cento, e l'IRAP, circa il quattro: restano circa novantasettemila euro.",
+    "Se li prendi come dividendo paghi il ventisei per cento: ti restano circa settantunomila euro l'anno. Quasi seimila euro al mese.",
+    "Con il ricarico prudente del sette per cento, invece, sarebbero circa millesettecentosessanta euro al mese.",
+    "Da queste cifre vanno tolti i contributi INPS personali, che dipendono da come ti paghi: compenso o dividendi. Il commercialista sceglie la forma migliore."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "4": 0.5
+   }
+  },
+  {
+   "id": "leve",
+   "text": [
+    "Su cosa fare leva, quando parli con la catena?",
+    "Il prezzo: anche dieci centesimi al chilo cambiano il suo margine.",
+    "La continuità: due mari e tutto il mercato di Roma, a rotazione.",
+    "La freschezza: pesce locale, e consegna diretta in negozio.",
+    "La semplicità: un solo fornitore, un solo referente, una sola fattura.",
+    "E la sicurezza: contratto scritto, tracciabilità, assicurazioni e certificazione."
+   ]
+  },
+  {
+   "id": "estero",
+   "text": [
+    "E quando serve, c'è un plus: l'estero.",
+    "Dalla Scozia il salmone. Dall'Olanda il pesce del Mare del Nord. Da Grecia, Croazia e Turchia, orate e spigole d'allevamento.",
+    "Sempre con documenti e tracciabilità in regola.",
+    "Non sostituisce il nostro mare: lo completa."
+   ]
+  },
+  {
+   "id": "glossario",
+   "text": [
+    "Ripassiamo le parole del mestiere, in modo semplice.",
+    "Buying agent: compri a nome tuo, e rivendi con il tuo margine.",
+    "Broker senza deposito: non hai magazzino, la merce va dal fornitore al cliente.",
+    "Prima vendita: il primo acquisto del pescato, appena esce dalla barca. La nota di vendita è il documento che la registra.",
+    "Anticipo fatture: la banca ti anticipa i soldi della fattura. Pro soluto: il rischio che il cliente non paghi passa al factor.",
+    "Piattaforma: il magazzino centrale della catena. Consegna diretta: vai dritto al negozio."
+   ]
+  },
+  {
+   "id": "roadmap",
+   "text": [
+    "La tabella di marcia.",
+    "Primo mese: società, ASL, registrazioni, e contratti con fornitori e trasporto.",
+    "Dal secondo mese: i primi ordini della catena, comprando al mercato di Roma.",
+    "Dal quarto mese: aste e barche del Tirreno e dell'Adriatico, con anticipo fatture e assicurazione crediti.",
+    "Entro il primo anno: la certificazione IFS Broker, e più catene."
+   ]
+  },
+  {
+   "id": "fine",
+   "text": [
+    "In sintesi: Argo Maris compra bene per la grande distribuzione. Dal mercato di Roma, dalle aste e dalle barche.",
+    "Per la catena: un solo fornitore, prezzi migliori, e tutto in regola.",
+    "Le cifre sono indicative, e vanno verificate con il commercialista.",
+    "Argo Maris. Il mare, scelto per voi.",
+    "Grazie per l'attenzione."
+   ],
+   "pauses": {
+    "2": 0.7,
+    "3": 0.6
+   },
+   "rates": {
+    "3": "-6%"
+   },
+   "pad": 0.4
+  }
+ ]
 }

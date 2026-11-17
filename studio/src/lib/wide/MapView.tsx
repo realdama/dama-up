@@ -4,7 +4,7 @@ import {useCurrentFrame} from 'remotion';
 import maps from '../maps.json';
 import {C, FONT, MONO, ez, useIn, W, H, Boat} from './ui';
 
-type View = 'lazio' | 'centro' | 'italia' | 'europa';
+type View = 'lazio' | 'centro' | 'italia' | 'europa' | 'tirrenoV' | 'adriaticoV';
 export const pt = (view: View, k: string): [number, number] => (maps as any).views[view].pts[k] ?? [0, 0];
 
 export const MapView: React.FC<{

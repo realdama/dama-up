@@ -1,6 +1,6 @@
 // Argo Maris — libreria 16:9 (1920×1080): sfondo, header, sottotitoli, icone, card, pesci
 import React from 'react';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Easing} from 'remotion';
+import {AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing} from 'remotion';
 import {C, FONT, MONO, rand, clamp} from '../kit';
 
 export const W = 1920, H = 1080;
@@ -70,28 +70,13 @@ export const Backdrop: React.FC<{tint?: string}> = ({tint = C.deep}) => {
   );
 };
 
-/* ───────── emblema Argo Maris (vettoriale) ───────── */
-export const Emblem: React.FC<{size?: number; ring?: string}> = ({size = 60, ring = C.aqua}) => {
+/* ───────── logo Argo Maris (file del cliente, ritagliato in tondo) ───────── */
+export const Emblem: React.FC<{size?: number; ring?: string}> = ({size = 60, ring}) => {
   const f = useCurrentFrame();
-  const s = size / 200;
-  const bob = Math.sin(f / 9) * 5;
-  const wv = (y: number, a: number, ph: number) =>
-    `M -110 ${y} ${Array.from({length: 23}).map((_, i) => `L ${-110 + i * 10} ${y + Math.sin(i / 1.5 + f / ph) * a}`).join(' ')} L 110 120 L -110 120 Z`;
   return (
-    <svg width={size} height={size} viewBox="-100 -100 200 200" style={{overflow: 'visible'}}>
-      <defs><clipPath id={`em${size}`}><circle r={84} /></clipPath></defs>
-      <circle r={96} fill="none" stroke={ring} strokeWidth={8} />
-      <circle r={84} fill={C.deep} />
-      <g clipPath={`url(#em${size})`}>
-        <path d={wv(22, 9, 7)} fill={C.sea} />
-        <path d={wv(44, 7, -6)} fill={C.ocean} />
-        <g transform={`translate(0 ${bob})`}>
-          <path d="M -12 6 L -12 -64 L 44 4 Z" fill={C.foam} />
-          <path d="M -18 4 L -18 -44 L -56 4 Z" fill="#BFD9EA" />
-          <path d="M -58 12 L 58 12 L 40 34 L -40 34 Z" fill={C.gold} />
-        </g>
-      </g>
-    </svg>
+    <div style={{width: size, height: size, borderRadius: size / 2, boxShadow: `0 0 ${size * 0.25}px ${ring ?? C.aqua}55`, transform: `rotate(${Math.sin(f / 40) * 1.5}deg)`}}>
+      <Img src={staticFile('brand/argo-maris-logo.png')} style={{width: size, height: size}} />
+    </div>
   );
 };
 

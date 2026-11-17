@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, OffthreadVideo, staticFile, useCurrentFrame, interpolate} from 'remotion';
+import {AbsoluteFill, Img, OffthreadVideo, staticFile, useCurrentFrame, interpolate} from 'remotion';
+import {MarinerieTirreno, MarinerieAdriatico, ConsegnaDiagram} from '../../lib/wide/Shared';
 import {C, FONT, MONO, rand, clamp, SP, useScene, useIn, ez, Title, Card, Icon, Fish, SPECIES, Emblem, Truck, Boat, W, H} from '../../lib/wide/ui';
 import {MapView, Port, pt, Route, Fleet, Storm, SeaLabel} from '../../lib/wide/MapView';
 
@@ -60,67 +61,51 @@ export const Hook: React.FC<SP> = (p) => {
   );
 };
 
-/* 2 ─ INTRO (HyperFrames + percorso porto→banco) */
-export const Intro: React.FC<SP> = (p) => {
-  const {f, B} = useScene(p);
-  const path = ez(f, B(2) - 6, B(2) + 40);
-  const nodes = [{x: 520, icon: 'boat', l: 'Porto'}, {x: 960, icon: 'truck', l: 'Viaggio'}, {x: 1400, icon: 'store', l: 'Banco'}];
-  return (
-    <AbsoluteFill>
-      <OffthreadVideo src={staticFile('coop-etruria/hf_intro.mp4')} muted />
-      <Svg>
-        <line x1={520} y1={800} x2={520 + 880 * path} y2={800} stroke={C.gold} strokeWidth={6} strokeDasharray="18 14" strokeDashoffset={-f * 2} />
-      </Svg>
-      {nodes.map((n, i) => {
-        const s = useIn(B(2) - 6 + i * 14, {damping: 10});
-        return (
-          <div key={i} style={{position: 'absolute', left: n.x, top: 800, transform: `translate(-50%,-50%) scale(${s})`, textAlign: 'center'}}>
-            <div style={{width: 120, height: 120, borderRadius: 60, background: C.abyss, border: `4px solid ${C.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-              <Icon name={n.icon} size={72} color={C.gold} />
-            </div>
-            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 30, color: C.foam, marginTop: 10}}>{n.l}</div>
-          </div>
-        );
-      })}
-    </AbsoluteFill>
-  );
-};
+/* 2 ─ INTRO (HyperFrames: logo Argo Maris + insegna Unicoop Etruria) */
+export const Intro: React.FC<SP> = () => (
+  <AbsoluteFill>
+    <OffthreadVideo src={staticFile('coop-etruria/hf_intro.mp4')} muted />
+  </AbsoluteFill>
+);
 
-/* 3 ─ ROTTA COMUNE */
+/* 3 ─ ROTTA COMUNE (con i loghi) */
 export const Rotta: React.FC<SP> = (p) => {
   const {f, B, Wd} = useScene(p);
   const line = ez(f, B(0) + 10, B(0) + 50);
   const ship = ez(f, B(0) + 20, B(0) + 120);
   const hub = useIn(B(2), {damping: 12});
   const spokes = ['boat', 'gavel', 'warehouse', 'truck', 'doc', 'snow'];
+  const l1 = useIn(B(0) + 4, {damping: 11}), l2 = useIn(B(0) + 14, {damping: 11});
   return (
     <AbsoluteFill>
-      <Title kicker="Argo Maris × Unicoop Etruria" title="Una rotta comune" at={B(0) - 8} />
+      <Title kicker="Argo Maris × Unicoop Etruria" title="Una rotta comune" at={B(0) - 6} />
       <Svg>
-        <path d="M 330 470 C 700 330, 1220 610, 1590 470" stroke={C.aqua} strokeWidth={5} fill="none" strokeDasharray="16 14" opacity={line} strokeDashoffset={-f} />
-        <g transform={`translate(${330 + 1260 * ship} ${470 + Math.sin(ship * Math.PI * 2) * -40})`} opacity={line}><Boat x={0} y={0} s={2.2} color={C.gold} /></g>
+        <path d="M 420 450 C 760 330, 1160 570, 1480 450" stroke={C.aqua} strokeWidth={5} fill="none" strokeDasharray="16 14" opacity={line} strokeDashoffset={-f} />
+        <g transform={`translate(${420 + 1060 * ship} ${450 + Math.sin(ship * Math.PI * 2) * -40})`} opacity={line}><Boat x={0} y={0} s={2.2} color={C.gold} /></g>
       </Svg>
-      <Pill at={B(0) + 4} x={330} y={470} text="ARGO MARIS" color={C.aqua} icon="boat" size={38} />
-      <Pill at={B(0) + 12} x={1590} y={470} text="UNICOOP ETRURIA" color={C.foam} icon="store" size={38} />
-      <Pill at={Wd('fresco')} x={450} y={660} text="FRESCO" color={C.aqua} icon="snow" size={44} />
-      <Pill at={Wd('buono')} x={850} y={660} text="BUONO" color={C.gold} icon="star" size={44} />
-      <Pill at={Wd('prezzo')} x={1390} y={660} text="AL PREZZO GIUSTO" color={C.coral} icon="euro" size={44} />
-      <div style={{position: 'absolute', left: 510, top: 690, width: 900, transform: `scale(${hub})`, opacity: hub}}>
-        <svg width={900} height={200} viewBox="-450 -100 900 200" style={{overflow: 'visible'}}>
-          {spokes.map((s, i) => {
+      <div style={{position: 'absolute', left: 300, top: 330, transform: `scale(${l1})`}}><Emblem size={240} /></div>
+      <div style={{position: 'absolute', left: 1460, top: 340, transform: `scale(${l2})`, opacity: l2}}>
+        <Img src={staticFile('brand/unicoop-etruria-insegna.jpg')} style={{height: 220, borderRadius: 26, border: `5px solid ${C.foam}`, boxShadow: '0 20px 60px rgba(0,0,0,0.5)'}} />
+      </div>
+      <Pill at={Wd('fresco')} x={450} y={680} text="FRESCO" color={C.aqua} icon="snow" size={42} />
+      <Pill at={Wd('buono')} x={850} y={680} text="BUONO" color={C.gold} icon="star" size={42} />
+      <Pill at={Wd('prezzo')} x={1390} y={680} text="AL PREZZO GIUSTO" color={C.coral} icon="euro" size={42} />
+      <div style={{position: 'absolute', left: 510, top: 760, width: 900, transform: `scale(${hub})`, opacity: hub}}>
+        <svg width={900} height={170} viewBox="-450 -85 900 170" style={{overflow: 'visible'}}>
+          {spokes.map((sp, i) => {
             const x = [-430, -290, -150, 150, 290, 430][i];
             const pp = ez(f, B(2) + 6 + i * 4, B(2) + 26 + i * 4);
             return (
               <g key={i}>
                 <line x1={0} y1={0} x2={x * pp} y2={0} stroke={C.gold} strokeWidth={3} opacity={0.6} />
-                <g transform={`translate(${x} 0) scale(${pp})`}><circle r={44} fill={C.abyss} stroke={C.gold} strokeWidth={3} /><g transform="translate(-30 -30)"><Icon name={s} size={60} color={C.gold} sw={5} /></g></g>
+                <g transform={`translate(${x} 0) scale(${pp})`}><circle r={40} fill={C.abyss} stroke={C.gold} strokeWidth={3} /><g transform="translate(-27 -27)"><Icon name={sp} size={54} color={C.gold} sw={5} /></g></g>
               </g>
             );
           })}
-          <circle r={64} fill={C.gold} />
-          <g transform="translate(-42 -42)"><Icon name="user" size={84} color={C.abyss} sw={7} /></g>
+          <circle r={58} fill={C.gold} />
+          <g transform="translate(-38 -38)"><Icon name="user" size={76} color={C.abyss} sw={7} /></g>
         </svg>
-        <div style={{textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 34, color: C.gold, marginTop: -6}}>UN SOLO REFERENTE</div>
+        <div style={{textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, marginTop: -4}}>UN SOLO REFERENTE</div>
       </div>
     </AbsoluteFill>
   );
@@ -328,33 +313,16 @@ export const Car: React.FC<SP> = (p) => {
   );
 };
 
-/* 8 ─ LOCALE: mappa Lazio */
+/* 8 ─ LOCALE: le 11 marinerie del Tirreno */
 export const Locale: React.FC<SP> = (p) => {
-  const {f, B, Wd} = useScene(p);
-  const P = (k: string) => pt('lazio', k);
-  const plat: [number, number] = [1800, 330];
-  const hours = useIn(B(2), {damping: 10});
+  const {B, Wd} = useScene(p);
   return (
-    <AbsoluteFill>
-      <MapView view="lazio" cam={[{s: 1.25, x: 0, y: 40}, {s: 1, x: 0, y: 0}]} camAt={[0, 120]}>
-        <SeaLabel x={560} y={830} at={B(0)} text="MAR TIRRENO" size={64} />
-        <Port x={P('civitavecchia')[0]} y={P('civitavecchia')[1]} at={Wd('civitavecchia')} label="Civitavecchia" big />
-        <Port x={P('fiumicino')[0]} y={P('fiumicino')[1]} at={Wd('fiumicino')} label="Fiumicino" big />
-        <Port x={P('anzio')[0]} y={P('anzio')[1]} at={Wd('anzio')} label="Anzio" big />
-        <Fleet to={P('civitavecchia')} from={[560, 560]} at={Wd('civitavecchia')} n={3} />
-        <Fleet to={P('fiumicino')} from={[820, 760]} at={Wd('fiumicino')} n={3} />
-        <Fleet to={P('anzio')} from={[1080, 960]} at={Wd('anzio')} n={3} />
-        <Port x={P('car')[0]} y={P('car')[1]} at={B(3) - 10} label="Mercato di Roma" side="r" color={C.aqua} />
-        {(['civitavecchia', 'fiumicino', 'anzio'] as const).map((k, i) => <Route key={k} a={P(k)} b={plat} at={Wd('tirreno') + i * 8} dur={45} color={C.gold} bend={-0.15} />)}
-      </MapView>
-      <Title kicker="Il cuore di tutto" title="Il pesce locale" at={B(0) - 6} />
-      <div style={{position: 'absolute', left: 1180, top: 690, transform: `scale(${hours})`, transformOrigin: 'left center', opacity: hours, display: 'flex', alignItems: 'center', gap: 18,
-        background: 'rgba(2,11,26,0.85)', border: `3px solid ${C.gold}`, borderRadius: 24, padding: '16px 26px'}}>
-        <Icon name="clock" size={64} color={C.gold} />
-        <div><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 40, color: C.gold}}>Poche ore</div><div style={{fontFamily: FONT, fontWeight: 700, fontSize: 24, color: C.foam}}>dallo sbarco alla piattaforma</div></div>
-      </div>
-      <Pill at={Wd('piattaforma')} x={1700} y={330} text="PIATTAFORMA" color={C.gold} icon="box" size={34} />
-    </AbsoluteFill>
+    <MarinerieTirreno {...p} kicker="Il cuore di tutto" title="Il pesce locale: il Tirreno" routesAt={Wd('sbarcato')}>
+      <Pill at={Wd('poche')} x={360} y={640} text="Sbarcato poche ore prima" color={C.gold} icon="clock" size={28} dark />
+      <Pill at={Wd('piattaforma')} x={230} y={720} text="Piattaforma" color={C.aqua} icon="box" size={26} />
+      <Pill at={Wd('punto')} x={520} y={720} text="Punto vendita" color={C.gold} icon="store" size={26} />
+      <div style={{opacity: B(0) * 0}} />
+    </MarinerieTirreno>
   );
 };
 
@@ -405,32 +373,8 @@ export const Specie: React.FC<SP> = (p) => {
   );
 };
 
-/* 10 ─ ADRIATICO: due mari */
-export const Adriatico: React.FC<SP> = (p) => {
-  const {f, B, Wd} = useScene(p);
-  const P = (k: string) => pt('centro', k);
-  const hub = P('car');
-  const stormOn = Wd('fermo');
-  return (
-    <AbsoluteFill>
-      <MapView view="centro" cam={[{s: 1.35, x: 260, y: -60}, {s: 1.35, x: 260, y: -60}, {s: 1, x: 0, y: 0}]} camAt={[0, B(1) - 20, B(1) + 30]}>
-        <SeaLabel x={600} y={925} at={0} text="TIRRENO" size={60} />
-        <SeaLabel x={1620} y={420} at={Wd('adriatico')} text="ADRIATICO" size={60} rot={38} color={C.gold} />
-        {(['civitavecchia', 'fiumicino', 'anzio'] as const).map((k) => <Port key={k} x={P(k)[0]} y={P(k)[1]} at={0} label="" />)}
-        {(['adrP1', 'adrP2', 'adrP3', 'adrP4'] as const).map((k, i) => <Port key={k} x={P(k)[0]} y={P(k)[1]} at={Wd('marinerie') + i * 6} label="" color={C.gold} />)}
-        {(['adrP1', 'adrP2', 'adrP3', 'adrP4'] as const).map((k, i) => <Fleet key={k} to={P(k)} from={[P(k)[0] + 170, P(k)[1] - 60]} at={Wd('aste') + i * 6} n={2} color={C.gold} />)}
-        <Fleet to={P('civitavecchia')} from={[P('civitavecchia')[0] - 60, P('civitavecchia')[1] + 40]} at={0} n={3} hold />
-        <Storm x={700} y={690} at={stormOn} r={170} />
-        {(['adrP1', 'adrP2', 'adrP3', 'adrP4'] as const).map((k, i) => <Route key={k} a={P(k)} b={hub} at={Wd('regia') + i * 6} color={C.gold} bend={0.1} />)}
-        {(['civitavecchia', 'fiumicino', 'anzio'] as const).map((k, i) => <Route key={k} a={P(k)} b={hub} at={Wd('regia') + i * 6} color={C.aqua} bend={-0.2} />)}
-      </MapView>
-      <div style={{position: 'absolute', left: hub[0], top: hub[1], transform: `translate(-50%,-50%) scale(${useIn(Wd('regia'), {damping: 10})})`}}><Emblem size={110} ring={C.gold} /></div>
-      <Title kicker="Lo sguardo si allarga" title="Due mari, una sola regia" at={B(0) - 6} />
-      <Pill at={Wd('marinerie')} x={1560} y={250} text="Marinerie e aste dell'Adriatico" color={C.gold} icon="boat" size={30} dark />
-      <Pill at={stormOn + 10} x={480} y={350} text="Tirreno fermo → l'Adriatico lavora" color={C.coral} icon="storm" size={32} dark />
-    </AbsoluteFill>
-  );
-};
+/* 10 ─ ADRIATICO: le 13 marinerie, due mari una regia */
+export const Adriatico: React.FC<SP> = (p) => <MarinerieAdriatico {...p} />;
 
 /* 11 ─ ROTAZIONE */
 export const Rotazione: React.FC<SP> = (p) => {
@@ -485,7 +429,43 @@ export const Rotazione: React.FC<SP> = (p) => {
   );
 };
 
-/* 12 ─ LOGISTICA: 24 ore */
+/* 11b ─ COME COMPRIAMO */
+export const Acquisti: React.FC<SP> = (p) => {
+  const {f, B, Wd} = useScene(p);
+  const ch = [
+    {b: 1, t: 'Grossisti del mercato di Roma', s: 'listini confrontati ogni mattina · contratto scritto · 30 giorni', i: 'warehouse', c: C.aqua},
+    {b: 2, t: 'Aste', s: 'acquirenti registrati presso ogni mercato · offerta · pesce battuto', i: 'gavel', c: C.gold},
+    {b: 3, t: 'Barche', s: 'prima vendita · nota di vendita entro 24 ore · codice lotto', i: 'boat', c: C.coral},
+  ];
+  const hit = f - Wd('battuto');
+  return (
+    <AbsoluteFill>
+      <Title kicker="In pratica" title="Come compriamo: tre canali" at={B(0) - 6} />
+      {ch.map((c, k) => (
+        <Card key={k} at={B(c.b)} x={120 + k * 570} y={300} w={540} h={470} num={String(k + 1)} title={c.t} sub={c.s} icon={c.i} color={c.c}>
+          <svg width={480} height={170} style={{position: 'absolute', left: 30, bottom: 20}}>
+            {k === 0 && [0.75, 0.9, 0.6, 0.82].map((v, i) => { const h = ez(f, B(1) + 20 + i * 5, B(1) + 40 + i * 5) * v * 140; const best = i === 2 && f > B(1) + 70; return <rect key={i} x={30 + i * 110} y={160 - h} width={80} height={h} rx={10} fill={best ? C.gold : C.aqua} opacity={best || f < B(1) + 70 ? 1 : 0.35} />; })}
+            {k === 1 && <g>
+              <g transform={`translate(160 110) rotate(${hit > 0 && hit < 12 ? -40 + hit * 3.5 : -40})`}><rect x={-14} y={-90} width={28} height={110} rx={8} fill="#B07A3B" /><rect x={-60} y={-120} width={120} height={50} rx={12} fill="#8A5A26" /></g>
+              <rect x={80} y={140} width={180} height={22} rx={6} fill="#5E3E1C" />
+              <text x={340} y={110} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={40} fill={C.gold} opacity={ez(f, Wd('battuto'), Wd('battuto') + 6)} transform={`rotate(-8 340 110)`}>BATTUTO!</text>
+            </g>}
+            {k === 2 && <g opacity={ez(f, B(3) + 20, B(3) + 30)}>
+              <g transform="translate(70 100)"><Icon name="boat" size={90} color={C.coral} /></g>
+              <path d="M 170 100 L 240 100" stroke={C.foam} strokeWidth={4} />
+              <g transform="translate(250 50)"><Icon name="doc" size={90} color={C.foam} /></g>
+              <text x={300} y={165} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={22} fill={C.gold}>24 h</text>
+              <g transform="translate(370 60)">{Array.from({length: 18}).map((_, i) => <rect key={i} x={i * 5} y={0} width={rand(i) > 0.5 ? 3.5 : 1.8} height={70} fill={C.foam} />)}</g>
+            </g>}
+          </svg>
+        </Card>
+      ))}
+      <Pill at={B(4)} x={960} y={850} text="Solo quello che ordinate → niente invenduto → prezzi bassi" color={C.gold} icon="check" size={30} />
+    </AbsoluteFill>
+  );
+};
+
+/* 12 ─ LOGISTICA/* 12 ─ LOGISTICA: 24 ore */
 export const Logistica: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
   const x0 = 160, x1 = 1760, y = 580;
@@ -538,7 +518,14 @@ export const Logistica: React.FC<SP> = (p) => {
   );
 };
 
-/* 13 ─ FREDDO */
+/* 12b ─ CONSEGNA DIRETTA */
+export const Consegna: React.FC<SP> = (p) => {
+  const {B, Wd} = useScene(p);
+  return <ConsegnaDiagram {...p} kicker="Logistica" title="La consegna diretta" platAt={Wd('piattaforma')} hubAt={B(4)} directAt={Wd('direttamente')} prosAt={B(2)}
+    chips={[{at: B(3), t: 'Vostri orari di scarico'}, {at: B(3) + 25, t: 'Ordini per singolo negozio'}]} tipAt={B(4) + 10} tip="Scegliete voi, anche negozio per negozio." />;
+};
+
+/* 13 ─ FREDDO/* 13 ─ FREDDO */
 export const Freddo: React.FC<SP> = (p) => {
   const {f, B, Wd} = useScene(p);
   const temp = interpolate(f, [B(1), B(1) + 60], [12, 0], clamp);
@@ -629,7 +616,28 @@ export const Qualita: React.FC<SP> = (p) => {
   );
 };
 
-/* 15 ─ ESTERO: il plus */
+/* 14b ─ GARANZIE: assicurazioni e certificazioni */
+export const Garanzie: React.FC<SP> = (p) => {
+  const {f, B} = useScene(p);
+  const cards = [
+    {b: 1, t: 'RC prodotti', s: 'danni da prodotto difettoso, compreso il ritiro dal mercato', i: 'shield', c: C.aqua},
+    {b: 2, t: 'Merci trasportate', s: 'copre anche il mancato freddo durante il viaggio', i: 'thermo', c: C.coral},
+    {b: 3, t: 'HACCP · IFS Broker', s: 'autocontrollo attivo e percorso verso lo standard internazionale per gli intermediari', i: 'star', c: C.gold},
+  ];
+  return (
+    <AbsoluteFill>
+      <Title kicker="Per la vostra tranquillità" title="Assicurati e in regola" at={B(0) - 6} />
+      {cards.map((c, k) => (
+        <Card key={k} at={B(c.b)} x={120 + k * 570} y={300} w={540} h={400} num={String(k + 1)} title={c.t} sub={c.s} icon={c.i} color={c.c}>
+          <div style={{position: 'absolute', right: 26, bottom: 22, transform: `scale(${ez(f, B(c.b) + 20, B(c.b) + 30)})`}}><Icon name="check" size={70} color="#7CF29A" sw={7} /></div>
+        </Card>
+      ))}
+      {['Contratto scritto', 'Pagamenti chiari', 'Tracciabilità di ogni lotto'].map((t, i) => <Pill key={i} at={B(4) + i * 14} x={420 + i * 540} y={800} text={t} color="#7CF29A" icon="doc" size={30} dark />)}
+    </AbsoluteFill>
+  );
+};
+
+/* 15 ─ ESTERO/* 15 ─ ESTERO: il plus */
 export const Estero: React.FC<SP> = (p) => {
   const {f, B, Wd} = useScene(p);
   const P = (k: string) => pt('europa', k);
@@ -678,18 +686,19 @@ export const Estero: React.FC<SP> = (p) => {
 export const Perche: React.FC<SP> = (p) => {
   const {B} = useScene(p);
   const cards = [
-    {i: 'search', t: 'Buyer esploratore', s: 'agganci in tutti i mercati del territorio'},
-    {i: 'warehouse', t: 'Mercato di Roma', s: 'tutto il mercato, fornitori a rotazione'},
-    {i: 'boat', t: 'Tirreno e Adriatico', s: 'barche e aste di due mari'},
-    {i: 'truck', t: 'Logistica flessibile', s: 'hub, piattaforma o consegna diretta'},
-    {i: 'phone', t: 'Un solo referente', s: 'sempre raggiungibile'},
+    {i: 'search', t: 'Buyer esploratore', s: 'tutto il mercato di Roma a disposizione'},
+    {i: 'boat', t: 'Tirreno e Adriatico', s: '24 marinerie, a rotazione'},
+    {i: 'storm', t: 'Continuità', s: 'anche quando il mare è grosso'},
+    {i: 'truck', t: 'Logistica flessibile', s: 'fino alla consegna diretta in negozio'},
+    {i: 'shield', t: 'Assicurati e tracciati', s: 'un solo referente, sempre raggiungibile'},
   ];
   return (
     <AbsoluteFill>
       <Title kicker="In sintesi" title="Perché scegliere Argo Maris?" at={B(0) - 6} />
       {cards.map((c, i) => (
-        <Card key={i} at={B(i + 1)} x={120 + (i % 3) * 570} y={330 + Math.floor(i / 3) * 280} w={530} h={240} icon={c.i} title={c.t} sub={c.s} num={String(i + 1)} color={i === 2 ? C.gold : C.aqua} />
+        <Card key={i} at={B(i + 1)} x={120 + (i % 3) * 570} y={300 + Math.floor(i / 3) * 290} w={540} h={250} icon={c.i} title={c.t} sub={c.s} num={String(i + 1)} color={i === 1 ? C.gold : C.aqua} />
       ))}
+      <div style={{position: 'absolute', left: 1290, top: 600, transform: `scale(${useIn(B(5) + 20, {damping: 10})})`}}><Emblem size={240} /></div>
     </AbsoluteFill>
   );
 };
@@ -703,10 +712,10 @@ export const Fine: React.FC<SP> = () => (
 
 export const SCENES: Record<string, React.FC<SP>> = {
   hook: Hook, intro: Intro, rotta: Rotta, chi: Chi, ordini: Ordini, esempio: Esempio, car: Car, locale: Locale, specie: Specie,
-  adriatico: Adriatico, rotazione: Rotazione, logistica: Logistica, freddo: Freddo, qualita: Qualita, estero: Estero, perche: Perche, fine: Fine,
+  adriatico: Adriatico, rotazione: Rotazione, acquisti: Acquisti, logistica: Logistica, consegna: Consegna, freddo: Freddo, qualita: Qualita, garanzie: Garanzie, estero: Estero, perche: Perche, fine: Fine,
 };
 export const CHAPTERS: Record<string, string> = {
   hook: 'Argo Maris', intro: 'Argo Maris', rotta: 'La rotta comune', chi: 'Chi siamo', ordini: 'Ordini', esempio: 'Ordini', car: 'Mercato di Roma',
-  locale: 'Il pesce locale', specie: 'Il pesce locale', adriatico: 'Due mari', rotazione: 'Rotazione', logistica: 'Logistica', freddo: 'Logistica',
-  qualita: 'Qualità', estero: 'Il plus: estero', perche: 'Perché noi', fine: 'Argo Maris',
+  locale: 'Il Tirreno', specie: 'Il Tirreno', adriatico: "L'Adriatico", rotazione: 'Rotazione', logistica: 'Logistica', freddo: 'Logistica',
+  qualita: 'Qualità', garanzie: 'Garanzie', acquisti: 'Come compriamo', consegna: 'Logistica', estero: 'Il plus: estero', perche: 'Perché noi', fine: 'Argo Maris',
 };
