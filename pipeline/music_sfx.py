@@ -1,5 +1,5 @@
 import numpy as np, wave, json
-SR=48000; T=59.6; N=int(SR*T); t=np.arange(N)/SR
+SR=48000; T=82.7; N=int(SR*T); t=np.arange(N)/SR
 BPM=90; beat=60/BPM
 rng=np.random.default_rng(7)
 def note(m): return 440*2**((m-69)/12)
@@ -48,7 +48,7 @@ while s<T:
     s+=beat;b+=1
 mus=np.stack([L,R],1)
 # fade in/out, lift on logo
-LOGO=55.72
+LOGO=78.84
 g=np.minimum(1,t/0.8)*np.where(t>LOGO,1.6,1.0)*np.minimum(1,np.maximum(0,(T-t)/1.5))
 mus*=g[:,None]
 mus/=np.abs(mus).max()/0.5

@@ -58,9 +58,9 @@ const ShotView: React.FC<{s: Shot; idx: number}> = ({s, idx}) => {
   );
 };
 
-export const Photos: React.FC = () => (
+export const Photos: React.FC<{shots?: Shot[]}> = ({shots = SHOTS}) => (
   <AbsoluteFill style={{backgroundColor: '#000'}}>
-    {SHOTS.map((s, i) => (
+    {shots.map((s, i) => (
       <ShotView key={i} s={s} idx={i} />
     ))}
   </AbsoluteFill>

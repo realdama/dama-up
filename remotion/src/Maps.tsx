@@ -196,4 +196,5 @@ export const DistanceMap: React.FC<{dur: number}> = ({dur}) => {
   );
 };
 
-export {SceneWrap};
+export {SceneWrap, Base, Grid, Pin, Tag, Boat, toScreen, pts};
+export type {Cam, P};

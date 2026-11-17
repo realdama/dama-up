@@ -14,6 +14,9 @@ const pts = {
   roma: [12.4964, 41.9028], mazara: [12.5900, 37.6510], palermo: [13.3615, 38.1157],
   tunisi: [10.1815, 36.8065], capobon: [11.0470, 37.0800], pantelleria: [11.95, 36.79],
   lampedusa: [12.6, 35.51], malta: [14.45, 35.90],
+  civitavecchia: [11.797, 42.093], fiumicino: [12.235, 41.772], anzio: [12.627, 41.447],
+  genova: [8.934, 44.407], sardegna: [9.05, 40.05], puglia: [16.6, 40.95], gallipoli: [17.992, 40.056],
+  lazio: [12.0, 41.95], liguria: [8.4, 44.15], baleari: [2.9, 39.6], spagna: [-1.0, 38.0],
 };
 const P = Object.fromEntries(Object.entries(pts).map(([k, v]) => [k, proj(v).map((n) => +n.toFixed(1))]));
 const out = {

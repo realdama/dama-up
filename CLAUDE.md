@@ -53,6 +53,16 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - Per cambiare solo la chiusura: `remotion render ... --frames=1660-1787` e unire con ffmpeg
   (trim end_frame + concat) invece di rifare tutto il render.
 
+## Libreria scene Remotion (riusabili)
+- `src/Maps.tsx`: Base/Pin/Tag/Boat, TravelMap, DistanceMap. `src/Scenes.tsx`: Depth, Checklist, Poll, Outro.
+- `src/rv/Scenes.tsx` (video "Rosso o viola"): Hook VS a schermo diviso, MedMap, IdCard
+  (carta identikit con foto, nome, latino, righe ✓ sulle parole), ZoneMap (mappa generica con
+  segnaposto/etichette/barche), Calibro (vassoio 1 KG con gamberi SVG), UE (stelle, barra limite
+  con STOP, calendario giorni di pesca), Meno6 (anno + barra + percentuale), Chain (catena causa→effetto),
+  Stamps (timbri), TeamPoll. Ogni video nuovo: cartella `src/<nome>/` + Composition in Root.tsx.
+- Tagli di frase in `pipeline/audio_cut_clean.py`: CUTS = (tieni fino a, riprendi da) dentro i
+  silenzi, pausa generata 0,08 s; verificare il punto di ripresa con large-v3 su clip montati.
+
 ## Struttura repo
 - `remotion/src/timeline.ts`: tempi foto, etichette, scene (secondi sulla voce montata).
 - `remotion/src/words.json`: sottotitoli (gruppi di parole con tempi).
@@ -60,5 +70,8 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
+- 2026-11-17 — "Rosso o viola?" (vocale "Via Paolo Buzzi 180 37"): ~82,7 s; tagliate "Oltre al
+  Tirreno" (si sente "terreno") ed "E poi le quote UE" (incomprensibile); logo a 78,84 s.
+  Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
 - 2026-11-17 — Gambero rosso di Mazara del Vallo (v2, vocale "Via Paolo Buzzi 180 35"):
   59,6 s; tagliata la frase sulle "flotte"; logo su "Dama Reservèe" a 55,7 s.

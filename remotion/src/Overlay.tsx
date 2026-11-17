@@ -1,14 +1,14 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, Easing, spring, useCurrentFrame} from 'remotion';
 import {C, FPS} from './theme';
-import {HIDE_SUBS, LOGO_AT, SHOTS, TOTAL} from './timeline';
+import {HIDE_SUBS, LOGO_AT, SHOTS, TOTAL, Shot} from './timeline';
 import words from './words.json';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
-export const Header: React.FC = () => {
+export const Header: React.FC<{logoAt?: number}> = ({logoAt = LOGO_AT}) => {
   const frame = useCurrentFrame();
-  const o = interpolate(frame, [Math.round((LOGO_AT - 0.3) * FPS), Math.round(LOGO_AT * FPS)], [1, 0], clamp);
+  const o = interpolate(frame, [Math.round((logoAt - 0.3) * FPS), Math.round(logoAt * FPS)], [1, 0], clamp);
   return (
     <div style={{position: 'absolute', top: 92, width: '100%', textAlign: 'center', opacity: o}}>
       <div
@@ -30,19 +30,19 @@ export const Header: React.FC = () => {
   );
 };
 
-export const Progress: React.FC = () => {
+export const Progress: React.FC<{total?: number}> = ({total = TOTAL}) => {
   const frame = useCurrentFrame();
-  const p = Math.min(1, frame / (TOTAL * FPS));
+  const p = Math.min(1, frame / (total * FPS));
   return (
     <div style={{position: 'absolute', top: 0, left: 0, height: 8, width: `${p * 100}%`, background: 'linear-gradient(90deg,#9aa3b1,#f3f5f8,#c4cad3)', boxShadow: '0 0 12px rgba(255,255,255,.5)'}} />
   );
 };
 
-export const Labels: React.FC = () => {
+export const Labels: React.FC<{shots?: Shot[]}> = ({shots = SHOTS}) => {
   const frame = useCurrentFrame();
   return (
     <>
-      {SHOTS.filter((s) => s.label).map((s, i) => {
+      {shots.filter((s) => s.label).map((s, i) => {
         const a = Math.round((s.labelAt ?? s.start) * FPS);
         const b = Math.round(s.end * FPS);
         if (frame < a || frame >= b) return null;
@@ -77,12 +77,12 @@ export const Labels: React.FC = () => {
 };
 
 type Wd = {t: string; s: number; e: number};
-const groups = words as Wd[][];
+const defaultGroups = words as Wd[][];
 
-export const Subs: React.FC = () => {
+export const Subs: React.FC<{groups?: Wd[][]; hide?: [number, number][]}> = ({groups = defaultGroups, hide = HIDE_SUBS}) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
-  if (HIDE_SUBS.some(([a, b]) => t >= a && t < b)) return null;
+  if (hide.some(([a, b]) => t >= a && t < b)) return null;
   let gi = -1;
   for (let i = 0; i < groups.length; i++) {
     const g = groups[i];
