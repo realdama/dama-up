@@ -93,7 +93,7 @@ export const Subs: React.FC = () => {
   if (gi < 0) return null;
   const g = groups[gi];
   const text = g.map((w) => w.t).join(' ');
-  const fs = Math.min(112, 820 / (text.length * 0.78 + 0.6));
+  const fs = Math.min(112, 800 / (text.length * 0.8 + (g.length - 1) * 0.6));
   const f = frame - Math.round((g[0].s - 0.03) * FPS);
   const pop = spring({frame: f, fps: FPS, config: {damping: 11, stiffness: 220, mass: 0.6}});
   const sc = 0.65 + 0.35 * pop;
@@ -106,13 +106,14 @@ export const Subs: React.FC = () => {
             key={i}
             style={{
               display: 'inline-block',
-              margin: '0 0.26em',
+              margin: '0 0.3em',
               fontFamily: 'Inter',
               fontWeight: 900,
               fontSize: fs,
               lineHeight: 1,
               color: active ? C.orange : '#ffffff',
               transform: `scale(${active ? 1.15 : 1})`,
+              transformOrigin: g.length === 1 ? '50% 60%' : i === 0 ? '100% 60%' : '0% 60%',
               WebkitTextStroke: `${Math.round(fs * 0.1)}px #000`,
               paintOrder: 'stroke fill',
               textShadow: '0 8px 24px rgba(0,0,0,.55)',
