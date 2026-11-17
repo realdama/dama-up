@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "historyId": "297080f1-810b-4019-b146-311521d4e126",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "CLAUDE.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/26/268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "fonts/montserrat-latin-800-normal.woff2": {
+      "hash": "ba826fb84c2e961578adf3a08b5778b87905d4443445d1d56d84f9f157d5ea4b",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/ba/ba826fb84c2e961578adf3a08b5778b87905d4443445d1d56d84f9f157d5ea4b"
+    },
+    "fonts/montserrat-latin-900-normal.woff2": {
+      "hash": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/5b/5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205"
+    },
+    "gsap.min.js": {
+      "hash": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/92/92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "b8449b457f819c448d4f522db5d6c0ebcb3b73620a806f8b8b2d5583db4b3e54",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/b8/b8449b457f819c448d4f522db5d6c0ebcb3b73620a806f8b8b2d5583db4b3e54"
+    },
+    "meta.json": {
+      "hash": "99aa68c8b6881b309c285c2c0232a495c811b30faa8f221ce9b30e68764e8ed9",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/99/99aa68c8b6881b309c285c2c0232a495c811b30faa8f221ce9b30e68764e8ed9"
+    },
+    "package.json": {
+      "hash": "ac6c017233cfde706c26f039d7ff799f0db55cb1d4994442ad7497760ab0896a",
+      "content": "/root/.cache/hyperframes/history/297080f1-810b-4019-b146-311521d4e126/blobs/ac/ac6c017233cfde706c26f039d7ff799f0db55cb1d4994442ad7497760ab0896a"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "984ae500-6c6d-45f3-974d-89a6b911bf99",
+      "completedAt": 1794942237229,
+      "output": "/home/user/dama-up/hf/test/t.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

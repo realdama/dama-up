@@ -61,5 +61,29 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
 - Note tecniche: Chrome per Remotion = `/opt/pw-browsers/chromium_headless_shell-1243/...` (in `remotion.config.ts`);
   edge-tts a volte risponde vuoto → `voice.py` riprova da solo.
 
+## Preferenze dell'utente (aggiornate)
+- Video Argo Maris "di progetto" (GDO, Coop): formato **16:9 1920×1080**, tono B2B ("voi" verso la catena,
+  "ti" quando si spiega il progetto a chi lo avvia). I social restano 9:16.
+- **Focus sul locale**: prima il **Tirreno** (barche e aste di Civitavecchia, Fiumicino, Anzio + Mercato di Roma/CAR),
+  poi l'**Adriatico** ("due mari, una sola regia"). L'**estero** (Scozia, Olanda, Grecia, Croazia, Turchia)
+  è solo un **plus, quasi alla fine**.
+- Voce **naturale**: frasi brevi, una frase per "beat", pause calibrate (voice.py con `text` come lista).
+- Tantissimi **esempi animati** (confronto offerte, ordine diviso tra fornitori, mare grosso → Adriatico, etichetta pesce,
+  calcoli che si costruiscono). Nessuna foto, nessun logo di terzi (Coop solo come testo).
+- Precisione: verificare i numeri (i conti del GDO v6 tornano: 7.000 €×4×52 = 1.456.000 €; utile 7% 25–54k,
+  15% 120–149k, 20% 172–202k; 10 cent/kg ≈ 21.000 €/anno). "CAR = primo mercato d'Italia" → dire "uno dei più grandi".
+
+## Kit 16:9 (studio/src/lib/wide)
+- `ui.tsx`: Backdrop oceano, Header con capitoli, Captions16, Title cinetico, Card, Icon (30 icone vettoriali),
+  Fish (specie: triglia, alice, calamaro, gambero, spada, ricciola, orata, spigola, salmone, merluzzo), Boat, Truck, Emblem.
+- `MapView.tsx`: mappe Natural Earth pre-calcolate (`scripts/mkmap.mjs` → `maps.json`, viste lazio/centro/italia/europa),
+  Port, Route, Fleet, Storm, SeaLabel, camera animata.
+- `WideVideo.tsx`: monta scene + transizioni + header + sottotitoli. Scene: `useScene(p)` → `B(i)` inizio beat, `Wd('parola')`.
+- HyperFrames: `python3 scripts/hf_brand.py out.mp4 <dur> "<riga>" "<riga2>" [--layout=end]` (apertura/chiusura con GSAP).
+  GSAP va copiato in locale (CDN bloccata). Evitare clipPath negli SVG animati in HyperFrames (usare `hf/emblem.svg`).
+- headroom: `python3 scripts/compress.py <file.words.json>` (SmartCrusher: −57% token sulle trascrizioni).
+
 ## Video fatti
 - `mare-salato` — "Perché il mare è salato?" (74.8 s, demo dello stile).
+- `coop-etruria` — Argo Maris × Unicoop Etruria (16:9, 4:33). Rifatto dall'originale dell'artifact "Argo Maris – Video progetto".
+- `gdo-v6` — Argo Maris GDO v6, il progetto completo (16:9, 11:20).

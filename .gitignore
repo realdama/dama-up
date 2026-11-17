@@ -5,3 +5,9 @@ studio/out/
 __pycache__/
 *.pyc
 *.bundle
+ref/
+.cache/
+hf/node_modules/
+hf/brand_*/
+hf/test/*.mp4
+hf/test/renders/
