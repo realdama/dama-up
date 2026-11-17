@@ -6,7 +6,7 @@ import {Header, Labels, Progress, Subs} from '../Overlay';
 import {Outro} from '../Scenes';
 import {pts, P} from '../Maps';
 import {Calibro, Chain, Hook, IdCard, Meno6, MedMap, Stamps, TeamPoll, UE, ZoneMap} from './Scenes';
-import {RV_COL, RV_HIDE_SUBS, RV_LOGO_AT, RV_SCENES, RV_SHOTS, RV_TOTAL} from './timeline';
+import {RV_COL, RV_CUT_AT, RV_HIDE_SUBS, RV_LOGO_AT, RV_SCENES, RV_SHIFT, RV_SHOTS, RV_TOTAL, rvSh} from './timeline';
 import words from './words.json';
 
 loadFonts();
@@ -14,8 +14,10 @@ const fr = (s: number) => Math.round(s * FPS);
 type K = keyof typeof RV_SCENES;
 const seq = (k: K) => {
   const [a, b] = RV_SCENES[k];
-  const from = Math.max(0, fr(a) - 5);
-  return {from, durationInFrames: fr(b) + 5 - from, t0: from / FPS};
+  // le scene dopo il taglio partono prima; i tempi interni (parole) restano quelli originali
+  const shifted = a >= RV_CUT_AT - 2.5;
+  const from = Math.max(0, fr(k === 'ue' ? 39.45 : rvSh(a)) - 5);
+  return {from, durationInFrames: fr(rvSh(b)) + 5 - from, t0: from / FPS - (shifted ? RV_SHIFT : 0)};
 };
 const S: React.FC<{k: K; render: (dur: number, t0: number) => React.ReactNode}> = ({k, render}) => {
   const s = seq(k);

@@ -23,10 +23,24 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - Il rumore di fondo dei vocali è alto: silencedetect a -38 dB non trova nulla sull'originale.
   Usare -34 dB su una copia denoised (highpass 85 + afftdn) per trovare le pause.
 - Pause ≥0,30 s → 0,22 s (≥0,55 s → 0,27 s). atempo 1,04 (mai di più). Mix -14 LUFS, TP -1,2.
+- Catena voce ANTI-INTERFERENZE (l'utente ha segnalato audio poco chiaro): highpass 90 →
+  arnndn (RNNoise, modello `pipeline/sh.rnnn`, mix 0,85) → afftdn leggero (nr 10) → adeclick →
+  EQ (-2,5 dB 250 Hz, +2 dB 3 kHz, +1 dB shelf 9 kHz) → deesser → compressore 3:1 → atempo 1,04
+  → limiter; normalizzazione lineare (non loudnorm dinamico). Misurare SNR e click prima/dopo.
+- Musica senza hi-hat (rumore percepito come interferenza), whoosh morbidi (gain 0,10),
+  ducking più profondo (sidechain ratio 8, musica 0,45).
 - "flotte" viene pronunciato/letto come "fotte": tagliare la frase ("ha una delle flotte più
   importanti d'Italia") e segnalarlo. Whisper scrive "cambero/Mazzara": correggere in GAMBERO/MAZARA.
 - Musica originale sintetizzata in numpy (90 BPM, Am–F–C–G, pad + arpeggio + kick morbido),
   ducking con sidechaincompress; whoosh sulle etichette/scene, boom + shimmer sul logo.
+
+## Verifica dei fatti (OBBLIGATORIA prima del montaggio)
+- Controllare con ricerca web ogni dato/affermazione del vocale (numeri, leggi, percentuali,
+  luoghi, biologia). Se è falso o non verificabile → tagliare la frase dall'audio e dirlo
+  all'utente con le fonti. Es.: "-6% gambero rosso 2025 acque IT/FR" = VERO (Reg. UE 2025/219,
+  GSA 8-11); "questi gamberi crescono lentamente" = tolta (i limiti UE sono per sovrasfruttamento).
+- Dopo un taglio a metà video: spostare scene/foto con uno shift (vedi `rvSh` in
+  `src/rv/timeline.ts`) invece di riscrivere tutti i tempi.
 
 ## Strumenti e ambiente (cloud)
 - Ambiente cloud personale **dama-up**: host aperti per Hugging Face (huggingface.co,

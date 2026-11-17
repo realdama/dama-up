@@ -20,12 +20,15 @@ Avvio: l'utente scrive "crea video" (o "genera video") + manda l'audio. Vale in 
 - Progetto pronto nel repo realdama/dama-up (`remotion/`, `pipeline/`, CLAUDE.md con note sull'ambiente cloud): riusarlo invece di ripartire da zero.
  Fare tutto in autonomia, senza domande (autorizzato a tagliare e rifinire l'audio come serve). Strumenti: Whisper (trascrizione/sottotitoli), ffmpeg (audio, montaggio, transizioni, export), Remotion (animazione titoli, grafiche e logo). Se il logo non è nella sessione, chiederlo o usare quello allegato.
 
+## 0b. Verifica dei fatti (sempre)
+- Prima di montare, verificare con ricerca web ogni affermazione del vocale. Se falsa o non verificabile: tagliarla dall'audio e segnalarlo con le fonti.
+
 ## 1. Audio (sempre)
 - Trascrivere con faster-whisper (modello `small`, lingua it, word_timestamps) da un WAV 16 kHz mono (convertire prima con ffmpeg; non passare il .m4a diretto).
 - Tagliare: frasi che l'utente chiede di togliere, ripetizioni, esitazioni, parole poco chiare o sbagliate, domande riempitive tipo "e voi lo sapevate?". Se una frase è confusa, tagliarla piuttosto che lasciarla.
 - Pause: rilevarle con silencedetect (-38 dB, d 0,12) sull'audio originale, non con i tempi di Whisper (che allungano le parole). Ogni silenzio ≥ 0,30 s va ridotto a 0,22 s (0,27 s se era ≥ 0,55 s); i silenzi più corti restano; micro-fade 12–25 ms. Dopo il mix verificare che non restino silenzi > 0,3 s a -24 dB.
 - Parole dubbie: ricontrollarle con faster-whisper large-v3 su clip brevi. Se una parola suona male o in modo equivoco (es. "flotte" pronunciato "fotte"), tagliare la frase e segnalarlo all'utente.
-- Catena: highpass 85 Hz → afftdn → EQ (-2,5 dB a 250 Hz, +3 dB a 3,2 kHz, +2 dB shelf 9 kHz) → compressore 3,5:1 → atempo 1,04 (mai più veloce: l'utente non vuole il parlato accelerato) → limiter → loudnorm.
+- Catena: highpass 90 Hz → arnndn RNNoise (modello sh.rnnn del repo, mix 0,85) → afftdn leggero → adeclick → EQ (-2,5 dB a 250 Hz, +2 dB a 3 kHz, +1 dB shelf 9 kHz) → deesser → compressore 3:1 → atempo 1,04 (mai più veloce: l'utente non vuole il parlato accelerato) → limiter → loudnorm.
 - Musica: base originale sintetizzata (niente brani protetti), tranquilla ed elegante (~85–95 BPM, pad morbidi), ducking con sidechaincompress sotto la voce, sale sul logo finale.
 - SFX: whoosh leggero all'entrata dei titoli, boom + shimmer all'entrata del logo.
 - Mix finale a -14 LUFS, true peak -1,2.

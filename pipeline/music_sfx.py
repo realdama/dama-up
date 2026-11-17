@@ -1,5 +1,5 @@
 import numpy as np, wave, json
-SR=48000; T=82.7; N=int(SR*T); t=np.arange(N)/SR
+SR=48000; T=80.25; N=int(SR*T); t=np.arange(N)/SR
 BPM=90; beat=60/BPM
 rng=np.random.default_rng(7)
 def note(m): return 440*2**((m-69)/12)
@@ -44,11 +44,11 @@ while s<T:
     j0=int((s+beat/2)*SR); j1=min(N,j0+int(0.06*SR))
     if j0<N and s>1.9:
         nz=rng.standard_normal(j1-j0); nz=nz-lp(nz,0.5); e=np.exp(-np.arange(j1-j0)/SR*60)
-        L[j0:j1]+=0.018*nz*e; R[j0:j1]+=0.022*nz*e
+        pass
     s+=beat;b+=1
 mus=np.stack([L,R],1)
 # fade in/out, lift on logo
-LOGO=78.84
+LOGO=76.37
 g=np.minimum(1,t/0.8)*np.where(t>LOGO,1.6,1.0)*np.minimum(1,np.maximum(0,(T-t)/1.5))
 mus*=g[:,None]
 mus/=np.abs(mus).max()/0.5
@@ -57,10 +57,10 @@ def wr(name,x):
 wr('music.wav',mus)
 # SFX
 sfx=np.zeros((N,2))
-def whoosh(at,g=0.25,d=0.45):
+def whoosh(at,g=0.10,d=0.5):
     i0=int((at-0.18)*SR); n=int(d*SR); i0=max(0,i0); i1=min(N,i0+n); m=i1-i0
     nz=rng.standard_normal(m); x=np.linspace(0,1,m)
-    a=0.02+0.25*np.sin(np.pi*x)**2
+    a=0.01+0.10*np.sin(np.pi*x)**2
     y=np.empty(m); s1=0.0
     for i in range(m): s1+=a[i]*(nz[i]-s1); y[i]=s1
     env=np.sin(np.pi*x)**2
