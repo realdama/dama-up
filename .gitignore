@@ -4,3 +4,4 @@ out/
 studio/out/
 __pycache__/
 *.pyc
+*.bundle
