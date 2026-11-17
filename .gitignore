@@ -1,0 +1,6 @@
+node_modules/
+tools/
+out/
+studio/out/
+__pycache__/
+*.pyc

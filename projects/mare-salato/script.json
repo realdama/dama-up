@@ -1,0 +1,18 @@
+{
+  "title": "Perché il mare è salato?",
+  "format": "9:16",
+  "fps": 30,
+  "voice": "it-IT-GiuseppeMultilingualNeural",
+  "rate": "+6%",
+  "scenes": [
+    {"id": "hook",     "text": "Hai mai bevuto, per sbaglio, un sorso di mare? Salatissimo! Ma ti sei mai chiesto da dove arriva tutto quel sale?"},
+    {"id": "pioggia",  "text": "Tutto comincia con la pioggia. Mentre cade, ogni goccia cattura un po' di anidride carbonica dall'aria e diventa leggermente acida."},
+    {"id": "rocce",    "text": "Quando scorre sulle rocce, quell'acqua le scioglie, pian piano, e si porta via i minerali: sodio, cloro, magnesio."},
+    {"id": "fiumi",    "text": "I fiumi raccolgono tutto e lo trasportano fino al mare. Parliamo di miliardi di tonnellate di sali, ogni singolo anno."},
+    {"id": "sole",     "text": "Ed ecco il trucco. Il sole fa evaporare l'acqua, che sale e forma le nuvole. Ma il sale no: il sale resta giù, nel mare."},
+    {"id": "ciclo",    "text": "Poi le nuvole tornano pioggia, e il giro ricomincia. Per milioni di anni. Un po' di sale in più, ogni volta."},
+    {"id": "numeri",   "text": "Risultato? In ogni litro di mare ci sono circa trentacinque grammi di sale. Più o meno sei cucchiaini."},
+    {"id": "wow",      "text": "E se prendessimo tutto il sale degli oceani e lo stendessimo sulla terraferma? Uno strato alto come un grattacielo di cinquanta piani!"},
+    {"id": "cta",      "text": "Ora lo sai. Seguici, e scopri ogni giorno un nuovo segreto del mare.", "pad": 0.3}
+  ]
+}
