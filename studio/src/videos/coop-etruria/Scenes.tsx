@@ -87,11 +87,11 @@ export const Rotta: React.FC<SP> = (p) => {
       <div style={{position: 'absolute', left: 1460, top: 340, transform: `scale(${l2})`, opacity: l2}}>
         <Img src={staticFile('brand/unicoop-etruria-insegna.jpg')} style={{height: 220, borderRadius: 26, border: `5px solid ${C.foam}`, boxShadow: '0 20px 60px rgba(0,0,0,0.5)'}} />
       </div>
-      <Pill at={Wd('fresco')} x={450} y={680} text="FRESCO" color={C.aqua} icon="snow" size={42} />
-      <Pill at={Wd('buono')} x={850} y={680} text="BUONO" color={C.gold} icon="star" size={42} />
-      <Pill at={Wd('prezzo')} x={1390} y={680} text="AL PREZZO GIUSTO" color={C.coral} icon="euro" size={42} />
-      <div style={{position: 'absolute', left: 510, top: 760, width: 900, transform: `scale(${hub})`, opacity: hub}}>
-        <svg width={900} height={170} viewBox="-450 -85 900 170" style={{overflow: 'visible'}}>
+      <Pill at={Wd('fresco')} x={450} y={660} text="FRESCO" color={C.aqua} icon="snow" size={42} />
+      <Pill at={Wd('buono')} x={850} y={660} text="BUONO" color={C.gold} icon="star" size={42} />
+      <Pill at={Wd('prezzo')} x={1390} y={660} text="AL PREZZO GIUSTO" color={C.coral} icon="euro" size={42} />
+      <div style={{position: 'absolute', left: 510, top: 735, width: 900, transform: `scale(${hub})`, opacity: hub}}>
+        <svg width={900} height={150} viewBox="-450 -75 900 150" style={{overflow: 'visible'}}>
           {spokes.map((sp, i) => {
             const x = [-430, -290, -150, 150, 290, 430][i];
             const pp = ez(f, B(2) + 6 + i * 4, B(2) + 26 + i * 4);

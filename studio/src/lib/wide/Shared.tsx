@@ -169,7 +169,7 @@ export const ConsegnaDiagram: React.FC<SP & {platAt: number; hubAt: number; dire
         <div style={{position: 'absolute', left: 0, right: 0, top: 940, display: 'flex', justifyContent: 'center', opacity: 0}} />
       )}
       {tipAt !== undefined && tip && (
-        <div style={{position: 'absolute', left: 120, top: 860, maxWidth: 900, padding: '14px 22px', borderRadius: 20, background: 'rgba(255,201,74,0.14)', border: `2px solid ${C.gold}`,
+        <div style={{position: 'absolute', left: 120, top: 268, maxWidth: 600, padding: '14px 22px', borderRadius: 20, background: 'rgba(255,201,74,0.14)', border: `2px solid ${C.gold}`,
           fontFamily: FONT, fontWeight: 800, fontSize: 26, color: C.gold, opacity: ez(f, tipAt, tipAt + 12)}}>CONSIGLIO: {tip}</div>
       )}
     </AbsoluteFill>

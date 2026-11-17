@@ -333,7 +333,7 @@ export const Tirreno: React.FC<SP> = (p) => {
   const fish = [['triglia', 'triglie'], ['alice', 'alici'], ['calamaro', 'calamari'], ['gambero', 'gamberi'], ['ricciola', 'ricciole'], ['spada', 'spada']];
   return (
     <MarinerieTirreno {...p} kicker="Il nostro mare" title="Le marinerie del Tirreno" routesAt={B(3)}>
-      <div style={{position: 'absolute', left: 60, top: 600, display: 'flex', flexWrap: 'wrap', width: 520, gap: 4, padding: '10px 14px', borderRadius: 26, background: 'rgba(2,11,26,0.85)', opacity: ez(f, B(3), B(3) + 10)}}>
+      <div style={{position: 'absolute', left: 60, top: 300, display: 'flex', flexWrap: 'wrap', width: 520, gap: 4, padding: '10px 14px', borderRadius: 26, background: 'rgba(2,11,26,0.85)', opacity: ez(f, B(3), B(3) + 10)}}>
         {fish.map(([sp, k], i) => {
           const q = ez(f, Wd(k) - 4, Wd(k) + 14);
           return <div key={i} style={{textAlign: 'center', width: 160, opacity: q, transform: `translateY(${(1 - q) * 30}px)`}}>
@@ -375,12 +375,12 @@ export const Fonte: React.FC<SP> = (p) => {
       <div style={{position: 'absolute', left: 120, top: 610, width: 540, height: 270, borderRadius: 26, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.gold}`, padding: 22, opacity: ez(f, B(3), B(3) + 12)}}>
         <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold}}>Fideiussione = la banca garantisce per te</div>
         <svg width={500} height={170} style={{marginTop: 6}}>
-          <g transform="translate(70 90)"><Icon name="user" size={80} color={C.foam} /></g>
-          <g transform="translate(240 90)" opacity={guarantee}><Icon name="bank" size={90} color={C.gold} /></g>
-          <g transform="translate(420 90)"><Icon name="gavel" size={80} color={C.foam} /></g>
-          <path d={`M 120 90 L ${120 + 70 * guarantee} 90`} stroke={C.gold} strokeWidth={5} />
-          <path d={`M 300 90 L ${300 + 70 * guarantee} 90`} stroke={C.gold} strokeWidth={5} />
-          <text x={250} y={165} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={22} fill={C.foam} opacity={guarantee}>se non paghi tu, paga la banca</text>
+          <g transform="translate(40 30)"><Icon name="user" size={64} color={C.foam} /></g>
+          <g transform="translate(210 26)" opacity={guarantee}><Icon name="bank" size={72} color={C.gold} /></g>
+          <g transform="translate(390 30)"><Icon name="gavel" size={64} color={C.foam} /></g>
+          <path d={`M 115 62 L ${115 + 85 * guarantee} 62`} stroke={C.gold} strokeWidth={5} />
+          <path d={`M 292 62 L ${292 + 90 * guarantee} 62`} stroke={C.gold} strokeWidth={5} />
+          <text x={250} y={150} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={26} fill={C.foam} opacity={guarantee}>se non paghi tu, paga la banca</text>
         </svg>
       </div>
       <div style={{position: 'absolute', left: 690, top: 610, width: 540, height: 270, borderRadius: 26, background: 'rgba(6,36,74,0.75)', border: `2px solid ${C.coral}`, padding: 22, opacity: ez(f, B(5), B(5) + 12)}}>
