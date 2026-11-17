@@ -1,8 +1,10 @@
 # Dama Reservèe — memoria video TikTok
 
 Canale TikTok **Dama Reservèe** (exclusive seafood, prodotti ittici di nicchia). L'utente manda un vocale
-(.m4a) e chiede "genera video": si fa tutto in autonomia, senza domande, seguendo la skill
-`video-tiktok-dama-reservee`. Risposte all'utente: brevi, in italiano.
+(.m4a) e scrive **"crea video"** (o "genera video"): si fa tutto in autonomia, senza domande,
+seguendo la skill `video-tiktok-dama-reservee` (copia aggiornata in `.claude/skills/`).
+Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, yt-dlp, headroom
+(ruoli nella sezione 0 della skill). Risposte all'utente: brevi, in italiano.
 
 ## Stile definitivo (riferimento: "Gambero rosso di Mazara", nov. 2026)
 - 9:16, 1080×1920, 30 fps, ~60 s. Foto CC0/pubblico dominio + molte scene animate Remotion.
