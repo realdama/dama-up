@@ -202,36 +202,15 @@ export const Outro: React.FC = () => {
   const sheen = interpolate(f, [24, 50], [-120, 220], clamp);
   const txt = spring({frame: f - 28, fps: FPS, config: {damping: 14, stiffness: 160}});
   const glow = 0.5 + 0.25 * Math.sin(f / 9);
-  const R = 300;
+  const R = 340;
   return (
     <AbsoluteFill style={{opacity: fadeIn}}>
       <AbsoluteFill style={{background: 'radial-gradient(circle at 50% 45%, #1a3566 0%, #0b1a33 45%, #040b18 100%)'}} />
       <div style={{position: 'absolute', left: W / 2 - 420, top: 860 - 420, width: 840, height: 840, borderRadius: '50%', background: `radial-gradient(circle, rgba(200,215,240,${0.28 * glow}) 0%, rgba(200,215,240,0) 65%)`, opacity: o}} />
       <div style={{position: 'absolute', left: W / 2 - R, top: 860 - R, width: 2 * R, height: 2 * R, transform: `scale(${s})`, opacity: o}}>
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            position: 'relative',
-            background: 'radial-gradient(circle at 40% 30%, #1f3f78, #0b1a33 70%)',
-            border: '10px solid #cfd5de',
-            boxShadow: '0 0 0 4px #0b1a33, 0 0 0 10px rgba(207,213,222,.6), 0 30px 80px rgba(0,0,0,.6)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <div style={{fontFamily: 'Inter', fontWeight: 800, fontSize: 20, letterSpacing: 8, color: '#b9c2d0'}}>EXCLUSIVE SEAFOOD</div>
-          <div style={{fontFamily: 'Cinzel', fontWeight: 700, fontSize: 112, color: '#eef1f6', lineHeight: 1.05, marginTop: 10, letterSpacing: 6}}>DAMA</div>
-          <div style={{width: 300, height: 3, background: 'linear-gradient(90deg, transparent, #cfd5de, transparent)', margin: '8px 0 12px'}} />
-          <div style={{fontFamily: 'Cinzel', fontWeight: 600, fontSize: 64, color: '#dfe4ec', letterSpacing: 8}}>RESERVÈE</div>
-          <svg width="160" height="40" viewBox="0 0 160 40" style={{marginTop: 16}}>
-            <path d="M5 22 Q25 6 45 22 T85 22 T125 22 T155 22" stroke={C.orange} strokeWidth="4" fill="none" strokeLinecap="round" />
-          </svg>
-          <div style={{position: 'absolute', top: 0, left: `${sheen}%`, width: '45%', height: '100%', background: 'linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.38), rgba(255,255,255,0))', transform: 'skewX(-18deg)'}} />
+        <div style={{width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', position: 'relative', boxShadow: '0 0 0 3px rgba(207,213,222,.35), 0 30px 90px rgba(0,0,0,.65), 0 0 120px rgba(200,215,240,.18)'}}>
+          <Img src={staticFile('logo.png')} style={{width: '100%', height: '100%', display: 'block'}} />
+          <div style={{position: 'absolute', top: 0, left: `${sheen}%`, width: '45%', height: '100%', background: 'linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.32), rgba(255,255,255,0))', transform: 'skewX(-18deg)', mixBlendMode: 'screen'}} />
         </div>
       </div>
       <div style={{position: 'absolute', top: 1250, width: '100%', textAlign: 'center', opacity: txt, transform: `translateY(${(1 - txt) * 40}px)`}}>

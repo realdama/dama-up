@@ -46,8 +46,12 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - HyperFrames (npm `hyperframes`) esiste; OpenMontage non è su npm; `headroom-ai` è un
   compressore di contesto per LLM (non serve al montaggio). yt-dlp installato ma non usato:
   i video YouTube non sono CC0.
-- Logo: l'utente non l'ha ancora allegato in questa sessione → logo tipografico Remotion
-  (cerchio blu notte, DAMA / RESERVÈE in Cinzel). Se arriva il file, sostituirlo in `Outro`.
+- LOGO UFFICIALE (sempre, in ogni video): `assets/DAMA_Reservee_BRUT_logo_1080.png`
+  (DR con chela e conchiglia, "DAMA Reservèe BRUT", argento su blu notte). Copia ritagliata a
+  cerchio in `remotion/public/logo.png`, usata in `Outro` (Scenes.tsx): scale-in, riflesso argento,
+  alone, sfondo radiale blu notte, "SEGUI PER ALTRE ECCELLENZE" sotto. Mai rifarlo tipografico.
+- Per cambiare solo la chiusura: `remotion render ... --frames=1660-1787` e unire con ffmpeg
+  (trim end_frame + concat) invece di rifare tutto il render.
 
 ## Struttura repo
 - `remotion/src/timeline.ts`: tempi foto, etichette, scene (secondi sulla voce montata).

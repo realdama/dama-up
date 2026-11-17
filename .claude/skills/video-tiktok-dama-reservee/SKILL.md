@@ -60,7 +60,7 @@ Testi, sottotitoli e scene sono fatti in Remotion come overlay ProRes 4444 con a
 - Prima del render completo provare i fotogrammi con `remotion still` composti sul montaggio.
 
 ## 4. Chiusura
-- Logo Dama Reservèe ritagliato a cerchio su sfondo radiale blu notte; scale-in 0,7 s, riflesso argento, alone, scritta "SEGUI PER ALTRE ECCELLENZE".
+- Logo UFFICIALE sempre: `assets/DAMA_Reservee_BRUT_logo_1080.png` del repo realdama/dama-up (DR con chela e conchiglia, "DAMA Reservèe BRUT", argento su blu notte); non chiederlo e non rifarlo a mano. Logo ritagliato a cerchio su sfondo radiale blu notte; scale-in 0,7 s, riflesso argento, alone, scritta "SEGUI PER ALTRE ECCELLENZE".
 - Il logo entra quando nell'audio si sente "Dama Reservèe"; poi resta ~3–4 s.
 - Nei testi non mettere la firma "Manuel Desio" né "Mare Italia".
 
