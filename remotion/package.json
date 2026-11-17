@@ -1,0 +1,3 @@
+{"name":"dama-reservee-video","private":true,"scripts":{"studio":"remotion studio","render":"remotion render"},
+"dependencies":{"remotion":"4.0.242","@remotion/cli":"4.0.242","@remotion/google-fonts":"4.0.242","react":"18.3.1","react-dom":"18.3.1","@fontsource/cinzel":"5.1.0","@fontsource/inter":"5.1.0","d3-geo":"3.1.1","topojson-client":"3.1.0"},
+"devDependencies":{"typescript":"5.6.3","@types/react":"18.3.12"}}
