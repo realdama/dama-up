@@ -27,6 +27,12 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   arnndn (RNNoise, modello `pipeline/sh.rnnn`, mix 0,85) → afftdn leggero (nr 10) → adeclick →
   EQ (-2,5 dB 250 Hz, +2 dB 3 kHz, +1 dB shelf 9 kHz) → deesser → compressore 3:1 → atempo 1,04
   → limiter; normalizzazione lineare (non loudnorm dinamico). Misurare SNR e click prima/dopo.
+- LIVELLO COSTANTE (l'utente ha segnalato audio che "fa su e giù"): dopo la catena (senza
+  compressore) passare `pipeline/vocal_rider.py` (livella frasi/parole al target, pause -5 dB,
+  gain -8/+9 dB smussato 60 ms) → volume a -17 → compressore 2,5:1 → limiter → EQ -2,5 dB 130 Hz
+  (scoppi delle P) → trim a -16,3 LUFS. De-plosive: adynamicequalizer sotto 150 Hz all'inizio.
+  arnndn mix 0,7 (0,85 rendeva le consonanti meno nitide). Verifica: deviazione loudness
+  short-term < 0,8 dB, probabilità parole Whisper (clar.py) non peggiore della versione prima.
 - Musica senza hi-hat (rumore percepito come interferenza), whoosh morbidi (gain 0,10),
   ducking più profondo (sidechain ratio 8, musica 0,45).
 - "flotte" viene pronunciato/letto come "fotte": tagliare la frase ("ha una delle flotte più

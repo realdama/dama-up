@@ -35,7 +35,7 @@ for p in pieces:
         fc+=f"aevalsrc=0:d={p[1]}:s=48000[s{n}];"
     n+=1
 fc+="".join(f"[s{i}]" for i in range(n))+f"concat=n={n}:v=0:a=1[cat];"
-fc+="[cat]highpass=f=90,arnndn=m=sh.rnnn:mix=0.85,afftdn=nr=10:nf=-45:tn=1,adeclick,equalizer=f=250:t=q:w=1.2:g=-2.5,equalizer=f=3000:t=q:w=1.2:g=2,highshelf=f=9000:g=1,deesser=i=0.4,acompressor=threshold=-20dB:ratio=3:attack=10:release=150:makeup=2,atempo=1.04,alimiter=limit=0.89[out]"
-subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",SRC,"-filter_complex",fc,"-map","[out]","-ar","48000","-ac","1","voice_pre.wav"],check=True)
+fc+="[cat]highpass=f=95,adynamicequalizer=dfrequency=140:dftype=lowpass:tfrequency=160:tftype=lowshelf:ratio=5:auto=on:attack=2:release=80:range=12,arnndn=m=sh.rnnn:mix=0.7,afftdn=nr=8:nf=-45:tn=1,adeclick,equalizer=f=250:t=q:w=1.2:g=-2.5,equalizer=f=3000:t=q:w=1.2:g=2.5,equalizer=f=5500:t=q:w=1.5:g=1.5,highshelf=f=9000:g=1,deesser=i=0.35,atempo=1.04[out]"
+subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y","-i",SRC,"-filter_complex",fc,"-map","[out]","-ar","48000","-ac","1","voice_raw.wav"],check=True)
 tot=sum((p[2]-p[1]) if p[0]=="a" else p[1] for p in pieces)
 print(len(pieces),"pezzi",round(tot,2),"s ->",round(tot/1.04,2))
