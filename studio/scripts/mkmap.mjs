@@ -41,19 +41,25 @@ const ZONES = {
   '37.3.1': [[22.5, 40.8], [26.5, 40.9], [27.8, 37.5], [28.2, 36.4], [23, 36.3]],
   '37.3.2': [[28.2, 36.4], [36, 36.6], [35.5, 31], [32, 31.1], [25, 31.6], [23, 34], [23, 36.3]],
 };
+const simplify = (d) => d ? d.replace(/M([^MZ]+)(Z?)/g, (_, body, z) => {
+  const pts = body.split('L').map((q) => q.split(',').map(Number));
+  const keep = [pts[0]];
+  for (let i = 1; i < pts.length; i++) { const [x, y] = pts[i], [px, py] = keep[keep.length - 1]; if (Math.hypot(x - px, y - py) >= 1.4 || i === pts.length - 1) keep.push(pts[i]); }
+  return keep.length < 3 ? '' : 'M' + keep.map(([x, y]) => `${Math.round(x)},${Math.round(y)}`).join('L') + z;
+}) : d;
 const out = {W, H, views: {}};
 for (const [name, v] of Object.entries(views)) {
   const countries = feature(v.topo, v.topo.objects.countries).features;
   const [[x0, y0], [x1, y1]] = v.bbox;
   const box = {type: 'Feature', geometry: {type: 'Polygon', coordinates: [[[x0, y0], [x0, y1], [x1, y1], [x1, y0], [x0, y0]]]}};
-  const proj = geoMercator().fitExtent([[0, 0], [W, H]], box); proj.clipExtent([[-W, -H], [2 * W, 2 * H]]);
+  const proj = geoMercator().fitExtent([[0, 0], [W, H]], box); proj.clipExtent([[-W * 0.45, -H * 0.45], [W * 1.45, H * 1.45]]);
   const path = geoPath(proj);
   const ext = proj.invert ? [proj.invert([-200, -200]), proj.invert([W + 200, H + 200])] : null;
   const vis = countries.filter((c) => {
     const [[a, b], [c2, d]] = path.bounds(c);
     return c2 > -300 && a < W + 300 && d > -300 && b < H + 300;
   });
-  const shapes = countries.filter((c) => { const [[a, b], [c2, d]] = path.bounds(c); return isFinite(a) && c2 > -W && a < 2 * W && d > -H && b < 2 * H && (c2 - a) * (d - b) > 4 && c.properties.name !== 'Maldives'; }).map((c) => ({id: c.id, name: c.properties.name, d: path(c)?.replace(/(\.\d)\d+/g, '$1')})).filter((s) => s.d && s.d.length > 20);
+  const shapes = countries.filter((c) => { const [[a, b], [c2, d]] = path.bounds(c); return isFinite(a) && c2 > -W * 0.45 && a < W * 1.45 && d > -H * 0.45 && b < H * 1.45 && (c2 - a) * (d - b) > 4 && c.properties.name !== 'Maldives'; }).map((c) => ({id: c.id, name: c.properties.name, d: simplify(path(c))})).filter((s) => s.d && s.d.length > 20);
   const pts = Object.fromEntries(Object.entries(P).map(([k, ll]) => [k, proj(ll).map((n) => Math.round(n * 10) / 10)]));
   const zones = name === 'fao' ? Object.fromEntries(Object.entries(ZONES).map(([k, poly]) => [k, 'M ' + poly.map((ll) => proj(ll).map((n) => Math.round(n)).join(' ')).join(' L ') + ' Z'])) : undefined;
   out.views[name] = {shapes, pts, zones};
