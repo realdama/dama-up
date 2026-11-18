@@ -96,6 +96,7 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
+- 2026-11-18 — "Rosso o viola?" v4 finale: illustrazioni incise (ill_rosso/ill_viola), raggi+bolle, transizioni a scia, copertina (Still RvCover) e didascalia in videos/.
 - 2026-11-17 — "Rosso o viola?" v2 (vocale "Via Paolo Buzzi 180 37"): 80,25 s, audio RNNoise; tagliate anche "questi gamberi crescono lentamente, così" (non verificabile); logo a 76,37 s. v1: tagliate "Oltre al
   Tirreno" (si sente "terreno") ed "E poi le quote UE" (incomprensibile); logo a 78,84 s.
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
