@@ -100,7 +100,7 @@
    "text": [
     "E dove consegni? Ci sono tre strade.",
     "La piattaforma: il centro di distribuzione della catena. Consegni tutto in un solo punto, e la catena smista ai negozi.",
-    "L'hub logistico: un operatore di trasporto a temperatura controllata raccoglie, smista e consegna per te.",
+    "Il centro logistico: un operatore di trasporto a temperatura controllata raccoglie, smista e consegna per te.",
     "E la consegna diretta: porti il pesce direttamente al punto vendita.",
     "Più freschezza, meno passaggi. Ma servono mezzi refrigerati, orari di scarico precisi, e i costi di trasporto salgono, perché fai più fermate.",
     "Il consiglio: parti dalla piattaforma, e proponi la consegna diretta per i negozi più vicini, o per il pesce più delicato."
@@ -348,5 +348,9 @@
    },
    "pad": 0.4
   }
- ]
+ ],
+ "pron": {
+  "Unicoop Etruria": "Unicoop, Etruria",
+  "HACCP": "H.A.C.C.P."
+ }
 }

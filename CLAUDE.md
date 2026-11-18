@@ -71,6 +71,12 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
   ATTENZIONE: la voce multilingue legge le **liste di nomi isolati** con accento straniero ("Trigley, Alisai").
   Scrivere sempre con articoli e congiunzioni: "ci sono le triglie e le alici, i calamari e i gamberi…".
   Prima di renderizzare, provare le frasi delicate con Whisper (sigle, nomi, liste).
+  Controllo completo parole: `python3 scripts/checkwords.py <slug> <whisper.json>` (script vs voce).
+  Pronunce: `"pron"` in script.json cambia solo la voce, non i sottotitoli
+  ("Unicoop Etruria"→"Unicoop, Etruria", "HACCP"→"H.A.C.C.P."). "hub" a inizio frase suona "lab": dire "centro logistico".
+- Loghi: `assets/brand/argo-maris-logo.png` (logo del cliente, ritagliato in tondo) e `unicoop-etruria-insegna.jpg`
+  (dalla foto dell'insegna). La foto "magazzino Argo Maris" NON va usata: Argo Maris è broker senza deposito.
+- Marinerie: Tirreno (Viareggio→Gaeta, 11) e Adriatico (Chioggia→Manfredonia, 13) in `lib/wide/Shared.tsx`.
 - Tantissimi **esempi animati** (confronto offerte, ordine diviso tra fornitori, mare grosso → Adriatico, etichetta pesce,
   calcoli che si costruiscono). Nessuna foto, nessun logo di terzi (Coop solo come testo).
 - Precisione: verificare i numeri (i conti del GDO v6 tornano: 7.000 €×4×52 = 1.456.000 €; utile 7% 25–54k,

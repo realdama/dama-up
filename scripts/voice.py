@@ -15,7 +15,7 @@ Scrive:
 Uso: python3 scripts/voice.py <slug> [--voice ...] [--only id1,id2]
      python3 scripts/voice.py <slug> --realign
 """
-import argparse, asyncio, json, os, subprocess, sys, tempfile, time
+import argparse, asyncio, json, os, re, subprocess, sys, tempfile, time
 from pathlib import Path
 
 import edge_tts
@@ -65,8 +65,9 @@ def align(text, words):
     toks, j = text.split(), 0
     for w in words:
         core = w["w"].strip(".,!?;:'\"").lower()
+        clean = lambda x: re.sub(r"[^a-zà-ù0-9 ]", "", x.lower())
         for k in range(j, min(j + 4, len(toks))):
-            if core and core.split()[0] in toks[k].lower():
+            if core and clean(core).split() and clean(core).split()[0] in clean(toks[k]):
                 w["t"] = " ".join(toks[k:k + len(core.split())]); j = k + len(core.split()); break
         else:
             w["t"] = w["w"]
@@ -104,7 +105,10 @@ def main():
         beats = sc["text"] if isinstance(sc["text"], list) else [sc["text"]]
         for bi, b in enumerate(beats):
             r = sc.get("rates", {}).get(str(bi), sc.get("rate", rate))
-            jobs.append((sc["id"], bi, b, sc.get("voice", voice), r))
+            say = b
+            for k, v in spec.get("pron", {}).items():
+                say = say.replace(k, v)
+            jobs.append((sc["id"], bi, say, sc.get("voice", voice), r))
 
     async def run_all():
         sem = asyncio.Semaphore(4)

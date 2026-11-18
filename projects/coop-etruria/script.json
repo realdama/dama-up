@@ -154,7 +154,7 @@
     "La mattina arrivano gli ordini.",
     "Il pomeriggio, le aste.",
     "Di notte, la merce viaggia a temperatura controllata.",
-    "E la mattina dopo è a destinazione: all'hub logistico, alla piattaforma, o direttamente al punto vendita."
+    "E la mattina dopo è a destinazione: al centro logistico, alla piattaforma, o direttamente al punto vendita."
    ]
   },
   {
@@ -164,7 +164,7 @@
     "Invece di passare dalla piattaforma, il pesce arriva direttamente al punto vendita, con mezzi refrigerati.",
     "Il vantaggio? Meno passaggi, meno ore di viaggio, più freschezza sul banco.",
     "Ci adattiamo ai vostri orari di scarico, e agli ordini di ogni singolo negozio.",
-    "Hub, piattaforma o consegna diretta: scegliete voi, anche negozio per negozio."
+    "Centro logistico, piattaforma o consegna diretta: scegliete voi, anche negozio per negozio."
    ]
   },
   {
@@ -237,5 +237,9 @@
    },
    "pad": 0.4
   }
- ]
+ ],
+ "pron": {
+  "Unicoop Etruria": "Unicoop, Etruria",
+  "HACCP": "H.A.C.C.P."
+ }
 }
