@@ -16,6 +16,7 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   profondità, checklist ✓/✗, sondaggio finale a schermo diviso, logo con riflesso argento.
 - Hook nei primi 2 s (titolo grande + foto più spettacolare). CTA "scrivilo nei commenti" + logo.
 - Mai firma "Manuel Desio" né "Mare Italia". Mai crediti nelle descrizioni.
+- (Progetti web Argo Maris: vedi la sezione in fondo e la skill `sito-gestionale-broker`.)
 
 ## Audio — REGOLA ATTUALE (sostituisce le catene sotto; l'utente ha giudicato "pessima" la v3)
 - Misurare SEMPRE con DNSMOS (`pipeline/mos.py`, pacchetto speechmos, confronto a pari RMS):
@@ -116,3 +117,23 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
 - 2026-11-17 — Gambero rosso di Mazara del Vallo (v2, vocale "Via Paolo Buzzi 180 35"):
   59,6 s; tagliata la frase sulle "flotte"; logo su "Dama Reservèe" a 55,7 s.
+
+# Argo Maris — sito e gestionale broker (memoria progetti web)
+
+Seconda attività dell'utente: **Argo Maris**, broker/import ittico con sede al **CAR**
+(Centro Agroalimentare Roma), importa da tutto il mondo, clienti **GDO** e **HoReCa**.
+Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills/`).
+- Codice in `argo-maris/`: `sito/` (vetrina statica), `app/` (gestionale Node ≥22.13 + node:sqlite,
+  zero dipendenze: `cd argo-maris/app && node server.js` → sito `/`, gestionale `/app/`,
+  login iniziale admin/argomaris), `tools/dotmap.py` (mappa mondo a puntini).
+- Il sito prende SOLO lo stile da mareitaliasrl.com (blu notte, menta, DM Serif Display +
+  Manrope): mai copiarne testi, dati, foto. Telefono, indirizzo, P. IVA = segnaposto finché
+  l'utente non li dà. Nel gestionale i dati aziendali vanno in Impostazioni (servono per l'XML).
+- Parole chiave da usare: CAR Roma, import mondiale, GDO, HoReCa, catena del freddo, tracciabilità.
+  Grafiche "futuristiche": mappa a puntini con rotte neon verso "ROMA · CAR", schema
+  Import → CAR → GDO/HoReCa, ticker parole chiave, font JetBrains Mono, neon #5ff3e6.
+- Nessun numero inventato (anni di attività, flotte, paesi) sul sito: chiedere all'utente.
+- Ambiente cloud dama-up: aggiunti host mareitaliasrl.com e www.mareitaliasrl.com.
+- Storico: 2026-11-18 sito + gestionale v1 (ordini, DDT, fatture/FatturaPA, incassi,
+  scadenzario, spedizioni, vettori, mezzi, dipendenti, turni, utenti, registro, backup, CSV);
+  poi sezione "Rete globale" futuristica (CAR, import mondo, GDO/HoReCa).

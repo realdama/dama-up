@@ -37,3 +37,4 @@ Ordine (cliente + fornitore + righe con prezzo d'acquisto e di vendita, margine 
   il gestionale non trasmette.
 - Sito: telefono, indirizzo e P. IVA sono segnaposto (`[da inserire]`) in `sito/index.html`.
 - Foto del sito: CC0 / pubblico dominio (Wikimedia Commons, rawpixel, Openverse).
+- `tools/dotmap.py` — genera la mappa del mondo a puntini usata nella sezione «Rete globale».
