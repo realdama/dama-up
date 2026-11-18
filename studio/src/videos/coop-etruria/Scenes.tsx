@@ -686,9 +686,9 @@ export const Estero: React.FC<SP> = (p) => {
 export const Perche: React.FC<SP> = (p) => {
   const {B} = useScene(p);
   const cards = [
-    {i: 'people', t: 'Squadra organizzata', s: "ufficio commerciale ed esploratori d'asta"},
+    {i: 'user', t: 'Buyer di fiducia', s: 'ogni giorno su due mari'},
     {i: 'fish', t: 'Oltre 40 specie', s: "mercato di Roma, due mari, importazione"},
-    {i: 'phone', t: 'Ordini semplici', s: 'area clienti o un messaggio'},
+    {i: 'phone', t: 'Voi ordinate, io trovo', s: 'e-mail, messaggio o telefono'},
     {i: 'truck', t: 'Logistica flessibile', s: 'fino alla consegna diretta in negozio'},
     {i: 'shield', t: 'Qualità e un solo referente', s: 'controlli, tracciabilità, sempre raggiungibile'},
 ];

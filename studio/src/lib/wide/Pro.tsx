@@ -613,12 +613,107 @@ export const CarFoto: React.FC<SP> = (p) => {
 
 /* ───────── registro scene pro (per video) ───────── */
 export const proScenes = (client: string, clientImg?: string): Record<string, React.FC<SP>> => ({
-  ufficio: Ufficio, specie: Specie, carfoto: CarFoto, allevato: Allevato, frutti: FruttiMare, fao: Fao, import: Import,
+  ufficio: Fiducia, specie: Specie, carfoto: CarFoto, allevato: Allevato, frutti: FruttiMare, fao: Fao, import: Import,
   broker: BrokerVsDiretto, freschezza: Freschezza,
-  piattaforma: (p: SP) => <Piattaforma {...p} client={client} clientImg={clientImg} />,
+  piattaforma: (p: SP) => <OrdineRicerca {...p} client={client} clientImg={clientImg} />,
   contatto: (p: SP) => <Contatto {...p} client={client} />,
 });
 export const PRO_CHAPTERS: Record<string, string> = {
-  ufficio: 'La squadra', piattaforma: 'Ordini', contatto: 'Un solo contatto', carfoto: 'Il pesce', specie: 'Il pesce', allevato: 'Il pesce',
+  ufficio: 'Il buyer di fiducia', piattaforma: 'Ordini', contatto: 'Un solo contatto', carfoto: 'Il pesce', specie: 'Il pesce', allevato: 'Il pesce',
   frutti: 'Frutti di mare', fao: 'Origine', import: 'Importazioni', broker: 'Perché un buyer', freschezza: 'Qualità',
+};
+
+/* ───────── v4: IL BUYER DI FIDUCIA ─ beat: 0 buyer · 1 richieste e ordini · 2 trova tutto · 3 due mari · 4 slogan ───────── */
+export const Fiducia: React.FC<SP> = (p) => {
+  const {f, B} = useScene(p);
+  const req = ['Richiesta: triglie del Tirreno', 'Ordine: 40 kg di orate', 'Ordine: 20 kg di cozze', 'Richiesta: gamberi rossi'];
+  const src: [string, string, string][] = [['Mercato di Roma', 'warehouse', 'Orate · Cozze'], ['Aste', 'gavel', 'Triglie · Gamberi rossi'], ['Barche', 'boat', 'Pesce del giorno']];
+  const slogan = useIn(B(4), {damping: 10});
+  const me = useIn(B(0), {damping: 12});
+  return (
+    <AbsoluteFill>
+      <Title kicker="Il vostro buyer" title="Un buyer di fiducia" at={B(0) - 6} />
+      <Svg>
+        {req.map((_, i) => { const q = ez(f, B(1) + i * 10, B(1) + i * 10 + 20); return <line key={i} x1={560} y1={360 + i * 120} x2={560 + 300 * q} y2={600} stroke={C.aqua} strokeWidth={4} opacity={q} strokeDasharray="10 8" strokeDashoffset={-f} />; })}
+        {src.map((_, i) => { const q = ez(f, B(2) + i * 14, B(2) + i * 14 + 20); return <line key={i} x1={1060} y1={600} x2={1060 + 300 * q} y2={600 + (360 + i * 170 - 600) * q} stroke={C.gold} strokeWidth={5} opacity={q} />; })}
+        <g transform={`translate(960 560) scale(${me * 1.5})`}><Person x={0} y={0} pose="phone" shirt="#1C5FA8" hair="#E8E8EC" seed={2} /></g>
+      </Svg>
+      <div style={{position: 'absolute', left: 960, top: 800, transform: `translate(-50%,0) scale(${me})`, display: 'flex', alignItems: 'center', gap: 12}}>
+        <Emblem size={60} /><span style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.foam}}>il vostro buyer</span>
+      </div>
+      {req.map((t, i) => {
+        const q = useIn(B(1) + i * 10, {damping: 12});
+        return <div key={i} style={{position: 'absolute', left: 110, top: 330 + i * 120, width: 450, padding: '14px 20px', borderRadius: 18, background: '#DCF8C6', fontFamily: FONT, fontWeight: 800, fontSize: 24, color: '#111', opacity: q, transform: `translateX(${(1 - q) * -60}px)`, boxShadow: '0 10px 30px rgba(0,0,0,0.35)'}}>{t}</div>;
+      })}
+      {src.map(([t, ic, found], i) => {
+        const q = useIn(B(2) + i * 14, {damping: 11});
+        const ok = f > B(2) + i * 14 + 30;
+        return (
+          <div key={i} style={{position: 'absolute', left: 1360, top: 300 + i * 170, width: 460, height: 130, borderRadius: 22, background: 'rgba(6,36,74,0.88)', border: `3px solid ${ok ? '#7CF29A' : C.gold}`, padding: '16px 20px', opacity: q, transform: `translateX(${(1 - q) * 60}px)`}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: 14}}><Icon name={ic} size={46} color={C.gold} /><span style={{fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.foam}}>{t}</span></div>
+            <div style={{fontFamily: FONT, fontWeight: 800, fontSize: 22, color: ok ? '#7CF29A' : 'rgba(232,251,255,0.6)', marginTop: 8}}>{ok ? `✓ trovato: ${found}` : 'ricerca…'}</div>
+          </div>
+        );
+      })}
+      <Chip at={B(3)} x={340} y={860} t="Porti del Tirreno" icon="boat" c={C.aqua} size={24} dark />
+      <Chip at={B(3) + 12} x={1590} y={860} t="Porti dell'Adriatico" icon="boat" c={C.gold} size={24} dark />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 880, textAlign: 'center', opacity: slogan, transform: `scale(${0.8 + 0.2 * slogan})`}}>
+        <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 48, color: C.gold, background: 'rgba(2,11,26,0.85)', padding: '8px 30px', borderRadius: 20}}>{(p.sc.beats[4]?.text ?? '').replace(/\.$/, '')}</span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/* ───────── v4: ORDINE → RICERCA ─ beat: 0 intro · 1 ordine via e-mail/messaggio/telefono · 2 parte la ricerca · 3 conferma · 4 consegna e documenti ───────── */
+export const OrdineRicerca: React.FC<SP & {client?: string; clientImg?: string}> = ({client = 'Punto vendita', clientImg, ...p}) => {
+  const {f, B} = useScene(p);
+  const items: [string, string, string, string][] = [['orata', 'Orate', '40 kg', 'Mercato di Roma'], ['calamaro', 'Calamari', '25 kg', 'Asta di Anzio'], ['triglia', 'Triglie', '15 kg', 'Barca · Civitavecchia'], ['cozza', 'Cozze', '20 kg', 'Mercato di Roma']];
+  const ch: [string, string][] = [['E-mail', 'doc'], ['Messaggio', 'phone'], ['Telefono', 'phone']];
+  const card = useIn(B(1) + 20, {damping: 12});
+  const stamp = useIn(B(3) + 10, {damping: 8});
+  const sweep = (f * 4) % 360;
+  return (
+    <AbsoluteFill>
+      <Title kicker="Come funziona" title="Voi ordinate, parte la ricerca" at={B(0) - 6} size={66} />
+      {ch.map(([t, ic], i) => <Chip key={t} at={B(1) + i * 8} x={250 + i * 230} y={300} t={t} icon={ic} c={C.aqua} size={24} dark />)}
+      <div style={{position: 'absolute', left: 110, top: 360, width: 760, borderRadius: 24, background: 'rgba(6,36,74,0.92)', border: `3px solid ${C.foam}`, padding: 24, opacity: card, transform: `translateY(${(1 - card) * 60}px)`}}>
+        <div style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 10}}>
+          {clientImg ? <Img src={staticFile(clientImg)} style={{height: 50, borderRadius: 8, border: '2px solid #fff'}} /> : <Icon name="store" size={46} color={C.foam} />}
+          <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 28, color: C.foam}}>Ordine · {client}</span>
+        </div>
+        {items.map(([sp, n, kg, from], i) => {
+          const found = f > B(2) + 30 + i * 22;
+          const searching = f > B(2) && !found;
+          return (
+            <div key={i} style={{display: 'flex', alignItems: 'center', gap: 14, height: 76, borderTop: '1px solid rgba(232,251,255,0.12)'}}>
+              <svg width={90} height={60}><Fish sp={sp} x={45} y={30} s={0.4} /></svg>
+              <span style={{fontFamily: FONT, fontWeight: 900, fontSize: 26, color: C.foam, width: 150}}>{n}</span>
+              <span style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: 'rgba(232,251,255,0.7)', width: 90}}>{kg}</span>
+              <span style={{fontFamily: FONT, fontWeight: 800, fontSize: 21, color: found ? '#7CF29A' : C.gold, opacity: f > B(2) ? 1 : 0}}>{found ? `✓ ${from}` : searching ? `cerco${'.'.repeat(1 + Math.floor(f / 8) % 3)}` : ''}</span>
+            </div>
+          );
+        })}
+      </div>
+      <Svg>
+        <g transform="translate(1340 560)" opacity={ez(f, B(2) - 6, B(2) + 10)}>
+          <circle r={260} fill="rgba(63,224,208,0.06)" stroke={C.aqua} strokeWidth={3} />
+          <circle r={170} fill="none" stroke={C.aqua} strokeWidth={1.5} opacity={0.4} />
+          <circle r={85} fill="none" stroke={C.aqua} strokeWidth={1.5} opacity={0.4} />
+          <path d="M 0 0 L 260 0 A 260 260 0 0 0 194 -173 Z" fill={C.aqua} opacity={f < B(3) ? 0.3 : 0} transform={`rotate(${sweep})`} />
+          {[['Mercato di Roma', -150, -120, 'warehouse'], ['Aste', 170, -60, 'gavel'], ['Barche', -40, 170, 'boat']].map(([t, x, y, ic], i) => {
+            const q = ez(f, B(2) + 10 + i * 12, B(2) + 24 + i * 12);
+            return <g key={i} transform={`translate(${x} ${y}) scale(${q})`}>
+              <circle r={54} fill={C.abyss} stroke={C.gold} strokeWidth={4} />
+              <g transform="translate(-28 -28)"><Icon name={ic as string} size={56} color={C.gold} /></g>
+              <text y={84} textAnchor="middle" fontFamily={FONT} fontWeight={900} fontSize={24} fill={C.foam}>{t}</text>
+            </g>;
+          })}
+        </g>
+      </Svg>
+      <div style={{position: 'absolute', left: 1080, top: 300, transform: `rotate(-8deg) scale(${2 - stamp})`, opacity: stamp, border: '7px solid #3CCB6A', borderRadius: 16, padding: '6px 22px', fontFamily: FONT, fontWeight: 900, fontSize: 44, color: '#3CCB6A', background: 'rgba(2,11,26,0.75)'}}>ORDINE CONFERMATO ✓</div>
+      {[['Acquistato', 'check'], ['In viaggio a 0–2 °C', 'truck'], ['Consegnato', 'store'], ['Fattura unica', 'doc'], ['Tracciabilità', 'search']].map(([t, ic], i) => (
+        <Chip key={t} at={B(4) + i * 10} x={210 + i * 340} y={880} t={t} icon={ic} c={i < 3 ? '#7CF29A' : C.gold} size={22} dark />
+      ))}
+    </AbsoluteFill>
+  );
 };

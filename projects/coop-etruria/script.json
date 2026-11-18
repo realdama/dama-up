@@ -2,7 +2,7 @@
  "title": "Argo Maris × Unicoop Etruria",
  "format": "16:9",
  "fps": 30,
- "voice": "it-IT-GiuseppeMultilingualNeural",
+ "voice": "it-IT-DiegoNeural",
  "rate": "+2%",
  "beatPause": 0.34,
  "gap": 0.6,
@@ -54,21 +54,24 @@
   {
    "id": "ufficio",
    "text": [
-    "Dietro ad Argo Maris c'è una squadra organizzata.",
-    "Un ufficio commerciale ben gestito, che riceve gli ordini, confronta i prezzi e segue ogni cliente.",
-    "Gli esploratori d'asta, ogni giorno nei porti e nelle aste del Tirreno e dell'Adriatico, a caccia delle occasioni migliori.",
-    "Il controllo qualità, che verifica ogni lotto prima che parta.",
-    "E la logistica, che organizza i camion refrigerati e le consegne."
-   ]
+    "Argo Maris è il vostro buyer di fiducia.",
+    "Ascolto le vostre richieste, e ricevo i vostri ordini.",
+    "E in base a quello che vi serve, trovo tutto: al mercato di Roma, alle aste, e direttamente dalle barche.",
+    "Ogni giorno nei porti del Tirreno e dell'Adriatico, alla ricerca delle occasioni migliori.",
+    "Voi chiedete, io trovo."
+   ],
+   "pauses": {
+    "3": 0.5
+   }
   },
   {
    "id": "piattaforma",
    "text": [
-    "E ordinare è semplicissimo.",
-    "Dall'area clienti Argo Maris, ogni punto vendita Coop sceglie i prodotti del giorno, con foto, prezzo e zona di cattura.",
-    "Inserisce le quantità, sceglie la consegna, e invia. In pochi secondi.",
-    "Poi segue tutto in tempo reale: ordine ricevuto, merce assegnata, in viaggio, consegnata.",
-    "Una sola fattura, e tutti i documenti, sempre pronti da scaricare."
+    "Ordinare è semplice.",
+    "Voi mandate l'ordine come preferite: per e-mail, con un messaggio, o al telefono.",
+    "Da quel momento parte la ricerca: mercato di Roma, aste e barche, prodotto per prodotto.",
+    "Trovo il prodotto migliore al prezzo giusto, compro, e vi confermo tutto.",
+    "Poi la consegna, una sola fattura, e tutti i documenti di tracciabilità."
    ]
   },
   {
@@ -300,9 +303,9 @@
    "id": "perche",
    "text": [
     "Allora, perché scegliere Argo Maris?",
-    "Un ufficio commerciale ben gestito, ed esploratori d'asta su due mari.",
+    "Un buyer di fiducia, ogni giorno su due mari.",
     "Tutto il mercato di Roma, e oltre quaranta specie: dal locale all'importazione.",
-    "Ordini semplicissimi, dall'area clienti o con un messaggio.",
+    "Voi mandate l'ordine, io cerco e trovo tutto.",
     "Logistica flessibile, fino alla consegna diretta in negozio.",
     "Qualità controllata, tracciabilità, e un solo referente sempre raggiungibile."
    ]

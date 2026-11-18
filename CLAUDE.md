@@ -8,7 +8,9 @@ Prima di ogni nuovo video leggere anche la skill `.claude/skills/argo-maris-vide
 - **Buyer / broker senza deposito**: riceve un solo ordine dalla catena, compra al **Mercato di Roma (CAR, oltre 400
   aziende — dire "uno dei più grandi", non "il più grande")**, alle **aste** e dalle **barche**, rivende con il suo margine.
   Niente magazzino, niente banco. Un solo fornitore, un solo referente, una sola fattura.
-- Squadra: **ufficio commerciale ben gestito**, **esploratori d'asta**, controllo qualità, logistica.
+- **NIENTE "ufficio commerciale"/squadra**: l'utente è il **buyer di fiducia** — ascolta richieste, riceve ordini e trova tutto
+  (mercato di Roma, aste, barche) → "Voi chiedete, io trovo". Ordine REALE: il cliente manda l'ordine (e-mail, messaggio,
+  telefono) e **poi parte la ricerca**, poi conferma e consegna (NON un portale con listino da tablet).
 - **Focus sul locale**: prima il **Tirreno** (11 marinerie: Viareggio, Livorno, Piombino, Castiglione della Pescaia,
   Porto Santo Stefano, Porto Ercole, Civitavecchia, Fiumicino, Anzio, Terracina, Gaeta), poi l'**Adriatico** (13: Chioggia,
   Rimini, Cesenatico, Fano, Ancona, Civitanova Marche, San Benedetto del Tronto, Giulianova, Pescara, Ortona, Vasto, Termoli,
@@ -40,8 +42,8 @@ comprimere trascrizioni lunghe (`scripts/compress.py`); Remotion = scene; HyperF
 
 ## Preferenze dell'utente (imparate in chat)
 - Video di progetto **16:9 1920×1080**; social **9:16**. Tono B2B: "voi" alla catena, "ti" a chi avvia il progetto.
-- **Voce naturale e bella**: frasi brevi, un "beat" per frase, pause calibrate. Voce `it-IT-GiuseppeMultilingualNeural`
-  (alt. Isabella, Diego, Elsa). **Qualità 96 kbps** (patch in `voice.py`; il default 48 kbps suonava male).
+- **Voce naturale e bella**: frasi brevi, un "beat" per frase, pause calibrate. Voce **`it-IT-DiegoNeural`** (nativa italiana, rate +2%):
+  la Giuseppe *Multilingual* "parla strano", non usarla. **Qualità 96 kbps** (patch in `voice.py`; il default 48 kbps suonava male).
 - **Mai liste di nomi isolati** (accento straniero): scrivere "ci sono le triglie e le alici, i calamari e i gamberi…".
   Pronunce in `"pron"` (solo voce): "Unicoop Etruria"→"Unicoop, Etruria", "HACCP"→"H.A.C.C.P."; non dire "hub" a inizio
   frase (suona "lab") → "centro logistico"; FAO a parole ("trentasette punto uno punto tre"); "Questa è Argo Maris" non "Ecco…".

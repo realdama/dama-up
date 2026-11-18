@@ -2,8 +2,8 @@
  "title": "Argo Maris · Il progetto per il socio",
  "format": "16:9",
  "fps": 30,
- "voice": "it-IT-GiuseppeMultilingualNeural",
- "rate": "+3%",
+ "voice": "it-IT-DiegoNeural",
+ "rate": "+2%",
  "beatPause": 0.32,
  "gap": 0.6,
  "pron": {
@@ -39,12 +39,15 @@
   {
    "id": "ufficio",
    "text": [
-    "Dietro ad Argo Maris c'è una squadra organizzata.",
-    "Un ufficio commerciale ben gestito, che riceve gli ordini, confronta i prezzi e segue ogni cliente.",
-    "Gli esploratori d'asta, ogni giorno nei porti e nelle aste del Tirreno e dell'Adriatico, a caccia delle occasioni migliori.",
-    "Il controllo qualità, che verifica ogni lotto prima che parta.",
-    "E la logistica, che organizza i camion refrigerati e le consegne."
-   ]
+    "Argo Maris è il buyer di fiducia della catena.",
+    "Ascolta le richieste, e riceve gli ordini.",
+    "E in base a quello che serve, trova tutto: al mercato di Roma, alle aste, e direttamente dalle barche.",
+    "Ogni giorno nei porti del Tirreno e dell'Adriatico, alla ricerca delle occasioni migliori.",
+    "La catena chiede, Argo Maris trova."
+   ],
+   "pauses": {
+    "3": 0.5
+   }
   },
   {
    "id": "partner",
@@ -67,11 +70,11 @@
   {
    "id": "piattaforma",
    "text": [
-    "E ordinare è semplicissimo.",
-    "Dall'area clienti Argo Maris, il punto vendita sceglie i prodotti del giorno, con foto, prezzo e zona di cattura.",
-    "Inserisce le quantità, sceglie la consegna, e invia. In pochi secondi.",
-    "Poi segue tutto in tempo reale: ordine ricevuto, merce assegnata, in viaggio, consegnata.",
-    "Una sola fattura, e tutti i documenti, sempre pronti da scaricare."
+    "Ordinare è semplice.",
+    "Il punto vendita manda l'ordine come preferisce: per e-mail, con un messaggio, o al telefono.",
+    "Da quel momento parte la ricerca: mercato di Roma, aste e barche, prodotto per prodotto.",
+    "Argo Maris trova il prodotto migliore al prezzo giusto, compra, e conferma tutto.",
+    "Poi la consegna, una sola fattura, e tutti i documenti di tracciabilità."
    ]
   },
   {
