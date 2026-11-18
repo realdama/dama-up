@@ -1,0 +1,21 @@
+{
+  "name": "Argo Maris · Gestionale",
+  "short_name": "Argo Maris",
+  "description": "Ordini, DDT, fatture, spedizioni e turni di Argo Maris",
+  "lang": "it",
+  "start_url": "/app/#/",
+  "scope": "/app/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a1a3d",
+  "theme_color": "#0a1a3d",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Nuovo ordine", "url": "/app/#/e/ordini/nuovo", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Turni", "url": "/app/#/turni", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}

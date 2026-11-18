@@ -98,7 +98,7 @@ async function boot() {
   [S.schema, S.settings] = await Promise.all([api('schema'), api('impostazioni')]);
   $('#login').hidden = true; $('#shell').hidden = false;
   $('#who').textContent = `${S.me.nome || S.me.username} · ${S.me.ruolo}`;
-  buildNav(); route();
+  buildNav(); buildTabbar(); route();
 }
 
 function buildNav() {
@@ -111,10 +111,19 @@ function buildNav() {
     'Sistema': [...(isAdmin() ? [['#/e/utenti', 'Utenti', 'key']] : []), ['#/impostazioni', 'Impostazioni', 'gear'], ['#/registro', 'Registro attività', 'list']],
   };
   $('#nav').innerHTML = Object.entries(items).map(([g, list]) => `<div class="nav-group">${g}</div>` +
-    list.map(([href, l, i]) => `<a class="nav-item" href="${href}">${icon(i)}<span>${esc(l)}</span></a>`).join('')).join('');
+    list.map(([href, l, i]) => `<a class="nav-item" href="${href}">${icon(i)}<span>${esc(l)}</span></a>`).join('')).join('') +
+    `<button type="button" class="nav-item install-btn" hidden style="width:100%;background:none;border:0;text-align:left">${icon('download')}<span>Installa l'app</span></button>`;
+  setTimeout(showInstall);
+}
+function buildTabbar() {
+  const t = [['#/', 'Home', 'home'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/e/spedizioni', 'Viaggi', 'truck'], ['#/turni', 'Turni', 'calendar']];
+  $('#tabbar').innerHTML = t.map(([h, l, i]) => `<a href="${h}" data-tab>${icon(i)}<span>${l}</span></a>`).join('') +
+    `<button type="button" id="tabMenu">${icon('list')}<span>Menu</span></button>`;
+  $('#tabMenu').addEventListener('click', () => $('#side').classList.toggle('open'));
 }
 function markNav() {
   const h = location.hash || '#/';
+  $$('#tabbar [data-tab]').forEach(a => { const href = a.getAttribute('href'); a.classList.toggle('active', href === '#/' ? h === '#/' || h === '' : h.startsWith(href)); });
   $$('.nav-item').forEach(a => { const href = a.getAttribute('href'); a.classList.toggle('active', href === '#/' ? h === '#/' || h === '' : h.startsWith(href)); });
   $('#side').classList.remove('open');
 }
@@ -651,5 +660,23 @@ async function viewPrint(ent, id) {
   P.innerHTML = `<div class="print-bar"><a class="btn" href="#/e/${ent}/${id}">${icon('left')}Indietro</a><button class="btn primary" onclick="window.print()">${icon('print')}Stampa / PDF</button></div><div class="doc">${html}</div>`;
   document.title = `${S.schema.entities[ent].singular} ${r.numero || r.codice || ''}`;
 }
+
+// ------------------------------------------------------------ app installabile (PWA)
+let installEvt = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+function showInstall() { if (standalone) return; $$('.install-btn').forEach(b => { b.hidden = !(installEvt || isIOS); }); }
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; showInstall(); });
+window.addEventListener('appinstalled', () => { installEvt = null; $$('.install-btn').forEach(b => { b.hidden = true; }); toast('App installata'); });
+document.addEventListener('click', async e => {
+  if (!e.target.closest('.install-btn')) return;
+  if (installEvt) { installEvt.prompt(); await installEvt.userChoice; installEvt = null; showInstall(); return; }
+  openModal(`<h2>Installa Argo Maris</h2><p class="muted" style="margin-bottom:12px">Su iPhone e iPad, da <b>Safari</b>:</p>
+    <ol style="padding-left:20px;line-height:2"><li>tocca il pulsante <b>Condividi</b> (quadrato con la freccia in su)</li><li>scegli <b>Aggiungi alla schermata Home</b></li><li>conferma con <b>Aggiungi</b></li></ol>
+    <p class="muted" style="margin-top:12px">L'icona Argo Maris comparirà tra le tue app e si aprirà a schermo intero.</p>
+    <div class="modal-actions"><button class="btn primary" data-close>Ho capito</button></div>`);
+});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+showInstall();
 
 boot().then(() => { if (!S.me) showLogin(); });

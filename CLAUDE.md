@@ -146,5 +146,8 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
 - ONLINE su Railway (progetto "argo-maris", servizio "argo-maris-web", regione iad, volume /data
   con DATA_DIR=/data): sito https://argo-maris-web-production.up.railway.app/ e gestionale
   https://argo-maris-web-production.up.railway.app/app/. Deploy automatico a ogni push sul branch
-  collegato (claude/admiring-curie-xpyj2t, cartella argo-maris/). Password admin iniziale nella
+  collegato (claude/admiring-curie-xpyj2t, cartella argo-maris/).
+- APP sul telefono = il gestionale è una PWA installabile (manifest.webmanifest, sw.js, icone
+  icon-192/512/maskable/apple-touch dal logo, barra in basso su mobile, pulsante «Installa l'app»;
+  su iPhone: Safari → Condividi → Aggiungi alla schermata Home). Niente App Store per ora. Password admin iniziale nella
   variabile ADMIN_PASSWORD del servizio (mai scriverla nel repo).

@@ -62,6 +62,16 @@ Lavorare in autonomia, risposte brevi in italiano, commit + push sul branch di s
 - Test: server su porta di prova con `DATA_DIR` nello scratchpad, curl per API/ruoli, Playwright
   per il flusso completo (login → demo → ordine → DDT → fattura → incasso → turno → mobile).
 
+## 3b. App per telefono (PWA)
+- Quando chiedono "l'app": rendere il gestionale installabile (manifest con scope /app/,
+  start_url /app/#/, display standalone, theme blu notte; icone quadrate dal logo su fondo blu
+  192/512 + maskable con margine 20 % + apple-touch-icon 180; meta apple-mobile-web-app-*;
+  viewport-fit=cover e safe-area). Service worker: interfaccia dalla cache aggiornata in
+  background, MAI cache delle /api. Server: MIME .webmanifest. Barra in basso su mobile
+  (Home, Ordini, Viaggi, Turni, Menu). Pulsante install: beforeinstallprompt su Android,
+  istruzioni Safari su iPhone. Testare con Playwright devices['iPhone 13'].
+- App Store/Play Store solo se l'utente lo chiede (servono account sviluppatore).
+
 ## 4. Consegna
 - Screenshot all'utente (SendUserFile), riepilogo breve: cosa c'è, come avviarlo, cosa va
   completato (dati aziendali, segnaposto). Proporre la messa online (es. Railway).

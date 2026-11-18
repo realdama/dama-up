@@ -2,9 +2,16 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Argo Maris · Gestionale</title>
 <link rel="icon" href="favicon.png" type="image/png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0a1a3d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Argo Maris">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,700;0,800;1,800;1,900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,6 +27,7 @@
     <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
     <button class="btn primary" type="submit">Entra</button>
     <p class="err" id="loginErr"></p>
+    <button type="button" class="btn install-btn" id="installBtn" hidden>Installa l'app sul telefono</button>
     <a class="back" href="/">← Torna al sito</a>
   </form>
 </div>
@@ -38,6 +46,7 @@
     </header>
     <main id="view" class="view"></main>
   </div>
+  <nav class="tabbar" id="tabbar" aria-label="Navigazione rapida"></nav>
 </div>
 <div id="print" class="print-root" hidden></div>
 <div id="modal" class="modal" hidden><div class="modal-card" id="modalCard"></div></div>

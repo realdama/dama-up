@@ -224,3 +224,18 @@ textarea{resize:vertical;min-height:70px}
   .search{max-width:none}
 }
 @media (max-width:480px){.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi{padding:12px}}
+
+/* ---------- app installabile: barra in basso su telefono ---------- */
+.tabbar{display:none}
+.login-card .install-btn{justify-content:center;border-color:var(--mint);background:#fff8d6}
+@media (max-width:860px){
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:#0a1a3df5;backdrop-filter:blur(10px);border-top:1px solid #ffffff1a;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  .tabbar a,.tabbar button{display:flex;flex-direction:column;align-items:center;gap:3px;color:#b9c9e3;font-size:10.5px;font-weight:700;background:none;border:0;padding:4px 0;border-radius:10px}
+  .tabbar svg{width:22px;height:22px}
+  .tabbar a.active{color:var(--mint)}
+  .view{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+  .top{padding-top:calc(12px + env(safe-area-inset-top))}
+  .side{padding-top:env(safe-area-inset-top)}
+  .toasts{bottom:calc(80px + env(safe-area-inset-bottom))}
+}
+@media (display-mode: standalone){ body{overscroll-behavior-y:none} }
