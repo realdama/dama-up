@@ -1,119 +1,74 @@
 # Argo Maris — Studio Video (memoria di progetto)
 
-In questo repository si montano i **video per i progetti Argo Maris**. Obiettivo fisso:
-**lasciare a bocca aperta chi guarda**.
+Qui si producono i **video per i progetti Argo Maris** (buyer/broker del pesce per la GDO, Roma) e i video
+personali/social dell'utente. Obiettivo fisso: **video iper professionali che lasciano a bocca aperta**.
+Prima di ogni nuovo video leggere anche la skill `.claude/skills/argo-maris-video/SKILL.md` (procedura completa).
+
+## Chi è Argo Maris (contenuti da rispettare)
+- **Buyer / broker senza deposito**: riceve un solo ordine dalla catena, compra al **Mercato di Roma (CAR, oltre 400
+  aziende — dire "uno dei più grandi", non "il più grande")**, alle **aste** e dalle **barche**, rivende con il suo margine.
+  Niente magazzino, niente banco. Un solo fornitore, un solo referente, una sola fattura.
+- Squadra: **ufficio commerciale ben gestito**, **esploratori d'asta**, controllo qualità, logistica.
+- **Focus sul locale**: prima il **Tirreno** (11 marinerie: Viareggio, Livorno, Piombino, Castiglione della Pescaia,
+  Porto Santo Stefano, Porto Ercole, Civitavecchia, Fiumicino, Anzio, Terracina, Gaeta), poi l'**Adriatico** (13: Chioggia,
+  Rimini, Cesenatico, Fano, Ancona, Civitanova Marche, San Benedetto del Tronto, Giulianova, Pescara, Ortona, Vasto, Termoli,
+  Manfredonia) → "due mari, una sola regia". L'**estero** è un **plus, quasi alla fine**.
+- **Specie da citare sempre (tante!)**: locale (triglie, scorfani, gallinelle, San Pietro, pagelli, dentici, saraghi, ricciole,
+  lecce, spigole, orate, cefali, sogliole, rombi), azzurro (alici, sardine, sgombri, palamite, tonno, pesce spada), molluschi
+  (seppie, calamari, polpi, moscardini), crostacei (gamberi rosa e rossi, mazzancolle, scampi, aragoste), **frutti di mare**
+  (cozze, vongole veraci, telline, fasolari, cannolicchi, ostriche: zone classificate A/B, centri di depurazione/spedizione,
+  venduti vivi, etichetta con specie, zona, n° centro, data), **allevato** (orate, spigole, ombrine: Italia, Grecia, Turchia, Croazia).
+- **Zone FAO**: 37 Mediterraneo; 37.1.3 Tirreno; 37.2.1 Adriatico; 37.2.2 Ionio; 27 Atlantico NE; 34 Atlantico centro-est.
+- **Import (fine video)**: Norvegia (salmone, merluzzo), Francia (ostriche, cozze), Spagna/Portogallo (gamberi, polpo, sardine),
+  Marocco/Senegal (polpo, seppie, pesce atlantico), Tunisia/Egitto (Mediterraneo sud, anche allevato). Esempi tipici, non dati
+  reali. Extra UE: certificati sanitari + controlli ai posti di frontiera.
+- Argomenti di vendita: piattaforma/area clienti (ordine in pochi secondi, stato in tempo reale, fattura unica, documenti),
+  **un contatto che si occupa di tutto**, **broker vs contatto diretto** (10 fornitori/telefonate/fatture → 1), qualità
+  (occhio, branchie, pelle, carne, odore; ghiaccio fondente; lotto non perfetto = non parte), consegna diretta, rotazione.
+- Numeri del progetto (verificati): 7.000 €/g × 4 × 52 = 1.456.000 €/anno; utile 7% 25–54k, 15% 120–149k, 20% 172–202k;
+  10 cent/kg ≈ 21.000 €/anno; cassa asta 21.000 → 4.200 € con anticipo fatture 80%; socio al 50% ≈ 2.980 €/mese (centrale),
+  ≈ 880 €/mese (prudente). Cifre sempre "indicative, da verificare con il commercialista".
+- Partner/clienti: **Unicoop Etruria** (insegna in primo piano nel suo video), **Mare Italia** (grossista CAR, box 46–47,
+  iscritta 2015, Guidonia, ~16 persone; logo non disponibile → nome in grafica). La foto "magazzino Argo Maris" NON va usata.
 
 ## REGOLA FISSA: usare SEMPRE tutti e 7 i programmi
-In **ogni** video Argo Maris si usano sempre, tutti insieme:
-**Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, yt-dlp, headroom.**
-Ruolo di ciascuno in ogni produzione:
-1. **OpenMontage** — regia: scegli la pipeline (`tools/OpenMontage/pipeline_defs/`, di solito
-   `animated-explainer`), leggi il suo `AGENT_GUIDE.md` e le skill di stage per struttura, script e revisione.
-2. **yt-dlp** — scarica i video/audio di riferimento o le sorgenti fornite dall'utente (solo come
-   riferimento di ritmo e stile, mai nel video finale: niente immagini né crediti).
-3. **Whisper** (faster-whisper) — trascrive riferimenti e registrazioni vocali, dà i tempi parola per parola,
-   e fa il controllo finale del video renderizzato.
-4. **headroom** — comprime trascrizioni e log lunghi (riferimenti, output Whisper) prima di analizzarli.
-5. **Remotion** — motore principale delle scene animate, sincronizzate con la voce.
-6. **HyperFrames** — scene/inserti in HTML (titoli, grafiche cinetiche, schede numeriche) renderizzati e
-   montati con Remotion/ffmpeg; usa anche `hyperframes beats` / `hyperframes audio` per analizzare il ritmo.
-7. **ffmpeg** — mix voce/ambiente/effetti, ducking, mastering −14 LUFS / −1.5 dBTP, montaggio e mux finale.
-Se uno strumento non può funzionare (per esempio la rete blocca un sito), dirlo all'utente e chiedere di sbloccarlo, senza saltarlo in silenzio.
+**Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, yt-dlp, headroom** — ruoli:
+OpenMontage = regia (pipeline `animated-explainer`, leggere `AGENT_GUIDE.md`); yt-dlp = riferimenti (YouTube bloccato in rete:
+chiedere di aprirlo); Whisper = trascrizione riferimenti + **controllo parola per parola del video finale**; headroom =
+comprimere trascrizioni lunghe (`scripts/compress.py`); Remotion = scene; HyperFrames = aperture/chiusure con GSAP
+(`scripts/hf_brand.py`) + `hyperframes beats`; ffmpeg = mix e mastering. Se uno non funziona, dirlo, non saltarlo.
 
-## Regole creative (sempre)
-- **Voce**: sociale, calda, bella, in italiano, dà del "tu". Default `it-IT-GiuseppeMultilingualNeural`
-  (alternative: `it-IT-IsabellaNeural`, `it-IT-DiegoNeural`, `it-IT-ElsaNeural`), rate `+6%`.
-- **Spiegazioni**: tutto spiegato in maniera assoluta, passo per passo, con **esempi animati**
-  (ogni concetto ha la sua animazione: gocce, ioni, contatori, grafici che si muovono).
-- **Niente immagini e niente crediti**: solo grafica vettoriale animata (SVG/React/HTML) creata da noi.
-  Nessuna foto/stock, nessuna schermata di crediti.
-- Struttura: hook nei primi 2 s → spiegazione a step → numero "wow" → CTA "Seguici" con wordmark ARGO MARIS.
-- Formato default 9:16 1080×1920 30 fps; sottotitoli social parola-per-parola (2-4 parole, parole chiave colorate).
-- Palette: abyss `#020B1A`, deep `#06244A`, sea `#1C8FD6`, aqua `#3FE0D0`, gold `#FFC94A`, coral `#FF6B6B`.
-  Font: Montserrat 800/900 (+ Space Grotesk per formule). Kit in `studio/src/lib/kit.tsx`.
-- Audio: voce + ambiente marino + whoosh ai cambi scena, ducking sotto la voce,
-  master **−14 LUFS, true-peak −1.5 dBTP** (headroom per i social).
-- Verifica sempre: still dei frame chiave prima del render, Whisper sul file finale.
+## Preferenze dell'utente (imparate in chat)
+- Video di progetto **16:9 1920×1080**; social **9:16**. Tono B2B: "voi" alla catena, "ti" a chi avvia il progetto.
+- **Voce naturale e bella**: frasi brevi, un "beat" per frase, pause calibrate. Voce `it-IT-GiuseppeMultilingualNeural`
+  (alt. Isabella, Diego, Elsa). **Qualità 96 kbps** (patch in `voice.py`; il default 48 kbps suonava male).
+- **Mai liste di nomi isolati** (accento straniero): scrivere "ci sono le triglie e le alici, i calamari e i gamberi…".
+  Pronunce in `"pron"` (solo voce): "Unicoop Etruria"→"Unicoop, Etruria", "HACCP"→"H.A.C.C.P."; non dire "hub" a inizio
+  frase (suona "lab") → "centro logistico"; FAO a parole ("trentasette punto uno punto tre"); "Questa è Argo Maris" non "Ecco…".
+- **Audio**: niente rumori sintetici (fruscio "mare", droni): colonna sonora originale `scripts/corporate_music.py`
+  (pianoforte/pad 92 BPM) con ducking sotto la voce, "swish" morbidi ai cambi scena; master −14/−15 LUFS, true-peak ≤ −1.5 dB.
+- **Tantissimi esempi animati concreti** (ordine 40 kg orate + 25 kg calamari, confronto offerte, mare grosso → Adriatico,
+  etichette, calcoli che si costruiscono, chat WhatsApp, cartoon dei buyer), grafica senza sovrapposizioni.
+- Foto e clip **reali dell'utente** (pesci del CAR) si usano: `studio/public/car/`. Niente stock, niente crediti.
+- L'utente vuole che venga **controllato tutto** (fotogrammi chiave + Whisper) prima di consegnare, e i video **mandati in chat**.
+- Video "stile gioco" con ped 3D: **bocciato** ("brutto, non cinematografico") — per realismo serve video IA con API key.
 
-## Strumenti (installare con `bash scripts/setup.sh` in un container nuovo)
-| Strumento | Uso |
-|---|---|
-| **Remotion 4** (`studio/`) | motore principale: scene animate in React/SVG |
-| **HyperFrames** (`hyperframes` CLI) | composizioni HTML→video, alternativa per motion/slide; `hyperframes beats/audio` per analisi audio |
-| **OpenMontage** (`tools/OpenMontage`, non versionato) | pipeline agentiche (animated-explainer, clip-factory, ...). Leggere il suo `AGENT_GUIDE.md` prima di usarlo |
-| **ffmpeg** | mix, mastering, mux, tagli |
-| **faster-whisper** large-v3-turbo | trascrizione con tempi parola (`scripts/transcribe.py`) |
-| **yt-dlp** | download di riferimenti (YouTube è bloccato dalla rete dell'ambiente: serve aprirlo) |
-| **edge-tts** | voce neurale (host `speech.platform.bing.com` aperto nell'ambiente `dama-up`; serve `--proxy`/`proxy=` HTTPS_PROXY) |
-| **headroom** (`headroom-ai`) | compressione di trascrizioni/log lunghi per il contesto dell'LLM |
-
-## Pipeline (un video = una cartella `projects/<slug>/script.json`)
+## Pipeline (un video = `projects/<slug>/script.json`)
 ```bash
-python3 scripts/voice.py <slug>                 # voce per scena + timeline.json (tempi parola)
-# scrivi/adatta studio/src/videos/<slug>/{Scenes,Video}.tsx e registra in studio/src/Root.tsx
-cd studio && npx remotion still src/index.ts <Comp> /tmp/f.png --frame=300 --scale=0.5   # controllo
-npx remotion render src/index.ts <Comp> ../out/<slug>_video.mp4 --props='{"withVoice":false}' --muted --crf=18
+python3 scripts/voice.py <slug>                    # voce per beat + timeline.json (tempi parola)
+cd studio && npx remotion still src/index.ts <Comp> /tmp/f.png --frame=N --scale=0.5     # controllo frame
+npx remotion render src/index.ts <Comp> ../out/<slug>_video.mp4 --props='{"withVoice":false}' --muted --crf=19
 cd .. && python3 scripts/master.py <slug> out/<slug>_video.mp4 out/<slug>_FINAL.mp4
-python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
+python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/c.json && python3 scripts/checkwords.py <slug> /tmp/c.json
 ```
-- Nelle scene usa `useCue(p)('parola')` per far partire le animazioni esattamente quando la voce dice la parola.
-- Se l'utente manda una sua registrazione vocale: `transcribe.py` → timeline → stesse scene.
-- Note tecniche: Chrome per Remotion = `/opt/pw-browsers/chromium_headless_shell-1243/...` (in `remotion.config.ts`);
-  edge-tts a volte risponde vuoto → `voice.py` riprova da solo.
-
-## Preferenze dell'utente (aggiornate)
-- Video Argo Maris "di progetto" (GDO, Coop): formato **16:9 1920×1080**, tono B2B ("voi" verso la catena,
-  "ti" quando si spiega il progetto a chi lo avvia). I social restano 9:16.
-- **Focus sul locale**: prima il **Tirreno** (barche e aste di Civitavecchia, Fiumicino, Anzio + Mercato di Roma/CAR),
-  poi l'**Adriatico** ("due mari, una sola regia"). L'**estero** (Scozia, Olanda, Grecia, Croazia, Turchia)
-  è solo un **plus, quasi alla fine**.
-- Voce **naturale**: frasi brevi, una frase per "beat", pause calibrate (voice.py con `text` come lista).
-  ATTENZIONE: la voce multilingue legge le **liste di nomi isolati** con accento straniero ("Trigley, Alisai").
-  Scrivere sempre con articoli e congiunzioni: "ci sono le triglie e le alici, i calamari e i gamberi…".
-  Prima di renderizzare, provare le frasi delicate con Whisper (sigle, nomi, liste).
-  Controllo completo parole: `python3 scripts/checkwords.py <slug> <whisper.json>` (script vs voce).
-  Pronunce: `"pron"` in script.json cambia solo la voce, non i sottotitoli
-  ("Unicoop Etruria"→"Unicoop, Etruria", "HACCP"→"H.A.C.C.P."). "hub" a inizio frase suona "lab": dire "centro logistico".
-- Loghi: `assets/brand/argo-maris-logo.png` (logo del cliente, ritagliato in tondo) e `unicoop-etruria-insegna.jpg`
-  (dalla foto dell'insegna). La foto "magazzino Argo Maris" NON va usata: Argo Maris è broker senza deposito.
-- Marinerie: Tirreno (Viareggio→Gaeta, 11) e Adriatico (Chioggia→Manfredonia, 13) in `lib/wide/Shared.tsx`.
-- Tantissimi **esempi animati** (confronto offerte, ordine diviso tra fornitori, mare grosso → Adriatico, etichetta pesce,
-  calcoli che si costruiscono). Nessuna foto, nessun logo di terzi (Coop solo come testo).
-- Precisione: verificare i numeri (i conti del GDO v6 tornano: 7.000 €×4×52 = 1.456.000 €; utile 7% 25–54k,
-  15% 120–149k, 20% 172–202k; 10 cent/kg ≈ 21.000 €/anno). "CAR = primo mercato d'Italia" → dire "uno dei più grandi".
-
-## v3 (regole aggiornate dall'utente)
-- Audio: voce edge-tts a **96 kbps** (patch in voice.py, il default era 48 kbps = audio scadente); niente più fruscio
-  "mare" sintetico: colonna sonora originale `scripts/corporate_music.py` (pianoforte/pad, 92 BPM) abbassata sotto la voce.
-- Le voci `studio/public/*/voice.wav` NON vanno su git (>100 MB): si rigenerano con voice.py.
-- Pesce: citare TANTE specie (40+ in `SPECIES`): locale (triglie, scorfani, gallinelle, San Pietro, pagelli, dentici, saraghi,
-  ricciole, lecce, spigole, orate, cefali, sogliole, rombi), azzurro, molluschi, crostacei, frutti di mare; allevato
-  (orate, spigole, ombrine da Italia, Grecia, Turchia, Croazia); import finale (Norvegia, Francia, Spagna, Portogallo,
-  Marocco, Senegal, Tunisia, Egitto); zone FAO (37.1.3 Tirreno, 37.2.1 Adriatico, 37.2.2 Ionio, 27, 34).
-- Foto reali dell'utente in `studio/public/car/` (pesci del CAR) e clip reali (`clip_banco`, `clip_cassette`): si usano.
-- Scene pro in `lib/wide/Pro.tsx`: Ufficio (cartoon), Piattaforma ordini, Specie, CarFoto, Allevato, FruttiMare, Fao,
-  Import, BrokerVsDiretto, Contatto, Freschezza (+ personaggio `Person`). Testi standard dei beat nello script builder.
-- Video Coop: insegna Unicoop Etruria anche nell'intestazione (`partnerImg`) e nella piattaforma.
-
-## Kit 16:9 (studio/src/lib/wide)
-- `ui.tsx`: Backdrop oceano, Header con capitoli, Captions16, Title cinetico, Card, Icon (30 icone vettoriali),
-  Fish (specie: triglia, alice, calamaro, gambero, spada, ricciola, orata, spigola, salmone, merluzzo), Boat, Truck, Emblem.
-- `MapView.tsx`: mappe Natural Earth pre-calcolate (`scripts/mkmap.mjs` → `maps.json`, viste lazio/centro/italia/europa),
-  Port, Route, Fleet, Storm, SeaLabel, camera animata.
-- `WideVideo.tsx`: monta scene + transizioni + header + sottotitoli. Scene: `useScene(p)` → `B(i)` inizio beat, `Wd('parola')`.
-- HyperFrames: `python3 scripts/hf_brand.py out.mp4 <dur> "<riga>" "<riga2>" [--layout=end]` (apertura/chiusura con GSAP).
-  GSAP va copiato in locale (CDN bloccata). Evitare clipPath negli SVG animati in HyperFrames (usare `hf/emblem.svg`).
-- headroom: `python3 scripts/compress.py <file.words.json>` (SmartCrusher: −57% token sulle trascrizioni).
+- Scene 16:9: `useScene(p)` → `B(i)` (inizio beat), `Wd('parola')` (frame della parola). Kit: `lib/wide/ui.tsx` (40 specie
+  vettoriali `SPECIES`, Icon, Card, Title, Header con `partnerImg`), `MapView.tsx` (viste lazio/centro/italia/europa/
+  tirrenoV/adriaticoV/fao + zone FAO), `Shared.tsx` (marinerie, consegna), `Pro.tsx` (Ufficio, Piattaforma, Specie, CarFoto,
+  Allevato, FruttiMare, Fao, Import, BrokerVsDiretto, Contatto, Freschezza, `Person` cartoon; `proScenes()` per registrarle).
+- Render lenti (≈10 min di video → 1h45): lanciare in background in coda e avvisare l'utente.
+- `studio/public/*/voice.wav` NON su git (>100 MB); i video finali in `renders/` (comprimere se >100 MB).
+- Rete: edge-tts richiede `proxy=HTTPS_PROXY`; GSAP in locale (CDN bloccata); HF ok (RMBG-1.4, Whisper).
 
 ## Video fatti
-- `mare-salato` — "Perché il mare è salato?" (74.8 s, demo dello stile).
-- `coop-etruria` — Argo Maris × Unicoop Etruria (16:9, 4:33). Rifatto dall'originale dell'artifact "Argo Maris – Video progetto".
-- `gdo-v6` — Argo Maris GDO v6, il progetto completo (16:9, v2 15:36).
-- `coop-etruria` v2 (6:27): loghi, 24 marinerie, come compriamo, consegna diretta, garanzie.
-- `mare-italia` — proposta di partnership Mare Italia × Argo Maris (3:11). Dati pubblici: grossista CAR Roma,
-  box 46–47, iscritta 2015, Guidonia, ~16 persone. Logo Mare Italia NON disponibile: nome in grafica (`MareItaliaMark`).
-- `socio` — il progetto per il futuro socio (4:25): costi (< 10.000 €), guadagni al 50% (≈2.980 €/mese centrale,
-  ≈880 €/mese prudente), ruoli, quote, rischi.
-- `elite-city` — video personale in stile "Miami anni '80" (9:16, 59,8 s): omaggio di genere ORIGINALE
-  (nessun logo/font/HUD/musica del gioco). Musica synthwave generata (`scripts/synthwave.py`, 110 BPM),
-  scontorno foto con RMBG-1.4 ONNX (`scripts/cutout.py`), stile illustrazione (`scripts/retro_style.py`).
+- `mare-salato` (demo 9:16) · `coop-etruria` v3 (~10 min) · `gdo-v6` v3 (~20 min, spiegazione per l'utente) ·
+  `mare-italia` v3 (~7 min) · `socio` v3 (~8 min) · `elite-city` (video personale stile Miami anni '80, 9:16).
