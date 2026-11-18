@@ -2,8 +2,8 @@
  "slug": "coop-etruria",
  "fps": 30,
  "voice": "it-IT-DiegoNeural",
- "total": 635.277,
- "frames": 19058,
+ "total": 653.95,
+ "frames": 19618,
  "scenes": [
   {
    "id": "hook",
@@ -4698,373 +4698,659 @@
    "text": "E il nostro sguardo non si ferma al Tirreno. Seguiamo anche le marinerie dell'Adriatico: da Chioggia a Rimini e Cesenatico, da Fano ad Ancona e Civitanova Marche. E poi San Benedetto del Tronto, Giulianova, Pescara e Ortona, fino a Vasto, Termoli e Manfredonia. Due mari, una sola regia. Se un mare è fermo, l'altro può lavorare."
   },
   {
-   "id": "rotazione",
+   "id": "sud",
    "start": 265.109,
-   "dur": 22.191,
+   "dur": 16.752,
    "beats": [
     {
      "i": 0,
      "start": 265.109,
-     "end": 267.515,
+     "end": 266.739,
+     "text": "E guardiamo anche al Sud."
+    },
+    {
+     "i": 1,
+     "start": 267.079,
+     "end": 272.346,
+     "text": "La Sicilia, con le sue marinerie, per le alici: da Sciacca a Porticello."
+    },
+    {
+     "i": 2,
+     "start": 272.686,
+     "end": 276.923,
+     "text": "E i mercati ittici della Puglia: Bari, Molfetta e Manfredonia."
+    },
+    {
+     "i": 3,
+     "start": 277.263,
+     "end": 281.261,
+     "text": "Più mercati seguiamo, più scelta abbiamo, ogni giorno."
+    }
+   ],
+   "words": [
+    {
+     "w": "E",
+     "start": 265.208,
+     "end": 265.38,
+     "t": "E",
+     "beat": 0
+    },
+    {
+     "w": "guardiamo",
+     "start": 265.392,
+     "end": 265.907,
+     "t": "guardiamo",
+     "beat": 0
+    },
+    {
+     "w": "anche",
+     "start": 265.919,
+     "end": 266.139,
+     "t": "anche",
+     "beat": 0
+    },
+    {
+     "w": "al",
+     "start": 266.152,
+     "end": 266.225,
+     "t": "al",
+     "beat": 0
+    },
+    {
+     "w": "Sud.",
+     "start": 266.237,
+     "end": 266.605,
+     "t": "Sud.",
+     "beat": 0
+    },
+    {
+     "w": "La",
+     "start": 267.178,
+     "end": 267.411,
+     "t": "La",
+     "beat": 1
+    },
+    {
+     "w": "Sicilia",
+     "start": 267.423,
+     "end": 268.024,
+     "t": "Sicilia,",
+     "beat": 1
+    },
+    {
+     "w": "con",
+     "start": 268.318,
+     "end": 268.477,
+     "t": "con",
+     "beat": 1
+    },
+    {
+     "w": "le",
+     "start": 268.489,
+     "end": 268.587,
+     "t": "le",
+     "beat": 1
+    },
+    {
+     "w": "sue",
+     "start": 268.6,
+     "end": 268.783,
+     "t": "sue",
+     "beat": 1
+    },
+    {
+     "w": "marinerie",
+     "start": 268.796,
+     "end": 269.457,
+     "t": "marinerie,",
+     "beat": 1
+    },
+    {
+     "w": "per",
+     "start": 269.69,
+     "end": 269.911,
+     "t": "per",
+     "beat": 1
+    },
+    {
+     "w": "le",
+     "start": 269.923,
+     "end": 270.046,
+     "t": "le",
+     "beat": 1
+    },
+    {
+     "w": "alici",
+     "start": 270.058,
+     "end": 270.438,
+     "t": "alici:",
+     "beat": 1
+    },
+    {
+     "w": "da",
+     "start": 270.732,
+     "end": 270.916,
+     "t": "da",
+     "beat": 1
+    },
+    {
+     "w": "Sciacca",
+     "start": 270.928,
+     "end": 271.357,
+     "t": "Sciacca",
+     "beat": 1
+    },
+    {
+     "w": "a",
+     "start": 271.369,
+     "end": 271.43,
+     "t": "a",
+     "beat": 1
+    },
+    {
+     "w": "Porticello",
+     "start": 271.443,
+     "end": 272.288,
+     "t": "Porticello.",
+     "beat": 1
+    },
+    {
+     "w": "E",
+     "start": 272.785,
+     "end": 272.908,
+     "t": "E",
+     "beat": 2
+    },
+    {
+     "w": "i",
+     "start": 272.92,
+     "end": 272.981,
+     "t": "i",
+     "beat": 2
+    },
+    {
+     "w": "mercati",
+     "start": 272.993,
+     "end": 273.422,
+     "t": "mercati",
+     "beat": 2
+    },
+    {
+     "w": "ittici",
+     "start": 273.435,
+     "end": 273.827,
+     "t": "ittici",
+     "beat": 2
+    },
+    {
+     "w": "della",
+     "start": 273.839,
+     "end": 274.109,
+     "t": "della",
+     "beat": 2
+    },
+    {
+     "w": "Puglia",
+     "start": 274.121,
+     "end": 274.599,
+     "t": "Puglia:",
+     "beat": 2
+    },
+    {
+     "w": "Bari",
+     "start": 274.832,
+     "end": 275.224,
+     "t": "Bari,",
+     "beat": 2
+    },
+    {
+     "w": "Molfetta",
+     "start": 275.432,
+     "end": 275.971,
+     "t": "Molfetta",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 275.984,
+     "end": 276.02,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "Manfredonia",
+     "start": 276.033,
+     "end": 276.854,
+     "t": "Manfredonia.",
+     "beat": 2
+    },
+    {
+     "w": "Più",
+     "start": 277.362,
+     "end": 277.534,
+     "t": "Più",
+     "beat": 3
+    },
+    {
+     "w": "mercati",
+     "start": 277.546,
+     "end": 278.036,
+     "t": "mercati",
+     "beat": 3
+    },
+    {
+     "w": "seguiamo",
+     "start": 278.048,
+     "end": 278.686,
+     "t": "seguiamo,",
+     "beat": 3
+    },
+    {
+     "w": "più",
+     "start": 278.955,
+     "end": 279.139,
+     "t": "più",
+     "beat": 3
+    },
+    {
+     "w": "scelta",
+     "start": 279.151,
+     "end": 279.556,
+     "t": "scelta",
+     "beat": 3
+    },
+    {
+     "w": "abbiamo",
+     "start": 279.568,
+     "end": 280.095,
+     "t": "abbiamo,",
+     "beat": 3
+    },
+    {
+     "w": "ogni",
+     "start": 280.34,
+     "end": 280.622,
+     "t": "ogni",
+     "beat": 3
+    },
+    {
+     "w": "giorno",
+     "start": 280.634,
+     "end": 281.198,
+     "t": "giorno.",
+     "beat": 3
+    }
+   ],
+   "text": "E guardiamo anche al Sud. La Sicilia, con le sue marinerie, per le alici: da Sciacca a Porticello. E i mercati ittici della Puglia: Bari, Molfetta e Manfredonia. Più mercati seguiamo, più scelta abbiamo, ogni giorno."
+  },
+  {
+   "id": "rotazione",
+   "start": 281.861,
+   "dur": 22.191,
+   "beats": [
+    {
+     "i": 0,
+     "start": 281.861,
+     "end": 284.266,
      "text": "Il nostro segreto si chiama rotazione."
     },
     {
      "i": 1,
-     "start": 267.855,
-     "end": 273.816,
+     "start": 284.606,
+     "end": 290.568,
      "text": "Tirreno, Adriatico e mercato di Roma si alternano, in base a stagione, meteo e qualità."
     },
     {
      "i": 2,
-     "start": 274.156,
-     "end": 275.188,
+     "start": 290.908,
+     "end": 291.94,
      "text": "Un esempio?"
     },
     {
      "i": 3,
-     "start": 275.638,
-     "end": 279.08,
+     "start": 292.39,
+     "end": 295.832,
      "text": "Mare grosso sul Tirreno, le barche restano in porto."
     },
     {
      "i": 4,
-     "start": 279.42,
-     "end": 281.985,
+     "start": 296.172,
+     "end": 298.737,
      "text": "Noi lavoriamo l'Adriatico e il mercato."
     },
     {
      "i": 5,
-     "start": 282.325,
-     "end": 284.221,
+     "start": 299.077,
+     "end": 300.972,
      "text": "E il banco Coop resta pieno."
     },
     {
      "i": 6,
-     "start": 284.721,
-     "end": 286.701,
+     "start": 301.472,
+     "end": 303.452,
      "text": "Continuità, sempre."
     }
    ],
    "words": [
     {
      "w": "Il",
-     "start": 265.208,
-     "end": 265.404,
+     "start": 281.96,
+     "end": 282.156,
      "t": "Il",
      "beat": 0
     },
     {
      "w": "nostro",
-     "start": 265.416,
-     "end": 265.735,
+     "start": 282.168,
+     "end": 282.487,
      "t": "nostro",
      "beat": 0
     },
     {
      "w": "segreto",
-     "start": 265.747,
-     "end": 266.262,
+     "start": 282.499,
+     "end": 283.014,
      "t": "segreto",
      "beat": 0
     },
     {
      "w": "si",
-     "start": 266.274,
-     "end": 266.397,
+     "start": 283.026,
+     "end": 283.149,
      "t": "si",
      "beat": 0
     },
     {
      "w": "chiama",
-     "start": 266.409,
-     "end": 266.703,
+     "start": 283.161,
+     "end": 283.455,
      "t": "chiama",
      "beat": 0
     },
     {
      "w": "rotazione",
-     "start": 266.715,
-     "end": 267.438,
+     "start": 283.467,
+     "end": 284.19,
      "t": "rotazione.",
      "beat": 0
     },
     {
      "w": "Tirreno",
-     "start": 267.954,
-     "end": 268.53,
+     "start": 284.705,
+     "end": 285.281,
      "t": "Tirreno,",
      "beat": 1
     },
     {
      "w": "Adriatico",
-     "start": 268.677,
-     "end": 269.425,
+     "start": 285.428,
+     "end": 286.176,
      "t": "Adriatico",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 269.437,
-     "end": 269.461,
+     "start": 286.188,
+     "end": 286.212,
      "t": "e",
      "beat": 1
     },
     {
      "w": "mercato",
-     "start": 269.474,
-     "end": 269.964,
+     "start": 286.225,
+     "end": 286.715,
      "t": "mercato",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 269.976,
-     "end": 270.111,
+     "start": 286.727,
+     "end": 286.862,
      "t": "di",
      "beat": 1
     },
     {
      "w": "Roma",
-     "start": 270.123,
-     "end": 270.417,
+     "start": 286.874,
+     "end": 287.168,
      "t": "Roma",
      "beat": 1
     },
     {
      "w": "si",
-     "start": 270.43,
-     "end": 270.552,
+     "start": 287.181,
+     "end": 287.303,
      "t": "si",
      "beat": 1
     },
     {
      "w": "alternano",
-     "start": 270.564,
-     "end": 271.226,
+     "start": 287.315,
+     "end": 287.977,
      "t": "alternano,",
      "beat": 1
     },
     {
      "w": "in",
-     "start": 271.447,
-     "end": 271.606,
+     "start": 288.198,
+     "end": 288.357,
      "t": "in",
      "beat": 1
     },
     {
      "w": "base",
-     "start": 271.618,
-     "end": 271.9,
+     "start": 288.369,
+     "end": 288.651,
      "t": "base",
      "beat": 1
     },
     {
      "w": "a",
-     "start": 271.912,
-     "end": 271.961,
+     "start": 288.663,
+     "end": 288.712,
      "t": "a",
      "beat": 1
     },
     {
      "w": "stagione",
-     "start": 271.974,
-     "end": 272.525,
+     "start": 288.725,
+     "end": 289.276,
      "t": "stagione,",
      "beat": 1
     },
     {
      "w": "meteo",
-     "start": 272.758,
-     "end": 273.15,
+     "start": 289.509,
+     "end": 289.901,
      "t": "meteo",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 273.162,
-     "end": 273.211,
+     "start": 289.913,
+     "end": 289.962,
      "t": "e",
      "beat": 1
     },
     {
      "w": "qualità",
-     "start": 273.224,
-     "end": 273.738,
+     "start": 289.975,
+     "end": 290.489,
      "t": "qualità.",
      "beat": 1
     },
     {
      "w": "Un",
-     "start": 274.255,
-     "end": 274.427,
+     "start": 291.007,
+     "end": 291.179,
      "t": "Un",
      "beat": 2
     },
     {
      "w": "esempio",
-     "start": 274.439,
-     "end": 275.137,
+     "start": 291.191,
+     "end": 291.889,
      "t": "esempio?",
      "beat": 2
     },
     {
      "w": "Mare",
-     "start": 275.737,
-     "end": 276.092,
+     "start": 292.489,
+     "end": 292.844,
      "t": "Mare",
      "beat": 3
     },
     {
      "w": "grosso",
-     "start": 276.105,
-     "end": 276.497,
+     "start": 292.857,
+     "end": 293.249,
      "t": "grosso",
      "beat": 3
     },
     {
      "w": "sul",
-     "start": 276.509,
-     "end": 276.705,
+     "start": 293.261,
+     "end": 293.457,
      "t": "sul",
      "beat": 3
     },
     {
      "w": "Tirreno",
-     "start": 276.717,
-     "end": 277.257,
+     "start": 293.469,
+     "end": 294.009,
      "t": "Tirreno,",
      "beat": 3
     },
     {
      "w": "le",
-     "start": 277.514,
-     "end": 277.661,
+     "start": 294.266,
+     "end": 294.413,
      "t": "le",
      "beat": 3
     },
     {
      "w": "barche",
-     "start": 277.673,
-     "end": 278.016,
+     "start": 294.425,
+     "end": 294.768,
      "t": "barche",
      "beat": 3
     },
     {
      "w": "restano",
-     "start": 278.029,
-     "end": 278.384,
+     "start": 294.781,
+     "end": 295.136,
      "t": "restano",
      "beat": 3
     },
     {
      "w": "in",
-     "start": 278.396,
-     "end": 278.494,
+     "start": 295.148,
+     "end": 295.246,
      "t": "in",
      "beat": 3
     },
     {
      "w": "porto",
-     "start": 278.507,
-     "end": 278.985,
+     "start": 295.259,
+     "end": 295.737,
      "t": "porto.",
      "beat": 3
     },
     {
      "w": "Noi",
-     "start": 279.519,
-     "end": 279.862,
+     "start": 296.271,
+     "end": 296.614,
      "t": "Noi",
      "beat": 4
     },
     {
      "w": "lavoriamo",
-     "start": 279.874,
-     "end": 280.414,
+     "start": 296.626,
+     "end": 297.166,
      "t": "lavoriamo",
      "beat": 4
     },
     {
      "w": "l'Adriatico",
-     "start": 280.426,
-     "end": 281.149,
+     "start": 297.178,
+     "end": 297.901,
      "t": "l'Adriatico",
      "beat": 4
     },
     {
      "w": "e",
-     "start": 281.161,
-     "end": 281.173,
+     "start": 297.913,
+     "end": 297.925,
      "t": "e",
      "beat": 4
     },
     {
      "w": "il",
-     "start": 281.186,
-     "end": 281.259,
+     "start": 297.938,
+     "end": 298.011,
      "t": "il",
      "beat": 4
     },
     {
      "w": "mercato",
-     "start": 281.271,
-     "end": 281.896,
+     "start": 298.023,
+     "end": 298.648,
      "t": "mercato.",
      "beat": 4
     },
     {
      "w": "E",
-     "start": 282.424,
-     "end": 282.559,
+     "start": 299.176,
+     "end": 299.311,
      "t": "E",
      "beat": 5
     },
     {
      "w": "il",
-     "start": 282.571,
-     "end": 282.669,
+     "start": 299.323,
+     "end": 299.421,
      "t": "il",
      "beat": 5
     },
     {
      "w": "banco",
-     "start": 282.681,
-     "end": 283.025,
+     "start": 299.433,
+     "end": 299.777,
      "t": "banco",
      "beat": 5
     },
     {
      "w": "Coop",
-     "start": 283.037,
-     "end": 283.282,
+     "start": 299.789,
+     "end": 300.034,
      "t": "Coop",
      "beat": 5
     },
     {
      "w": "resta",
-     "start": 283.294,
-     "end": 283.65,
+     "start": 300.046,
+     "end": 300.402,
      "t": "resta",
      "beat": 5
     },
     {
      "w": "pieno",
-     "start": 283.662,
-     "end": 284.164,
+     "start": 300.414,
+     "end": 300.916,
      "t": "pieno.",
      "beat": 5
     },
     {
      "w": "Continuità",
-     "start": 284.82,
-     "end": 285.629,
+     "start": 301.571,
+     "end": 302.38,
      "t": "Continuità,",
      "beat": 6
     },
     {
      "w": "sempre",
-     "start": 285.972,
-     "end": 286.621,
+     "start": 302.723,
+     "end": 303.372,
      "t": "sempre.",
      "beat": 6
     }
@@ -5073,326 +5359,326 @@
   },
   {
    "id": "allevato",
-   "start": 287.301,
+   "start": 304.052,
    "dur": 18.404,
    "beats": [
     {
      "i": 0,
-     "start": 287.301,
-     "end": 291.687,
+     "start": 304.052,
+     "end": 308.438,
      "text": "C'è poi il pesce d'allevamento, che garantisce volumi costanti tutto l'anno."
     },
     {
      "i": 1,
-     "start": 292.027,
-     "end": 294.932,
+     "start": 308.778,
+     "end": 311.684,
      "text": "Le orate e le spigole, ma anche le ombrine."
     },
     {
      "i": 2,
-     "start": 295.272,
-     "end": 300.039,
+     "start": 312.024,
+     "end": 316.791,
      "text": "Arrivano dagli allevamenti italiani, e da Grecia, Turchia e Croazia."
     },
     {
      "i": 3,
-     "start": 300.379,
-     "end": 305.105,
+     "start": 317.131,
+     "end": 321.856,
      "text": "E in etichetta è sempre scritto: allevato, con il paese di allevamento."
     }
    ],
    "words": [
     {
      "w": "C'è",
-     "start": 287.4,
-     "end": 287.596,
+     "start": 304.151,
+     "end": 304.347,
      "t": "C'è",
      "beat": 0
     },
     {
      "w": "poi",
-     "start": 287.608,
-     "end": 287.853,
+     "start": 304.359,
+     "end": 304.604,
      "t": "poi",
      "beat": 0
     },
     {
      "w": "il",
-     "start": 287.866,
-     "end": 287.939,
+     "start": 304.617,
+     "end": 304.69,
      "t": "il",
      "beat": 0
     },
     {
      "w": "pesce",
-     "start": 287.951,
-     "end": 288.258,
+     "start": 304.702,
+     "end": 305.009,
      "t": "pesce",
      "beat": 0
     },
     {
      "w": "d'allevamento",
-     "start": 288.27,
-     "end": 289.042,
+     "start": 305.021,
+     "end": 305.793,
      "t": "d'allevamento,",
      "beat": 0
     },
     {
      "w": "che",
-     "start": 289.177,
-     "end": 289.324,
+     "start": 305.928,
+     "end": 306.075,
      "t": "che",
      "beat": 0
     },
     {
      "w": "garantisce",
-     "start": 289.336,
-     "end": 289.925,
+     "start": 306.087,
+     "end": 306.676,
      "t": "garantisce",
      "beat": 0
     },
     {
      "w": "volumi",
-     "start": 289.937,
-     "end": 290.292,
+     "start": 306.688,
+     "end": 307.043,
      "t": "volumi",
      "beat": 0
     },
     {
      "w": "costanti",
-     "start": 290.304,
-     "end": 290.819,
+     "start": 307.055,
+     "end": 307.57,
      "t": "costanti",
      "beat": 0
     },
     {
      "w": "tutto",
-     "start": 290.831,
-     "end": 291.138,
+     "start": 307.582,
+     "end": 307.889,
      "t": "tutto",
      "beat": 0
     },
     {
      "w": "l'anno",
-     "start": 291.15,
-     "end": 291.628,
+     "start": 307.901,
+     "end": 308.379,
      "t": "l'anno.",
      "beat": 0
     },
     {
      "w": "Le",
-     "start": 292.126,
-     "end": 292.334,
+     "start": 308.877,
+     "end": 309.085,
      "t": "Le",
      "beat": 1
     },
     {
      "w": "orate",
-     "start": 292.347,
-     "end": 292.727,
+     "start": 309.098,
+     "end": 309.478,
      "t": "orate",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 292.739,
-     "end": 292.763,
+     "start": 309.49,
+     "end": 309.514,
      "t": "e",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 292.776,
-     "end": 292.874,
+     "start": 309.527,
+     "end": 309.625,
      "t": "le",
      "beat": 1
     },
     {
      "w": "spigole",
-     "start": 292.886,
-     "end": 293.388,
+     "start": 309.637,
+     "end": 310.139,
      "t": "spigole,",
      "beat": 1
     },
     {
      "w": "ma",
-     "start": 293.658,
-     "end": 293.878,
+     "start": 310.409,
+     "end": 310.629,
      "t": "ma",
      "beat": 1
     },
     {
      "w": "anche",
-     "start": 293.891,
-     "end": 294.111,
+     "start": 310.642,
+     "end": 310.862,
      "t": "anche",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 294.124,
-     "end": 294.209,
+     "start": 310.875,
+     "end": 310.96,
      "t": "le",
      "beat": 1
     },
     {
      "w": "ombrine",
-     "start": 294.222,
-     "end": 294.859,
+     "start": 310.973,
+     "end": 311.61,
      "t": "ombrine.",
      "beat": 1
     },
     {
      "w": "Arrivano",
-     "start": 295.371,
-     "end": 295.874,
+     "start": 312.123,
+     "end": 312.626,
      "t": "Arrivano",
      "beat": 2
     },
     {
      "w": "dagli",
-     "start": 295.886,
-     "end": 296.205,
+     "start": 312.638,
+     "end": 312.957,
      "t": "dagli",
      "beat": 2
     },
     {
      "w": "allevamenti",
-     "start": 296.217,
-     "end": 296.756,
+     "start": 312.969,
+     "end": 313.508,
      "t": "allevamenti",
      "beat": 2
     },
     {
      "w": "italiani",
-     "start": 296.768,
-     "end": 297.455,
+     "start": 313.52,
+     "end": 314.207,
      "t": "italiani,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 297.663,
-     "end": 297.785,
+     "start": 314.415,
+     "end": 314.537,
      "t": "e",
      "beat": 2
     },
     {
      "w": "da",
-     "start": 297.798,
-     "end": 297.945,
+     "start": 314.55,
+     "end": 314.697,
      "t": "da",
      "beat": 2
     },
     {
      "w": "Grecia",
-     "start": 297.957,
-     "end": 298.447,
+     "start": 314.709,
+     "end": 315.199,
      "t": "Grecia,",
      "beat": 2
     },
     {
      "w": "Turchia",
-     "start": 298.729,
-     "end": 299.146,
+     "start": 315.481,
+     "end": 315.898,
      "t": "Turchia",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 299.158,
-     "end": 299.207,
+     "start": 315.91,
+     "end": 315.959,
      "t": "e",
      "beat": 2
     },
     {
      "w": "Croazia",
-     "start": 299.219,
-     "end": 299.967,
+     "start": 315.971,
+     "end": 316.719,
      "t": "Croazia.",
      "beat": 2
     },
     {
      "w": "E",
-     "start": 300.478,
-     "end": 300.601,
+     "start": 317.23,
+     "end": 317.353,
      "t": "E",
      "beat": 3
     },
     {
      "w": "in",
-     "start": 300.613,
-     "end": 300.735,
+     "start": 317.365,
+     "end": 317.487,
      "t": "in",
      "beat": 3
     },
     {
      "w": "etichetta",
-     "start": 300.748,
-     "end": 301.275,
+     "start": 317.5,
+     "end": 318.027,
      "t": "etichetta",
      "beat": 3
     },
     {
      "w": "è",
-     "start": 301.287,
-     "end": 301.348,
+     "start": 318.039,
+     "end": 318.1,
      "t": "è",
      "beat": 3
     },
     {
      "w": "sempre",
-     "start": 301.36,
-     "end": 301.753,
+     "start": 318.112,
+     "end": 318.505,
      "t": "sempre",
      "beat": 3
     },
     {
      "w": "scritto",
-     "start": 301.765,
-     "end": 302.353,
+     "start": 318.517,
+     "end": 319.105,
      "t": "scritto:",
      "beat": 3
     },
     {
      "w": "allevato",
-     "start": 302.61,
-     "end": 303.272,
+     "start": 319.362,
+     "end": 320.024,
      "t": "allevato,",
      "beat": 3
     },
     {
      "w": "con",
-     "start": 303.468,
-     "end": 303.64,
+     "start": 320.22,
+     "end": 320.392,
      "t": "con",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 303.652,
-     "end": 303.75,
+     "start": 320.404,
+     "end": 320.502,
      "t": "il",
      "beat": 3
     },
     {
      "w": "paese",
-     "start": 303.762,
-     "end": 304.142,
+     "start": 320.514,
+     "end": 320.894,
      "t": "paese",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 304.155,
-     "end": 304.253,
+     "start": 320.907,
+     "end": 321.005,
      "t": "di",
      "beat": 3
     },
     {
      "w": "allevamento",
-     "start": 304.265,
-     "end": 305.012,
+     "start": 321.017,
+     "end": 321.764,
      "t": "allevamento.",
      "beat": 3
     }
@@ -5401,431 +5687,431 @@
   },
   {
    "id": "frutti",
-   "start": 305.705,
+   "start": 322.456,
    "dur": 23.998,
    "beats": [
     {
      "i": 0,
-     "start": 305.705,
-     "end": 307.307,
+     "start": 322.456,
+     "end": 324.059,
      "text": "E poi i frutti di mare."
     },
     {
      "i": 1,
-     "start": 307.647,
-     "end": 312.836,
+     "start": 324.399,
+     "end": 329.588,
      "text": "Le cozze e le vongole veraci, le telline e i fasolari, i cannolicchi e le ostriche."
     },
     {
      "i": 2,
-     "start": 313.176,
-     "end": 319.929,
+     "start": 329.928,
+     "end": 336.68,
      "text": "Arrivano da zone di produzione classificate, e passano dai centri di depurazione e di spedizione riconosciuti."
     },
     {
      "i": 3,
-     "start": 320.269,
-     "end": 329.103,
+     "start": 337.02,
+     "end": 345.854,
      "text": "Si vendono vivi, in confezioni chiuse, con l'etichetta: specie, zona di produzione, numero del centro e data di confezionamento."
     }
    ],
    "words": [
     {
      "w": "E",
-     "start": 305.804,
-     "end": 305.976,
+     "start": 322.555,
+     "end": 322.727,
      "t": "E",
      "beat": 0
     },
     {
      "w": "poi",
-     "start": 305.988,
-     "end": 306.257,
+     "start": 322.739,
+     "end": 323.008,
      "t": "poi",
      "beat": 0
     },
     {
      "w": "i",
-     "start": 306.27,
-     "end": 306.319,
+     "start": 323.021,
+     "end": 323.07,
      "t": "i",
      "beat": 0
     },
     {
      "w": "frutti",
-     "start": 306.331,
-     "end": 306.686,
+     "start": 323.082,
+     "end": 323.437,
      "t": "frutti",
      "beat": 0
     },
     {
      "w": "di",
-     "start": 306.699,
-     "end": 306.797,
+     "start": 323.45,
+     "end": 323.548,
      "t": "di",
      "beat": 0
     },
     {
      "w": "mare",
-     "start": 306.809,
-     "end": 307.238,
+     "start": 323.56,
+     "end": 323.989,
      "t": "mare.",
      "beat": 0
     },
     {
      "w": "Le",
-     "start": 307.746,
-     "end": 307.954,
+     "start": 324.498,
+     "end": 324.706,
      "t": "Le",
      "beat": 1
     },
     {
      "w": "cozze",
-     "start": 307.967,
-     "end": 308.371,
+     "start": 324.719,
+     "end": 325.123,
      "t": "cozze",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 308.383,
-     "end": 308.408,
+     "start": 325.135,
+     "end": 325.16,
      "t": "e",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 308.42,
-     "end": 308.506,
+     "start": 325.172,
+     "end": 325.258,
      "t": "le",
      "beat": 1
     },
     {
      "w": "vongole",
-     "start": 308.518,
-     "end": 308.91,
+     "start": 325.27,
+     "end": 325.662,
      "t": "vongole",
      "beat": 1
     },
     {
      "w": "veraci",
-     "start": 308.923,
-     "end": 309.437,
+     "start": 325.675,
+     "end": 326.189,
      "t": "veraci,",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 309.56,
-     "end": 309.719,
+     "start": 326.312,
+     "end": 326.471,
      "t": "le",
      "beat": 1
     },
     {
      "w": "telline",
-     "start": 309.731,
-     "end": 310.246,
+     "start": 326.483,
+     "end": 326.998,
      "t": "telline",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 310.258,
-     "end": 310.283,
+     "start": 327.01,
+     "end": 327.035,
      "t": "e",
      "beat": 1
     },
     {
      "w": "i",
-     "start": 310.295,
-     "end": 310.381,
+     "start": 327.047,
+     "end": 327.133,
      "t": "i",
      "beat": 1
     },
     {
      "w": "fasolari",
-     "start": 310.393,
-     "end": 311.03,
+     "start": 327.145,
+     "end": 327.782,
      "t": "fasolari,",
      "beat": 1
     },
     {
      "w": "i",
-     "start": 311.19,
-     "end": 311.324,
+     "start": 327.942,
+     "end": 328.076,
      "t": "i",
      "beat": 1
     },
     {
      "w": "cannolicchi",
-     "start": 311.337,
-     "end": 311.974,
+     "start": 328.089,
+     "end": 328.726,
      "t": "cannolicchi",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 311.986,
-     "end": 312.011,
+     "start": 328.738,
+     "end": 328.763,
      "t": "e",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 312.023,
-     "end": 312.109,
+     "start": 328.775,
+     "end": 328.861,
      "t": "le",
      "beat": 1
     },
     {
      "w": "ostriche",
-     "start": 312.121,
-     "end": 312.77,
+     "start": 328.873,
+     "end": 329.522,
      "t": "ostriche.",
      "beat": 1
     },
     {
      "w": "Arrivano",
-     "start": 313.275,
-     "end": 313.753,
+     "start": 330.027,
+     "end": 330.505,
      "t": "Arrivano",
      "beat": 2
     },
     {
      "w": "da",
-     "start": 313.765,
-     "end": 313.9,
+     "start": 330.517,
+     "end": 330.652,
      "t": "da",
      "beat": 2
     },
     {
      "w": "zone",
-     "start": 313.913,
-     "end": 314.231,
+     "start": 330.665,
+     "end": 330.983,
      "t": "zone",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 314.243,
-     "end": 314.354,
+     "start": 330.995,
+     "end": 331.106,
      "t": "di",
      "beat": 2
     },
     {
      "w": "produzione",
-     "start": 314.366,
-     "end": 314.93,
+     "start": 331.118,
+     "end": 331.682,
      "t": "produzione",
      "beat": 2
     },
     {
      "w": "classificate",
-     "start": 314.942,
-     "end": 315.812,
+     "start": 331.694,
+     "end": 332.564,
      "t": "classificate,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 316.057,
-     "end": 316.216,
+     "start": 332.809,
+     "end": 332.968,
      "t": "e",
      "beat": 2
     },
     {
      "w": "passano",
-     "start": 316.229,
-     "end": 316.67,
+     "start": 332.981,
+     "end": 333.422,
      "t": "passano",
      "beat": 2
     },
     {
      "w": "dai",
-     "start": 316.682,
-     "end": 316.915,
+     "start": 333.434,
+     "end": 333.667,
      "t": "dai",
      "beat": 2
     },
     {
      "w": "centri",
-     "start": 316.927,
-     "end": 317.319,
+     "start": 333.679,
+     "end": 334.071,
      "t": "centri",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 317.332,
-     "end": 317.442,
+     "start": 334.084,
+     "end": 334.194,
      "t": "di",
      "beat": 2
     },
     {
      "w": "depurazione",
-     "start": 317.454,
-     "end": 318.177,
+     "start": 334.206,
+     "end": 334.929,
      "t": "depurazione",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 318.189,
-     "end": 318.226,
+     "start": 334.941,
+     "end": 334.978,
      "t": "e",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 318.238,
-     "end": 318.386,
+     "start": 334.99,
+     "end": 335.138,
      "t": "di",
      "beat": 2
     },
     {
      "w": "spedizione",
-     "start": 318.398,
-     "end": 319.035,
+     "start": 335.15,
+     "end": 335.787,
      "t": "spedizione",
      "beat": 2
     },
     {
      "w": "riconosciuti",
-     "start": 319.047,
-     "end": 319.881,
+     "start": 335.799,
+     "end": 336.633,
      "t": "riconosciuti.",
      "beat": 2
     },
     {
      "w": "Si",
-     "start": 320.368,
-     "end": 320.576,
+     "start": 337.119,
+     "end": 337.327,
      "t": "Si",
      "beat": 3
     },
     {
      "w": "vendono",
-     "start": 320.589,
-     "end": 320.981,
+     "start": 337.34,
+     "end": 337.732,
      "t": "vendono",
      "beat": 3
     },
     {
      "w": "vivi",
-     "start": 320.993,
-     "end": 321.373,
+     "start": 337.744,
+     "end": 338.124,
      "t": "vivi,",
      "beat": 3
     },
     {
      "w": "in",
-     "start": 321.606,
-     "end": 321.765,
+     "start": 338.357,
+     "end": 338.516,
      "t": "in",
      "beat": 3
     },
     {
      "w": "confezioni",
-     "start": 321.777,
-     "end": 322.427,
+     "start": 338.528,
+     "end": 339.178,
      "t": "confezioni",
      "beat": 3
     },
     {
      "w": "chiuse",
-     "start": 322.439,
-     "end": 322.954,
+     "start": 339.19,
+     "end": 339.705,
      "t": "chiuse,",
      "beat": 3
     },
     {
      "w": "con",
-     "start": 323.101,
-     "end": 323.26,
+     "start": 339.852,
+     "end": 340.011,
      "t": "con",
      "beat": 3
     },
     {
      "w": "l'etichetta",
-     "start": 323.272,
-     "end": 323.897,
+     "start": 340.023,
+     "end": 340.648,
      "t": "l'etichetta:",
      "beat": 3
     },
     {
      "w": "specie",
-     "start": 324.143,
-     "end": 324.669,
+     "start": 340.894,
+     "end": 341.42,
      "t": "specie,",
      "beat": 3
     },
     {
      "w": "zona",
-     "start": 324.939,
-     "end": 325.307,
+     "start": 341.69,
+     "end": 342.058,
      "t": "zona",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 325.319,
-     "end": 325.417,
+     "start": 342.07,
+     "end": 342.168,
      "t": "di",
      "beat": 3
     },
     {
      "w": "produzione",
-     "start": 325.429,
-     "end": 326.165,
+     "start": 342.18,
+     "end": 342.916,
      "t": "produzione,",
      "beat": 3
     },
     {
      "w": "numero",
-     "start": 326.372,
-     "end": 326.813,
+     "start": 343.123,
+     "end": 343.564,
      "t": "numero",
      "beat": 3
     },
     {
      "w": "del",
-     "start": 326.825,
-     "end": 327.009,
+     "start": 343.576,
+     "end": 343.76,
      "t": "del",
      "beat": 3
     },
     {
      "w": "centro",
-     "start": 327.021,
-     "end": 327.463,
+     "start": 343.772,
+     "end": 344.214,
      "t": "centro",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 327.475,
-     "end": 327.512,
+     "start": 344.226,
+     "end": 344.263,
      "t": "e",
      "beat": 3
     },
     {
      "w": "data",
-     "start": 327.524,
-     "end": 327.806,
+     "start": 344.275,
+     "end": 344.557,
      "t": "data",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 327.818,
-     "end": 327.916,
+     "start": 344.569,
+     "end": 344.667,
      "t": "di",
      "beat": 3
     },
     {
      "w": "confezionamento",
-     "start": 327.928,
-     "end": 329.019,
+     "start": 344.679,
+     "end": 345.77,
      "t": "confezionamento.",
      "beat": 3
     }
@@ -5834,682 +6120,682 @@
   },
   {
    "id": "acquisti",
-   "start": 329.703,
+   "start": 346.454,
    "dur": 39.529,
    "beats": [
     {
      "i": 0,
-     "start": 329.703,
-     "end": 334.183,
+     "start": 346.454,
+     "end": 350.934,
      "text": "Ma come compriamo, in pratica? Su tre canali."
     },
     {
      "i": 1,
-     "start": 334.523,
-     "end": 343.897,
+     "start": 351.274,
+     "end": 360.649,
      "text": "Dai grossisti del mercato di Roma: confrontiamo i listini ogni mattina, con contratto scritto e pagamenti a trenta giorni, come prevede la legge per il fresco."
     },
     {
      "i": 2,
-     "start": 344.237,
-     "end": 351.599,
+     "start": 360.989,
+     "end": 368.351,
      "text": "Alle aste: ci registriamo come acquirenti presso ogni mercato, facciamo l'offerta, e il pesce è nostro appena battuto."
     },
     {
      "i": 3,
-     "start": 351.939,
-     "end": 360.516,
+     "start": 368.691,
+     "end": 377.268,
      "text": "Dalle barche: compriamo alla prima vendita, con la nota di vendita trasmessa entro ventiquattro ore, e il codice di tracciabilità di ogni lotto."
     },
     {
      "i": 4,
-     "start": 360.856,
-     "end": 368.632,
+     "start": 377.608,
+     "end": 385.384,
      "text": "E compriamo solo quello che avete ordinato: niente magazzino, niente invenduto. Per questo i prezzi restano bassi."
     }
    ],
    "words": [
     {
      "w": "Ma",
-     "start": 329.802,
-     "end": 330.023,
+     "start": 346.553,
+     "end": 346.774,
      "t": "Ma",
      "beat": 0
     },
     {
      "w": "come",
-     "start": 330.035,
-     "end": 330.304,
+     "start": 346.786,
+     "end": 347.055,
      "t": "come",
      "beat": 0
     },
     {
      "w": "compriamo",
-     "start": 330.317,
-     "end": 331.113,
+     "start": 347.068,
+     "end": 347.864,
      "t": "compriamo,",
      "beat": 0
     },
     {
      "w": "in",
-     "start": 331.383,
-     "end": 331.554,
+     "start": 348.134,
+     "end": 348.305,
      "t": "in",
      "beat": 0
     },
     {
      "w": "pratica",
-     "start": 331.567,
-     "end": 332.204,
+     "start": 348.318,
+     "end": 348.955,
      "t": "pratica?",
      "beat": 0
     },
     {
      "w": "Su",
-     "start": 333.074,
-     "end": 333.319,
+     "start": 349.825,
+     "end": 350.07,
      "t": "Su",
      "beat": 0
     },
     {
      "w": "tre",
-     "start": 333.331,
-     "end": 333.503,
+     "start": 350.082,
+     "end": 350.254,
      "t": "tre",
      "beat": 0
     },
     {
      "w": "canali",
-     "start": 333.515,
-     "end": 334.128,
+     "start": 350.266,
+     "end": 350.879,
      "t": "canali.",
      "beat": 0
     },
     {
      "w": "Dai",
-     "start": 334.622,
-     "end": 334.916,
+     "start": 351.373,
+     "end": 351.667,
      "t": "Dai",
      "beat": 1
     },
     {
      "w": "grossisti",
-     "start": 334.928,
-     "end": 335.504,
+     "start": 351.679,
+     "end": 352.255,
      "t": "grossisti",
      "beat": 1
     },
     {
      "w": "del",
-     "start": 335.517,
-     "end": 335.639,
+     "start": 352.268,
+     "end": 352.39,
      "t": "del",
      "beat": 1
     },
     {
      "w": "mercato",
-     "start": 335.651,
-     "end": 336.117,
+     "start": 352.402,
+     "end": 352.868,
      "t": "mercato",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 336.129,
-     "end": 336.264,
+     "start": 352.88,
+     "end": 353.015,
      "t": "di",
      "beat": 1
     },
     {
      "w": "Roma",
-     "start": 336.276,
-     "end": 336.632,
+     "start": 353.027,
+     "end": 353.383,
      "t": "Roma:",
      "beat": 1
     },
     {
      "w": "confrontiamo",
-     "start": 336.901,
-     "end": 337.526,
+     "start": 353.652,
+     "end": 354.277,
      "t": "confrontiamo",
      "beat": 1
     },
     {
      "w": "i",
-     "start": 337.539,
-     "end": 337.588,
+     "start": 354.29,
+     "end": 354.339,
      "t": "i",
      "beat": 1
     },
     {
      "w": "listini",
-     "start": 337.6,
-     "end": 338.078,
+     "start": 354.351,
+     "end": 354.829,
      "t": "listini",
      "beat": 1
     },
     {
      "w": "ogni",
-     "start": 338.09,
-     "end": 338.286,
+     "start": 354.841,
+     "end": 355.037,
      "t": "ogni",
      "beat": 1
     },
     {
      "w": "mattina",
-     "start": 338.299,
-     "end": 338.862,
+     "start": 355.05,
+     "end": 355.613,
      "t": "mattina,",
      "beat": 1
     },
     {
      "w": "con",
-     "start": 339.131,
-     "end": 339.315,
+     "start": 355.882,
+     "end": 356.066,
      "t": "con",
      "beat": 1
     },
     {
      "w": "contratto",
-     "start": 339.327,
-     "end": 339.842,
+     "start": 356.078,
+     "end": 356.593,
      "t": "contratto",
      "beat": 1
     },
     {
      "w": "scritto",
-     "start": 339.854,
-     "end": 340.283,
+     "start": 356.605,
+     "end": 357.034,
      "t": "scritto",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 340.295,
-     "end": 340.344,
+     "start": 357.046,
+     "end": 357.095,
      "t": "e",
      "beat": 1
     },
     {
      "w": "pagamenti",
-     "start": 340.356,
-     "end": 340.896,
+     "start": 357.107,
+     "end": 357.647,
      "t": "pagamenti",
      "beat": 1
     },
     {
      "w": "a",
-     "start": 340.908,
-     "end": 340.957,
+     "start": 357.659,
+     "end": 357.708,
      "t": "a",
      "beat": 1
     },
     {
      "w": "trenta",
-     "start": 340.969,
-     "end": 341.312,
+     "start": 357.72,
+     "end": 358.063,
      "t": "trenta",
      "beat": 1
     },
     {
      "w": "giorni",
-     "start": 341.324,
-     "end": 341.802,
+     "start": 358.075,
+     "end": 358.553,
      "t": "giorni,",
      "beat": 1
     },
     {
      "w": "come",
-     "start": 341.9,
-     "end": 342.133,
+     "start": 358.651,
+     "end": 358.884,
      "t": "come",
      "beat": 1
     },
     {
      "w": "prevede",
-     "start": 342.146,
-     "end": 342.489,
+     "start": 358.897,
+     "end": 359.24,
      "t": "prevede",
      "beat": 1
     },
     {
      "w": "la",
-     "start": 342.501,
-     "end": 342.599,
+     "start": 359.252,
+     "end": 359.35,
      "t": "la",
      "beat": 1
     },
     {
      "w": "legge",
-     "start": 342.611,
-     "end": 342.979,
+     "start": 359.362,
+     "end": 359.73,
      "t": "legge",
      "beat": 1
     },
     {
      "w": "per",
-     "start": 342.991,
-     "end": 343.163,
+     "start": 359.742,
+     "end": 359.914,
      "t": "per",
      "beat": 1
     },
     {
      "w": "il",
-     "start": 343.175,
-     "end": 343.248,
+     "start": 359.926,
+     "end": 359.999,
      "t": "il",
      "beat": 1
     },
     {
      "w": "fresco",
-     "start": 343.261,
-     "end": 343.849,
+     "start": 360.012,
+     "end": 360.6,
      "t": "fresco.",
      "beat": 1
     },
     {
      "w": "Alle",
-     "start": 344.336,
-     "end": 344.606,
+     "start": 361.088,
+     "end": 361.358,
      "t": "Alle",
      "beat": 2
     },
     {
      "w": "aste",
-     "start": 344.618,
-     "end": 344.937,
+     "start": 361.37,
+     "end": 361.689,
      "t": "aste:",
      "beat": 2
     },
     {
      "w": "ci",
-     "start": 345.206,
-     "end": 345.378,
+     "start": 361.958,
+     "end": 362.13,
      "t": "ci",
      "beat": 2
     },
     {
      "w": "registriamo",
-     "start": 345.39,
-     "end": 346.039,
+     "start": 362.142,
+     "end": 362.791,
      "t": "registriamo",
      "beat": 2
     },
     {
      "w": "come",
-     "start": 346.052,
-     "end": 346.248,
+     "start": 362.804,
+     "end": 363.0,
      "t": "come",
      "beat": 2
     },
     {
      "w": "acquirenti",
-     "start": 346.26,
-     "end": 346.775,
+     "start": 363.012,
+     "end": 363.527,
      "t": "acquirenti",
      "beat": 2
     },
     {
      "w": "presso",
-     "start": 346.787,
-     "end": 347.118,
+     "start": 363.539,
+     "end": 363.87,
      "t": "presso",
      "beat": 2
     },
     {
      "w": "ogni",
-     "start": 347.13,
-     "end": 347.314,
+     "start": 363.882,
+     "end": 364.066,
      "t": "ogni",
      "beat": 2
     },
     {
      "w": "mercato",
-     "start": 347.326,
-     "end": 347.951,
+     "start": 364.078,
+     "end": 364.703,
      "t": "mercato,",
      "beat": 2
     },
     {
      "w": "facciamo",
-     "start": 348.196,
-     "end": 348.637,
+     "start": 364.948,
+     "end": 365.389,
      "t": "facciamo",
      "beat": 2
     },
     {
      "w": "l'offerta",
-     "start": 348.65,
-     "end": 349.263,
+     "start": 365.402,
+     "end": 366.015,
      "t": "l'offerta,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 349.569,
-     "end": 349.691,
+     "start": 366.321,
+     "end": 366.443,
      "t": "e",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 349.704,
-     "end": 349.814,
+     "start": 366.456,
+     "end": 366.566,
      "t": "il",
      "beat": 2
     },
     {
      "w": "pesce",
-     "start": 349.826,
-     "end": 350.169,
+     "start": 366.578,
+     "end": 366.921,
      "t": "pesce",
      "beat": 2
     },
     {
      "w": "è",
-     "start": 350.182,
-     "end": 350.218,
+     "start": 366.934,
+     "end": 366.97,
      "t": "è",
      "beat": 2
     },
     {
      "w": "nostro",
-     "start": 350.231,
-     "end": 350.537,
+     "start": 366.983,
+     "end": 367.289,
      "t": "nostro",
      "beat": 2
     },
     {
      "w": "appena",
-     "start": 350.549,
-     "end": 350.868,
+     "start": 367.301,
+     "end": 367.62,
      "t": "appena",
      "beat": 2
     },
     {
      "w": "battuto",
-     "start": 350.88,
-     "end": 351.505,
+     "start": 367.632,
+     "end": 368.257,
      "t": "battuto.",
      "beat": 2
     },
     {
      "w": "Dalle",
-     "start": 352.038,
-     "end": 352.393,
+     "start": 368.79,
+     "end": 369.145,
      "t": "Dalle",
      "beat": 3
     },
     {
      "w": "barche",
-     "start": 352.406,
-     "end": 352.884,
+     "start": 369.158,
+     "end": 369.636,
      "t": "barche:",
      "beat": 3
     },
     {
      "w": "compriamo",
-     "start": 353.141,
-     "end": 353.656,
+     "start": 369.893,
+     "end": 370.408,
      "t": "compriamo",
      "beat": 3
     },
     {
      "w": "alla",
-     "start": 353.668,
-     "end": 353.839,
+     "start": 370.42,
+     "end": 370.591,
      "t": "alla",
      "beat": 3
     },
     {
      "w": "prima",
-     "start": 353.852,
-     "end": 354.097,
+     "start": 370.604,
+     "end": 370.849,
      "t": "prima",
      "beat": 3
     },
     {
      "w": "vendita",
-     "start": 354.109,
-     "end": 354.599,
+     "start": 370.861,
+     "end": 371.351,
      "t": "vendita,",
      "beat": 3
     },
     {
      "w": "con",
-     "start": 354.893,
-     "end": 355.04,
+     "start": 371.645,
+     "end": 371.792,
      "t": "con",
      "beat": 3
     },
     {
      "w": "la",
-     "start": 355.053,
-     "end": 355.175,
+     "start": 371.805,
+     "end": 371.927,
      "t": "la",
      "beat": 3
     },
     {
      "w": "nota",
-     "start": 355.188,
-     "end": 355.457,
+     "start": 371.94,
+     "end": 372.209,
      "t": "nota",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 355.469,
-     "end": 355.567,
+     "start": 372.221,
+     "end": 372.319,
      "t": "di",
      "beat": 3
     },
     {
      "w": "vendita",
-     "start": 355.58,
-     "end": 356.021,
+     "start": 372.332,
+     "end": 372.773,
      "t": "vendita",
      "beat": 3
     },
     {
      "w": "trasmessa",
-     "start": 356.033,
-     "end": 356.597,
+     "start": 372.785,
+     "end": 373.349,
      "t": "trasmessa",
      "beat": 3
     },
     {
      "w": "entro",
-     "start": 356.609,
-     "end": 356.817,
+     "start": 373.361,
+     "end": 373.569,
      "t": "entro",
      "beat": 3
     },
     {
      "w": "ventiquattro",
-     "start": 356.83,
-     "end": 357.43,
+     "start": 373.582,
+     "end": 374.182,
      "t": "ventiquattro",
      "beat": 3
     },
     {
      "w": "ore",
-     "start": 357.442,
-     "end": 357.737,
+     "start": 374.194,
+     "end": 374.489,
      "t": "ore,",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 357.944,
-     "end": 358.079,
+     "start": 374.696,
+     "end": 374.831,
      "t": "e",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 358.091,
-     "end": 358.189,
+     "start": 374.843,
+     "end": 374.941,
      "t": "il",
      "beat": 3
     },
     {
      "w": "codice",
-     "start": 358.201,
-     "end": 358.704,
+     "start": 374.953,
+     "end": 375.456,
      "t": "codice",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 358.716,
-     "end": 358.851,
+     "start": 375.468,
+     "end": 375.603,
      "t": "di",
      "beat": 3
     },
     {
      "w": "tracciabilità",
-     "start": 358.863,
-     "end": 359.562,
+     "start": 375.615,
+     "end": 376.314,
      "t": "tracciabilità",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 359.574,
-     "end": 359.696,
+     "start": 376.326,
+     "end": 376.448,
      "t": "di",
      "beat": 3
     },
     {
      "w": "ogni",
-     "start": 359.709,
-     "end": 359.917,
+     "start": 376.461,
+     "end": 376.669,
      "t": "ogni",
      "beat": 3
     },
     {
      "w": "lotto",
-     "start": 359.929,
-     "end": 360.432,
+     "start": 376.681,
+     "end": 377.184,
      "t": "lotto.",
      "beat": 3
     },
     {
      "w": "E",
-     "start": 360.955,
-     "end": 361.114,
+     "start": 377.707,
+     "end": 377.866,
      "t": "E",
      "beat": 4
     },
     {
      "w": "compriamo",
-     "start": 361.127,
-     "end": 361.715,
+     "start": 377.879,
+     "end": 378.467,
      "t": "compriamo",
      "beat": 4
     },
     {
      "w": "solo",
-     "start": 361.727,
-     "end": 362.021,
+     "start": 378.479,
+     "end": 378.773,
      "t": "solo",
      "beat": 4
     },
     {
      "w": "quello",
-     "start": 362.033,
-     "end": 362.315,
+     "start": 378.785,
+     "end": 379.067,
      "t": "quello",
      "beat": 4
     },
     {
      "w": "che",
-     "start": 362.328,
-     "end": 362.438,
+     "start": 379.08,
+     "end": 379.19,
      "t": "che",
      "beat": 4
     },
     {
      "w": "avete",
-     "start": 362.45,
-     "end": 362.695,
+     "start": 379.202,
+     "end": 379.447,
      "t": "avete",
      "beat": 4
     },
     {
      "w": "ordinato",
-     "start": 362.707,
-     "end": 363.283,
+     "start": 379.459,
+     "end": 380.035,
      "t": "ordinato:",
      "beat": 4
     },
     {
      "w": "niente",
-     "start": 363.541,
-     "end": 363.872,
+     "start": 380.293,
+     "end": 380.624,
      "t": "niente",
      "beat": 4
     },
     {
      "w": "magazzino",
-     "start": 363.884,
-     "end": 364.533,
+     "start": 380.636,
+     "end": 381.285,
      "t": "magazzino,",
      "beat": 4
     },
     {
      "w": "niente",
-     "start": 364.815,
-     "end": 365.134,
+     "start": 381.567,
+     "end": 381.886,
      "t": "niente",
      "beat": 4
     },
     {
      "w": "invenduto",
-     "start": 365.146,
-     "end": 365.808,
+     "start": 381.898,
+     "end": 382.56,
      "t": "invenduto.",
      "beat": 4
     },
     {
      "w": "Per",
-     "start": 366.665,
-     "end": 366.873,
+     "start": 383.417,
+     "end": 383.625,
      "t": "Per",
      "beat": 4
     },
     {
      "w": "questo",
-     "start": 366.885,
-     "end": 367.155,
+     "start": 383.637,
+     "end": 383.907,
      "t": "questo",
      "beat": 4
     },
     {
      "w": "i",
-     "start": 367.167,
-     "end": 367.253,
+     "start": 383.919,
+     "end": 384.005,
      "t": "i",
      "beat": 4
     },
     {
      "w": "prezzi",
-     "start": 367.265,
-     "end": 367.645,
+     "start": 384.017,
+     "end": 384.397,
      "t": "prezzi",
      "beat": 4
     },
     {
      "w": "restano",
-     "start": 367.657,
-     "end": 368.025,
+     "start": 384.409,
+     "end": 384.777,
      "t": "restano",
      "beat": 4
     },
     {
      "w": "bassi",
-     "start": 368.037,
-     "end": 368.577,
+     "start": 384.789,
+     "end": 385.329,
      "t": "bassi.",
      "beat": 4
     }
@@ -6518,381 +6804,381 @@
   },
   {
    "id": "logistica",
-   "start": 369.232,
+   "start": 385.984,
    "dur": 21.157,
    "beats": [
     {
      "i": 0,
-     "start": 369.232,
-     "end": 373.66,
+     "start": 385.984,
+     "end": 390.412,
      "text": "Poi c'è la logistica: la parte che non si vede, ma che fa la differenza."
     },
     {
      "i": 1,
-     "start": 374.0,
-     "end": 375.975,
+     "start": 390.752,
+     "end": 392.727,
      "text": "La mattina arrivano gli ordini."
     },
     {
      "i": 2,
-     "start": 376.315,
-     "end": 378.547,
+     "start": 393.067,
+     "end": 395.299,
      "text": "Il pomeriggio, le aste."
     },
     {
      "i": 3,
-     "start": 378.887,
-     "end": 382.514,
+     "start": 395.639,
+     "end": 399.266,
      "text": "Di notte, la merce viaggia a temperatura controllata."
     },
     {
      "i": 4,
-     "start": 382.854,
-     "end": 389.789,
+     "start": 399.606,
+     "end": 406.541,
      "text": "E la mattina dopo è a destinazione: al centro logistico, alla piattaforma, o direttamente al punto vendita."
     }
    ],
    "words": [
     {
      "w": "Poi",
-     "start": 369.331,
-     "end": 369.625,
+     "start": 386.083,
+     "end": 386.377,
      "t": "Poi",
      "beat": 0
     },
     {
      "w": "c'è",
-     "start": 369.637,
-     "end": 369.76,
+     "start": 386.389,
+     "end": 386.512,
      "t": "c'è",
      "beat": 0
     },
     {
      "w": "la",
-     "start": 369.772,
-     "end": 369.87,
+     "start": 386.524,
+     "end": 386.622,
      "t": "la",
      "beat": 0
     },
     {
      "w": "logistica",
-     "start": 369.882,
-     "end": 370.508,
+     "start": 386.634,
+     "end": 387.26,
      "t": "logistica:",
      "beat": 0
     },
     {
      "w": "la",
-     "start": 370.777,
-     "end": 370.949,
+     "start": 387.529,
+     "end": 387.701,
      "t": "la",
      "beat": 0
     },
     {
      "w": "parte",
-     "start": 370.961,
-     "end": 371.267,
+     "start": 387.713,
+     "end": 388.019,
      "t": "parte",
      "beat": 0
     },
     {
      "w": "che",
-     "start": 371.28,
-     "end": 371.414,
+     "start": 388.032,
+     "end": 388.166,
      "t": "che",
      "beat": 0
     },
     {
      "w": "non",
-     "start": 371.427,
-     "end": 371.586,
+     "start": 388.179,
+     "end": 388.338,
      "t": "non",
      "beat": 0
     },
     {
      "w": "si",
-     "start": 371.598,
-     "end": 371.696,
+     "start": 388.35,
+     "end": 388.448,
      "t": "si",
      "beat": 0
     },
     {
      "w": "vede",
-     "start": 371.708,
-     "end": 372.064,
+     "start": 388.46,
+     "end": 388.816,
      "t": "vede,",
      "beat": 0
     },
     {
      "w": "ma",
-     "start": 372.235,
-     "end": 372.407,
+     "start": 388.987,
+     "end": 389.159,
      "t": "ma",
      "beat": 0
     },
     {
      "w": "che",
-     "start": 372.419,
-     "end": 372.566,
+     "start": 389.171,
+     "end": 389.318,
      "t": "che",
      "beat": 0
     },
     {
      "w": "fa",
-     "start": 372.579,
-     "end": 372.726,
+     "start": 389.331,
+     "end": 389.478,
      "t": "fa",
      "beat": 0
     },
     {
      "w": "la",
-     "start": 372.738,
-     "end": 372.836,
+     "start": 389.49,
+     "end": 389.588,
      "t": "la",
      "beat": 0
     },
     {
      "w": "differenza",
-     "start": 372.848,
-     "end": 373.596,
+     "start": 389.6,
+     "end": 390.348,
      "t": "differenza.",
      "beat": 0
     },
     {
      "w": "La",
-     "start": 374.099,
-     "end": 374.307,
+     "start": 390.851,
+     "end": 391.059,
      "t": "La",
      "beat": 1
     },
     {
      "w": "mattina",
-     "start": 374.32,
-     "end": 374.749,
+     "start": 391.072,
+     "end": 391.501,
      "t": "mattina",
      "beat": 1
     },
     {
      "w": "arrivano",
-     "start": 374.761,
-     "end": 375.226,
+     "start": 391.513,
+     "end": 391.978,
      "t": "arrivano",
      "beat": 1
     },
     {
      "w": "gli",
-     "start": 375.239,
-     "end": 375.361,
+     "start": 391.991,
+     "end": 392.113,
      "t": "gli",
      "beat": 1
     },
     {
      "w": "ordini",
-     "start": 375.374,
-     "end": 375.925,
+     "start": 392.126,
+     "end": 392.677,
      "t": "ordini.",
      "beat": 1
     },
     {
      "w": "Il",
-     "start": 376.414,
-     "end": 376.622,
+     "start": 393.166,
+     "end": 393.374,
      "t": "Il",
      "beat": 2
     },
     {
      "w": "pomeriggio",
-     "start": 376.635,
-     "end": 377.419,
+     "start": 393.387,
+     "end": 394.171,
      "t": "pomeriggio,",
      "beat": 2
     },
     {
      "w": "le",
-     "start": 377.762,
-     "end": 377.958,
+     "start": 394.514,
+     "end": 394.71,
      "t": "le",
      "beat": 2
     },
     {
      "w": "aste",
-     "start": 377.97,
-     "end": 378.461,
+     "start": 394.722,
+     "end": 395.213,
      "t": "aste.",
      "beat": 2
     },
     {
      "w": "Di",
-     "start": 378.986,
-     "end": 379.17,
+     "start": 395.738,
+     "end": 395.922,
      "t": "Di",
      "beat": 3
     },
     {
      "w": "notte",
-     "start": 379.182,
-     "end": 379.66,
+     "start": 395.934,
+     "end": 396.412,
      "t": "notte,",
      "beat": 3
     },
     {
      "w": "la",
-     "start": 379.893,
-     "end": 380.101,
+     "start": 396.645,
+     "end": 396.853,
      "t": "la",
      "beat": 3
     },
     {
      "w": "merce",
-     "start": 380.113,
-     "end": 380.469,
+     "start": 396.865,
+     "end": 397.221,
      "t": "merce",
      "beat": 3
     },
     {
      "w": "viaggia",
-     "start": 380.481,
-     "end": 380.91,
+     "start": 397.233,
+     "end": 397.662,
      "t": "viaggia",
      "beat": 3
     },
     {
      "w": "a",
-     "start": 380.922,
-     "end": 380.959,
+     "start": 397.674,
+     "end": 397.711,
      "t": "a",
      "beat": 3
     },
     {
      "w": "temperatura",
-     "start": 380.971,
-     "end": 381.596,
+     "start": 397.723,
+     "end": 398.348,
      "t": "temperatura",
      "beat": 3
     },
     {
      "w": "controllata",
-     "start": 381.609,
-     "end": 382.417,
+     "start": 398.361,
+     "end": 399.169,
      "t": "controllata.",
      "beat": 3
     },
     {
      "w": "E",
-     "start": 382.953,
-     "end": 383.088,
+     "start": 399.705,
+     "end": 399.84,
      "t": "E",
      "beat": 4
     },
     {
      "w": "la",
-     "start": 383.1,
-     "end": 383.198,
+     "start": 399.852,
+     "end": 399.95,
      "t": "la",
      "beat": 4
     },
     {
      "w": "mattina",
-     "start": 383.21,
-     "end": 383.639,
+     "start": 399.962,
+     "end": 400.391,
      "t": "mattina",
      "beat": 4
     },
     {
      "w": "dopo",
-     "start": 383.652,
-     "end": 383.97,
+     "start": 400.404,
+     "end": 400.722,
      "t": "dopo",
      "beat": 4
     },
     {
      "w": "è",
-     "start": 383.982,
-     "end": 384.031,
+     "start": 400.734,
+     "end": 400.783,
      "t": "è",
      "beat": 4
     },
     {
      "w": "a",
-     "start": 384.044,
-     "end": 384.093,
+     "start": 400.796,
+     "end": 400.845,
      "t": "a",
      "beat": 4
     },
     {
      "w": "destinazione",
-     "start": 384.105,
-     "end": 384.938,
+     "start": 400.857,
+     "end": 401.69,
      "t": "destinazione:",
      "beat": 4
     },
     {
      "w": "al",
-     "start": 385.171,
-     "end": 385.343,
+     "start": 401.923,
+     "end": 402.095,
      "t": "al",
      "beat": 4
     },
     {
      "w": "centro",
-     "start": 385.355,
-     "end": 385.723,
+     "start": 402.107,
+     "end": 402.475,
      "t": "centro",
      "beat": 4
     },
     {
      "w": "logistico",
-     "start": 385.735,
-     "end": 386.458,
+     "start": 402.487,
+     "end": 403.21,
      "t": "logistico,",
      "beat": 4
     },
     {
      "w": "alla",
-     "start": 386.691,
-     "end": 386.96,
+     "start": 403.443,
+     "end": 403.712,
      "t": "alla",
      "beat": 4
     },
     {
      "w": "piattaforma",
-     "start": 386.973,
-     "end": 387.72,
+     "start": 403.725,
+     "end": 404.472,
      "t": "piattaforma,",
      "beat": 4
     },
     {
      "w": "o",
-     "start": 387.978,
-     "end": 388.088,
+     "start": 404.73,
+     "end": 404.84,
      "t": "o",
      "beat": 4
     },
     {
      "w": "direttamente",
-     "start": 388.1,
-     "end": 388.75,
+     "start": 404.852,
+     "end": 405.502,
      "t": "direttamente",
      "beat": 4
     },
     {
      "w": "al",
-     "start": 388.762,
-     "end": 388.835,
+     "start": 405.514,
+     "end": 405.587,
      "t": "al",
      "beat": 4
     },
     {
      "w": "punto",
-     "start": 388.848,
-     "end": 389.142,
+     "start": 405.6,
+     "end": 405.894,
      "t": "punto",
      "beat": 4
     },
     {
      "w": "vendita",
-     "start": 389.154,
-     "end": 389.693,
+     "start": 405.906,
+     "end": 406.445,
      "t": "vendita.",
      "beat": 4
     }
@@ -6901,437 +7187,437 @@
   },
   {
    "id": "consegna",
-   "start": 390.389,
+   "start": 407.141,
    "dur": 28.224,
    "beats": [
     {
      "i": 0,
-     "start": 390.389,
-     "end": 392.61,
+     "start": 407.141,
+     "end": 409.361,
      "text": "Parliamo della consegna diretta."
     },
     {
      "i": 1,
-     "start": 392.95,
-     "end": 399.38,
+     "start": 409.701,
+     "end": 416.132,
      "text": "Invece di passare dalla piattaforma, il pesce arriva direttamente al punto vendita, con mezzi refrigerati."
     },
     {
      "i": 2,
-     "start": 399.72,
-     "end": 406.06,
+     "start": 416.472,
+     "end": 422.811,
      "text": "Il vantaggio? Meno passaggi, meno ore di viaggio, più freschezza sul banco."
     },
     {
      "i": 3,
-     "start": 406.4,
-     "end": 411.334,
+     "start": 423.151,
+     "end": 428.086,
      "text": "Ci adattiamo ai vostri orari di scarico, e agli ordini di ogni singolo negozio."
     },
     {
      "i": 4,
-     "start": 411.674,
-     "end": 418.013,
+     "start": 428.426,
+     "end": 434.765,
      "text": "Centro logistico, piattaforma o consegna diretta: scegliete voi, anche negozio per negozio."
     }
    ],
    "words": [
     {
      "w": "Parliamo",
-     "start": 390.488,
-     "end": 391.052,
+     "start": 407.24,
+     "end": 407.804,
      "t": "Parliamo",
      "beat": 0
     },
     {
      "w": "della",
-     "start": 391.064,
-     "end": 391.321,
+     "start": 407.816,
+     "end": 408.073,
      "t": "della",
      "beat": 0
     },
     {
      "w": "consegna",
-     "start": 391.334,
-     "end": 391.934,
+     "start": 408.086,
+     "end": 408.686,
      "t": "consegna",
      "beat": 0
     },
     {
      "w": "diretta",
-     "start": 391.946,
-     "end": 392.51,
+     "start": 408.698,
+     "end": 409.262,
      "t": "diretta.",
      "beat": 0
     },
     {
      "w": "Invece",
-     "start": 393.049,
-     "end": 393.515,
+     "start": 409.8,
+     "end": 410.266,
      "t": "Invece",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 393.527,
-     "end": 393.637,
+     "start": 410.278,
+     "end": 410.388,
      "t": "di",
      "beat": 1
     },
     {
      "w": "passare",
-     "start": 393.65,
-     "end": 394.042,
+     "start": 410.401,
+     "end": 410.793,
      "t": "passare",
      "beat": 1
     },
     {
      "w": "dalla",
-     "start": 394.054,
-     "end": 394.299,
+     "start": 410.805,
+     "end": 411.05,
      "t": "dalla",
      "beat": 1
     },
     {
      "w": "piattaforma",
-     "start": 394.311,
-     "end": 395.059,
+     "start": 411.062,
+     "end": 411.81,
      "t": "piattaforma,",
      "beat": 1
     },
     {
      "w": "il",
-     "start": 395.292,
-     "end": 395.475,
+     "start": 412.043,
+     "end": 412.226,
      "t": "il",
      "beat": 1
     },
     {
      "w": "pesce",
-     "start": 395.488,
-     "end": 395.819,
+     "start": 412.239,
+     "end": 412.57,
      "t": "pesce",
      "beat": 1
     },
     {
      "w": "arriva",
-     "start": 395.831,
-     "end": 396.15,
+     "start": 412.582,
+     "end": 412.901,
      "t": "arriva",
      "beat": 1
     },
     {
      "w": "direttamente",
-     "start": 396.162,
-     "end": 396.75,
+     "start": 412.913,
+     "end": 413.501,
      "t": "direttamente",
      "beat": 1
     },
     {
      "w": "al",
-     "start": 396.762,
-     "end": 396.836,
+     "start": 413.513,
+     "end": 413.587,
      "t": "al",
      "beat": 1
     },
     {
      "w": "punto",
-     "start": 396.848,
-     "end": 397.154,
+     "start": 413.599,
+     "end": 413.905,
      "t": "punto",
      "beat": 1
     },
     {
      "w": "vendita",
-     "start": 397.167,
-     "end": 397.681,
+     "start": 413.918,
+     "end": 414.432,
      "t": "vendita,",
      "beat": 1
     },
     {
      "w": "con",
-     "start": 397.976,
-     "end": 398.172,
+     "start": 414.727,
+     "end": 414.923,
      "t": "con",
      "beat": 1
     },
     {
      "w": "mezzi",
-     "start": 398.184,
-     "end": 398.478,
+     "start": 414.935,
+     "end": 415.229,
      "t": "mezzi",
      "beat": 1
     },
     {
      "w": "refrigerati",
-     "start": 398.49,
-     "end": 399.324,
+     "start": 415.241,
+     "end": 416.075,
      "t": "refrigerati.",
      "beat": 1
     },
     {
      "w": "Il",
-     "start": 399.819,
-     "end": 400.015,
+     "start": 416.571,
+     "end": 416.767,
      "t": "Il",
      "beat": 2
     },
     {
      "w": "vantaggio",
-     "start": 400.027,
-     "end": 400.799,
+     "start": 416.779,
+     "end": 417.551,
      "t": "vantaggio?",
      "beat": 2
     },
     {
      "w": "Meno",
-     "start": 401.669,
-     "end": 401.987,
+     "start": 418.421,
+     "end": 418.739,
      "t": "Meno",
      "beat": 2
     },
     {
      "w": "passaggi",
-     "start": 401.999,
-     "end": 402.649,
+     "start": 418.751,
+     "end": 419.401,
      "t": "passaggi,",
      "beat": 2
     },
     {
      "w": "meno",
-     "start": 402.894,
-     "end": 403.176,
+     "start": 419.646,
+     "end": 419.928,
      "t": "meno",
      "beat": 2
     },
     {
      "w": "ore",
-     "start": 403.188,
-     "end": 403.36,
+     "start": 419.94,
+     "end": 420.112,
      "t": "ore",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 403.372,
-     "end": 403.482,
+     "start": 420.124,
+     "end": 420.234,
      "t": "di",
      "beat": 2
     },
     {
      "w": "viaggio",
-     "start": 403.495,
-     "end": 404.095,
+     "start": 420.247,
+     "end": 420.847,
      "t": "viaggio,",
      "beat": 2
     },
     {
      "w": "più",
-     "start": 404.389,
-     "end": 404.573,
+     "start": 421.141,
+     "end": 421.325,
      "t": "più",
      "beat": 2
     },
     {
      "w": "freschezza",
-     "start": 404.585,
-     "end": 405.222,
+     "start": 421.337,
+     "end": 421.974,
      "t": "freschezza",
      "beat": 2
     },
     {
      "w": "sul",
-     "start": 405.235,
-     "end": 405.406,
+     "start": 421.987,
+     "end": 422.158,
      "t": "sul",
      "beat": 2
     },
     {
      "w": "banco",
-     "start": 405.419,
-     "end": 405.995,
+     "start": 422.171,
+     "end": 422.747,
      "t": "banco.",
      "beat": 2
     },
     {
      "w": "Ci",
-     "start": 406.499,
-     "end": 406.634,
+     "start": 423.25,
+     "end": 423.385,
      "t": "Ci",
      "beat": 3
     },
     {
      "w": "adattiamo",
-     "start": 406.646,
-     "end": 407.185,
+     "start": 423.397,
+     "end": 423.936,
      "t": "adattiamo",
      "beat": 3
     },
     {
      "w": "ai",
-     "start": 407.198,
-     "end": 407.308,
+     "start": 423.949,
+     "end": 424.059,
      "t": "ai",
      "beat": 3
     },
     {
      "w": "vostri",
-     "start": 407.32,
-     "end": 407.712,
+     "start": 424.071,
+     "end": 424.463,
      "t": "vostri",
      "beat": 3
     },
     {
      "w": "orari",
-     "start": 407.725,
-     "end": 408.043,
+     "start": 424.476,
+     "end": 424.794,
      "t": "orari",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 408.055,
-     "end": 408.166,
+     "start": 424.806,
+     "end": 424.917,
      "t": "di",
      "beat": 3
     },
     {
      "w": "scarico",
-     "start": 408.178,
-     "end": 408.791,
+     "start": 424.929,
+     "end": 425.542,
      "t": "scarico,",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 408.987,
-     "end": 409.134,
+     "start": 425.738,
+     "end": 425.885,
      "t": "e",
      "beat": 3
     },
     {
      "w": "agli",
-     "start": 409.146,
-     "end": 409.379,
+     "start": 425.897,
+     "end": 426.13,
      "t": "agli",
      "beat": 3
     },
     {
      "w": "ordini",
-     "start": 409.391,
-     "end": 409.771,
+     "start": 426.142,
+     "end": 426.522,
      "t": "ordini",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 409.783,
-     "end": 409.918,
+     "start": 426.534,
+     "end": 426.669,
      "t": "di",
      "beat": 3
     },
     {
      "w": "ogni",
-     "start": 409.93,
-     "end": 410.2,
+     "start": 426.681,
+     "end": 426.951,
      "t": "ogni",
      "beat": 3
     },
     {
      "w": "singolo",
-     "start": 410.212,
-     "end": 410.592,
+     "start": 426.963,
+     "end": 427.343,
      "t": "singolo",
      "beat": 3
     },
     {
      "w": "negozio",
-     "start": 410.604,
-     "end": 411.278,
+     "start": 427.355,
+     "end": 428.029,
      "t": "negozio.",
      "beat": 3
     },
     {
      "w": "Centro",
-     "start": 411.773,
-     "end": 412.177,
+     "start": 428.525,
+     "end": 428.929,
      "t": "Centro",
      "beat": 4
     },
     {
      "w": "logistico",
-     "start": 412.19,
-     "end": 412.888,
+     "start": 428.942,
+     "end": 429.64,
      "t": "logistico,",
      "beat": 4
     },
     {
      "w": "piattaforma",
-     "start": 413.109,
-     "end": 413.722,
+     "start": 429.861,
+     "end": 430.474,
      "t": "piattaforma",
      "beat": 4
     },
     {
      "w": "o",
-     "start": 413.734,
-     "end": 413.82,
+     "start": 430.486,
+     "end": 430.572,
      "t": "o",
      "beat": 4
     },
     {
      "w": "consegna",
-     "start": 413.832,
-     "end": 414.408,
+     "start": 430.584,
+     "end": 431.16,
      "t": "consegna",
      "beat": 4
     },
     {
      "w": "diretta",
-     "start": 414.42,
-     "end": 414.935,
+     "start": 431.172,
+     "end": 431.687,
      "t": "diretta:",
      "beat": 4
     },
     {
      "w": "scegliete",
-     "start": 415.18,
-     "end": 415.695,
+     "start": 431.932,
+     "end": 432.447,
      "t": "scegliete",
      "beat": 4
     },
     {
      "w": "voi",
-     "start": 415.707,
-     "end": 416.074,
+     "start": 432.459,
+     "end": 432.826,
      "t": "voi,",
      "beat": 4
     },
     {
      "w": "anche",
-     "start": 416.234,
-     "end": 416.528,
+     "start": 432.986,
+     "end": 433.28,
      "t": "anche",
      "beat": 4
     },
     {
      "w": "negozio",
-     "start": 416.54,
-     "end": 417.055,
+     "start": 433.292,
+     "end": 433.807,
      "t": "negozio",
      "beat": 4
     },
     {
      "w": "per",
-     "start": 417.067,
-     "end": 417.214,
+     "start": 433.819,
+     "end": 433.966,
      "t": "per",
      "beat": 4
     },
     {
      "w": "negozio",
-     "start": 417.226,
-     "end": 417.937,
+     "start": 433.978,
+     "end": 434.689,
      "t": "negozio.",
      "beat": 4
     }
@@ -7340,361 +7626,361 @@
   },
   {
    "id": "freschezza",
-   "start": 418.613,
+   "start": 435.365,
    "dur": 19.243,
    "beats": [
     {
      "i": 0,
-     "start": 418.613,
-     "end": 421.288,
+     "start": 435.365,
+     "end": 438.04,
      "text": "La qualità si controlla con regole precise."
     },
     {
      "i": 1,
-     "start": 421.628,
-     "end": 428.796,
+     "start": 438.38,
+     "end": 445.548,
      "text": "L'occhio vivo e convesso, le branchie rosso brillante, la pelle lucida, la carne soda, e l'odore di mare."
     },
     {
      "i": 2,
-     "start": 429.136,
-     "end": 433.963,
+     "start": 445.888,
+     "end": 450.715,
      "text": "Il pesce viaggia alla temperatura del ghiaccio fondente, e ogni lotto è tracciato."
     },
     {
      "i": 3,
-     "start": 434.413,
-     "end": 437.256,
+     "start": 451.165,
+     "end": 454.008,
      "text": "E se un lotto non è perfetto, non parte."
     }
    ],
    "words": [
     {
      "w": "La",
-     "start": 418.712,
-     "end": 418.92,
+     "start": 435.464,
+     "end": 435.672,
      "t": "La",
      "beat": 0
     },
     {
      "w": "qualità",
-     "start": 418.933,
-     "end": 419.349,
+     "start": 435.685,
+     "end": 436.101,
      "t": "qualità",
      "beat": 0
     },
     {
      "w": "si",
-     "start": 419.362,
-     "end": 419.484,
+     "start": 436.114,
+     "end": 436.236,
      "t": "si",
      "beat": 0
     },
     {
      "w": "controlla",
-     "start": 419.496,
-     "end": 419.999,
+     "start": 436.248,
+     "end": 436.751,
      "t": "controlla",
      "beat": 0
     },
     {
      "w": "con",
-     "start": 420.011,
-     "end": 420.195,
+     "start": 436.763,
+     "end": 436.947,
      "t": "con",
      "beat": 0
     },
     {
      "w": "regole",
-     "start": 420.207,
-     "end": 420.575,
+     "start": 436.959,
+     "end": 437.327,
      "t": "regole",
      "beat": 0
     },
     {
      "w": "precise",
-     "start": 420.587,
-     "end": 421.224,
+     "start": 437.339,
+     "end": 437.976,
      "t": "precise.",
      "beat": 0
     },
     {
      "w": "L'occhio",
-     "start": 421.727,
-     "end": 422.168,
+     "start": 438.479,
+     "end": 438.92,
      "t": "L'occhio",
      "beat": 1
     },
     {
      "w": "vivo",
-     "start": 422.18,
-     "end": 422.475,
+     "start": 438.932,
+     "end": 439.227,
      "t": "vivo",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 422.487,
-     "end": 422.536,
+     "start": 439.239,
+     "end": 439.288,
      "t": "e",
      "beat": 1
     },
     {
      "w": "convesso",
-     "start": 422.548,
-     "end": 423.161,
+     "start": 439.3,
+     "end": 439.913,
      "t": "convesso,",
      "beat": 1
     },
     {
      "w": "le",
-     "start": 423.369,
-     "end": 423.504,
+     "start": 440.121,
+     "end": 440.256,
      "t": "le",
      "beat": 1
     },
     {
      "w": "branchie",
-     "start": 423.516,
-     "end": 423.921,
+     "start": 440.268,
+     "end": 440.673,
      "t": "branchie",
      "beat": 1
     },
     {
      "w": "rosso",
-     "start": 423.933,
-     "end": 424.215,
+     "start": 440.685,
+     "end": 440.967,
      "t": "rosso",
      "beat": 1
     },
     {
      "w": "brillante",
-     "start": 424.227,
-     "end": 424.926,
+     "start": 440.979,
+     "end": 441.678,
      "t": "brillante,",
      "beat": 1
     },
     {
      "w": "la",
-     "start": 425.122,
-     "end": 425.33,
+     "start": 441.874,
+     "end": 442.082,
      "t": "la",
      "beat": 1
     },
     {
      "w": "pelle",
-     "start": 425.342,
-     "end": 425.636,
+     "start": 442.094,
+     "end": 442.388,
      "t": "pelle",
      "beat": 1
     },
     {
      "w": "lucida",
-     "start": 425.649,
-     "end": 426.151,
+     "start": 442.401,
+     "end": 442.903,
      "t": "lucida,",
      "beat": 1
     },
     {
      "w": "la",
-     "start": 426.408,
-     "end": 426.58,
+     "start": 443.16,
+     "end": 443.332,
      "t": "la",
      "beat": 1
     },
     {
      "w": "carne",
-     "start": 426.592,
-     "end": 426.997,
+     "start": 443.344,
+     "end": 443.749,
      "t": "carne",
      "beat": 1
     },
     {
      "w": "soda",
-     "start": 427.009,
-     "end": 427.426,
+     "start": 443.761,
+     "end": 444.178,
      "t": "soda,",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 427.72,
-     "end": 427.842,
+     "start": 444.472,
+     "end": 444.594,
      "t": "e",
      "beat": 1
     },
     {
      "w": "l'odore",
-     "start": 427.854,
-     "end": 428.185,
+     "start": 444.606,
+     "end": 444.937,
      "t": "l'odore",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 428.198,
-     "end": 428.296,
+     "start": 444.95,
+     "end": 445.048,
      "t": "di",
      "beat": 1
     },
     {
      "w": "mare",
-     "start": 428.308,
-     "end": 428.725,
+     "start": 445.06,
+     "end": 445.477,
      "t": "mare.",
      "beat": 1
     },
     {
      "w": "Il",
-     "start": 429.235,
-     "end": 429.443,
+     "start": 445.987,
+     "end": 446.195,
      "t": "Il",
      "beat": 2
     },
     {
      "w": "pesce",
-     "start": 429.456,
-     "end": 429.786,
+     "start": 446.208,
+     "end": 446.538,
      "t": "pesce",
      "beat": 2
     },
     {
      "w": "viaggia",
-     "start": 429.799,
-     "end": 430.191,
+     "start": 446.551,
+     "end": 446.943,
      "t": "viaggia",
      "beat": 2
     },
     {
      "w": "alla",
-     "start": 430.203,
-     "end": 430.35,
+     "start": 446.955,
+     "end": 447.102,
      "t": "alla",
      "beat": 2
     },
     {
      "w": "temperatura",
-     "start": 430.362,
-     "end": 430.975,
+     "start": 447.114,
+     "end": 447.727,
      "t": "temperatura",
      "beat": 2
     },
     {
      "w": "del",
-     "start": 430.987,
-     "end": 431.134,
+     "start": 447.739,
+     "end": 447.886,
      "t": "del",
      "beat": 2
     },
     {
      "w": "ghiaccio",
-     "start": 431.147,
-     "end": 431.502,
+     "start": 447.899,
+     "end": 448.254,
      "t": "ghiaccio",
      "beat": 2
     },
     {
      "w": "fondente",
-     "start": 431.514,
-     "end": 432.164,
+     "start": 448.266,
+     "end": 448.916,
      "t": "fondente,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 432.397,
-     "end": 432.532,
+     "start": 449.149,
+     "end": 449.284,
      "t": "e",
      "beat": 2
     },
     {
      "w": "ogni",
-     "start": 432.544,
-     "end": 432.789,
+     "start": 449.296,
+     "end": 449.541,
      "t": "ogni",
      "beat": 2
     },
     {
      "w": "lotto",
-     "start": 432.801,
-     "end": 433.144,
+     "start": 449.553,
+     "end": 449.896,
      "t": "lotto",
      "beat": 2
     },
     {
      "w": "è",
-     "start": 433.157,
-     "end": 433.206,
+     "start": 449.909,
+     "end": 449.958,
      "t": "è",
      "beat": 2
     },
     {
      "w": "tracciato",
-     "start": 433.218,
-     "end": 433.867,
+     "start": 449.97,
+     "end": 450.619,
      "t": "tracciato.",
      "beat": 2
     },
     {
      "w": "E",
-     "start": 434.512,
-     "end": 434.696,
+     "start": 451.264,
+     "end": 451.448,
      "t": "E",
      "beat": 3
     },
     {
      "w": "se",
-     "start": 434.708,
-     "end": 434.831,
+     "start": 451.46,
+     "end": 451.583,
      "t": "se",
      "beat": 3
     },
     {
      "w": "un",
-     "start": 434.843,
-     "end": 434.953,
+     "start": 451.595,
+     "end": 451.705,
      "t": "un",
      "beat": 3
     },
     {
      "w": "lotto",
-     "start": 434.965,
-     "end": 435.321,
+     "start": 451.717,
+     "end": 452.073,
      "t": "lotto",
      "beat": 3
     },
     {
      "w": "non",
-     "start": 435.333,
-     "end": 435.505,
+     "start": 452.085,
+     "end": 452.257,
      "t": "non",
      "beat": 3
     },
     {
      "w": "è",
-     "start": 435.517,
-     "end": 435.578,
+     "start": 452.269,
+     "end": 452.33,
      "t": "è",
      "beat": 3
     },
     {
      "w": "perfetto",
-     "start": 435.59,
-     "end": 436.203,
+     "start": 452.342,
+     "end": 452.955,
      "t": "perfetto,",
      "beat": 3
     },
     {
      "w": "non",
-     "start": 436.485,
-     "end": 436.644,
+     "start": 453.237,
+     "end": 453.396,
      "t": "non",
      "beat": 3
     },
     {
      "w": "parte",
-     "start": 436.657,
-     "end": 437.171,
+     "start": 453.409,
+     "end": 453.923,
      "t": "parte.",
      "beat": 3
     }
@@ -7703,353 +7989,353 @@
   },
   {
    "id": "qualita",
-   "start": 437.856,
+   "start": 454.608,
    "dur": 25.429,
    "beats": [
     {
      "i": 0,
-     "start": 437.856,
-     "end": 440.107,
+     "start": 454.608,
+     "end": 456.859,
      "text": "La qualità, prima di tutto."
     },
     {
      "i": 1,
-     "start": 440.447,
-     "end": 445.362,
+     "start": 457.199,
+     "end": 462.113,
      "text": "Controllo del prodotto, etichettatura chiara, tracciabilità di ogni lotto."
     },
     {
      "i": 2,
-     "start": 445.702,
-     "end": 453.788,
+     "start": 462.453,
+     "end": 470.54,
      "text": "Guardate questa etichetta: specie, nome scientifico, metodo di produzione, zona di cattura, attrezzo."
     },
     {
      "i": 3,
-     "start": 454.128,
-     "end": 456.7,
+     "start": 470.88,
+     "end": 473.451,
      "text": "Tutto chiaro, tutto verificabile."
     },
     {
      "i": 4,
-     "start": 457.2,
-     "end": 462.685,
+     "start": 473.951,
+     "end": 479.437,
      "text": "Perché la fiducia dei soci Coop si conquista ogni giorno. Un banco alla volta."
     }
    ],
    "words": [
     {
      "w": "La",
-     "start": 437.955,
-     "end": 438.188,
+     "start": 454.707,
+     "end": 454.94,
      "t": "La",
      "beat": 0
     },
     {
      "w": "qualità",
-     "start": 438.2,
-     "end": 438.678,
+     "start": 454.952,
+     "end": 455.43,
      "t": "qualità,",
      "beat": 0
     },
     {
      "w": "prima",
-     "start": 439.021,
-     "end": 439.34,
+     "start": 455.773,
+     "end": 456.092,
      "t": "prima",
      "beat": 0
     },
     {
      "w": "di",
-     "start": 439.352,
-     "end": 439.45,
+     "start": 456.104,
+     "end": 456.202,
      "t": "di",
      "beat": 0
     },
     {
      "w": "tutto",
-     "start": 439.462,
-     "end": 440.014,
+     "start": 456.214,
+     "end": 456.766,
      "t": "tutto.",
      "beat": 0
     },
     {
      "w": "Controllo",
-     "start": 440.546,
-     "end": 441.048,
+     "start": 457.298,
+     "end": 457.8,
      "t": "Controllo",
      "beat": 1
     },
     {
      "w": "del",
-     "start": 441.061,
-     "end": 441.22,
+     "start": 457.813,
+     "end": 457.972,
      "t": "del",
      "beat": 1
     },
     {
      "w": "prodotto",
-     "start": 441.232,
-     "end": 441.857,
+     "start": 457.984,
+     "end": 458.609,
      "t": "prodotto,",
      "beat": 1
     },
     {
      "w": "etichettatura",
-     "start": 442.139,
-     "end": 442.911,
+     "start": 458.891,
+     "end": 459.663,
      "t": "etichettatura",
      "beat": 1
     },
     {
      "w": "chiara",
-     "start": 442.923,
-     "end": 443.34,
+     "start": 459.675,
+     "end": 460.092,
      "t": "chiara,",
      "beat": 1
     },
     {
      "w": "tracciabilità",
-     "start": 443.659,
-     "end": 444.382,
+     "start": 460.411,
+     "end": 461.134,
      "t": "tracciabilità",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 444.394,
-     "end": 444.517,
+     "start": 461.146,
+     "end": 461.269,
      "t": "di",
      "beat": 1
     },
     {
      "w": "ogni",
-     "start": 444.529,
-     "end": 444.749,
+     "start": 461.281,
+     "end": 461.501,
      "t": "ogni",
      "beat": 1
     },
     {
      "w": "lotto",
-     "start": 444.762,
-     "end": 445.264,
+     "start": 461.514,
+     "end": 462.016,
      "t": "lotto.",
      "beat": 1
     },
     {
      "w": "Guardate",
-     "start": 445.801,
-     "end": 446.328,
+     "start": 462.552,
+     "end": 463.079,
      "t": "Guardate",
      "beat": 2
     },
     {
      "w": "questa",
-     "start": 446.34,
-     "end": 446.634,
+     "start": 463.091,
+     "end": 463.385,
      "t": "questa",
      "beat": 2
     },
     {
      "w": "etichetta",
-     "start": 446.647,
-     "end": 447.333,
+     "start": 463.398,
+     "end": 464.084,
      "t": "etichetta:",
      "beat": 2
     },
     {
      "w": "specie",
-     "start": 447.603,
-     "end": 448.117,
+     "start": 464.354,
+     "end": 464.868,
      "t": "specie,",
      "beat": 2
     },
     {
      "w": "nome",
-     "start": 448.46,
-     "end": 448.754,
+     "start": 465.211,
+     "end": 465.505,
      "t": "nome",
      "beat": 2
     },
     {
      "w": "scientifico",
-     "start": 448.767,
-     "end": 449.588,
+     "start": 465.518,
+     "end": 466.339,
      "t": "scientifico,",
      "beat": 2
     },
     {
      "w": "metodo",
-     "start": 449.931,
-     "end": 450.384,
+     "start": 466.682,
+     "end": 467.135,
      "t": "metodo",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 450.397,
-     "end": 450.531,
+     "start": 467.148,
+     "end": 467.282,
      "t": "di",
      "beat": 2
     },
     {
      "w": "produzione",
-     "start": 450.544,
-     "end": 451.303,
+     "start": 467.295,
+     "end": 468.054,
      "t": "produzione,",
      "beat": 2
     },
     {
      "w": "zona",
-     "start": 451.573,
-     "end": 451.965,
+     "start": 468.324,
+     "end": 468.716,
      "t": "zona",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 451.978,
-     "end": 452.063,
+     "start": 468.729,
+     "end": 468.814,
      "t": "di",
      "beat": 2
     },
     {
      "w": "cattura",
-     "start": 452.076,
-     "end": 452.676,
+     "start": 468.827,
+     "end": 469.427,
      "t": "cattura,",
      "beat": 2
     },
     {
      "w": "attrezzo",
-     "start": 452.946,
-     "end": 453.718,
+     "start": 469.697,
+     "end": 470.469,
      "t": "attrezzo.",
      "beat": 2
     },
     {
      "w": "Tutto",
-     "start": 454.227,
-     "end": 454.57,
+     "start": 470.979,
+     "end": 471.322,
      "t": "Tutto",
      "beat": 3
     },
     {
      "w": "chiaro",
-     "start": 454.582,
-     "end": 455.06,
+     "start": 471.334,
+     "end": 471.812,
      "t": "chiaro,",
      "beat": 3
     },
     {
      "w": "tutto",
-     "start": 455.367,
-     "end": 455.685,
+     "start": 472.119,
+     "end": 472.437,
      "t": "tutto",
      "beat": 3
     },
     {
      "w": "verificabile",
-     "start": 455.698,
-     "end": 456.605,
+     "start": 472.45,
+     "end": 473.357,
      "t": "verificabile.",
      "beat": 3
     },
     {
      "w": "Perché",
-     "start": 457.299,
-     "end": 457.642,
+     "start": 474.05,
+     "end": 474.393,
      "t": "Perché",
      "beat": 4
     },
     {
      "w": "la",
-     "start": 457.654,
-     "end": 457.752,
+     "start": 474.405,
+     "end": 474.503,
      "t": "la",
      "beat": 4
     },
     {
      "w": "fiducia",
-     "start": 457.765,
-     "end": 458.218,
+     "start": 474.516,
+     "end": 474.969,
      "t": "fiducia",
      "beat": 4
     },
     {
      "w": "dei",
-     "start": 458.23,
-     "end": 458.39,
+     "start": 474.981,
+     "end": 475.141,
      "t": "dei",
      "beat": 4
     },
     {
      "w": "soci",
-     "start": 458.402,
-     "end": 458.782,
+     "start": 475.153,
+     "end": 475.533,
      "t": "soci",
      "beat": 4
     },
     {
      "w": "Coop",
-     "start": 458.794,
-     "end": 459.101,
+     "start": 475.545,
+     "end": 475.852,
      "t": "Coop",
      "beat": 4
     },
     {
      "w": "si",
-     "start": 459.113,
-     "end": 459.26,
+     "start": 475.864,
+     "end": 476.011,
      "t": "si",
      "beat": 4
     },
     {
      "w": "conquista",
-     "start": 459.272,
-     "end": 459.75,
+     "start": 476.023,
+     "end": 476.501,
      "t": "conquista",
      "beat": 4
     },
     {
      "w": "ogni",
-     "start": 459.762,
-     "end": 460.007,
+     "start": 476.513,
+     "end": 476.758,
      "t": "ogni",
      "beat": 4
     },
     {
      "w": "giorno",
-     "start": 460.02,
-     "end": 460.534,
+     "start": 476.771,
+     "end": 477.285,
      "t": "giorno.",
      "beat": 4
     },
     {
      "w": "Un",
-     "start": 461.403,
-     "end": 461.599,
+     "start": 478.154,
+     "end": 478.35,
      "t": "Un",
      "beat": 4
     },
     {
      "w": "banco",
-     "start": 461.612,
-     "end": 461.906,
+     "start": 478.363,
+     "end": 478.657,
      "t": "banco",
      "beat": 4
     },
     {
      "w": "alla",
-     "start": 461.918,
-     "end": 462.065,
+     "start": 478.669,
+     "end": 478.816,
      "t": "alla",
      "beat": 4
     },
     {
      "w": "volta",
-     "start": 462.077,
-     "end": 462.592,
+     "start": 478.828,
+     "end": 479.343,
      "t": "volta.",
      "beat": 4
     }
@@ -8058,605 +8344,605 @@
   },
   {
    "id": "fao",
-   "start": 463.285,
+   "start": 480.037,
    "dur": 33.959,
    "beats": [
     {
      "i": 0,
-     "start": 463.285,
-     "end": 467.486,
+     "start": 480.037,
+     "end": 484.237,
      "text": "Ma come si legge l'origine del pesce? Con le zone FAO."
     },
     {
      "i": 1,
-     "start": 467.936,
-     "end": 474.6,
+     "start": 484.687,
+     "end": 491.352,
      "text": "Il Mediterraneo è la zona trentasette. Il nostro Tirreno è la trentasette punto uno punto tre."
     },
     {
      "i": 2,
-     "start": 474.94,
-     "end": 480.997,
+     "start": 491.692,
+     "end": 497.749,
      "text": "L'Adriatico è la trentasette punto due punto uno, e lo Ionio la trentasette punto due punto due."
     },
     {
      "i": 3,
-     "start": 481.337,
-     "end": 491.536,
+     "start": 498.089,
+     "end": 508.288,
      "text": "Fuori dal Mediterraneo, l'Atlantico nord-orientale è la zona ventisette, e quello centro-orientale, davanti a Marocco e Senegal, è la zona trentaquattro."
     },
     {
      "i": 4,
-     "start": 491.876,
-     "end": 496.644,
+     "start": 508.628,
+     "end": 513.396,
      "text": "La zona FAO è sempre in etichetta: così chi compra sa da dove arriva il pesce."
     }
    ],
    "words": [
     {
      "w": "Ma",
-     "start": 463.384,
-     "end": 463.592,
+     "start": 480.136,
+     "end": 480.344,
      "t": "Ma",
      "beat": 0
     },
     {
      "w": "come",
-     "start": 463.605,
-     "end": 463.874,
+     "start": 480.357,
+     "end": 480.626,
      "t": "come",
      "beat": 0
     },
     {
      "w": "si",
-     "start": 463.886,
-     "end": 464.021,
+     "start": 480.638,
+     "end": 480.773,
      "t": "si",
      "beat": 0
     },
     {
      "w": "legge",
-     "start": 464.034,
-     "end": 464.377,
+     "start": 480.786,
+     "end": 481.129,
      "t": "legge",
      "beat": 0
     },
     {
      "w": "l'origine",
-     "start": 464.389,
-     "end": 464.855,
+     "start": 481.141,
+     "end": 481.607,
      "t": "l'origine",
      "beat": 0
     },
     {
      "w": "del",
-     "start": 464.867,
-     "end": 465.014,
+     "start": 481.619,
+     "end": 481.766,
      "t": "del",
      "beat": 0
     },
     {
      "w": "pesce",
-     "start": 465.026,
-     "end": 465.553,
+     "start": 481.778,
+     "end": 482.305,
      "t": "pesce?",
      "beat": 0
     },
     {
      "w": "Con",
-     "start": 466.41,
-     "end": 466.582,
+     "start": 483.162,
+     "end": 483.334,
      "t": "Con",
      "beat": 0
     },
     {
      "w": "le",
-     "start": 466.594,
-     "end": 466.704,
+     "start": 483.346,
+     "end": 483.456,
      "t": "le",
      "beat": 0
     },
     {
      "w": "zone",
-     "start": 466.716,
-     "end": 467.011,
+     "start": 483.468,
+     "end": 483.763,
      "t": "zone",
      "beat": 0
     },
     {
      "w": "FAO",
-     "start": 467.023,
-     "end": 467.427,
+     "start": 483.775,
+     "end": 484.179,
      "t": "FAO.",
      "beat": 0
     },
     {
      "w": "Il",
-     "start": 468.035,
-     "end": 468.219,
+     "start": 484.786,
+     "end": 484.97,
      "t": "Il",
      "beat": 1
     },
     {
      "w": "Mediterraneo",
-     "start": 468.231,
-     "end": 469.089,
+     "start": 484.982,
+     "end": 485.84,
      "t": "Mediterraneo",
      "beat": 1
     },
     {
      "w": "è",
-     "start": 469.101,
-     "end": 469.224,
+     "start": 485.852,
+     "end": 485.975,
      "t": "è",
      "beat": 1
     },
     {
      "w": "la",
-     "start": 469.236,
-     "end": 469.346,
+     "start": 485.987,
+     "end": 486.097,
      "t": "la",
      "beat": 1
     },
     {
      "w": "zona",
-     "start": 469.359,
-     "end": 469.689,
+     "start": 486.11,
+     "end": 486.44,
      "t": "zona",
      "beat": 1
     },
     {
      "w": "trentasette",
-     "start": 469.702,
-     "end": 470.559,
+     "start": 486.453,
+     "end": 487.31,
      "t": "trentasette.",
      "beat": 1
     },
     {
      "w": "Il",
-     "start": 471.429,
-     "end": 471.625,
+     "start": 488.18,
+     "end": 488.376,
      "t": "Il",
      "beat": 1
     },
     {
      "w": "nostro",
-     "start": 471.637,
-     "end": 471.943,
+     "start": 488.388,
+     "end": 488.694,
      "t": "nostro",
      "beat": 1
     },
     {
      "w": "Tirreno",
-     "start": 471.956,
-     "end": 472.483,
+     "start": 488.707,
+     "end": 489.234,
      "t": "Tirreno",
      "beat": 1
     },
     {
      "w": "è",
-     "start": 472.495,
-     "end": 472.556,
+     "start": 489.246,
+     "end": 489.307,
      "t": "è",
      "beat": 1
     },
     {
      "w": "la",
-     "start": 472.568,
-     "end": 472.666,
+     "start": 489.319,
+     "end": 489.417,
      "t": "la",
      "beat": 1
     },
     {
      "w": "trentasette",
-     "start": 472.679,
-     "end": 473.34,
+     "start": 489.43,
+     "end": 490.091,
      "t": "trentasette",
      "beat": 1
     },
     {
      "w": "punto",
-     "start": 473.353,
-     "end": 473.659,
+     "start": 490.104,
+     "end": 490.41,
      "t": "punto",
      "beat": 1
     },
     {
      "w": "uno",
-     "start": 473.671,
-     "end": 473.892,
+     "start": 490.422,
+     "end": 490.643,
      "t": "uno",
      "beat": 1
     },
     {
      "w": "punto",
-     "start": 473.904,
-     "end": 474.223,
+     "start": 490.655,
+     "end": 490.974,
      "t": "punto",
      "beat": 1
     },
     {
      "w": "tre",
-     "start": 474.235,
-     "end": 474.529,
+     "start": 490.986,
+     "end": 491.28,
      "t": "tre.",
      "beat": 1
     },
     {
      "w": "L'Adriatico",
-     "start": 475.039,
-     "end": 475.836,
+     "start": 491.791,
+     "end": 492.588,
      "t": "L'Adriatico",
      "beat": 2
     },
     {
      "w": "è",
-     "start": 475.848,
-     "end": 475.897,
+     "start": 492.6,
+     "end": 492.649,
      "t": "è",
      "beat": 2
     },
     {
      "w": "la",
-     "start": 475.909,
-     "end": 476.007,
+     "start": 492.661,
+     "end": 492.759,
      "t": "la",
      "beat": 2
     },
     {
      "w": "trentasette",
-     "start": 476.019,
-     "end": 476.693,
+     "start": 492.771,
+     "end": 493.445,
      "t": "trentasette",
      "beat": 2
     },
     {
      "w": "punto",
-     "start": 476.706,
-     "end": 477.049,
+     "start": 493.458,
+     "end": 493.801,
      "t": "punto",
      "beat": 2
     },
     {
      "w": "due",
-     "start": 477.061,
-     "end": 477.282,
+     "start": 493.813,
+     "end": 494.034,
      "t": "due",
      "beat": 2
     },
     {
      "w": "punto",
-     "start": 477.294,
-     "end": 477.613,
+     "start": 494.046,
+     "end": 494.365,
      "t": "punto",
      "beat": 2
     },
     {
      "w": "uno",
-     "start": 477.625,
-     "end": 477.98,
+     "start": 494.377,
+     "end": 494.732,
      "t": "uno,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 478.176,
-     "end": 478.287,
+     "start": 494.928,
+     "end": 495.039,
      "t": "e",
      "beat": 2
     },
     {
      "w": "lo",
-     "start": 478.299,
-     "end": 478.397,
+     "start": 495.051,
+     "end": 495.149,
      "t": "lo",
      "beat": 2
     },
     {
      "w": "Ionio",
-     "start": 478.409,
-     "end": 478.789,
+     "start": 495.161,
+     "end": 495.541,
      "t": "Ionio",
      "beat": 2
     },
     {
      "w": "la",
-     "start": 478.801,
-     "end": 478.899,
+     "start": 495.553,
+     "end": 495.651,
      "t": "la",
      "beat": 2
     },
     {
      "w": "trentasette",
-     "start": 478.912,
-     "end": 479.598,
+     "start": 495.664,
+     "end": 496.35,
      "t": "trentasette",
      "beat": 2
     },
     {
      "w": "punto",
-     "start": 479.61,
-     "end": 479.965,
+     "start": 496.362,
+     "end": 496.717,
      "t": "punto",
      "beat": 2
     },
     {
      "w": "due",
-     "start": 479.978,
-     "end": 480.198,
+     "start": 496.73,
+     "end": 496.95,
      "t": "due",
      "beat": 2
     },
     {
      "w": "punto",
-     "start": 480.211,
-     "end": 480.517,
+     "start": 496.963,
+     "end": 497.269,
      "t": "punto",
      "beat": 2
     },
     {
      "w": "due",
-     "start": 480.529,
-     "end": 480.921,
+     "start": 497.281,
+     "end": 497.673,
      "t": "due.",
      "beat": 2
     },
     {
      "w": "Fuori",
-     "start": 481.436,
-     "end": 481.767,
+     "start": 498.188,
+     "end": 498.519,
      "t": "Fuori",
      "beat": 3
     },
     {
      "w": "dal",
-     "start": 481.779,
-     "end": 481.926,
+     "start": 498.531,
+     "end": 498.678,
      "t": "dal",
      "beat": 3
     },
     {
      "w": "Mediterraneo",
-     "start": 481.939,
-     "end": 482.784,
+     "start": 498.691,
+     "end": 499.536,
      "t": "Mediterraneo,",
      "beat": 3
     },
     {
      "w": "l'Atlantico",
-     "start": 482.944,
-     "end": 483.618,
+     "start": 499.696,
+     "end": 500.37,
      "t": "l'Atlantico",
      "beat": 3
     },
     {
      "w": "nord-orientale",
-     "start": 483.63,
-     "end": 484.561,
+     "start": 500.382,
+     "end": 501.313,
      "t": "nord-orientale",
      "beat": 3
     },
     {
      "w": "è",
-     "start": 484.573,
-     "end": 484.672,
+     "start": 501.325,
+     "end": 501.424,
      "t": "è",
      "beat": 3
     },
     {
      "w": "la",
-     "start": 484.684,
-     "end": 484.794,
+     "start": 501.436,
+     "end": 501.546,
      "t": "la",
      "beat": 3
     },
     {
      "w": "zona",
-     "start": 484.806,
-     "end": 485.125,
+     "start": 501.558,
+     "end": 501.877,
      "t": "zona",
      "beat": 3
     },
     {
      "w": "ventisette",
-     "start": 485.137,
-     "end": 485.946,
+     "start": 501.889,
+     "end": 502.698,
      "t": "ventisette,",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 486.216,
-     "end": 486.363,
+     "start": 502.968,
+     "end": 503.115,
      "t": "e",
      "beat": 3
     },
     {
      "w": "quello",
-     "start": 486.375,
-     "end": 486.706,
+     "start": 503.127,
+     "end": 503.458,
      "t": "quello",
      "beat": 3
     },
     {
      "w": "centro-orientale",
-     "start": 486.718,
-     "end": 487.797,
+     "start": 503.47,
+     "end": 504.549,
      "t": "centro-orientale,",
      "beat": 3
     },
     {
      "w": "davanti",
-     "start": 488.053,
-     "end": 488.543,
+     "start": 504.805,
+     "end": 505.295,
      "t": "davanti",
      "beat": 3
     },
     {
      "w": "a",
-     "start": 488.555,
-     "end": 488.604,
+     "start": 505.307,
+     "end": 505.356,
      "t": "a",
      "beat": 3
     },
     {
      "w": "Marocco",
-     "start": 488.616,
-     "end": 489.07,
+     "start": 505.368,
+     "end": 505.822,
      "t": "Marocco",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 489.082,
-     "end": 489.143,
+     "start": 505.834,
+     "end": 505.895,
      "t": "e",
      "beat": 3
     },
     {
      "w": "Senegal",
-     "start": 489.156,
-     "end": 489.744,
+     "start": 505.908,
+     "end": 506.496,
      "t": "Senegal,",
      "beat": 3
     },
     {
      "w": "è",
-     "start": 490.001,
-     "end": 490.148,
+     "start": 506.753,
+     "end": 506.9,
      "t": "è",
      "beat": 3
     },
     {
      "w": "la",
-     "start": 490.161,
-     "end": 490.271,
+     "start": 506.913,
+     "end": 507.023,
      "t": "la",
      "beat": 3
     },
     {
      "w": "zona",
-     "start": 490.283,
-     "end": 490.602,
+     "start": 507.035,
+     "end": 507.354,
      "t": "zona",
      "beat": 3
     },
     {
      "w": "trentaquattro",
-     "start": 490.614,
-     "end": 491.46,
+     "start": 507.366,
+     "end": 508.212,
      "t": "trentaquattro.",
      "beat": 3
     },
     {
      "w": "La",
-     "start": 491.975,
-     "end": 492.208,
+     "start": 508.727,
+     "end": 508.96,
      "t": "La",
      "beat": 4
     },
     {
      "w": "zona",
-     "start": 492.22,
-     "end": 492.539,
+     "start": 508.972,
+     "end": 509.291,
      "t": "zona",
      "beat": 4
     },
     {
      "w": "FAO",
-     "start": 492.551,
-     "end": 492.821,
+     "start": 509.303,
+     "end": 509.573,
      "t": "FAO",
      "beat": 4
     },
     {
      "w": "è",
-     "start": 492.833,
-     "end": 492.882,
+     "start": 509.585,
+     "end": 509.634,
      "t": "è",
      "beat": 4
     },
     {
      "w": "sempre",
-     "start": 492.894,
-     "end": 493.249,
+     "start": 509.646,
+     "end": 510.001,
      "t": "sempre",
      "beat": 4
     },
     {
      "w": "in",
-     "start": 493.262,
-     "end": 493.348,
+     "start": 510.014,
+     "end": 510.1,
      "t": "in",
      "beat": 4
     },
     {
      "w": "etichetta",
-     "start": 493.36,
-     "end": 494.009,
+     "start": 510.112,
+     "end": 510.761,
      "t": "etichetta:",
      "beat": 4
     },
     {
      "w": "così",
-     "start": 494.291,
-     "end": 494.585,
+     "start": 511.043,
+     "end": 511.337,
      "t": "così",
      "beat": 4
     },
     {
      "w": "chi",
-     "start": 494.598,
-     "end": 494.745,
+     "start": 511.35,
+     "end": 511.497,
      "t": "chi",
      "beat": 4
     },
     {
      "w": "compra",
-     "start": 494.757,
-     "end": 495.174,
+     "start": 511.509,
+     "end": 511.926,
      "t": "compra",
      "beat": 4
     },
     {
      "w": "sa",
-     "start": 495.186,
-     "end": 495.333,
+     "start": 511.938,
+     "end": 512.085,
      "t": "sa",
      "beat": 4
     },
     {
      "w": "da",
-     "start": 495.345,
-     "end": 495.468,
+     "start": 512.097,
+     "end": 512.22,
      "t": "da",
      "beat": 4
     },
     {
      "w": "dove",
-     "start": 495.48,
-     "end": 495.7,
+     "start": 512.232,
+     "end": 512.452,
      "t": "dove",
      "beat": 4
     },
     {
      "w": "arriva",
-     "start": 495.713,
-     "end": 496.007,
+     "start": 512.465,
+     "end": 512.759,
      "t": "arriva",
      "beat": 4
     },
     {
      "w": "il",
-     "start": 496.019,
-     "end": 496.08,
+     "start": 512.771,
+     "end": 512.832,
      "t": "il",
      "beat": 4
     },
     {
      "w": "pesce",
-     "start": 496.093,
-     "end": 496.571,
+     "start": 512.845,
+     "end": 513.323,
      "t": "pesce.",
      "beat": 4
     }
@@ -8665,493 +8951,493 @@
   },
   {
    "id": "garanzie",
-   "start": 497.244,
+   "start": 513.996,
    "dur": 30.723,
    "beats": [
     {
      "i": 0,
-     "start": 497.244,
-     "end": 501.191,
+     "start": 513.996,
+     "end": 517.943,
      "text": "E per la vostra tranquillità, lavoriamo assicurati e in regola."
     },
     {
      "i": 1,
-     "start": 501.531,
-     "end": 508.293,
+     "start": 518.283,
+     "end": 525.045,
      "text": "La responsabilità civile prodotti copre i danni causati da un prodotto difettoso, compreso il ritiro dal mercato."
     },
     {
      "i": 2,
-     "start": 508.633,
-     "end": 513.642,
+     "start": 525.385,
+     "end": 530.394,
      "text": "L'assicurazione delle merci trasportate copre anche il mancato freddo durante il viaggio."
     },
     {
      "i": 3,
-     "start": 513.982,
-     "end": 522.697,
+     "start": 530.734,
+     "end": 539.449,
      "text": "Piano di autocontrollo HACCP, e il percorso verso la certificazione IFS Broker, lo standard internazionale per gli intermediari."
     },
     {
      "i": 4,
-     "start": 523.037,
-     "end": 527.367,
+     "start": 539.789,
+     "end": 544.119,
      "text": "Contratto scritto, pagamenti chiari, tracciabilità di ogni lotto."
     }
    ],
    "words": [
     {
      "w": "E",
-     "start": 497.343,
-     "end": 497.515,
+     "start": 514.095,
+     "end": 514.267,
      "t": "E",
      "beat": 0
     },
     {
      "w": "per",
-     "start": 497.527,
-     "end": 497.711,
+     "start": 514.279,
+     "end": 514.463,
      "t": "per",
      "beat": 0
     },
     {
      "w": "la",
-     "start": 497.723,
-     "end": 497.821,
+     "start": 514.475,
+     "end": 514.573,
      "t": "la",
      "beat": 0
     },
     {
      "w": "vostra",
-     "start": 497.833,
-     "end": 498.176,
+     "start": 514.585,
+     "end": 514.928,
      "t": "vostra",
      "beat": 0
     },
     {
      "w": "tranquillità",
-     "start": 498.189,
-     "end": 498.85,
+     "start": 514.941,
+     "end": 515.602,
      "t": "tranquillità,",
      "beat": 0
     },
     {
      "w": "lavoriamo",
-     "start": 499.083,
-     "end": 499.635,
+     "start": 515.835,
+     "end": 516.387,
      "t": "lavoriamo",
      "beat": 0
     },
     {
      "w": "assicurati",
-     "start": 499.647,
-     "end": 500.358,
+     "start": 516.399,
+     "end": 517.11,
      "t": "assicurati",
      "beat": 0
     },
     {
      "w": "e",
-     "start": 500.37,
-     "end": 500.395,
+     "start": 517.122,
+     "end": 517.147,
      "t": "e",
      "beat": 0
     },
     {
      "w": "in",
-     "start": 500.407,
-     "end": 500.529,
+     "start": 517.159,
+     "end": 517.281,
      "t": "in",
      "beat": 0
     },
     {
      "w": "regola",
-     "start": 500.542,
-     "end": 501.118,
+     "start": 517.294,
+     "end": 517.87,
      "t": "regola.",
      "beat": 0
     },
     {
      "w": "La",
-     "start": 501.63,
-     "end": 501.826,
+     "start": 518.382,
+     "end": 518.578,
      "t": "La",
      "beat": 1
     },
     {
      "w": "responsabilità",
-     "start": 501.838,
-     "end": 502.635,
+     "start": 518.59,
+     "end": 519.387,
      "t": "responsabilità",
      "beat": 1
     },
     {
      "w": "civile",
-     "start": 502.647,
-     "end": 503.039,
+     "start": 519.399,
+     "end": 519.791,
      "t": "civile",
      "beat": 1
     },
     {
      "w": "prodotti",
-     "start": 503.052,
-     "end": 503.505,
+     "start": 519.804,
+     "end": 520.257,
      "t": "prodotti",
      "beat": 1
     },
     {
      "w": "copre",
-     "start": 503.517,
-     "end": 503.848,
+     "start": 520.269,
+     "end": 520.6,
      "t": "copre",
      "beat": 1
     },
     {
      "w": "i",
-     "start": 503.86,
-     "end": 503.909,
+     "start": 520.612,
+     "end": 520.661,
      "t": "i",
      "beat": 1
     },
     {
      "w": "danni",
-     "start": 503.922,
-     "end": 504.265,
+     "start": 520.674,
+     "end": 521.017,
      "t": "danni",
      "beat": 1
     },
     {
      "w": "causati",
-     "start": 504.277,
-     "end": 504.841,
+     "start": 521.029,
+     "end": 521.593,
      "t": "causati",
      "beat": 1
     },
     {
      "w": "da",
-     "start": 504.853,
-     "end": 504.951,
+     "start": 521.605,
+     "end": 521.703,
      "t": "da",
      "beat": 1
     },
     {
      "w": "un",
-     "start": 504.963,
-     "end": 505.074,
+     "start": 521.715,
+     "end": 521.826,
      "t": "un",
      "beat": 1
     },
     {
      "w": "prodotto",
-     "start": 505.086,
-     "end": 505.527,
+     "start": 521.838,
+     "end": 522.279,
      "t": "prodotto",
      "beat": 1
     },
     {
      "w": "difettoso",
-     "start": 505.539,
-     "end": 506.299,
+     "start": 522.291,
+     "end": 523.051,
      "t": "difettoso,",
      "beat": 1
     },
     {
      "w": "compreso",
-     "start": 506.458,
-     "end": 506.924,
+     "start": 523.21,
+     "end": 523.676,
      "t": "compreso",
      "beat": 1
     },
     {
      "w": "il",
-     "start": 506.936,
-     "end": 506.998,
+     "start": 523.688,
+     "end": 523.75,
      "t": "il",
      "beat": 1
     },
     {
      "w": "ritiro",
-     "start": 507.01,
-     "end": 507.427,
+     "start": 523.762,
+     "end": 524.179,
      "t": "ritiro",
      "beat": 1
     },
     {
      "w": "dal",
-     "start": 507.439,
-     "end": 507.574,
+     "start": 524.191,
+     "end": 524.326,
      "t": "dal",
      "beat": 1
     },
     {
      "w": "mercato",
-     "start": 507.586,
-     "end": 508.199,
+     "start": 524.338,
+     "end": 524.951,
      "t": "mercato.",
      "beat": 1
     },
     {
      "w": "L'assicurazione",
-     "start": 508.732,
-     "end": 509.639,
+     "start": 525.484,
+     "end": 526.391,
      "t": "L'assicurazione",
      "beat": 2
     },
     {
      "w": "delle",
-     "start": 509.651,
-     "end": 509.884,
+     "start": 526.403,
+     "end": 526.636,
      "t": "delle",
      "beat": 2
     },
     {
      "w": "merci",
-     "start": 509.896,
-     "end": 510.276,
+     "start": 526.648,
+     "end": 527.028,
      "t": "merci",
      "beat": 2
     },
     {
      "w": "trasportate",
-     "start": 510.288,
-     "end": 510.95,
+     "start": 527.04,
+     "end": 527.702,
      "t": "trasportate",
      "beat": 2
     },
     {
      "w": "copre",
-     "start": 510.962,
-     "end": 511.318,
+     "start": 527.714,
+     "end": 528.07,
      "t": "copre",
      "beat": 2
     },
     {
      "w": "anche",
-     "start": 511.33,
-     "end": 511.551,
+     "start": 528.082,
+     "end": 528.303,
      "t": "anche",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 511.563,
-     "end": 511.6,
+     "start": 528.315,
+     "end": 528.352,
      "t": "il",
      "beat": 2
     },
     {
      "w": "mancato",
-     "start": 511.612,
-     "end": 512.114,
+     "start": 528.364,
+     "end": 528.866,
      "t": "mancato",
      "beat": 2
     },
     {
      "w": "freddo",
-     "start": 512.127,
-     "end": 512.47,
+     "start": 528.879,
+     "end": 529.222,
      "t": "freddo",
      "beat": 2
     },
     {
      "w": "durante",
-     "start": 512.482,
-     "end": 512.899,
+     "start": 529.234,
+     "end": 529.651,
      "t": "durante",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 512.911,
-     "end": 512.984,
+     "start": 529.663,
+     "end": 529.736,
      "t": "il",
      "beat": 2
     },
     {
      "w": "viaggio",
-     "start": 512.997,
-     "end": 513.585,
+     "start": 529.749,
+     "end": 530.337,
      "t": "viaggio.",
      "beat": 2
     },
     {
      "w": "Piano",
-     "start": 514.081,
-     "end": 514.375,
+     "start": 530.833,
+     "end": 531.127,
      "t": "Piano",
      "beat": 3
     },
     {
      "w": "di",
-     "start": 514.387,
-     "end": 514.498,
+     "start": 531.139,
+     "end": 531.25,
      "t": "di",
      "beat": 3
     },
     {
      "w": "autocontrollo",
-     "start": 514.51,
-     "end": 515.257,
+     "start": 531.262,
+     "end": 532.009,
      "t": "autocontrollo",
      "beat": 3
     },
     {
      "w": "H.A.C.C.P.",
-     "start": 515.27,
-     "end": 516.238,
+     "start": 532.022,
+     "end": 532.99,
      "t": "HACCP,",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 516.544,
-     "end": 516.642,
+     "start": 533.296,
+     "end": 533.394,
      "t": "e",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 516.655,
-     "end": 516.753,
+     "start": 533.407,
+     "end": 533.505,
      "t": "il",
      "beat": 3
     },
     {
      "w": "percorso",
-     "start": 516.765,
-     "end": 517.28,
+     "start": 533.517,
+     "end": 534.032,
      "t": "percorso",
      "beat": 3
     },
     {
      "w": "verso",
-     "start": 517.292,
-     "end": 517.659,
+     "start": 534.044,
+     "end": 534.411,
      "t": "verso",
      "beat": 3
     },
     {
      "w": "la",
-     "start": 517.672,
-     "end": 517.77,
+     "start": 534.424,
+     "end": 534.522,
      "t": "la",
      "beat": 3
     },
     {
      "w": "certificazione",
-     "start": 517.782,
-     "end": 518.652,
+     "start": 534.534,
+     "end": 535.404,
      "t": "certificazione",
      "beat": 3
     },
     {
      "w": "IFS",
-     "start": 518.664,
-     "end": 519.13,
+     "start": 535.416,
+     "end": 535.882,
      "t": "IFS",
      "beat": 3
     },
     {
      "w": "Broker",
-     "start": 519.142,
-     "end": 519.62,
+     "start": 535.894,
+     "end": 536.372,
      "t": "Broker,",
      "beat": 3
     },
     {
      "w": "lo",
-     "start": 519.901,
-     "end": 520.134,
+     "start": 536.653,
+     "end": 536.886,
      "t": "lo",
      "beat": 3
     },
     {
      "w": "standard",
-     "start": 520.146,
-     "end": 520.612,
+     "start": 536.898,
+     "end": 537.364,
      "t": "standard",
      "beat": 3
     },
     {
      "w": "internazionale",
-     "start": 520.624,
-     "end": 521.457,
+     "start": 537.376,
+     "end": 538.209,
      "t": "internazionale",
      "beat": 3
     },
     {
      "w": "per",
-     "start": 521.47,
-     "end": 521.654,
+     "start": 538.222,
+     "end": 538.406,
      "t": "per",
      "beat": 3
     },
     {
      "w": "gli",
-     "start": 521.666,
-     "end": 521.776,
+     "start": 538.418,
+     "end": 538.528,
      "t": "gli",
      "beat": 3
     },
     {
      "w": "intermediari",
-     "start": 521.788,
-     "end": 522.634,
+     "start": 538.54,
+     "end": 539.386,
      "t": "intermediari.",
      "beat": 3
     },
     {
      "w": "Contratto",
-     "start": 523.136,
-     "end": 523.675,
+     "start": 539.888,
+     "end": 540.427,
      "t": "Contratto",
      "beat": 4
     },
     {
      "w": "scritto",
-     "start": 523.687,
-     "end": 524.239,
+     "start": 540.439,
+     "end": 540.991,
      "t": "scritto,",
      "beat": 4
     },
     {
      "w": "pagamenti",
-     "start": 524.509,
-     "end": 525.023,
+     "start": 541.261,
+     "end": 541.775,
      "t": "pagamenti",
      "beat": 4
     },
     {
      "w": "chiari",
-     "start": 525.036,
-     "end": 525.452,
+     "start": 541.788,
+     "end": 542.204,
      "t": "chiari,",
      "beat": 4
     },
     {
      "w": "tracciabilità",
-     "start": 525.648,
-     "end": 526.384,
+     "start": 542.4,
+     "end": 543.136,
      "t": "tracciabilità",
      "beat": 4
     },
     {
      "w": "di",
-     "start": 526.396,
-     "end": 526.518,
+     "start": 543.148,
+     "end": 543.27,
      "t": "di",
      "beat": 4
     },
     {
      "w": "ogni",
-     "start": 526.531,
-     "end": 526.751,
+     "start": 543.283,
+     "end": 543.503,
      "t": "ogni",
      "beat": 4
     },
     {
      "w": "lotto",
-     "start": 526.763,
-     "end": 527.266,
+     "start": 543.515,
+     "end": 544.018,
      "t": "lotto.",
      "beat": 4
     }
@@ -9160,514 +9446,514 @@
   },
   {
    "id": "broker",
-   "start": 527.967,
+   "start": 544.719,
    "dur": 32.926,
    "beats": [
     {
      "i": 0,
-     "start": 527.967,
-     "end": 532.473,
+     "start": 544.719,
+     "end": 549.224,
      "text": "Perché conviene un buyer, invece di trattare direttamente con i fornitori?"
     },
     {
      "i": 1,
-     "start": 532.813,
-     "end": 540.201,
+     "start": 549.564,
+     "end": 556.953,
      "text": "Senza buyer: dieci fornitori, dieci telefonate, decine di fatture, e dieci consegne da controllare."
     },
     {
      "i": 2,
-     "start": 540.701,
-     "end": 547.278,
+     "start": 557.453,
+     "end": 564.029,
      "text": "Con Argo Maris: un solo contatto, un solo ordine, una sola fattura, una sola consegna."
     },
     {
      "i": 3,
-     "start": 547.618,
-     "end": 554.339,
+     "start": 564.369,
+     "end": 571.091,
      "text": "E in più, prezzi confrontati ogni giorno su tutto il mercato, aste comprese, che da soli non si raggiungono."
     },
     {
      "i": 4,
-     "start": 554.789,
-     "end": 560.293,
+     "start": 571.541,
+     "end": 577.045,
      "text": "Meno lavoro, meno rischi, più scelta. Ecco perché conviene."
     }
    ],
    "words": [
     {
      "w": "Perché",
-     "start": 528.066,
-     "end": 528.446,
+     "start": 544.818,
+     "end": 545.198,
      "t": "Perché",
      "beat": 0
     },
     {
      "w": "conviene",
-     "start": 528.458,
-     "end": 528.863,
+     "start": 545.21,
+     "end": 545.615,
      "t": "conviene",
      "beat": 0
     },
     {
      "w": "un",
-     "start": 528.875,
-     "end": 528.997,
+     "start": 545.627,
+     "end": 545.749,
      "t": "un",
      "beat": 0
     },
     {
      "w": "buyer",
-     "start": 529.01,
-     "end": 529.475,
+     "start": 545.762,
+     "end": 546.227,
      "t": "buyer,",
      "beat": 0
     },
     {
      "w": "invece",
-     "start": 529.696,
-     "end": 530.137,
+     "start": 546.448,
+     "end": 546.889,
      "t": "invece",
      "beat": 0
     },
     {
      "w": "di",
-     "start": 530.149,
-     "end": 530.26,
+     "start": 546.901,
+     "end": 547.012,
      "t": "di",
      "beat": 0
     },
     {
      "w": "trattare",
-     "start": 530.272,
-     "end": 530.725,
+     "start": 547.024,
+     "end": 547.477,
      "t": "trattare",
      "beat": 0
     },
     {
      "w": "direttamente",
-     "start": 530.738,
-     "end": 531.387,
+     "start": 547.49,
+     "end": 548.139,
      "t": "direttamente",
      "beat": 0
     },
     {
      "w": "con",
-     "start": 531.399,
-     "end": 531.583,
+     "start": 548.151,
+     "end": 548.335,
      "t": "con",
      "beat": 0
     },
     {
      "w": "i",
-     "start": 531.595,
-     "end": 531.644,
+     "start": 548.347,
+     "end": 548.396,
      "t": "i",
      "beat": 0
     },
     {
      "w": "fornitori",
-     "start": 531.657,
-     "end": 532.416,
+     "start": 548.409,
+     "end": 549.168,
      "t": "fornitori?",
      "beat": 0
     },
     {
      "w": "Senza",
-     "start": 532.912,
-     "end": 533.316,
+     "start": 549.663,
+     "end": 550.067,
      "t": "Senza",
      "beat": 1
     },
     {
      "w": "buyer",
-     "start": 533.329,
-     "end": 533.77,
+     "start": 550.08,
+     "end": 550.521,
      "t": "buyer:",
      "beat": 1
     },
     {
      "w": "dieci",
-     "start": 534.039,
-     "end": 534.407,
+     "start": 550.79,
+     "end": 551.158,
      "t": "dieci",
      "beat": 1
     },
     {
      "w": "fornitori",
-     "start": 534.419,
-     "end": 535.093,
+     "start": 551.17,
+     "end": 551.844,
      "t": "fornitori,",
      "beat": 1
     },
     {
      "w": "dieci",
-     "start": 535.204,
-     "end": 535.62,
+     "start": 551.955,
+     "end": 552.371,
      "t": "dieci",
      "beat": 1
     },
     {
      "w": "telefonate",
-     "start": 535.633,
-     "end": 536.368,
+     "start": 552.384,
+     "end": 553.119,
      "t": "telefonate,",
      "beat": 1
     },
     {
      "w": "decine",
-     "start": 536.625,
-     "end": 537.066,
+     "start": 553.376,
+     "end": 553.817,
      "t": "decine",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 537.079,
-     "end": 537.177,
+     "start": 553.83,
+     "end": 553.928,
      "t": "di",
      "beat": 1
     },
     {
      "w": "fatture",
-     "start": 537.189,
-     "end": 537.79,
+     "start": 553.94,
+     "end": 554.541,
      "t": "fatture,",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 538.071,
-     "end": 538.218,
+     "start": 554.822,
+     "end": 554.969,
      "t": "e",
      "beat": 1
     },
     {
      "w": "dieci",
-     "start": 538.231,
-     "end": 538.611,
+     "start": 554.982,
+     "end": 555.362,
      "t": "dieci",
      "beat": 1
     },
     {
      "w": "consegne",
-     "start": 538.623,
-     "end": 539.211,
+     "start": 555.374,
+     "end": 555.962,
      "t": "consegne",
      "beat": 1
     },
     {
      "w": "da",
-     "start": 539.223,
-     "end": 539.334,
+     "start": 555.974,
+     "end": 556.085,
      "t": "da",
      "beat": 1
     },
     {
      "w": "controllare",
-     "start": 539.346,
-     "end": 540.13,
+     "start": 556.097,
+     "end": 556.881,
      "t": "controllare.",
      "beat": 1
     },
     {
      "w": "Con",
-     "start": 540.8,
-     "end": 540.984,
+     "start": 557.552,
+     "end": 557.736,
      "t": "Con",
      "beat": 2
     },
     {
      "w": "Argo",
-     "start": 540.996,
-     "end": 541.278,
+     "start": 557.748,
+     "end": 558.03,
      "t": "Argo",
      "beat": 2
     },
     {
      "w": "Maris",
-     "start": 541.29,
-     "end": 541.78,
+     "start": 558.042,
+     "end": 558.532,
      "t": "Maris:",
      "beat": 2
     },
     {
      "w": "un",
-     "start": 542.026,
-     "end": 542.197,
+     "start": 558.778,
+     "end": 558.949,
      "t": "un",
      "beat": 2
     },
     {
      "w": "solo",
-     "start": 542.209,
-     "end": 542.479,
+     "start": 558.961,
+     "end": 559.231,
      "t": "solo",
      "beat": 2
     },
     {
      "w": "contatto",
-     "start": 542.491,
-     "end": 543.177,
+     "start": 559.243,
+     "end": 559.929,
      "t": "contatto,",
      "beat": 2
     },
     {
      "w": "un",
-     "start": 543.423,
-     "end": 543.606,
+     "start": 560.175,
+     "end": 560.358,
      "t": "un",
      "beat": 2
     },
     {
      "w": "solo",
-     "start": 543.619,
-     "end": 543.876,
+     "start": 560.371,
+     "end": 560.628,
      "t": "solo",
      "beat": 2
     },
     {
      "w": "ordine",
-     "start": 543.888,
-     "end": 544.354,
+     "start": 560.64,
+     "end": 561.106,
      "t": "ordine,",
      "beat": 2
     },
     {
      "w": "una",
-     "start": 544.624,
-     "end": 544.881,
+     "start": 561.376,
+     "end": 561.633,
      "t": "una",
      "beat": 2
     },
     {
      "w": "sola",
-     "start": 544.893,
-     "end": 545.138,
+     "start": 561.645,
+     "end": 561.89,
      "t": "sola",
      "beat": 2
     },
     {
      "w": "fattura",
-     "start": 545.15,
-     "end": 545.69,
+     "start": 561.902,
+     "end": 562.442,
      "t": "fattura,",
      "beat": 2
     },
     {
      "w": "una",
-     "start": 545.935,
-     "end": 546.18,
+     "start": 562.687,
+     "end": 562.932,
      "t": "una",
      "beat": 2
     },
     {
      "w": "sola",
-     "start": 546.192,
-     "end": 546.437,
+     "start": 562.944,
+     "end": 563.189,
      "t": "sola",
      "beat": 2
     },
     {
      "w": "consegna",
-     "start": 546.45,
-     "end": 547.209,
+     "start": 563.202,
+     "end": 563.961,
      "t": "consegna.",
      "beat": 2
     },
     {
      "w": "E",
-     "start": 547.717,
-     "end": 547.84,
+     "start": 564.468,
+     "end": 564.591,
      "t": "E",
      "beat": 3
     },
     {
      "w": "in",
-     "start": 547.852,
-     "end": 547.987,
+     "start": 564.603,
+     "end": 564.738,
      "t": "in",
      "beat": 3
     },
     {
      "w": "più",
-     "start": 547.999,
-     "end": 548.244,
+     "start": 564.75,
+     "end": 564.995,
      "t": "più,",
      "beat": 3
     },
     {
      "w": "prezzi",
-     "start": 548.477,
-     "end": 548.857,
+     "start": 565.228,
+     "end": 565.608,
      "t": "prezzi",
      "beat": 3
     },
     {
      "w": "confrontati",
-     "start": 548.869,
-     "end": 549.518,
+     "start": 565.62,
+     "end": 566.269,
      "t": "confrontati",
      "beat": 3
     },
     {
      "w": "ogni",
-     "start": 549.531,
-     "end": 549.739,
+     "start": 566.282,
+     "end": 566.49,
      "t": "ogni",
      "beat": 3
     },
     {
      "w": "giorno",
-     "start": 549.751,
-     "end": 550.119,
+     "start": 566.502,
+     "end": 566.87,
      "t": "giorno",
      "beat": 3
     },
     {
      "w": "su",
-     "start": 550.131,
-     "end": 550.278,
+     "start": 566.882,
+     "end": 567.029,
      "t": "su",
      "beat": 3
     },
     {
      "w": "tutto",
-     "start": 550.291,
-     "end": 550.585,
+     "start": 567.042,
+     "end": 567.336,
      "t": "tutto",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 550.597,
-     "end": 550.634,
+     "start": 567.348,
+     "end": 567.385,
      "t": "il",
      "beat": 3
     },
     {
      "w": "mercato",
-     "start": 550.646,
-     "end": 551.271,
+     "start": 567.397,
+     "end": 568.022,
      "t": "mercato,",
      "beat": 3
     },
     {
      "w": "aste",
-     "start": 551.479,
-     "end": 551.81,
+     "start": 568.23,
+     "end": 568.561,
      "t": "aste",
      "beat": 3
     },
     {
      "w": "comprese",
-     "start": 551.822,
-     "end": 552.484,
+     "start": 568.573,
+     "end": 569.235,
      "t": "comprese,",
      "beat": 3
     },
     {
      "w": "che",
-     "start": 552.656,
-     "end": 552.803,
+     "start": 569.407,
+     "end": 569.554,
      "t": "che",
      "beat": 3
     },
     {
      "w": "da",
-     "start": 552.815,
-     "end": 552.962,
+     "start": 569.566,
+     "end": 569.713,
      "t": "da",
      "beat": 3
     },
     {
      "w": "soli",
-     "start": 552.974,
-     "end": 553.244,
+     "start": 569.725,
+     "end": 569.995,
      "t": "soli",
      "beat": 3
     },
     {
      "w": "non",
-     "start": 553.256,
-     "end": 553.452,
+     "start": 570.007,
+     "end": 570.203,
      "t": "non",
      "beat": 3
     },
     {
      "w": "si",
-     "start": 553.465,
-     "end": 553.563,
+     "start": 570.216,
+     "end": 570.314,
      "t": "si",
      "beat": 3
     },
     {
      "w": "raggiungono",
-     "start": 553.575,
-     "end": 554.286,
+     "start": 570.326,
+     "end": 571.037,
      "t": "raggiungono.",
      "beat": 3
     },
     {
      "w": "Meno",
-     "start": 554.888,
-     "end": 555.243,
+     "start": 571.64,
+     "end": 571.995,
      "t": "Meno",
      "beat": 4
     },
     {
      "w": "lavoro",
-     "start": 555.256,
-     "end": 555.734,
+     "start": 572.008,
+     "end": 572.486,
      "t": "lavoro,",
      "beat": 4
     },
     {
      "w": "meno",
-     "start": 556.052,
-     "end": 556.408,
+     "start": 572.804,
+     "end": 573.16,
      "t": "meno",
      "beat": 4
     },
     {
      "w": "rischi",
-     "start": 556.42,
-     "end": 556.861,
+     "start": 573.172,
+     "end": 573.613,
      "t": "rischi,",
      "beat": 4
     },
     {
      "w": "più",
-     "start": 557.167,
-     "end": 557.351,
+     "start": 573.919,
+     "end": 574.103,
      "t": "più",
      "beat": 4
     },
     {
      "w": "scelta",
-     "start": 557.364,
-     "end": 557.964,
+     "start": 574.116,
+     "end": 574.716,
      "t": "scelta.",
      "beat": 4
     },
     {
      "w": "Ecco",
-     "start": 558.821,
-     "end": 559.201,
+     "start": 575.573,
+     "end": 575.953,
      "t": "Ecco",
      "beat": 4
     },
     {
      "w": "perché",
-     "start": 559.213,
-     "end": 559.544,
+     "start": 575.965,
+     "end": 576.296,
      "t": "perché",
      "beat": 4
     },
     {
      "w": "conviene",
-     "start": 559.556,
-     "end": 560.23,
+     "start": 576.308,
+     "end": 576.982,
      "t": "conviene.",
      "beat": 4
     }
@@ -9676,951 +9962,979 @@
   },
   {
    "id": "import",
-   "start": 560.893,
-   "dur": 34.292,
+   "start": 577.645,
+   "dur": 36.214,
    "beats": [
     {
      "i": 0,
-     "start": 560.893,
-     "end": 564.2,
+     "start": 577.645,
+     "end": 580.951,
      "text": "E quando serve, completiamo con le importazioni."
     },
     {
      "i": 1,
-     "start": 564.54,
-     "end": 567.621,
+     "start": 581.291,
+     "end": 584.372,
      "text": "Dalla Norvegia, il salmone e il merluzzo."
     },
     {
      "i": 2,
-     "start": 567.961,
-     "end": 575.863,
-     "text": "Dalla Francia, le ostriche e le cozze. Dalla Spagna e dal Portogallo, i gamberi, il polpo e le sardine."
+     "start": 584.712,
+     "end": 594.536,
+     "text": "Dalla Francia, le ostriche e le cozze. Dalla Spagna, le cozze, le alici e i gamberi; dal Portogallo, il polpo e le sardine."
     },
     {
      "i": 3,
-     "start": 576.203,
-     "end": 581.237,
+     "start": 594.876,
+     "end": 599.909,
      "text": "Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico."
     },
     {
      "i": 4,
-     "start": 581.577,
-     "end": 587.388,
+     "start": 600.249,
+     "end": 606.061,
      "text": "Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento."
     },
     {
      "i": 5,
-     "start": 587.728,
-     "end": 594.586,
+     "start": 606.401,
+     "end": 613.258,
      "text": "Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
     }
    ],
    "words": [
     {
      "w": "E",
-     "start": 560.992,
-     "end": 561.164,
+     "start": 577.744,
+     "end": 577.916,
      "t": "E",
      "beat": 0
     },
     {
      "w": "quando",
-     "start": 561.176,
-     "end": 561.507,
+     "start": 577.928,
+     "end": 578.259,
      "t": "quando",
      "beat": 0
     },
     {
      "w": "serve",
-     "start": 561.519,
-     "end": 561.997,
+     "start": 578.271,
+     "end": 578.749,
      "t": "serve,",
      "beat": 0
     },
     {
      "w": "completiamo",
-     "start": 562.242,
-     "end": 562.916,
+     "start": 578.994,
+     "end": 579.668,
      "t": "completiamo",
      "beat": 0
     },
     {
      "w": "con",
-     "start": 562.928,
-     "end": 563.112,
+     "start": 579.68,
+     "end": 579.864,
      "t": "con",
      "beat": 0
     },
     {
      "w": "le",
-     "start": 563.124,
-     "end": 563.198,
+     "start": 579.876,
+     "end": 579.95,
      "t": "le",
      "beat": 0
     },
     {
      "w": "importazioni",
-     "start": 563.21,
-     "end": 564.142,
+     "start": 579.962,
+     "end": 580.894,
      "t": "importazioni.",
      "beat": 0
     },
     {
      "w": "Dalla",
-     "start": 564.639,
-     "end": 564.994,
+     "start": 581.39,
+     "end": 581.745,
      "t": "Dalla",
      "beat": 1
     },
     {
      "w": "Norvegia",
-     "start": 565.007,
-     "end": 565.693,
+     "start": 581.758,
+     "end": 582.444,
      "t": "Norvegia,",
      "beat": 1
     },
     {
      "w": "il",
-     "start": 565.95,
-     "end": 566.122,
+     "start": 582.701,
+     "end": 582.873,
      "t": "il",
      "beat": 1
     },
     {
      "w": "salmone",
-     "start": 566.134,
-     "end": 566.661,
+     "start": 582.885,
+     "end": 583.412,
      "t": "salmone",
      "beat": 1
     },
     {
      "w": "e",
-     "start": 566.673,
-     "end": 566.686,
+     "start": 583.424,
+     "end": 583.437,
      "t": "e",
      "beat": 1
     },
     {
      "w": "il",
-     "start": 566.698,
-     "end": 566.784,
+     "start": 583.449,
+     "end": 583.535,
      "t": "il",
      "beat": 1
     },
     {
      "w": "merluzzo",
-     "start": 566.796,
-     "end": 567.556,
+     "start": 583.547,
+     "end": 584.307,
      "t": "merluzzo.",
      "beat": 1
     },
     {
      "w": "Dalla",
-     "start": 568.06,
-     "end": 568.428,
+     "start": 584.811,
+     "end": 585.179,
      "t": "Dalla",
      "beat": 2
     },
     {
      "w": "Francia",
-     "start": 568.44,
-     "end": 568.979,
+     "start": 585.191,
+     "end": 585.73,
      "t": "Francia,",
      "beat": 2
     },
     {
      "w": "le",
-     "start": 569.261,
-     "end": 569.42,
+     "start": 586.012,
+     "end": 586.171,
      "t": "le",
      "beat": 2
     },
     {
      "w": "ostriche",
-     "start": 569.433,
-     "end": 569.947,
+     "start": 586.184,
+     "end": 586.698,
      "t": "ostriche",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 569.96,
-     "end": 569.984,
+     "start": 586.711,
+     "end": 586.735,
      "t": "e",
      "beat": 2
     },
     {
      "w": "le",
-     "start": 569.996,
-     "end": 570.082,
+     "start": 586.747,
+     "end": 586.833,
      "t": "le",
      "beat": 2
     },
     {
      "w": "cozze",
-     "start": 570.094,
-     "end": 570.67,
+     "start": 586.845,
+     "end": 587.421,
      "t": "cozze.",
      "beat": 2
     },
     {
      "w": "Dalla",
-     "start": 571.539,
-     "end": 571.919,
+     "start": 588.29,
+     "end": 588.67,
      "t": "Dalla",
      "beat": 2
     },
     {
      "w": "Spagna",
-     "start": 571.932,
-     "end": 572.299,
-     "t": "Spagna",
+     "start": 588.683,
+     "end": 589.136,
+     "t": "Spagna,",
+     "beat": 2
+    },
+    {
+     "w": "le",
+     "start": 589.406,
+     "end": 589.565,
+     "t": "le",
+     "beat": 2
+    },
+    {
+     "w": "cozze",
+     "start": 589.577,
+     "end": 590.104,
+     "t": "cozze,",
+     "beat": 2
+    },
+    {
+     "w": "le",
+     "start": 590.386,
+     "end": 590.545,
+     "t": "le",
+     "beat": 2
+    },
+    {
+     "w": "alici",
+     "start": 590.558,
+     "end": 591.023,
+     "t": "alici",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 572.312,
-     "end": 572.361,
+     "start": 591.036,
+     "end": 591.06,
      "t": "e",
      "beat": 2
     },
     {
-     "w": "dal",
-     "start": 572.373,
-     "end": 572.532,
-     "t": "dal",
-     "beat": 2
-    },
-    {
-     "w": "Portogallo",
-     "start": 572.544,
-     "end": 573.329,
-     "t": "Portogallo,",
-     "beat": 2
-    },
-    {
      "w": "i",
-     "start": 573.562,
-     "end": 573.696,
+     "start": 591.072,
+     "end": 591.17,
      "t": "i",
      "beat": 2
     },
     {
      "w": "gamberi",
-     "start": 573.709,
-     "end": 574.235,
-     "t": "gamberi,",
+     "start": 591.183,
+     "end": 591.636,
+     "t": "gamberi;",
+     "beat": 2
+    },
+    {
+     "w": "dal",
+     "start": 591.832,
+     "end": 592.053,
+     "t": "dal",
+     "beat": 2
+    },
+    {
+     "w": "Portogallo",
+     "start": 592.065,
+     "end": 592.837,
+     "t": "Portogallo,",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 574.407,
-     "end": 574.603,
+     "start": 593.058,
+     "end": 593.254,
      "t": "il",
      "beat": 2
     },
     {
      "w": "polpo",
-     "start": 574.615,
-     "end": 575.008,
+     "start": 593.266,
+     "end": 593.695,
      "t": "polpo",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 575.02,
-     "end": 575.044,
+     "start": 593.707,
+     "end": 593.732,
      "t": "e",
      "beat": 2
     },
     {
      "w": "le",
-     "start": 575.057,
-     "end": 575.167,
+     "start": 593.744,
+     "end": 593.842,
      "t": "le",
      "beat": 2
     },
     {
      "w": "sardine",
-     "start": 575.179,
-     "end": 575.792,
+     "start": 593.854,
+     "end": 594.467,
      "t": "sardine.",
      "beat": 2
     },
     {
      "w": "Dal",
-     "start": 576.302,
-     "end": 576.559,
+     "start": 594.975,
+     "end": 595.232,
      "t": "Dal",
      "beat": 3
     },
     {
      "w": "Marocco",
-     "start": 576.572,
-     "end": 577.037,
+     "start": 595.245,
+     "end": 595.71,
      "t": "Marocco",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 577.05,
-     "end": 577.086,
+     "start": 595.723,
+     "end": 595.759,
      "t": "e",
      "beat": 3
     },
     {
      "w": "dal",
-     "start": 577.099,
-     "end": 577.258,
+     "start": 595.772,
+     "end": 595.931,
      "t": "dal",
      "beat": 3
     },
     {
      "w": "Senegal",
-     "start": 577.27,
-     "end": 577.883,
+     "start": 595.943,
+     "end": 596.556,
      "t": "Senegal,",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 578.128,
-     "end": 578.312,
+     "start": 596.801,
+     "end": 596.985,
      "t": "il",
      "beat": 3
     },
     {
      "w": "polpo",
-     "start": 578.324,
-     "end": 578.839,
+     "start": 596.997,
+     "end": 597.512,
      "t": "polpo,",
      "beat": 3
     },
     {
      "w": "le",
-     "start": 579.059,
-     "end": 579.243,
+     "start": 597.732,
+     "end": 597.916,
      "t": "le",
      "beat": 3
     },
     {
      "w": "seppie",
-     "start": 579.255,
-     "end": 579.697,
+     "start": 597.928,
+     "end": 598.37,
      "t": "seppie",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 579.709,
-     "end": 579.733,
+     "start": 598.382,
+     "end": 598.406,
      "t": "e",
      "beat": 3
     },
     {
      "w": "il",
-     "start": 579.746,
-     "end": 579.844,
+     "start": 598.419,
+     "end": 598.517,
      "t": "il",
      "beat": 3
     },
     {
      "w": "pesce",
-     "start": 579.856,
-     "end": 580.211,
+     "start": 598.529,
+     "end": 598.884,
      "t": "pesce",
      "beat": 3
     },
     {
      "w": "dell'Atlantico",
-     "start": 580.224,
-     "end": 581.167,
+     "start": 598.897,
+     "end": 599.84,
      "t": "dell'Atlantico.",
      "beat": 3
     },
     {
      "w": "Dalla",
-     "start": 581.676,
-     "end": 582.031,
+     "start": 600.348,
+     "end": 600.703,
      "t": "Dalla",
      "beat": 4
     },
     {
      "w": "Tunisia",
-     "start": 582.044,
-     "end": 582.522,
+     "start": 600.716,
+     "end": 601.194,
      "t": "Tunisia",
      "beat": 4
     },
     {
      "w": "e",
-     "start": 582.534,
-     "end": 582.583,
+     "start": 601.206,
+     "end": 601.255,
      "t": "e",
      "beat": 4
     },
     {
      "w": "dall'Egitto",
-     "start": 582.595,
-     "end": 583.416,
+     "start": 601.267,
+     "end": 602.088,
      "t": "dall'Egitto,",
      "beat": 4
     },
     {
      "w": "il",
-     "start": 583.637,
-     "end": 583.833,
+     "start": 602.309,
+     "end": 602.505,
      "t": "il",
      "beat": 4
     },
     {
      "w": "pesce",
-     "start": 583.845,
-     "end": 584.2,
+     "start": 602.517,
+     "end": 602.872,
      "t": "pesce",
      "beat": 4
     },
     {
      "w": "del",
-     "start": 584.213,
-     "end": 584.348,
+     "start": 602.885,
+     "end": 603.02,
      "t": "del",
      "beat": 4
     },
     {
      "w": "Mediterraneo",
-     "start": 584.36,
-     "end": 585.107,
+     "start": 603.032,
+     "end": 603.779,
      "t": "Mediterraneo",
      "beat": 4
     },
     {
      "w": "meridionale",
-     "start": 585.12,
-     "end": 585.879,
+     "start": 603.792,
+     "end": 604.551,
      "t": "meridionale,",
      "beat": 4
     },
     {
      "w": "anche",
-     "start": 586.1,
-     "end": 586.431,
+     "start": 604.772,
+     "end": 605.103,
      "t": "anche",
      "beat": 4
     },
     {
      "w": "d'allevamento",
-     "start": 586.443,
-     "end": 587.301,
+     "start": 605.115,
+     "end": 605.973,
      "t": "d'allevamento.",
      "beat": 4
     },
     {
      "w": "Sempre",
-     "start": 587.827,
-     "end": 588.231,
+     "start": 606.5,
+     "end": 606.904,
      "t": "Sempre",
      "beat": 5
     },
     {
      "w": "con",
-     "start": 588.244,
-     "end": 588.44,
+     "start": 606.917,
+     "end": 607.113,
      "t": "con",
      "beat": 5
     },
     {
      "w": "certificati",
-     "start": 588.452,
-     "end": 589.151,
+     "start": 607.125,
+     "end": 607.824,
      "t": "certificati",
      "beat": 5
     },
     {
      "w": "sanitari",
-     "start": 589.163,
-     "end": 589.788,
+     "start": 607.836,
+     "end": 608.461,
      "t": "sanitari,",
      "beat": 5
     },
     {
      "w": "controlli",
-     "start": 589.886,
-     "end": 590.413,
+     "start": 608.559,
+     "end": 609.086,
      "t": "controlli",
      "beat": 5
     },
     {
      "w": "alla",
-     "start": 590.425,
-     "end": 590.572,
+     "start": 609.098,
+     "end": 609.245,
      "t": "alla",
      "beat": 5
     },
     {
      "w": "frontiera",
-     "start": 590.584,
-     "end": 591.111,
+     "start": 609.257,
+     "end": 609.784,
      "t": "frontiera",
      "beat": 5
     },
     {
      "w": "per",
-     "start": 591.124,
-     "end": 591.258,
+     "start": 609.797,
+     "end": 609.931,
      "t": "per",
      "beat": 5
     },
     {
      "w": "i",
-     "start": 591.271,
-     "end": 591.332,
+     "start": 609.944,
+     "end": 610.005,
      "t": "i",
      "beat": 5
     },
     {
      "w": "paesi",
-     "start": 591.344,
-     "end": 591.761,
+     "start": 610.017,
+     "end": 610.434,
      "t": "paesi",
      "beat": 5
     },
     {
      "w": "extra",
-     "start": 591.773,
-     "end": 592.141,
+     "start": 610.446,
+     "end": 610.814,
      "t": "extra",
      "beat": 5
     },
     {
      "w": "europei",
-     "start": 592.153,
-     "end": 592.741,
+     "start": 610.826,
+     "end": 611.414,
      "t": "europei,",
      "beat": 5
     },
     {
      "w": "e",
-     "start": 593.035,
-     "end": 593.17,
+     "start": 611.708,
+     "end": 611.843,
      "t": "e",
      "beat": 5
     },
     {
      "w": "tracciabilità",
-     "start": 593.182,
-     "end": 593.832,
+     "start": 611.855,
+     "end": 612.505,
      "t": "tracciabilità",
      "beat": 5
     },
     {
      "w": "completa",
-     "start": 593.844,
-     "end": 594.494,
+     "start": 612.517,
+     "end": 613.167,
      "t": "completa.",
      "beat": 5
     }
    ],
-   "text": "E quando serve, completiamo con le importazioni. Dalla Norvegia, il salmone e il merluzzo. Dalla Francia, le ostriche e le cozze. Dalla Spagna e dal Portogallo, i gamberi, il polpo e le sardine. Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico. Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento. Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
+   "text": "E quando serve, completiamo con le importazioni. Dalla Norvegia, il salmone e il merluzzo. Dalla Francia, le ostriche e le cozze. Dalla Spagna, le cozze, le alici e i gamberi; dal Portogallo, il polpo e le sardine. Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico. Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento. Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
   },
   {
    "id": "perche",
-   "start": 595.186,
+   "start": 613.858,
    "dur": 25.847,
    "beats": [
     {
      "i": 0,
-     "start": 595.186,
-     "end": 598.023,
+     "start": 613.858,
+     "end": 616.696,
      "text": "Allora, perché scegliere Argo Maris?"
     },
     {
      "i": 1,
-     "start": 598.363,
-     "end": 601.569,
+     "start": 617.036,
+     "end": 620.242,
      "text": "Un buyer di fiducia, ogni giorno su due mari."
     },
     {
      "i": 2,
-     "start": 601.909,
-     "end": 606.944,
+     "start": 620.582,
+     "end": 625.616,
      "text": "Tutto il mercato di Roma, e oltre quaranta specie: dal locale all'importazione."
     },
     {
      "i": 3,
-     "start": 607.284,
-     "end": 610.48,
+     "start": 625.956,
+     "end": 629.153,
      "text": "Voi mandate l'ordine, io cerco e trovo tutto."
     },
     {
      "i": 4,
-     "start": 610.82,
-     "end": 614.848,
+     "start": 629.493,
+     "end": 633.521,
      "text": "Logistica flessibile, fino alla consegna diretta in negozio."
     },
     {
      "i": 5,
-     "start": 615.188,
-     "end": 620.432,
+     "start": 633.861,
+     "end": 639.105,
      "text": "Qualità controllata, tracciabilità, e un solo referente sempre raggiungibile."
     }
    ],
    "words": [
     {
      "w": "Allora",
-     "start": 595.285,
-     "end": 595.836,
+     "start": 613.957,
+     "end": 614.508,
      "t": "Allora,",
      "beat": 0
     },
     {
      "w": "perché",
-     "start": 596.131,
-     "end": 596.462,
+     "start": 614.803,
+     "end": 615.134,
      "t": "perché",
      "beat": 0
     },
     {
      "w": "scegliere",
-     "start": 596.474,
-     "end": 597.025,
+     "start": 615.146,
+     "end": 615.697,
      "t": "scegliere",
      "beat": 0
     },
     {
      "w": "Argo",
-     "start": 597.037,
-     "end": 597.283,
+     "start": 615.709,
+     "end": 615.955,
      "t": "Argo",
      "beat": 0
     },
     {
      "w": "Maris",
-     "start": 597.295,
-     "end": 597.92,
+     "start": 615.967,
+     "end": 616.592,
      "t": "Maris?",
      "beat": 0
     },
     {
      "w": "Un",
-     "start": 598.462,
-     "end": 598.658,
+     "start": 617.135,
+     "end": 617.331,
      "t": "Un",
      "beat": 1
     },
     {
      "w": "buyer",
-     "start": 598.67,
-     "end": 599.038,
+     "start": 617.343,
+     "end": 617.711,
      "t": "buyer",
      "beat": 1
     },
     {
      "w": "di",
-     "start": 599.05,
-     "end": 599.161,
+     "start": 617.723,
+     "end": 617.834,
      "t": "di",
      "beat": 1
     },
     {
      "w": "fiducia",
-     "start": 599.173,
-     "end": 599.786,
+     "start": 617.846,
+     "end": 618.459,
      "t": "fiducia,",
      "beat": 1
     },
     {
      "w": "ogni",
-     "start": 600.043,
-     "end": 600.337,
+     "start": 618.716,
+     "end": 619.01,
      "t": "ogni",
      "beat": 1
     },
     {
      "w": "giorno",
-     "start": 600.349,
-     "end": 600.717,
+     "start": 619.022,
+     "end": 619.39,
      "t": "giorno",
      "beat": 1
     },
     {
      "w": "su",
-     "start": 600.729,
-     "end": 600.888,
+     "start": 619.402,
+     "end": 619.561,
      "t": "su",
      "beat": 1
     },
     {
      "w": "due",
-     "start": 600.901,
-     "end": 601.085,
+     "start": 619.574,
+     "end": 619.758,
      "t": "due",
      "beat": 1
     },
     {
      "w": "mari",
-     "start": 601.097,
-     "end": 601.501,
+     "start": 619.77,
+     "end": 620.174,
      "t": "mari.",
      "beat": 1
     },
     {
      "w": "Tutto",
-     "start": 602.008,
-     "end": 602.302,
+     "start": 620.681,
+     "end": 620.975,
      "t": "Tutto",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 602.314,
-     "end": 602.351,
+     "start": 620.987,
+     "end": 621.024,
      "t": "il",
      "beat": 2
     },
     {
      "w": "mercato",
-     "start": 602.363,
-     "end": 602.817,
+     "start": 621.036,
+     "end": 621.49,
      "t": "mercato",
      "beat": 2
     },
     {
      "w": "di",
-     "start": 602.829,
-     "end": 602.964,
+     "start": 621.502,
+     "end": 621.637,
      "t": "di",
      "beat": 2
     },
     {
      "w": "Roma",
-     "start": 602.976,
-     "end": 603.368,
+     "start": 621.649,
+     "end": 622.041,
      "t": "Roma,",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 603.638,
-     "end": 603.773,
+     "start": 622.311,
+     "end": 622.446,
      "t": "e",
      "beat": 2
     },
     {
      "w": "oltre",
-     "start": 603.785,
-     "end": 604.091,
+     "start": 622.458,
+     "end": 622.764,
      "t": "oltre",
      "beat": 2
     },
     {
      "w": "quaranta",
-     "start": 604.104,
-     "end": 604.52,
+     "start": 622.777,
+     "end": 623.193,
      "t": "quaranta",
      "beat": 2
     },
     {
      "w": "specie",
-     "start": 604.533,
-     "end": 604.998,
+     "start": 623.206,
+     "end": 623.671,
      "t": "specie:",
      "beat": 2
     },
     {
      "w": "dal",
-     "start": 605.268,
-     "end": 605.488,
+     "start": 623.941,
+     "end": 624.161,
      "t": "dal",
      "beat": 2
     },
     {
      "w": "locale",
-     "start": 605.501,
-     "end": 605.881,
+     "start": 624.174,
+     "end": 624.554,
      "t": "locale",
      "beat": 2
     },
     {
      "w": "all'importazione",
-     "start": 605.893,
-     "end": 606.873,
+     "start": 624.566,
+     "end": 625.546,
      "t": "all'importazione.",
      "beat": 2
     },
     {
      "w": "Voi",
-     "start": 607.383,
-     "end": 607.702,
+     "start": 626.055,
+     "end": 626.374,
      "t": "Voi",
      "beat": 3
     },
     {
      "w": "mandate",
-     "start": 607.714,
-     "end": 608.118,
+     "start": 626.386,
+     "end": 626.79,
      "t": "mandate",
      "beat": 3
     },
     {
      "w": "l'ordine",
-     "start": 608.131,
-     "end": 608.645,
+     "start": 626.803,
+     "end": 627.317,
      "t": "l'ordine,",
      "beat": 3
     },
     {
      "w": "io",
-     "start": 608.866,
-     "end": 609.086,
+     "start": 627.538,
+     "end": 627.758,
      "t": "io",
      "beat": 3
     },
     {
      "w": "cerco",
-     "start": 609.099,
-     "end": 609.479,
+     "start": 627.771,
+     "end": 628.151,
      "t": "cerco",
      "beat": 3
     },
     {
      "w": "e",
-     "start": 609.491,
-     "end": 609.54,
+     "start": 628.163,
+     "end": 628.212,
      "t": "e",
      "beat": 3
     },
     {
      "w": "trovo",
-     "start": 609.552,
-     "end": 609.859,
+     "start": 628.224,
+     "end": 628.531,
      "t": "trovo",
      "beat": 3
     },
     {
      "w": "tutto",
-     "start": 609.871,
-     "end": 610.398,
+     "start": 628.543,
+     "end": 629.07,
      "t": "tutto.",
      "beat": 3
     },
     {
      "w": "Logistica",
-     "start": 610.919,
-     "end": 611.642,
+     "start": 629.592,
+     "end": 630.315,
      "t": "Logistica",
      "beat": 4
     },
     {
      "w": "flessibile",
-     "start": 611.654,
-     "end": 612.328,
+     "start": 630.327,
+     "end": 631.001,
      "t": "flessibile,",
      "beat": 4
     },
     {
      "w": "fino",
-     "start": 612.561,
-     "end": 612.794,
+     "start": 631.234,
+     "end": 631.467,
      "t": "fino",
      "beat": 4
     },
     {
      "w": "alla",
-     "start": 612.806,
-     "end": 612.966,
+     "start": 631.479,
+     "end": 631.639,
      "t": "alla",
      "beat": 4
     },
     {
      "w": "consegna",
-     "start": 612.978,
-     "end": 613.578,
+     "start": 631.651,
+     "end": 632.251,
      "t": "consegna",
      "beat": 4
     },
     {
      "w": "diretta",
-     "start": 613.591,
-     "end": 613.983,
+     "start": 632.264,
+     "end": 632.656,
      "t": "diretta",
      "beat": 4
     },
     {
      "w": "in",
-     "start": 613.995,
-     "end": 614.069,
+     "start": 632.668,
+     "end": 632.742,
      "t": "in",
      "beat": 4
     },
     {
      "w": "negozio",
-     "start": 614.081,
-     "end": 614.779,
+     "start": 632.754,
+     "end": 633.452,
      "t": "negozio.",
      "beat": 4
     },
     {
      "w": "Qualità",
-     "start": 615.287,
-     "end": 615.667,
+     "start": 633.96,
+     "end": 634.34,
      "t": "Qualità",
      "beat": 5
     },
     {
      "w": "controllata",
-     "start": 615.679,
-     "end": 616.488,
+     "start": 634.352,
+     "end": 635.161,
      "t": "controllata,",
      "beat": 5
     },
     {
      "w": "tracciabilità",
-     "start": 616.807,
-     "end": 617.603,
+     "start": 635.48,
+     "end": 636.276,
      "t": "tracciabilità,",
      "beat": 5
     },
     {
      "w": "e",
-     "start": 617.91,
-     "end": 618.044,
+     "start": 636.583,
+     "end": 636.717,
      "t": "e",
      "beat": 5
     },
     {
      "w": "un",
-     "start": 618.057,
-     "end": 618.216,
+     "start": 636.73,
+     "end": 636.889,
      "t": "un",
      "beat": 5
     },
     {
      "w": "solo",
-     "start": 618.228,
-     "end": 618.498,
+     "start": 636.901,
+     "end": 637.171,
      "t": "solo",
      "beat": 5
     },
     {
      "w": "referente",
-     "start": 618.51,
-     "end": 619.061,
+     "start": 637.183,
+     "end": 637.734,
      "t": "referente",
      "beat": 5
     },
     {
      "w": "sempre",
-     "start": 619.074,
-     "end": 619.466,
+     "start": 637.747,
+     "end": 638.139,
      "t": "sempre",
      "beat": 5
     },
     {
      "w": "raggiungibile",
-     "start": 619.478,
-     "end": 620.336,
+     "start": 638.151,
+     "end": 639.009,
      "t": "raggiungibile.",
      "beat": 5
     }
@@ -10629,152 +10943,152 @@
   },
   {
    "id": "fine",
-   "start": 621.032,
+   "start": 639.705,
    "dur": 11.244,
    "beats": [
     {
      "i": 0,
-     "start": 621.032,
-     "end": 622.4,
+     "start": 639.705,
+     "end": 641.073,
      "text": "Argo Maris."
     },
     {
      "i": 1,
-     "start": 622.9,
-     "end": 625.248,
+     "start": 641.573,
+     "end": 643.921,
      "text": "Il mare, scelto per voi."
     },
     {
      "i": 2,
-     "start": 625.948,
-     "end": 631.877,
+     "start": 644.621,
+     "end": 650.55,
      "text": "Unicoop Etruria e Argo Maris: insieme, il pesce migliore, ogni giorno."
     }
    ],
    "words": [
     {
      "w": "Argo",
-     "start": 621.136,
-     "end": 621.558,
+     "start": 639.809,
+     "end": 640.231,
      "t": "Argo",
      "beat": 0
     },
     {
      "w": "Maris",
-     "start": 621.571,
-     "end": 622.291,
+     "start": 640.244,
+     "end": 640.964,
      "t": "Maris.",
      "beat": 0
     },
     {
      "w": "Il",
-     "start": 623.003,
-     "end": 623.216,
+     "start": 641.676,
+     "end": 641.889,
      "t": "Il",
      "beat": 1
     },
     {
      "w": "mare",
-     "start": 623.229,
-     "end": 623.681,
+     "start": 641.902,
+     "end": 642.354,
      "t": "mare,",
      "beat": 1
     },
     {
      "w": "scelto",
-     "start": 623.987,
-     "end": 624.506,
+     "start": 642.66,
+     "end": 643.179,
      "t": "scelto",
      "beat": 1
     },
     {
      "w": "per",
-     "start": 624.519,
-     "end": 624.692,
+     "start": 643.192,
+     "end": 643.365,
      "t": "per",
      "beat": 1
     },
     {
      "w": "voi",
-     "start": 624.705,
-     "end": 625.131,
+     "start": 643.378,
+     "end": 643.804,
      "t": "voi.",
      "beat": 1
     },
     {
      "w": "Unicoop",
-     "start": 626.047,
-     "end": 626.635,
+     "start": 644.72,
+     "end": 645.308,
      "t": "Unicoop",
      "beat": 2
     },
     {
      "w": "Etruria",
-     "start": 626.929,
-     "end": 627.505,
+     "start": 645.602,
+     "end": 646.178,
      "t": "Etruria",
      "beat": 2
     },
     {
      "w": "e",
-     "start": 627.518,
-     "end": 627.603,
+     "start": 646.191,
+     "end": 646.276,
      "t": "e",
      "beat": 2
     },
     {
      "w": "Argo",
-     "start": 627.616,
-     "end": 627.885,
+     "start": 646.289,
+     "end": 646.558,
      "t": "Argo",
      "beat": 2
     },
     {
      "w": "Maris",
-     "start": 627.898,
-     "end": 628.375,
+     "start": 646.571,
+     "end": 647.048,
      "t": "Maris:",
      "beat": 2
     },
     {
      "w": "insieme",
-     "start": 628.621,
-     "end": 629.307,
+     "start": 647.294,
+     "end": 647.98,
      "t": "insieme,",
      "beat": 2
     },
     {
      "w": "il",
-     "start": 629.527,
-     "end": 629.723,
+     "start": 648.2,
+     "end": 648.396,
      "t": "il",
      "beat": 2
     },
     {
      "w": "pesce",
-     "start": 629.736,
-     "end": 630.091,
+     "start": 648.409,
+     "end": 648.764,
      "t": "pesce",
      "beat": 2
     },
     {
      "w": "migliore",
-     "start": 630.103,
-     "end": 630.679,
+     "start": 648.776,
+     "end": 649.352,
      "t": "migliore,",
      "beat": 2
     },
     {
      "w": "ogni",
-     "start": 630.937,
-     "end": 631.243,
+     "start": 649.61,
+     "end": 649.916,
      "t": "ogni",
      "beat": 2
     },
     {
      "w": "giorno",
-     "start": 631.255,
-     "end": 631.819,
+     "start": 649.928,
+     "end": 650.492,
      "t": "giorno.",
      "beat": 2
     }

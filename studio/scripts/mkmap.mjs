@@ -7,6 +7,7 @@ const W = 1920, H = 1080;
 const t10 = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-10m.json'));
 const t50 = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-50m.json'));
 const P = {
+  sciacca: [13.08, 37.51], porticello: [13.53, 38.09], bari: [16.87, 41.13], molfetta: [16.6, 41.2],
   spagna: [-0.38, 39.47], francia: [-4.1, 47.9], portogallo: [-9.14, 38.72], norvegia: [6.15, 62.47], marocco: [-9.6, 30.42],
   tunisia: [10.18, 36.81], egitto: [29.92, 31.2], senegal: [-17.44, 14.69], roma2: [12.5, 41.9],
   viareggio: [10.243, 43.865], livorno: [10.305, 43.548], piombino: [10.527, 42.925], castiglione: [10.876, 42.763],

@@ -423,7 +423,7 @@ export const Import: React.FC<SP> = (p) => {
   const C2 = [
     {k: 'norvegia', l: 'Norvegia', at: B(1), sp: ['salmone', 'merluzzo'], side: 'r' as const},
     {k: 'francia', l: 'Francia', at: Wd('francia'), sp: ['ostrica', 'cozza'], side: 'l' as const},
-    {k: 'spagna', l: 'Spagna', at: Wd('spagna'), sp: ['gambero', 'polpo'], side: 'r' as const},
+    {k: 'spagna', l: 'Spagna', at: Wd('spagna'), sp: ['cozza', 'alice', 'gambero'], side: 'r' as const},
     {k: 'portogallo', l: 'Portogallo', at: Wd('portogallo'), sp: ['sardina', 'polpo'], side: 'l' as const},
     {k: 'marocco', l: 'Marocco', at: Wd('marocco'), sp: ['polpo', 'sardina'], side: 'l' as const},
     {k: 'senegal', l: 'Senegal', at: Wd('senegal'), sp: ['seppia', 'dentice'], side: 'r' as const},
@@ -611,16 +611,38 @@ export const CarFoto: React.FC<SP> = (p) => {
   );
 };
 
+/* ───────── IL SUD: Sicilia (alici) e Puglia (mercati) ─ beat: 0 intro · 1 Sicilia · 2 Puglia · 3 chiusura ───────── */
+export const Sud: React.FC<SP> = (p) => {
+  const {f, B, Wd} = useScene(p);
+  const P = (k: string) => pt('italia', k);
+  const S = 1.75;
+  const cam = {s: S, x: W / 2 - P('bari')[0] + 120, y: H / 2 - P('bari')[1] - 120};
+  return (
+    <AbsoluteFill>
+      <MapView view="italia" cam={[cam, cam]} camAt={[0, 10]}>
+        {(['sciacca', 'porticello'] as const).map((k, i) => <Port key={k} x={P(k)[0]} y={P(k)[1]} at={Wd(k === 'sciacca' ? 'sciacca' : 'porticello')} label={k === 'sciacca' ? 'Sciacca' : 'Porticello'} side={i ? 'r' : 'l'} s={S} big />)}
+        {(['bari', 'molfetta', 'manfredonia'] as const).map((k, i) => <Port key={k} x={P(k)[0]} y={P(k)[1]} at={Wd(k)} label={k[0].toUpperCase() + k.slice(1)} side={i === 1 ? 'l' : 'r'} color={C.aqua} s={S} big />)}
+        {Array.from({length: 7}).map((_, i) => { const q = ez(f, Wd('alici') + i * 5, Wd('alici') + i * 5 + 15); const [sx, sy] = P('sciacca');
+          return <g key={i} opacity={q}><Fish sp="alice" x={sx - 40 + (i % 4) * 26 + Math.sin(f / 10 + i) * 4} y={sy + 40 + Math.floor(i / 4) * 16} s={0.16} /></g>; })}
+      </MapView>
+      <Title kicker="Lo sguardo al Sud" title="Sicilia e Puglia" at={B(0) - 6} />
+      <Chip at={B(1)} x={420} y={330} t="Sicilia · le alici" icon="fish" c={C.gold} size={30} />
+      <Chip at={B(2)} x={420} y={420} t="Puglia · i mercati ittici" icon="warehouse" c={C.aqua} size={30} />
+      <Chip at={B(3)} x={420} y={510} t="Più mercati = più scelta" icon="check" c="#7CF29A" size={30} dark />
+    </AbsoluteFill>
+  );
+};
+
 /* ───────── registro scene pro (per video) ───────── */
 export const proScenes = (client: string, clientImg?: string): Record<string, React.FC<SP>> => ({
   ufficio: Fiducia, specie: Specie, carfoto: CarFoto, allevato: Allevato, frutti: FruttiMare, fao: Fao, import: Import,
-  broker: BrokerVsDiretto, freschezza: Freschezza,
+  broker: BrokerVsDiretto, freschezza: Freschezza, sud: Sud,
   piattaforma: (p: SP) => <OrdineRicerca {...p} client={client} clientImg={clientImg} />,
   contatto: (p: SP) => <Contatto {...p} client={client} />,
 });
 export const PRO_CHAPTERS: Record<string, string> = {
   ufficio: 'Il buyer di fiducia', piattaforma: 'Ordini', contatto: 'Un solo contatto', carfoto: 'Il pesce', specie: 'Il pesce', allevato: 'Il pesce',
-  frutti: 'Frutti di mare', fao: 'Origine', import: 'Importazioni', broker: 'Perché un buyer', freschezza: 'Qualità',
+  frutti: 'Frutti di mare', fao: 'Origine', import: 'Importazioni', broker: 'Perché un buyer', freschezza: 'Qualità', sud: 'Il Sud',
 };
 
 /* ───────── v4: IL BUYER DI FIDUCIA ─ beat: 0 buyer · 1 richieste e ordini · 2 trova tutto · 3 due mari · 4 slogan ───────── */

@@ -15,14 +15,15 @@ Prima di ogni nuovo video leggere anche la skill `.claude/skills/argo-maris-vide
 - **Focus sul locale**: prima il **Tirreno** (11 marinerie: Viareggio, Livorno, Piombino, Castiglione della Pescaia,
   Porto Santo Stefano, Porto Ercole, Civitavecchia, Fiumicino, Anzio, Terracina, Gaeta), poi l'**Adriatico** (13: Chioggia,
   Rimini, Cesenatico, Fano, Ancona, Civitanova Marche, San Benedetto del Tronto, Giulianova, Pescara, Ortona, Vasto, Termoli,
-  Manfredonia) → "due mari, una sola regia". L'**estero** è un **plus, quasi alla fine**.
+  Manfredonia) → "due mari, una sola regia". Poi il **Sud**: **Sicilia per le alici** (Sciacca, Porticello) e
+  **mercati ittici della Puglia** (Bari, Molfetta, Manfredonia). L'**estero** è un **plus, quasi alla fine**.
 - **Specie da citare sempre (tante!)**: locale (triglie, scorfani, gallinelle, San Pietro, pagelli, dentici, saraghi, ricciole,
   lecce, spigole, orate, cefali, sogliole, rombi), azzurro (alici, sardine, sgombri, palamite, tonno, pesce spada), molluschi
   (seppie, calamari, polpi, moscardini), crostacei (gamberi rosa e rossi, mazzancolle, scampi, aragoste), **frutti di mare**
   (cozze, vongole veraci, telline, fasolari, cannolicchi, ostriche: zone classificate A/B, centri di depurazione/spedizione,
   venduti vivi, etichetta con specie, zona, n° centro, data), **allevato** (orate, spigole, ombrine: Italia, Grecia, Turchia, Croazia).
 - **Zone FAO**: 37 Mediterraneo; 37.1.3 Tirreno; 37.2.1 Adriatico; 37.2.2 Ionio; 27 Atlantico NE; 34 Atlantico centro-est.
-- **Import (fine video)**: Norvegia (salmone, merluzzo), Francia (ostriche, cozze), Spagna/Portogallo (gamberi, polpo, sardine),
+- **Import (fine video)**: Norvegia (salmone, merluzzo), Francia (ostriche, cozze), Spagna (cozze, alici, gamberi), Portogallo (polpo, sardine),
   Marocco/Senegal (polpo, seppie, pesce atlantico), Tunisia/Egitto (Mediterraneo sud, anche allevato). Esempi tipici, non dati
   reali. Extra UE: certificati sanitari + controlli ai posti di frontiera.
 - Argomenti di vendita: piattaforma/area clienti (ordine in pochi secondi, stato in tempo reale, fattura unica, documenti),
