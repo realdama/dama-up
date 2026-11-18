@@ -419,7 +419,7 @@ export const Stamps: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
   return (
     <SceneWrap dur={dur}>
       <AbsoluteFill style={{overflow: 'hidden'}}>
-        <Img src={staticFile('img/viola2.jpg')} style={{width: W, height: H, objectFit: 'cover', transform: `scale(${1.1 + f * 0.0015})`, filter: 'contrast(1.06) saturate(1.1) brightness(.75)'}} />
+        <Img src={staticFile('img/viola3.jpg')} style={{width: W, height: H, objectFit: 'cover', transform: `scale(${1.1 + f * 0.0015})`, filter: 'contrast(1.06) saturate(1.1) brightness(.75)'}} />
       </AbsoluteFill>
       <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(6,15,32,.85), rgba(6,15,32,.25) 30%, rgba(6,15,32,.35) 70%, rgba(6,15,32,.9))'}} />
       <TopCard txt="QUANDO PAGHI CARO…" f={f - at(71.1)} />
@@ -457,7 +457,7 @@ export const TeamPoll: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
   return (
     <AbsoluteFill style={{opacity: interpolate(f, [0, 6], [0, 1], clamp)}}>
       <AbsoluteFill style={{background: C.navyDeep}} />
-      {half('hook', 0, 'TEAM ROSSO', RV_COL.rosso, top, true, '50% 50%', 1.15)}
+      {half('gambero', 0, 'TEAM ROSSO', RV_COL.rosso, top, true, '42% 42%', 1.05)}
       {f >= at(76.4) - 1 && half('viola3', H / 2, 'TEAM VIOLA', RV_COL.viola, bot, false, '50% 50%', 1.1)}
       <div style={{position: 'absolute', left: 0, top: H / 2 - 5, width: W, height: 10, background: `linear-gradient(90deg, ${RV_COL.rosso}, #fff, ${RV_COL.viola})`, transform: `scaleX(${ring})`}} />
       <div style={{position: 'absolute', left: W / 2 - 95, top: H / 2 - 95, width: 190, height: 190, borderRadius: '50%', background: C.orange, border: '10px solid #fff', transform: `scale(${ring})`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 110, color: C.navy, boxShadow: '0 20px 60px rgba(0,0,0,.6)'}}>?</div>

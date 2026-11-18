@@ -27,7 +27,7 @@ export const RV_SCENES = {
 } as const;
 
 export const RV_SHOTS: Shot[] = [
-  {src: 'crudo2', start: 65.97, end: 68.85, fx: 52, fy: 50, zoom: 1.15, trans: 'none', label: 'PER CHI AMA IL CRUDO', labelAt: 66.33},
+  {src: 'viola2', start: 65.97, end: 68.85, fx: 40, fy: 45, zoom: 1.1, trans: 'none', label: 'PER CHI AMA IL CRUDO', labelAt: 66.33},
 ];
 
 export const RV_HIDE_SUBS: [number, number][] = [
