@@ -4,6 +4,7 @@ import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react';
 import * as THREE from 'three';
 import {ThreeCanvas} from '@remotion/three';
 import {useThree} from '@react-three/fiber';
+import {EffectComposer, Bloom, Vignette, BrightnessContrast, HueSaturation} from '@react-three/postprocessing';
 import {AbsoluteFill, Audio, Sequence, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, Easing} from 'remotion';
 import '@fontsource/kaushan-script/400.css';
 import '@fontsource/orbitron/700.css';
@@ -62,26 +63,52 @@ const CURLS = Array.from({length: 820}).map((_, i) => {
 });
 
 /* ───── il personaggio ───── */
+/* ───── geometrie "moderne" (create una volta) ───── */
+const HEAD_GEO = (() => {
+  const g = new THREE.SphereGeometry(0.12, 64, 48);
+  const p = g.attributes.position as THREE.BufferAttribute;
+  for (let i = 0; i < p.count; i++) {
+    let x = p.getX(i), y = p.getY(i), z = p.getZ(i);
+    const t = Math.max(0, -y / 0.12);                       // parte bassa: mandibola più stretta
+    x *= 1 - 0.2 * t * t; z *= 1 - 0.05 * t;
+    if (y < -0.05 && z > 0) z += 0.014 * Math.min(1, (-y - 0.05) / 0.05) * (z / 0.12); // mento
+    if (y > -0.03 && y < 0.03 && z > 0.05) x *= 1.04;       // zigomi
+    if (z < 0) z *= 0.94;                                   // nuca
+    p.setXYZ(i, x, y, z);
+  }
+  g.computeVertexNormals(); return g;
+})();
+const TORSO_GEO = (() => {
+  const pts = [[0.001, -0.02], [0.15, 0], [0.145, 0.08], [0.165, 0.2], [0.19, 0.3], [0.2, 0.38], [0.18, 0.44], [0.12, 0.48], [0.07, 0.5], [0.001, 0.5]].map(([r, y]) => new THREE.Vector2(r, y));
+  const g = new THREE.LatheGeometry(pts, 40); g.scale(1, 1, 0.68); return g;
+})();
+
 const Ped: React.FC<{f: number; tex: Tex; pos?: [number, number, number]; rotY?: number; seated?: boolean; npc?: string}> = ({f, tex, pos, rotY = Math.PI, seated = false, npc}) => {
   const {head, hair, neck: neckT, shirt} = tex;
   const walking = !seated && f < STOP;
-  const blend = walking ? 1 : Math.max(0, 1 - (f - STOP) / 12); // rallenta fino all'idle
-  const ph = (f / FPS) * Math.PI * 2 * 0.95;                       // ~1.9 passi al secondo
+  const blend = walking ? 1 : Math.max(0, 1 - (f - STOP) / 12);
+  const ph = (f / FPS) * Math.PI * 2 * 0.95;
   const sw = Math.sin(ph) * blend;
-  const bob = Math.abs(Math.cos(ph)) * 0.035 * blend;
-  const breathe = Math.sin(f / 20) * 0.006;
+  const bob = Math.abs(Math.cos(ph)) * 0.03 * blend;
+  const sway = Math.sin(ph) * 0.03 * blend;                 // ondeggio delle anche
+  const breathe = Math.sin(f / 20) * 0.005;
   const skin = '#C58A6C';
+  const shirtMat = <meshStandardMaterial map={npc ? null : shirt} color={npc ?? '#ffffff'} roughness={0.78} />;
+  const pantsMat = <meshStandardMaterial color={npc ? '#3A3F4F' : '#F1EEE6'} roughness={0.82} />;
   const {x, z} = pos ? {x: pos[0], z: pos[2]} : pedPos(f);
   const leg = (side: 1 | -1) => {
     const s = sw * side;
-    const thigh = seated ? -1.45 : s * 0.55, knee = seated ? -1.4 : Math.max(0, -s) * 0.9 + 0.05 + (blend < 0.2 ? 0 : 0.08);
+    const thigh = seated ? -1.45 : s * 0.52, knee = seated ? -1.4 : Math.max(0, -s) * 0.95 + 0.06 + (blend < 0.2 ? 0 : 0.06);
+    const foot = seated ? 0 : Math.max(0, s) * 0.35 - Math.max(0, -s) * 0.15;
     return (
-      <group position={[side * 0.11, 0.95, 0]} rotation={[thigh, 0, 0]}>
-        <mesh position={[0, -0.23, 0]}><capsuleGeometry args={[0.085, 0.36, 4, 10]} /><meshStandardMaterial color="#F2EFE8" roughness={0.8} /></mesh>
+      <group position={[side * 0.1, 0.95, 0]} rotation={[thigh, 0, side * 0.02]}>
+        <mesh position={[0, -0.23, 0]}><capsuleGeometry args={[0.088, 0.34, 6, 16]} />{pantsMat}</mesh>
         <group position={[0, -0.47, 0]} rotation={[knee, 0, 0]}>
-          <mesh position={[0, -0.21, 0]}><capsuleGeometry args={[0.072, 0.34, 4, 10]} /><meshStandardMaterial color="#ECE8DF" roughness={0.8} /></mesh>
-          <mesh position={[0, -0.45, -0.05]}><boxGeometry args={[0.12, 0.08, 0.27]} /><meshStandardMaterial color="#F8F8F8" roughness={0.5} /></mesh>
-          <mesh position={[0, -0.485, -0.05]}><boxGeometry args={[0.125, 0.025, 0.28]} /><meshStandardMaterial color="#222" /></mesh>
+          <mesh position={[0, -0.21, 0]}><capsuleGeometry args={[0.076, 0.33, 6, 16]} />{pantsMat}</mesh>
+          <group position={[0, -0.44, 0]} rotation={[foot, 0, 0]}>
+            <mesh position={[0, 0, -0.06]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 1, 0.75]}><capsuleGeometry args={[0.055, 0.17, 6, 14]} /><meshStandardMaterial color={npc ? '#222' : '#FAFAFA'} roughness={0.45} /></mesh>
+            <mesh position={[0, -0.045, -0.06]}><boxGeometry args={[0.115, 0.022, 0.29]} /><meshStandardMaterial color={npc ? '#111' : '#E8E2D6'} roughness={0.7} /></mesh>
+          </group>
         </group>
       </group>
     );
@@ -89,15 +116,18 @@ const Ped: React.FC<{f: number; tex: Tex; pos?: [number, number, number]; rotY?:
   const arm = (side: 1 | -1, baton = false) => {
     const s = -sw * side;
     return (
-      <group position={[side * 0.25, 1.47, 0]} rotation={[s * 0.5, 0, side * 0.08]}>
-        <mesh position={[0, -0.12, 0]} scale={[1.15, 1, 1.1]}><capsuleGeometry args={[0.075, 0.12, 4, 10]} /><meshStandardMaterial map={npc ? null : shirt} color={npc ?? '#ffffff'} roughness={0.9} /></mesh>
-        <mesh position={[0, -0.2, 0]}><capsuleGeometry args={[0.055, 0.2, 4, 10]} /><meshStandardMaterial color={skin} roughness={0.7} /></mesh>
-        <group position={[0, -0.32, 0]} rotation={[-0.25 - Math.max(0, s) * 0.5, 0, 0]}>
-          <mesh position={[0, -0.13, 0]}><capsuleGeometry args={[0.048, 0.22, 4, 10]} /><meshStandardMaterial color={skin} roughness={0.7} /></mesh>
-          <mesh position={[0, -0.3, 0]}><sphereGeometry args={[0.055, 12, 10]} /><meshStandardMaterial color={skin} roughness={0.7} /></mesh>
+      <group position={[side * 0.235, 1.47, 0]} rotation={[s * 0.48, 0, side * 0.1]}>
+        <mesh position={[0, -0.03, 0]}><sphereGeometry args={[0.078, 16, 12]} />{shirtMat}</mesh>
+        <mesh position={[0, -0.12, 0]} scale={[1.08, 1, 1.05]}><capsuleGeometry args={[0.07, 0.12, 6, 14]} />{shirtMat}</mesh>
+        <mesh position={[0, -0.205, 0]}><cylinderGeometry args={[0.072, 0.07, 0.035, 18]} />{shirtMat}</mesh>
+        <mesh position={[0, -0.25, 0]}><capsuleGeometry args={[0.05, 0.09, 6, 12]} /><meshStandardMaterial color={skin} roughness={0.6} /></mesh>
+        <group position={[0, -0.32, 0]} rotation={[-0.2 - Math.max(0, s) * 0.55, 0, 0]}>
+          <mesh position={[0, -0.13, 0]}><capsuleGeometry args={[0.045, 0.21, 6, 12]} /><meshStandardMaterial color={skin} roughness={0.6} /></mesh>
+          <mesh position={[0, -0.3, 0.005]} scale={[0.85, 1.15, 0.6]}><sphereGeometry args={[0.058, 14, 10]} /><meshStandardMaterial color={skin} roughness={0.6} /></mesh>
+          {side === 1 && !npc && <mesh position={[0, -0.25, 0]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.05, 0.008, 8, 20]} /><meshStandardMaterial color="#E8C547" metalness={0.9} roughness={0.2} /></mesh>}
           {baton && <group position={[0, -0.31, 0.02]} rotation={[1.3, 0, 0]}>
-            <mesh position={[0, 0.05, 0]}><cylinderGeometry args={[0.022, 0.022, 0.13, 10]} /><meshStandardMaterial color="#333" /></mesh>
-            <mesh position={[0, -0.22, 0]}><cylinderGeometry args={[0.018, 0.02, 0.45, 10]} /><meshStandardMaterial color="#111" metalness={0.4} roughness={0.4} /></mesh>
+            <mesh position={[0, 0.05, 0]}><cylinderGeometry args={[0.022, 0.022, 0.13, 12]} /><meshStandardMaterial color="#333" roughness={0.6} /></mesh>
+            <mesh position={[0, -0.22, 0]}><cylinderGeometry args={[0.017, 0.02, 0.45, 12]} /><meshStandardMaterial color="#0E0E10" metalness={0.5} roughness={0.3} /></mesh>
             <mesh position={[0, -0.02, 0]} rotation={[0, 0, Math.PI / 2]}><cylinderGeometry args={[0.012, 0.012, 0.14, 8]} /><meshStandardMaterial color="#444" /></mesh>
           </group>}
         </group>
@@ -106,35 +136,40 @@ const Ped: React.FC<{f: number; tex: Tex; pos?: [number, number, number]; rotY?:
   };
   return (
     <group position={[x, (pos ? pos[1] : 0) + bob, z]} rotation={[0, rotY, 0]}>
-      {!seated && <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.075 - bob, 0]}><circleGeometry args={[0.38, 24]} /><meshBasicMaterial color="#000" transparent opacity={0.35} /></mesh>}
-      {leg(1)}{leg(-1)}
-      <group position={[0, 0, 0]} rotation={[0, sw * 0.08, 0]}>
-        {/* bacino e cintura */}
-        <mesh position={[0, 0.98, 0]} scale={[1.25, 0.7, 0.9]}><sphereGeometry args={[0.15, 14, 10]} /><meshStandardMaterial color="#F2EFE8" /></mesh>
-        <mesh position={[0, 1.04, 0]}><cylinderGeometry args={[0.175, 0.17, 0.05, 16]} /><meshStandardMaterial color="#3A2416" /></mesh>
-        {/* busto in camicia */}
-        <mesh position={[0, 1.28 + breathe, 0]} scale={[1.18, 1, 0.8]}><capsuleGeometry args={[0.16, 0.3, 6, 16]} /><meshStandardMaterial map={npc ? null : shirt} color={npc ?? '#ffffff'} roughness={0.85} /></mesh>
-        {/* scollo aperto e collana */}
-        <mesh position={[0, 1.44, 0.128]} rotation={[-0.25, 0, Math.PI]}><circleGeometry args={[0.07, 3]} /><meshStandardMaterial color={skin} /></mesh>
-        <mesh position={[0, 1.44, 0.12]} rotation={[-0.2, 0, 0]}><torusGeometry args={[0.07, 0.006, 6, 20, Math.PI]} /><meshStandardMaterial color="#E8C547" metalness={0.9} roughness={0.25} /></mesh>
-        {arm(1, true)}{arm(-1)}
+      {!seated && <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.075 - bob, 0]}><circleGeometry args={[0.34, 24]} /><meshBasicMaterial color="#000" transparent opacity={0.22} /></mesh>}
+      <group rotation={[0, 0, sway]}>{leg(1)}{leg(-1)}
+        <mesh position={[0, 0.97, 0]} scale={[1.18, 0.75, 0.85]}><sphereGeometry args={[0.15, 20, 14]} />{pantsMat}</mesh>
+        <mesh position={[0, 1.035, 0]}><cylinderGeometry args={[0.168, 0.165, 0.045, 24]} /><meshStandardMaterial color="#2E1D12" roughness={0.5} /></mesh>
+        {!npc && <mesh position={[0, 1.035, 0.112]}><boxGeometry args={[0.05, 0.035, 0.01]} /><meshStandardMaterial color="#E8C547" metalness={0.95} roughness={0.2} /></mesh>}
+      </group>
+      <group rotation={[0, sw * 0.1, -sway * 0.6]}>
+        {/* busto sagomato in camicia */}
+        <mesh position={[0, 1.04 + breathe, 0]} geometry={TORSO_GEO}>{shirtMat}</mesh>
+        {/* scollo aperto, baveri, bottoni, catenina */}
+        <mesh position={[0, 1.43, 0.118]} rotation={[-0.28, 0, Math.PI]}><circleGeometry args={[0.085, 3]} /><meshStandardMaterial color={skin} roughness={0.6} /></mesh>
+        {[1, -1].map((sd) => <mesh key={sd} position={[sd * 0.055, 1.44, 0.122]} rotation={[-0.3, sd * 0.35, sd * 0.55]}><boxGeometry args={[0.07, 0.13, 0.008]} />{shirtMat}</mesh>)}
+        {[0, 1, 2, 3].map((k) => <mesh key={k} position={[0, 1.33 - k * 0.075, 0.128 - k * 0.004]}><sphereGeometry args={[0.007, 8, 6]} /><meshStandardMaterial color="#F4F0E8" /></mesh>)}
+        {!npc && <><mesh position={[0, 1.47, 0.07]} rotation={[-1.1, 0, 0]}><torusGeometry args={[0.075, 0.005, 6, 28]} /><meshStandardMaterial color="#F0C85A" metalness={1} roughness={0.18} /></mesh>
+          <mesh position={[0, 1.4, 0.125]}><cylinderGeometry args={[0.012, 0.012, 0.004, 14]} /><meshStandardMaterial color="#F0C85A" metalness={1} roughness={0.18} /></mesh></>}
+        {arm(1, !npc && !seated)}{arm(-1)}
         {/* collo con tatuaggio */}
-        <mesh position={[0, 1.6, 0]} rotation={[0, Math.PI * 0.9, 0]}><cylinderGeometry args={[0.072, 0.08, 0.17, 18]} /><meshStandardMaterial map={npc ? null : neckT} color={npc ? '#C68E6A' : '#ffffff'} roughness={0.7} /></mesh>
-        {/* testa */}
-        <group position={[0, 1.8, 0.01]} rotation={[-0.05 + Math.sin(f / 33) * 0.03, Math.sin(f / 47) * 0.12, 0]} scale={1.32}>
-          <mesh scale={[0.86, 1.1, 0.98]}><sphereGeometry args={[0.12, npc ? 16 : 48, npc ? 12 : 36]} /><meshStandardMaterial map={npc ? null : head} color={npc ? '#C68E6A' : '#ffffff'} roughness={0.75} /></mesh>
-          {npc ? <mesh position={[0, 0.02, 0]} scale={[0.92, 1, 1.02]}><sphereGeometry args={[0.125, 16, 8, 0, Math.PI * 2, 0, Math.PI * 0.42]} /><meshStandardMaterial color="#2A1C14" /></mesh> : <>
-          {/* capelli platino a riccioli */}
-          <mesh position={[0, 0.012, -0.004]} scale={[0.92, 1.0, 1.02]}><sphereGeometry args={[0.1225, 40, 20, 0, Math.PI * 2, 0, Math.PI * 0.3]} /><meshStandardMaterial map={hair} roughness={1} color="#D9D9E0" /></mesh>
-          {CURLS.map((c, i) => (
-            <mesh key={i} position={c.p}><sphereGeometry args={[c.r, 6, 4]} /><meshStandardMaterial color={c.c} roughness={0.95} /></mesh>
-          ))}
+        <mesh position={[0, 1.6, 0]} rotation={[0, Math.PI * 0.9, 0]}><cylinderGeometry args={[0.07, 0.085, 0.17, 24]} /><meshStandardMaterial map={npc ? null : neckT} color={npc ? '#C68E6A' : '#ffffff'} roughness={0.6} /></mesh>
+        {/* testa (stabilizzata durante la camminata) */}
+        <group position={[0, 1.8, 0.012]} rotation={[-0.04 + Math.sin(f / 33) * 0.025, -sw * 0.1 + Math.sin(f / 47) * 0.1, sway * 0.6]} scale={1.3}>
+          <mesh geometry={HEAD_GEO} scale={[0.9, 1.08, 0.98]}><meshStandardMaterial map={npc ? null : head} color={npc ? '#C68E6A' : '#ffffff'} roughness={0.62} /></mesh>
+          {npc ? <mesh position={[0, 0.02, 0]} scale={[0.95, 1, 1.02]}><sphereGeometry args={[0.125, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.42]} /><meshStandardMaterial color="#2A1C14" roughness={0.9} /></mesh> : <>
+            <mesh position={[0, 0.012, -0.004]} scale={[0.95, 1.0, 1.02]}><sphereGeometry args={[0.1225, 48, 20, 0, Math.PI * 2, 0, Math.PI * 0.3]} /><meshStandardMaterial map={hair} roughness={1} color="#D9D9E0" /></mesh>
+            {CURLS.map((c, i) => <mesh key={i} position={c.p}><sphereGeometry args={[c.r, 6, 4]} /><meshStandardMaterial color={c.c} roughness={0.95} /></mesh>)}
+            {/* occhiali da sole sulla testa (come nella foto) */}
+            <group position={[0, 0.098, 0.05]} rotation={[-0.55, 0, 0]}>
+              {[1, -1].map((sd) => <mesh key={sd} position={[sd * 0.034, 0, 0]} scale={[1, 0.78, 0.3]}><sphereGeometry args={[0.03, 16, 12]} /><meshStandardMaterial color="#2A1A3A" metalness={0.9} roughness={0.08} /></mesh>)}
+              <mesh rotation={[0, 0, Math.PI / 2]}><cylinderGeometry args={[0.003, 0.003, 0.13, 6]} /><meshStandardMaterial color="#E8C547" metalness={1} roughness={0.2} /></mesh>
+            </group>
           </>}
-          {/* orecchie e orecchino */}
-          {[1, -1].map((s) => (
-            <group key={s} position={[s * 0.104, -0.005, -0.005]}>
-              <mesh scale={[0.35, 1, 0.75]}><sphereGeometry args={[0.035, 12, 10]} /><meshStandardMaterial color={skin} /></mesh>
-              {s === -1 && <mesh position={[-0.009, -0.028, 0.006]}><sphereGeometry args={[0.0065, 10, 8]} /><meshStandardMaterial color="#F2F5FA" emissive="#9AA6B8" emissiveIntensity={0.4} metalness={0.3} roughness={0.2} /></mesh>}
+          {[1, -1].map((sd) => (
+            <group key={sd} position={[sd * 0.106, -0.008, -0.004]}>
+              <mesh scale={[0.35, 1, 0.72]}><sphereGeometry args={[0.034, 16, 12]} /><meshStandardMaterial color={skin} roughness={0.6} /></mesh>
+              {sd === -1 && !npc && <mesh position={[-0.009, -0.026, 0.006]}><sphereGeometry args={[0.0065, 12, 8]} /><meshStandardMaterial color="#F2F5FA" emissive="#9AA6B8" emissiveIntensity={0.4} metalness={0.3} roughness={0.15} /></mesh>}
             </group>
           ))}
         </group>
@@ -195,7 +230,7 @@ const focusZ = (f: number) => (f < DRIVE ? pedPos(f).z : carPos(f).z);
 const SuperCar: React.FC<{f: number; color?: string; driving?: boolean; tex?: Tex}> = ({f, color = '#D8102A', driving, tex}) => {
   const {x, z} = carPos(f);
   const spin = driving ? carDist(f) / 0.33 : 0;
-  const red = <meshStandardMaterial color={color} metalness={0.55} roughness={0.28} />;
+  const red = <meshStandardMaterial color={color} metalness={0.3} roughness={0.42} />;
   return (
     <group position={[x, 0, z]}>
       <mesh position={[0, 0.48, 0.1]}><boxGeometry args={[1.98, 0.5, 4.3]} />{red}</mesh>
@@ -211,7 +246,7 @@ const SuperCar: React.FC<{f: number; color?: string; driving?: boolean; tex?: Te
       {[-1.0, 1.0].map((sx) => [0, 1, 2, 3, 4].map((k) => <mesh key={`${sx}${k}`} position={[sx, 0.35 + k * 0.08, 0.9]}><boxGeometry args={[0.03, 0.035, 1.5]} /><meshStandardMaterial color="#6E0A16" /></mesh>))}
       {/* posteriore: griglia nera e luci */}
       <mesh position={[0, 0.52, 2.27]}><boxGeometry args={[1.9, 0.26, 0.04]} /><meshStandardMaterial color="#0A0A0A" /></mesh>
-      <mesh position={[0, 0.52, 2.29]}><boxGeometry args={[1.7, 0.08, 0.02]} /><meshBasicMaterial color="#FF2244" /></mesh>
+      <mesh position={[0, 0.52, 2.29]}><boxGeometry args={[1.7, 0.08, 0.02]} /><meshBasicMaterial color={[4, 0.4, 0.8]} toneMapped={false} /></mesh>
       <mesh position={[0, 0.5, -2.48]}><boxGeometry args={[1.5, 0.05, 0.02]} /><meshBasicMaterial color="#FFF3C4" /></mesh>
       {[[-0.88, -1.45], [0.88, -1.45], [-0.9, 1.5], [0.9, 1.5]].map(([wx, wz], k) => (
         <group key={k} position={[wx, 0.33, wz]} rotation={[spin, 0, 0]}>
@@ -350,14 +385,14 @@ const City: React.FC<{f: number; tex: Tex}> = ({f, tex}) => {
         <group key={i} position={[s * 6.4, 0, z]}>
           <mesh position={[0, 3.2, 0]}><cylinderGeometry args={[0.07, 0.09, 6.4, 8]} /><meshStandardMaterial color="#3A3A44" /></mesh>
           <mesh position={[-s * 0.8, 6.3, 0]}><boxGeometry args={[1.7, 0.1, 0.15]} /><meshStandardMaterial color="#3A3A44" /></mesh>
-          <mesh position={[-s * 1.55, 6.15, 0]}><boxGeometry args={[0.5, 0.12, 0.3]} /><meshBasicMaterial color="#FFE0A8" /></mesh>
+          <mesh position={[-s * 1.55, 6.15, 0]}><boxGeometry args={[0.5, 0.12, 0.3]} /><meshBasicMaterial color={[3, 2.4, 1.6]} toneMapped={false} /></mesh>
         </group>) : null; })}
       {[-60, -170, -290, -400].map((z) => near(z) ? (
         <group key={z} position={[0, 0, z]}>
           <mesh position={[6.5, 3.4, 0]}><cylinderGeometry args={[0.12, 0.14, 6.8, 8]} /><meshStandardMaterial color="#5A5A64" /></mesh>
           <mesh position={[0.5, 6.6, 0]}><boxGeometry args={[12, 0.18, 0.18]} /><meshStandardMaterial color="#5A5A64" /></mesh>
           {[-2.5, 2.5].map((lx) => <group key={lx} position={[lx, 6.1, 0]}><mesh><boxGeometry args={[0.4, 1.0, 0.3]} /><meshStandardMaterial color="#222" /></mesh>
-            <mesh position={[0, -0.3, 0.16]}><circleGeometry args={[0.12, 12]} /><meshBasicMaterial color="#3CFF6A" /></mesh>
+            <mesh position={[0, -0.3, 0.16]}><circleGeometry args={[0.12, 12]} /><meshBasicMaterial color={[0.6, 4, 1]} toneMapped={false} /></mesh>
             <mesh position={[0, 0.3, 0.16]}><circleGeometry args={[0.12, 12]} /><meshBasicMaterial color="#401010" /></mesh></group>)}
         </group>) : null)}
       {/* auto parcheggiate (lato destro e sinistro) */}
@@ -376,6 +411,35 @@ const City: React.FC<{f: number; tex: Tex}> = ({f, tex}) => {
       })}
     </group>
   );
+};
+
+/* ───── sole basso del tramonto che segue l'azione (ombre lunghe) ───── */
+const SunLight: React.FC<{f: number}> = ({f}) => {
+  const ref = React.useRef<THREE.DirectionalLight>(null);
+  const fx = f < DRIVE ? pedPos(f).x : carPos(f).x, fz = focusZ(f);
+  useLayoutEffect(() => {
+    const l = ref.current; if (!l) return;
+    l.position.set(fx - 14, 15, fz - 24); l.target.position.set(fx, 0, fz); l.target.updateMatrixWorld();
+    l.shadow.camera.updateProjectionMatrix();
+  }, [f]);
+  return <directionalLight ref={ref} intensity={2.4} color="#FFC08A" castShadow shadow-mapSize={[2048, 2048]} shadow-bias={-0.0004} shadow-normalBias={0.02}
+    shadow-camera-left={-16} shadow-camera-right={16} shadow-camera-top={16} shadow-camera-bottom={-16} shadow-camera-near={1} shadow-camera-far={80} />;
+};
+
+/* ───── ombre su tutti gli oggetti ───── */
+const ShadowSetup: React.FC<{f: number}> = ({f}) => {
+  const scene = useThree((st) => st.scene);
+  useLayoutEffect(() => {
+    scene.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (!m.isMesh) return;
+      const mat = m.material as THREE.Material & {transparent?: boolean};
+      const flat = m.geometry?.type === 'PlaneGeometry' || m.geometry?.type === 'CircleGeometry';
+      m.castShadow = !flat && !mat.transparent;
+      m.receiveShadow = true;
+    });
+  }, [f]);
+  return null;
 };
 
 /* ───── regia ───── */
@@ -404,11 +468,12 @@ const Scene3D: React.FC = () => {
   const c = carPos(f);
   const driving = f >= DRIVE;
   return (
-    <ThreeCanvas width={W} height={H} camera={{fov: 45, near: 0.05, far: 700, position: [0, 2, 5]}} gl={{antialias: true}}>
+    <ThreeCanvas width={W} height={H} camera={{fov: 45, near: 0.05, far: 700, position: [0, 2, 5]}} shadows gl={{antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.05}}>
+      <ShadowSetup f={f} />
       <color attach="background" args={['#3A3050']} />
       <fog attach="fog" args={['#7E6276', 40, 230]} />
       <hemisphereLight args={['#C9B0E0', '#B07A5C', 0.95]} />
-      <directionalLight position={[-10, 14, -40]} intensity={1.5} color="#FFC08A" />
+      <SunLight f={f} />
       <directionalLight position={[10, 8, 20]} intensity={0.45} color="#A090FF" />
       <CameraRig f={f} />
       <City f={f} tex={tex} />
@@ -417,6 +482,12 @@ const Scene3D: React.FC = () => {
       {!driving && <Dog f={f} />}
       {driving && <Ped f={f} tex={tex} seated pos={[c.x - 0.4, -0.27, c.z + 0.35]} />}
       {driving && <Dog f={f} still pos={[c.x + 0.42, 0.33, c.z + 0.3]} />}
+      <EffectComposer multisampling={4}>
+        <Bloom intensity={0.85} luminanceThreshold={0.9} luminanceSmoothing={0.15} mipmapBlur />
+        <HueSaturation saturation={0.12} />
+        <BrightnessContrast contrast={0.08} />
+        <Vignette darkness={0.55} offset={0.3} />
+      </EffectComposer>
     </ThreeCanvas>
   );
 };
