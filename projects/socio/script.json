@@ -37,6 +37,16 @@
    ]
   },
   {
+   "id": "ufficio",
+   "text": [
+    "Dietro ad Argo Maris c'è una squadra organizzata.",
+    "Un ufficio commerciale ben gestito, che riceve gli ordini, confronta i prezzi e segue ogni cliente.",
+    "Gli esploratori d'asta, ogni giorno nei porti e nelle aste del Tirreno e dell'Adriatico, a caccia delle occasioni migliori.",
+    "Il controllo qualità, che verifica ogni lotto prima che parta.",
+    "E la logistica, che organizza i camion refrigerati e le consegne."
+   ]
+  },
+  {
    "id": "partner",
    "text": [
     "E non partiamo da soli.",
@@ -53,6 +63,74 @@
     "Alle tre del pomeriggio, l'asta, per il pesce del giorno.",
     "In serata conferme e documenti; di notte la consegna. E la mattina dopo, il pesce è sul banco."
    ]
+  },
+  {
+   "id": "piattaforma",
+   "text": [
+    "E ordinare è semplicissimo.",
+    "Dall'area clienti Argo Maris, il punto vendita sceglie i prodotti del giorno, con foto, prezzo e zona di cattura.",
+    "Inserisce le quantità, sceglie la consegna, e invia. In pochi secondi.",
+    "Poi segue tutto in tempo reale: ordine ricevuto, merce assegnata, in viaggio, consegnata.",
+    "Una sola fattura, e tutti i documenti, sempre pronti da scaricare."
+   ]
+  },
+  {
+   "id": "carfoto",
+   "text": [
+    "Ed ecco il pesce vero, come lo troviamo ogni mattina al mercato.",
+    "Gli scorfani e le gallinelle, il pesce San Pietro, le triglie.",
+    "Le seppie, le mazzancolle, i pagelli, e perfino le aragoste.",
+    "Pesce scelto, cassetta per cassetta."
+   ]
+  },
+  {
+   "id": "specie",
+   "text": [
+    "Ma quale pesce trattiamo? Tantissimo, e di ogni tipo.",
+    "Il pesce locale del Tirreno e dell'Adriatico: ci sono le triglie e gli scorfani, le gallinelle e il pesce San Pietro, i pagelli, i dentici e i saraghi.",
+    "E poi le ricciole e le lecce, le spigole e le orate di mare, i cefali, le sogliole e i rombi.",
+    "Il pesce azzurro: le alici e le sardine, gli sgombri e le palamite, il tonno e il pesce spada.",
+    "I molluschi: le seppie e i calamari, i polpi e i moscardini.",
+    "E i crostacei: i gamberi rosa e i gamberi rossi, le mazzancolle, gli scampi e le aragoste."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "frutti",
+   "text": [
+    "E poi i frutti di mare.",
+    "Le cozze e le vongole veraci, le telline e i fasolari, i cannolicchi e le ostriche.",
+    "Arrivano da zone di produzione classificate, e passano dai centri di depurazione e di spedizione riconosciuti.",
+    "Si vendono vivi, in confezioni chiuse, con l'etichetta: specie, zona di produzione, numero del centro e data di confezionamento."
+   ]
+  },
+  {
+   "id": "broker",
+   "text": [
+    "Perché conviene un buyer, invece di trattare direttamente con i fornitori?",
+    "Senza buyer: dieci fornitori, dieci telefonate, decine di fatture, e dieci consegne da controllare.",
+    "Con Argo Maris: un solo contatto, un solo ordine, una sola fattura, una sola consegna.",
+    "E in più, prezzi confrontati ogni giorno su tutto il mercato, aste comprese, che da soli non si raggiungono.",
+    "Meno lavoro, meno rischi, più scelta. Ecco perché conviene."
+   ],
+   "pauses": {
+    "1": 0.5,
+    "3": 0.45
+   }
+  },
+  {
+   "id": "contatto",
+   "text": [
+    "E qui c'è il vero potenziale: un contatto che si occupa di tutto.",
+    "Un messaggio la sera, e la mattina dopo il pesce è sul banco.",
+    "Se un fornitore resta senza merce, il problema lo risolve lui, subito.",
+    "Ricerca, prezzi, qualità, documenti, logistica e reclami: tutto in un solo numero."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
   },
   {
    "id": "ruoli",
@@ -119,6 +197,17 @@
     "Se un cliente non paga, c'è l'assicurazione crediti, o il factoring pro soluto.",
     "Se il camion perde il freddo, c'è l'assicurazione delle merci trasportate.",
     "E se il mare è grosso sul Tirreno, lavoriamo l'Adriatico e il mercato."
+   ]
+  },
+  {
+   "id": "import",
+   "text": [
+    "E quando serve, completiamo con le importazioni.",
+    "Dalla Norvegia, il salmone e il merluzzo.",
+    "Dalla Francia, le ostriche e le cozze. Dalla Spagna e dal Portogallo, i gamberi, il polpo e le sardine.",
+    "Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico.",
+    "Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento.",
+    "Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
    ]
   },
   {

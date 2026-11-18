@@ -18,8 +18,8 @@ const Wrap: React.FC<{dur: number; first: boolean; last: boolean; children: Reac
 export const WideVideo: React.FC<{
   timeline: {frames: number; total: number; scenes: SceneData[]; slug: string};
   scenes: Record<string, React.FC<SP>>; chapters: Record<string, string>; subtitle: string;
-  highlight?: Record<string, string>; withVoice?: boolean; noHeader?: string[]; noCaptions?: string[];
-}> = ({timeline, scenes, chapters, subtitle, highlight, withVoice = true, noHeader = [], noCaptions = []}) => {
+  highlight?: Record<string, string>; withVoice?: boolean; noHeader?: string[]; noCaptions?: string[]; partnerImg?: string;
+}> = ({timeline, scenes, chapters, subtitle, highlight, withVoice = true, noHeader = [], noCaptions = [], partnerImg}) => {
   const {fps} = useVideoConfig();
   const f = useCurrentFrame();
   const t = f / fps;
@@ -43,7 +43,7 @@ export const WideVideo: React.FC<{
         );
       })}
       {!noHeader.includes(cur.id) && (
-        <Header subtitle={subtitle} chapter={chapters[cur.id]} idx={chapNames.indexOf(chapters[cur.id]) + 1} total={chapNames.length} progress={t / timeline.total} />
+        <Header subtitle={subtitle} chapter={chapters[cur.id]} idx={chapNames.indexOf(chapters[cur.id]) + 1} total={chapNames.length} progress={t / timeline.total} partnerImg={partnerImg} />
       )}
       <Captions16 words={words} highlight={highlight} />
       {withVoice && <Audio src={staticFile(`${timeline.slug}/voice.wav`)} />}

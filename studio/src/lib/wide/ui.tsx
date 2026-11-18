@@ -81,10 +81,11 @@ export const Emblem: React.FC<{size?: number; ring?: string}> = ({size = 60, rin
 };
 
 /* ───────── header ───────── */
-export const Header: React.FC<{subtitle: string; chapter?: string; idx?: number; total?: number; progress?: number}> = ({subtitle, chapter, idx, total, progress = 0}) => (
+export const Header: React.FC<{subtitle: string; chapter?: string; idx?: number; total?: number; progress?: number; partnerImg?: string}> = ({subtitle, chapter, idx, total, progress = 0, partnerImg}) => (
   <>
     <div style={{position: 'absolute', top: 40, left: 64, display: 'flex', alignItems: 'center', gap: 18}}>
       <Emblem size={58} />
+      {partnerImg && <><span style={{fontFamily: FONT, fontWeight: 900, fontSize: 26, color: C.foam}}>×</span><Img src={staticFile(partnerImg)} style={{height: 58, borderRadius: 10, border: '3px solid #fff'}} /></>}
       <div>
         <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 26, letterSpacing: 5, color: C.foam}}>ARGO MARIS</div>
         <div style={{fontFamily: FONT, fontWeight: 600, fontSize: 17, letterSpacing: 2, color: 'rgba(232,251,255,0.6)'}}>{subtitle}</div>

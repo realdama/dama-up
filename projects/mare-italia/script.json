@@ -49,6 +49,16 @@
    ]
   },
   {
+   "id": "ufficio",
+   "text": [
+    "Dietro ad Argo Maris c'è una squadra organizzata.",
+    "Un ufficio commerciale ben gestito, che riceve gli ordini, confronta i prezzi e segue ogni cliente.",
+    "Gli esploratori d'asta, ogni giorno nei porti e nelle aste del Tirreno e dell'Adriatico, a caccia delle occasioni migliori.",
+    "Il controllo qualità, che verifica ogni lotto prima che parta.",
+    "E la logistica, che organizza i camion refrigerati e le consegne."
+   ]
+  },
+  {
    "id": "idea",
    "text": [
     "L'idea è semplice.",
@@ -69,6 +79,47 @@
    "pauses": {
     "0": 0.45
    }
+  },
+  {
+   "id": "carfoto",
+   "text": [
+    "Ed ecco il pesce vero, come lo troviamo ogni mattina al mercato.",
+    "Gli scorfani e le gallinelle, il pesce San Pietro, le triglie.",
+    "Le seppie, le mazzancolle, i pagelli, e perfino le aragoste.",
+    "Pesce scelto, cassetta per cassetta."
+   ]
+  },
+  {
+   "id": "specie",
+   "text": [
+    "Ma quale pesce trattiamo? Tantissimo, e di ogni tipo.",
+    "Il pesce locale del Tirreno e dell'Adriatico: ci sono le triglie e gli scorfani, le gallinelle e il pesce San Pietro, i pagelli, i dentici e i saraghi.",
+    "E poi le ricciole e le lecce, le spigole e le orate di mare, i cefali, le sogliole e i rombi.",
+    "Il pesce azzurro: le alici e le sardine, gli sgombri e le palamite, il tonno e il pesce spada.",
+    "I molluschi: le seppie e i calamari, i polpi e i moscardini.",
+    "E i crostacei: i gamberi rosa e i gamberi rossi, le mazzancolle, gli scampi e le aragoste."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "allevato",
+   "text": [
+    "C'è poi il pesce d'allevamento, che garantisce volumi costanti tutto l'anno.",
+    "Le orate e le spigole, ma anche le ombrine.",
+    "Arrivano dagli allevamenti italiani, e da Grecia, Turchia e Croazia.",
+    "E in etichetta è sempre scritto: allevato, con il paese di allevamento."
+   ]
+  },
+  {
+   "id": "frutti",
+   "text": [
+    "E poi i frutti di mare.",
+    "Le cozze e le vongole veraci, le telline e i fasolari, i cannolicchi e le ostriche.",
+    "Arrivano da zone di produzione classificate, e passano dai centri di depurazione e di spedizione riconosciuti.",
+    "Si vendono vivi, in confezioni chiuse, con l'etichetta: specie, zona di produzione, numero del centro e data di confezionamento."
+   ]
   },
   {
    "id": "vantaggi_mi",
@@ -102,6 +153,20 @@
    ]
   },
   {
+   "id": "broker",
+   "text": [
+    "Perché conviene un buyer, invece di trattare direttamente con i fornitori?",
+    "Senza buyer: dieci fornitori, dieci telefonate, decine di fatture, e dieci consegne da controllare.",
+    "Con Argo Maris: un solo contatto, un solo ordine, una sola fattura, una sola consegna.",
+    "E in più, prezzi confrontati ogni giorno su tutto il mercato, aste comprese, che da soli non si raggiungono.",
+    "Meno lavoro, meno rischi, più scelta. Ecco perché conviene."
+   ],
+   "pauses": {
+    "1": 0.5,
+    "3": 0.45
+   }
+  },
+  {
    "id": "mari",
    "text": [
     "Insieme, l'assortimento diventa completo.",
@@ -109,6 +174,30 @@
     "Le marinerie del Tirreno, da Viareggio a Gaeta.",
     "Le marinerie dell'Adriatico, da Chioggia a Manfredonia.",
     "E, quando serve, l'estero."
+   ]
+  },
+  {
+   "id": "fao",
+   "text": [
+    "Ma come si legge l'origine del pesce? Con le zone FAO.",
+    "Il Mediterraneo è la zona trentasette. Il nostro Tirreno è la trentasette punto uno punto tre.",
+    "L'Adriatico è la trentasette punto due punto uno, e lo Ionio la trentasette punto due punto due.",
+    "Fuori dal Mediterraneo, l'Atlantico nord-orientale è la zona ventisette, e quello centro-orientale, davanti a Marocco e Senegal, è la zona trentaquattro.",
+    "La zona FAO è sempre in etichetta: così chi compra sa da dove arriva il pesce."
+   ],
+   "pauses": {
+    "0": 0.45
+   }
+  },
+  {
+   "id": "import",
+   "text": [
+    "E quando serve, completiamo con le importazioni.",
+    "Dalla Norvegia, il salmone e il merluzzo.",
+    "Dalla Francia, le ostriche e le cozze. Dalla Spagna e dal Portogallo, i gamberi, il polpo e le sardine.",
+    "Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico.",
+    "Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento.",
+    "Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
    ]
   },
   {

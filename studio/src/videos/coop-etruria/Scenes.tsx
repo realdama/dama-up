@@ -686,12 +686,12 @@ export const Estero: React.FC<SP> = (p) => {
 export const Perche: React.FC<SP> = (p) => {
   const {B} = useScene(p);
   const cards = [
-    {i: 'search', t: 'Buyer esploratore', s: 'tutto il mercato di Roma a disposizione'},
-    {i: 'boat', t: 'Tirreno e Adriatico', s: '24 marinerie, a rotazione'},
-    {i: 'storm', t: 'Continuità', s: 'anche quando il mare è grosso'},
+    {i: 'people', t: 'Squadra organizzata', s: "ufficio commerciale ed esploratori d'asta"},
+    {i: 'fish', t: 'Oltre 40 specie', s: "mercato di Roma, due mari, importazione"},
+    {i: 'phone', t: 'Ordini semplici', s: 'area clienti o un messaggio'},
     {i: 'truck', t: 'Logistica flessibile', s: 'fino alla consegna diretta in negozio'},
-    {i: 'shield', t: 'Assicurati e tracciati', s: 'un solo referente, sempre raggiungibile'},
-  ];
+    {i: 'shield', t: 'Qualità e un solo referente', s: 'controlli, tracciabilità, sempre raggiungibile'},
+];
   return (
     <AbsoluteFill>
       <Title kicker="In sintesi" title="Perché scegliere Argo Maris?" at={B(0) - 6} />

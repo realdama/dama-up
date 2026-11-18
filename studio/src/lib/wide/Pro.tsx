@@ -104,12 +104,12 @@ export const Ufficio: React.FC<SP> = (p) => {
       <Title kicker="La squadra" title="Gli uffici di Argo Maris" at={B(0) - 6} />
       <Svg>
         {/* stanza */}
-        <rect x={80} y={250} width={1760} height={650} rx={30} fill="#E9EEF4" />
+        <rect x={80} y={275} width={1760} height={625} rx={30} fill="#E9EEF4" />
         <rect x={80} y={760} width={1760} height={140} rx={0} fill="#C9D3DF" />
-        <rect x={80} y={250} width={1760} height={650} rx={30} fill="none" stroke="#0A1A2E" strokeWidth={6} />
+        <rect x={80} y={275} width={1760} height={625} rx={30} fill="none" stroke="#0A1A2E" strokeWidth={6} />
         {/* finestre con il mare */}
         {[0, 1, 2].map((i) => (
-          <g key={i} transform={`translate(${170 + i * 210} 290)`}>
+          <g key={i} transform={`translate(${170 + i * 210} 310)`}>
             <rect width={180} height={150} rx={10} fill="#7FC8F0" stroke="#3A4A5E" strokeWidth={5} />
             <rect y={95} width={180} height={55} fill={C.sea} />
             <path d={`M 0 ${100 + Math.sin(f / 12 + i) * 3} q 45 -10 90 0 t 90 0`} stroke="#fff" strokeWidth={3} fill="none" opacity={0.7} />
@@ -117,14 +117,14 @@ export const Ufficio: React.FC<SP> = (p) => {
           </g>
         ))}
         {/* parete: mappa dei due mari */}
-        <g transform="translate(860 290)">
+        <g transform="translate(860 310)">
           <rect width={300} height={190} rx={10} fill="#0D2440" stroke="#3A4A5E" strokeWidth={5} />
           <path d="M 120 20 Q 150 60 140 100 Q 170 130 200 170" stroke="#2C6E4E" strokeWidth={34} fill="none" strokeLinecap="round" />
           {[[90, 70], [110, 120], [140, 150], [205, 60], [225, 100], [245, 135]].map(([px, py], i) => <circle key={i} cx={px} cy={py} r={5 + Math.sin(f / 8 + i) * 1.5} fill={i < 3 ? C.aqua : C.gold} />)}
           <text x={150} y={185} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={14} fill={C.foam}>TIRRENO · ADRIATICO</text>
         </g>
         {/* lavagna ordini */}
-        <g transform="translate(1210 290)">
+        <g transform="translate(1210 310)">
           <rect width={280} height={190} rx={10} fill="#FFFFFF" stroke="#3A4A5E" strokeWidth={5} />
           <text x={20} y={34} fontFamily={FONT} fontWeight={900} fontSize={20} fill={C.abyss}>ORDINI DI OGGI</text>
           {['Coop · Orate 40 kg', 'Coop · Calamari 25 kg', 'GDO · Triglie 15 kg', 'GDO · Cozze 60 kg'].map((t, i) => (
@@ -135,7 +135,7 @@ export const Ufficio: React.FC<SP> = (p) => {
           ))}
         </g>
         {/* logo in parete */}
-        <foreignObject x={1560} y={280} width={220} height={220}><div style={{width: 210, height: 210}}><Emblem size={200} /></div></foreignObject>
+        <foreignObject x={1570} y={300} width={220} height={220}><div style={{width: 210, height: 210}}><Emblem size={200} /></div></foreignObject>
         {/* postazioni */}
         <g opacity={lit(1)}><Desk x={330} y={640} screen="orders" /><Person x={330} y={600} s={0.9} pose="desk" headset shirt="#1C5FA8" seed={1} /></g>
         <g opacity={lit(1)}><Desk x={620} y={640} screen="chart" /><Person x={620} y={600} s={0.9} pose="desk" headset shirt="#2A7A6E" hair="#5A3A22" skin="#C68E6A" seed={2} /></g>
@@ -359,16 +359,28 @@ export const FruttiMare: React.FC<SP> = (p) => {
 };
 
 /* 6 ─ ZONE FAO ─ beat: 0 intro · 1 Med 37 + Tirreno · 2 Adriatico + Ionio · 3 Atlantico 27 e 34 · 4 in etichetta */
+const centroid = (d: string): [number, number] => {
+  const n = (d.match(/-?\d+(\.\d+)?/g) ?? []).map(Number);
+  let x = 0, y = 0, k = 0;
+  for (let i = 0; i + 1 < n.length; i += 2) { x += n[i]; y += n[i + 1]; k++; }
+  return [x / Math.max(1, k), y / Math.max(1, k)];
+};
 export const Fao: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
   const Z = zonesOf('fao');
-  const zone = (k: string, at: number, c: string, label: string, lx: number, ly: number) => {
+  const r = pt('fao', 'roma2');
+  const med = {s: 2.15, x: W / 2 - r[0] + 60, y: H / 2 - r[1] - 40};
+  const all = {s: 1.05, x: 60, y: -80};
+  const S = f < B(3) - 10 ? med.s : all.s;
+  const zone = (k: string, at: number, c: string, label: string, off: [number, number] = [0, 0]) => {
     const q = ez(f, at, at + 18);
+    const lo = k.startsWith('37') ? (S > 1.5 ? 1 : 0) : 1;
+    const [cx, cy] = centroid(Z[k] ?? '');
     return (
       <g key={k} opacity={q}>
-        <path d={Z[k]} fill={c} opacity={0.32 + 0.12 * Math.sin(f / 10)} stroke={c} strokeWidth={3} />
-        <g transform={`translate(${lx} ${ly}) scale(${0.7 + q * 0.3})`}>
-          <rect x={-78} y={-24} width={156} height={48} rx={12} fill="rgba(2,11,26,0.9)" stroke={c} strokeWidth={3} />
+        <path d={Z[k]} fill={c} opacity={0.42 + 0.12 * Math.sin(f / 10)} stroke={c} strokeWidth={3 / S} />
+        <g opacity={lo} transform={`translate(${cx + off[0]} ${cy + off[1]}) scale(${(0.7 + q * 0.3) / S})`}>
+          <rect x={-74} y={-24} width={148} height={48} rx={12} fill="rgba(2,11,26,0.92)" stroke={c} strokeWidth={3} />
           <text y={9} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={26} fill={C.foam}>{label}</text>
         </g>
       </g>
@@ -377,21 +389,24 @@ export const Fao: React.FC<SP> = (p) => {
   const lab = useIn(B(4), {damping: 12});
   return (
     <AbsoluteFill>
-      <MapView view="fao">
-        {zone('37.1.3', B(1) + 30, C.aqua, '37.1.3', 1132, 660)}
-        {zone('37.2.1', B(2), C.gold, '37.2.1', 1290, 560)}
-        {zone('37.2.2', B(2) + 30, '#7CF29A', '37.2.2', 1320, 760)}
-        {zone('37.1.1', B(1) + 10, '#9AB8FF', '37.1.1', 930, 710)}
-        {zone('37.1.2', B(1) + 16, '#9AB8FF', '37.1.2', 1010, 560)}
-        {zone('37.3.1', B(1) + 22, '#9AB8FF', '37.3.1', 1560, 700)}
-        {zone('37.3.2', B(1) + 26, '#9AB8FF', '37.3.2', 1720, 830)}
-        {zone('27', B(3), C.violet, 'FAO 27', 640, 300)}
-        {zone('34', B(3) + 40, C.coral, 'FAO 34', 560, 820)}
+      <MapView view="fao" cam={[med, med, all]} camAt={[0, B(3) - 30, B(3) + 10]}>
+        {zone('37.1.1', B(1) + 10, '#9AB8FF', '37.1.1')}
+        {zone('37.1.2', B(1) + 16, '#9AB8FF', '37.1.2')}
+        {zone('37.1.3', B(1) + 30, C.aqua, '37.1.3', [-20, 10])}
+        {zone('37.3.1', B(1) + 22, '#9AB8FF', '37.3.1')}
+        {zone('37.3.2', B(1) + 26, '#9AB8FF', '37.3.2')}
+        {zone('37.2.1', B(2), C.gold, '37.2.1', [10, -10])}
+        {zone('37.2.2', B(2) + 30, '#7CF29A', '37.2.2', [-30, -40])}
+        {zone('27', B(3), C.violet, 'FAO 27', [-60, -40])}
+        {zone('34', B(3) + 40, C.coral, 'FAO 34', [-20, 0])}
+        {S < 1.5 && (() => { const [mx, my] = centroid(Z['37.2.2'] ?? ''); return <g transform={`translate(${mx - 60} ${my - 40})`}><rect x={-80} y={-26} width={160} height={52} rx={12} fill="rgba(2,11,26,0.92)" stroke={C.aqua} strokeWidth={3} /><text y={10} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={28} fill={C.foam}>FAO 37</text></g>; })()}
       </MapView>
       <Title kicker="L'origine" title="Le zone FAO" at={B(0) - 6} />
-      <div style={{position: 'absolute', left: 110, top: 300, fontFamily: FONT, fontWeight: 900, fontSize: 34, color: C.foam, opacity: ez(f, B(1), B(1) + 10)}}>Mediterraneo = <span style={{color: C.aqua}}>zona 37</span></div>
-      <div style={{position: 'absolute', left: 110, top: 360, fontFamily: FONT, fontWeight: 700, fontSize: 24, color: 'rgba(232,251,255,0.75)', opacity: ez(f, B(1), B(1) + 10)}}>schema indicativo delle sottozone</div>
-      <div style={{position: 'absolute', left: 110, top: 760, width: 560, borderRadius: 16, background: '#F4F7FA', padding: '14px 22px', transform: `scale(${lab}) rotate(-1deg)`, opacity: lab, boxShadow: '0 20px 60px rgba(0,0,0,0.5)'}}>
+      <div style={{position: 'absolute', left: 110, top: 290, padding: '10px 20px', borderRadius: 16, background: 'rgba(2,11,26,0.85)', opacity: ez(f, B(1), B(1) + 10)}}>
+        <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 32, color: C.foam}}>Mediterraneo = <span style={{color: C.aqua}}>zona 37</span></div>
+        <div style={{fontFamily: FONT, fontWeight: 700, fontSize: 20, color: 'rgba(232,251,255,0.75)'}}>schema indicativo delle sottozone</div>
+      </div>
+      <div style={{position: 'absolute', right: 110, top: 740, width: 560, borderRadius: 16, background: '#F4F7FA', padding: '14px 22px', transform: `scale(${lab}) rotate(-1deg)`, opacity: lab, boxShadow: '0 20px 60px rgba(0,0,0,0.5)'}}>
         {[['Specie', 'Triglia di fango'], ['Zona di cattura', 'FAO 37.1.3 · Mar Tirreno'], ['Attrezzo', 'Reti da traino']].map(([k, v], i) => (
           <div key={i} style={{display: 'flex', justifyContent: 'space-between', padding: '6px 0', fontFamily: FONT, borderBottom: i < 2 ? '1px solid #C9D6E3' : 'none'}}><span style={{fontWeight: 700, fontSize: 20, color: '#4A6075'}}>{k}</span><span style={{fontWeight: 900, fontSize: 21, color: C.abyss, background: i === 1 ? '#FFE9A8' : 'transparent'}}>{v}</span></div>
         ))}
@@ -408,7 +423,7 @@ export const Import: React.FC<SP> = (p) => {
   const C2 = [
     {k: 'norvegia', l: 'Norvegia', at: B(1), sp: ['salmone', 'merluzzo'], side: 'r' as const},
     {k: 'francia', l: 'Francia', at: Wd('francia'), sp: ['ostrica', 'cozza'], side: 'l' as const},
-    {k: 'spagna', l: 'Spagna', at: Wd('spagna'), sp: ['gambero', 'polpo'], side: 'l' as const},
+    {k: 'spagna', l: 'Spagna', at: Wd('spagna'), sp: ['gambero', 'polpo'], side: 'r' as const},
     {k: 'portogallo', l: 'Portogallo', at: Wd('portogallo'), sp: ['sardina', 'polpo'], side: 'l' as const},
     {k: 'marocco', l: 'Marocco', at: Wd('marocco'), sp: ['polpo', 'sardina'], side: 'l' as const},
     {k: 'senegal', l: 'Senegal', at: Wd('senegal'), sp: ['seppia', 'dentice'], side: 'r' as const},
@@ -418,7 +433,7 @@ export const Import: React.FC<SP> = (p) => {
   const docs = useIn(B(5), {damping: 12});
   return (
     <AbsoluteFill>
-      <MapView view="fao" italy="#2A6FA8">
+      <MapView view="fao" italy="#2A6FA8" cam={[{s: 0.98, x: 80, y: -175}, {s: 0.98, x: 80, y: -175}]} camAt={[0, 10]}>
         <Port x={roma[0]} y={roma[1]} at={0} label="Roma" side="r" color={C.aqua} />
         {C2.map((c) => (
           <g key={c.k}>
@@ -526,11 +541,11 @@ export const Contatto: React.FC<SP & {client?: string}> = ({client = 'Punto vend
 export const Freschezza: React.FC<SP> = (p) => {
   const {f, B, Wd} = useScene(p);
   const pts: [string, string, number, number, number, number][] = [
-    ['occhio', 'Occhio vivo e convesso', 690, 470, 360, 330],
-    ['branchie', 'Branchie rosso brillante', 800, 520, 560, 760],
-    ['pelle', 'Pelle lucida', 1000, 470, 1120, 330],
-    ['carne', 'Carne soda', 1130, 560, 1420, 760],
-    ['odore', 'Odore di mare', 760, 560, 1500, 470],
+    ['occhio', 'Occhio vivo e convesso', 747, 494, 470, 330],
+    ['branchie', 'Branchie rosso brillante', 808, 525, 640, 770],
+    ['pelle', 'Pelle lucida', 990, 470, 1080, 330],
+    ['carne', 'Carne soda', 1090, 540, 1420, 700],
+    ['odore', 'Odore di mare', 668, 525, 330, 560],
   ];
   const stamp = useIn(B(3) + 10, {damping: 8});
   const temp = interpolate(f, [B(2), B(2) + 50], [9, 0.5], clamp);
@@ -539,7 +554,7 @@ export const Freschezza: React.FC<SP> = (p) => {
       <Title kicker="Qualità" title="Come si controlla il pesce" at={B(0) - 6} />
       <Svg>
         <g transform="translate(940 520) scale(3.2)" opacity={ez(f, B(0), B(0) + 14)}><Fish sp="spigola" x={0} y={0} /></g>
-        <circle cx={800} cy={520} r={18} fill="#E0303A" opacity={ez(f, Wd('branchie'), Wd('branchie') + 10) * 0.7} />
+        <circle cx={808} cy={525} r={18} fill="#E0303A" opacity={ez(f, Wd('branchie'), Wd('branchie') + 10) * 0.7} />
         {pts.map(([k, t, x, y, lx, ly]) => {
           const q = ez(f, Wd(k) - 2, Wd(k) + 12);
           return <g key={k} opacity={q}>
@@ -550,11 +565,11 @@ export const Freschezza: React.FC<SP> = (p) => {
           </g>;
         })}
       </Svg>
-      <div style={{position: 'absolute', left: 110, top: 760, display: 'flex', alignItems: 'center', gap: 16, opacity: ez(f, B(2), B(2) + 10)}}>
+      <div style={{position: 'absolute', left: 110, top: 850, display: 'flex', alignItems: 'center', gap: 16, opacity: ez(f, B(2), B(2) + 10)}}>
         <Icon name="thermo" size={60} color={temp < 3 ? C.aqua : C.coral} /><span style={{fontFamily: MONO, fontWeight: 700, fontSize: 52, color: temp < 3 ? C.aqua : C.coral}}>{temp.toFixed(1).replace('.', ',')} °C</span>
         <span style={{fontFamily: FONT, fontWeight: 800, fontSize: 24, color: C.foam}}>ghiaccio fondente · lotto tracciato</span>
       </div>
-      <div style={{position: 'absolute', right: 120, top: 760, transform: `rotate(-10deg) scale(${2 - stamp})`, opacity: stamp, border: `7px solid ${C.coral}`, borderRadius: 16, padding: '6px 22px', fontFamily: FONT, fontWeight: 900, fontSize: 46, color: C.coral, background: 'rgba(2,11,26,0.7)'}}>LOTTO NON PERFETTO = NON PARTE</div>
+      <div style={{position: 'absolute', right: 110, top: 840, transform: `rotate(-4deg) scale(${2 - stamp})`, opacity: stamp, border: `7px solid ${C.coral}`, borderRadius: 16, padding: '6px 22px', fontFamily: FONT, fontWeight: 900, fontSize: 38, color: C.coral, background: 'rgba(2,11,26,0.7)'}}>LOTTO NON PERFETTO = NON PARTE</div>
     </AbsoluteFill>
   );
 };
@@ -593,4 +608,16 @@ export const CarFoto: React.FC<SP> = (p) => {
       <div style={{position: 'absolute', right: 110, top: 720, width: 300, fontFamily: FONT, fontWeight: 900, fontSize: 30, color: C.gold, textAlign: 'right', opacity: ez(f, B(3), B(3) + 12)}}>Selezionato cassetta per cassetta</div>
     </AbsoluteFill>
   );
+};
+
+/* ───────── registro scene pro (per video) ───────── */
+export const proScenes = (client: string, clientImg?: string): Record<string, React.FC<SP>> => ({
+  ufficio: Ufficio, specie: Specie, carfoto: CarFoto, allevato: Allevato, frutti: FruttiMare, fao: Fao, import: Import,
+  broker: BrokerVsDiretto, freschezza: Freschezza,
+  piattaforma: (p: SP) => <Piattaforma {...p} client={client} clientImg={clientImg} />,
+  contatto: (p: SP) => <Contatto {...p} client={client} />,
+});
+export const PRO_CHAPTERS: Record<string, string> = {
+  ufficio: 'La squadra', piattaforma: 'Ordini', contatto: 'Un solo contatto', carfoto: 'Il pesce', specie: 'Il pesce', allevato: 'Il pesce',
+  frutti: 'Frutti di mare', fao: 'Origine', import: 'Importazioni', broker: 'Perché un buyer', freschezza: 'Qualità',
 };

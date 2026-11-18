@@ -52,12 +52,23 @@
    }
   },
   {
-   "id": "ordini",
+   "id": "ufficio",
    "text": [
-    "Partiamo dagli ordini.",
-    "La mattina, Coop invia l'ordine.",
-    "Da quel momento, ci pensiamo noi.",
-    "Ogni referenza viene cercata, confrontata, e assegnata al fornitore migliore di quel giorno."
+    "Dietro ad Argo Maris c'è una squadra organizzata.",
+    "Un ufficio commerciale ben gestito, che riceve gli ordini, confronta i prezzi e segue ogni cliente.",
+    "Gli esploratori d'asta, ogni giorno nei porti e nelle aste del Tirreno e dell'Adriatico, a caccia delle occasioni migliori.",
+    "Il controllo qualità, che verifica ogni lotto prima che parta.",
+    "E la logistica, che organizza i camion refrigerati e le consegne."
+   ]
+  },
+  {
+   "id": "piattaforma",
+   "text": [
+    "E ordinare è semplicissimo.",
+    "Dall'area clienti Argo Maris, ogni punto vendita Coop sceglie i prodotti del giorno, con foto, prezzo e zona di cattura.",
+    "Inserisce le quantità, sceglie la consegna, e invia. In pochi secondi.",
+    "Poi segue tutto in tempo reale: ordine ricevuto, merce assegnata, in viaggio, consegnata.",
+    "Una sola fattura, e tutti i documenti, sempre pronti da scaricare."
    ]
   },
   {
@@ -76,6 +87,18 @@
    }
   },
   {
+   "id": "contatto",
+   "text": [
+    "E qui c'è il vero potenziale: un contatto che si occupa di tutto.",
+    "Un messaggio la sera, e la mattina dopo il pesce è sul banco.",
+    "Se un fornitore resta senza merce, il problema lo risolve lui, subito.",
+    "Ricerca, prezzi, qualità, documenti, logistica e reclami: tutto in un solo numero."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
    "id": "car",
    "text": [
     "Il nostro primo alleato è il Centro Agroalimentare di Roma.",
@@ -83,6 +106,15 @@
     "Noi non abbiamo un fornitore fisso: li usiamo tutti, a rotazione.",
     "Ogni mattina vince chi ha il prodotto migliore.",
     "E se uno si ferma, un altro è già pronto."
+   ]
+  },
+  {
+   "id": "carfoto",
+   "text": [
+    "Ed ecco il pesce vero, come lo troviamo ogni mattina al mercato.",
+    "Gli scorfani e le gallinelle, il pesce San Pietro, le triglie.",
+    "Le seppie, le mazzancolle, i pagelli, e perfino le aragoste.",
+    "Pesce scelto, cassetta per cassetta."
    ]
   },
   {
@@ -103,10 +135,16 @@
   {
    "id": "specie",
    "text": [
-    "Ci sono le triglie e le alici, i calamari e i gamberi, il pesce spada e le ricciole.",
-    "Quello che il mare offre, nella sua stagione.",
-    "Pescato locale: chilometri pochi, freschezza tanta."
-   ]
+    "Ma quale pesce trattiamo? Tantissimo, e di ogni tipo.",
+    "Il pesce locale del Tirreno e dell'Adriatico: ci sono le triglie e gli scorfani, le gallinelle e il pesce San Pietro, i pagelli, i dentici e i saraghi.",
+    "E poi le ricciole e le lecce, le spigole e le orate di mare, i cefali, le sogliole e i rombi.",
+    "Il pesce azzurro: le alici e le sardine, gli sgombri e le palamite, il tonno e il pesce spada.",
+    "I molluschi: le seppie e i calamari, i polpi e i moscardini.",
+    "E i crostacei: i gamberi rosa e i gamberi rossi, le mazzancolle, gli scampi e le aragoste."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
   },
   {
    "id": "adriatico",
@@ -136,6 +174,24 @@
     "2": 0.45,
     "5": 0.5
    }
+  },
+  {
+   "id": "allevato",
+   "text": [
+    "C'è poi il pesce d'allevamento, che garantisce volumi costanti tutto l'anno.",
+    "Le orate e le spigole, ma anche le ombrine.",
+    "Arrivano dagli allevamenti italiani, e da Grecia, Turchia e Croazia.",
+    "E in etichetta è sempre scritto: allevato, con il paese di allevamento."
+   ]
+  },
+  {
+   "id": "frutti",
+   "text": [
+    "E poi i frutti di mare.",
+    "Le cozze e le vongole veraci, le telline e i fasolari, i cannolicchi e le ostriche.",
+    "Arrivano da zone di produzione classificate, e passano dai centri di depurazione e di spedizione riconosciuti.",
+    "Si vendono vivi, in confezioni chiuse, con l'etichetta: specie, zona di produzione, numero del centro e data di confezionamento."
+   ]
   },
   {
    "id": "acquisti",
@@ -168,12 +224,16 @@
    ]
   },
   {
-   "id": "freddo",
+   "id": "freschezza",
    "text": [
-    "La catena del freddo non si spezza mai.",
-    "Il pesce fresco resta alla temperatura del ghiaccio fondente, vicino a zero gradi.",
-    "Dal ghiaccio, al banco."
-   ]
+    "La qualità si controlla con regole precise.",
+    "L'occhio vivo e convesso, le branchie rosso brillante, la pelle lucida, la carne soda, e l'odore di mare.",
+    "Il pesce viaggia alla temperatura del ghiaccio fondente, e ogni lotto è tracciato.",
+    "E se un lotto non è perfetto, non parte."
+   ],
+   "pauses": {
+    "2": 0.45
+   }
   },
   {
    "id": "qualita",
@@ -189,6 +249,19 @@
    }
   },
   {
+   "id": "fao",
+   "text": [
+    "Ma come si legge l'origine del pesce? Con le zone FAO.",
+    "Il Mediterraneo è la zona trentasette. Il nostro Tirreno è la trentasette punto uno punto tre.",
+    "L'Adriatico è la trentasette punto due punto uno, e lo Ionio la trentasette punto due punto due.",
+    "Fuori dal Mediterraneo, l'Atlantico nord-orientale è la zona ventisette, e quello centro-orientale, davanti a Marocco e Senegal, è la zona trentaquattro.",
+    "La zona FAO è sempre in etichetta: così chi compra sa da dove arriva il pesce."
+   ],
+   "pauses": {
+    "0": 0.45
+   }
+  },
+  {
    "id": "garanzie",
    "text": [
     "E per la vostra tranquillità, lavoriamo assicurati e in regola.",
@@ -199,25 +272,39 @@
    ]
   },
   {
-   "id": "estero",
+   "id": "broker",
    "text": [
-    "E quando serve, c'è un plus in più: andiamo anche lontano.",
-    "Dalla Scozia, il salmone.",
-    "Dall'Olanda, il pesce del Mare del Nord.",
-    "Da Grecia, Croazia e Turchia, orate e spigole d'allevamento.",
-    "Sempre con documenti e tracciabilità in regola.",
-    "Il mondo nel banco, con la stessa cura del pesce di casa."
+    "Perché conviene un buyer, invece di trattare direttamente con i fornitori?",
+    "Senza buyer: dieci fornitori, dieci telefonate, decine di fatture, e dieci consegne da controllare.",
+    "Con Argo Maris: un solo contatto, un solo ordine, una sola fattura, una sola consegna.",
+    "E in più, prezzi confrontati ogni giorno su tutto il mercato, aste comprese, che da soli non si raggiungono.",
+    "Meno lavoro, meno rischi, più scelta. Ecco perché conviene."
+   ],
+   "pauses": {
+    "1": 0.5,
+    "3": 0.45
+   }
+  },
+  {
+   "id": "import",
+   "text": [
+    "E quando serve, completiamo con le importazioni.",
+    "Dalla Norvegia, il salmone e il merluzzo.",
+    "Dalla Francia, le ostriche e le cozze. Dalla Spagna e dal Portogallo, i gamberi, il polpo e le sardine.",
+    "Dal Marocco e dal Senegal, il polpo, le seppie e il pesce dell'Atlantico.",
+    "Dalla Tunisia e dall'Egitto, il pesce del Mediterraneo meridionale, anche d'allevamento.",
+    "Sempre con certificati sanitari, controlli alla frontiera per i paesi extra europei, e tracciabilità completa."
    ]
   },
   {
    "id": "perche",
    "text": [
     "Allora, perché scegliere Argo Maris?",
-    "Un buyer esploratore, con tutto il mercato di Roma a disposizione.",
-    "Le marinerie del Tirreno e dell'Adriatico, a rotazione.",
-    "Continuità, anche quando il mare è grosso.",
+    "Un ufficio commerciale ben gestito, ed esploratori d'asta su due mari.",
+    "Tutto il mercato di Roma, e oltre quaranta specie: dal locale all'importazione.",
+    "Ordini semplicissimi, dall'area clienti o con un messaggio.",
     "Logistica flessibile, fino alla consegna diretta in negozio.",
-    "Assicurati, tracciati, e con un solo referente, sempre raggiungibile."
+    "Qualità controllata, tracciabilità, e un solo referente sempre raggiungibile."
    ]
   },
   {

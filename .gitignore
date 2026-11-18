@@ -13,3 +13,4 @@ hf/test/*.mp4
 hf/test/renders/
 assets/elite/rmbg.onnx
 assets/elite/cut_*.png
+studio/public/*/voice.wav
