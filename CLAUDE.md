@@ -95,4 +95,9 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
 ## Video fatti
 - `mare-salato` — "Perché il mare è salato?" (74.8 s, demo dello stile).
 - `coop-etruria` — Argo Maris × Unicoop Etruria (16:9, 4:33). Rifatto dall'originale dell'artifact "Argo Maris – Video progetto".
-- `gdo-v6` — Argo Maris GDO v6, il progetto completo (16:9, 11:20).
+- `gdo-v6` — Argo Maris GDO v6, il progetto completo (16:9, v2 15:36).
+- `coop-etruria` v2 (6:27): loghi, 24 marinerie, come compriamo, consegna diretta, garanzie.
+- `mare-italia` — proposta di partnership Mare Italia × Argo Maris (3:11). Dati pubblici: grossista CAR Roma,
+  box 46–47, iscritta 2015, Guidonia, ~16 persone. Logo Mare Italia NON disponibile: nome in grafica (`MareItaliaMark`).
+- `socio` — il progetto per il futuro socio (4:25): costi (< 10.000 €), guadagni al 50% (≈2.980 €/mese centrale,
+  ≈880 €/mese prudente), ruoli, quote, rischi.
