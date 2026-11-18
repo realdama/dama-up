@@ -25,7 +25,10 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   Rikorose/DeepFilterNet models/DeepFilterNet3.zip, atten_lim_db=12) → highpass 70 → atempo 1,04
   (NON rubberband: peggiora) → `pipeline/phrase_level.py` (guadagno per FRASE ±6 dB, rampe 80 ms)
   → gain lineare a -18 LUFS in float → alimiter 0,89 → mix con musica 0,30 e sfx 0,6, gain
-  lineare finale (≈ -15,6 LUFS, TP -1,2). VIETATI: vocal rider per parola, compressori, afftdn/arnndn forti.
+  lineare finale (≈ -15,6 LUFS, TP -1,2).
+- PAUSE DENTRO LE FRASI (l'utente: "troppe pause, deve sembrare un'unica frase"): `pipeline/tighten.py`
+  → tra parole 0,07 s, dopo virgola 0,14 s, fine frase 0,22 s. Il video si riallinea senza
+  rifare le scene con `src/rv/Warp.tsx` (Sequence annidate: salta gli stessi istanti). VIETATI: vocal rider per parola, compressori, afftdn/arnndn forti.
 
 ## Audio (storico, verificato con misure, non ascoltato)
 - Whisper: faster-whisper `small` per bozza, `large-v3` per verificare parole dubbie e per i
