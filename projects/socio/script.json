@@ -1,0 +1,152 @@
+{
+ "title": "Argo Maris · Il progetto per il socio",
+ "format": "16:9",
+ "fps": 30,
+ "voice": "it-IT-GiuseppeMultilingualNeural",
+ "rate": "+3%",
+ "beatPause": 0.32,
+ "gap": 0.6,
+ "pron": {
+  "Unicoop Etruria": "Unicoop, Etruria",
+  "HACCP": "H.A.C.C.P."
+ },
+ "scenes": [
+  {
+   "id": "intro",
+   "text": [
+    "Ciao! Se stai pensando di fare Argo Maris insieme a me, questo video è per te.",
+    "Ti spiego l'idea, cosa facciamo ogni giorno, quanto costa partire, quanto si può guadagnare, e come ci dividiamo il lavoro."
+   ]
+  },
+  {
+   "id": "idea",
+   "text": [
+    "L'idea in trenta secondi.",
+    "Le catene di supermercati ci mandano un solo ordine.",
+    "Noi compriamo il pesce migliore: al mercato di Roma, alle aste e dalle barche.",
+    "Lo rivendiamo con il nostro margine. Niente magazzino, niente banco: compriamo solo quello che è già venduto."
+   ]
+  },
+  {
+   "id": "perche",
+   "text": [
+    "Perché funziona?",
+    "Perché la grande distribuzione lavora con margini bassi, intorno al tre per cento, e un buon buyer le fa risparmiare.",
+    "Perché a Roma c'è uno dei più grandi mercati ittici d'Italia, con oltre quattrocento aziende.",
+    "E perché abbiamo due mari a portata di mano: il Tirreno e l'Adriatico."
+   ]
+  },
+  {
+   "id": "partner",
+   "text": [
+    "E non partiamo da soli.",
+    "Il nostro partner di riferimento al mercato è Mare Italia: un grossista nei box quarantasei e quarantasette del mercato ittico di Roma.",
+    "Da loro compriamo la base, e completiamo con aste e barche."
+   ]
+  },
+  {
+   "id": "giornata",
+   "text": [
+    "Ecco una giornata tipo, con un esempio concreto.",
+    "Alle dieci arriva l'ordine: quaranta chili di orate e venticinque di calamari.",
+    "Entro mezzogiorno confrontiamo i prezzi e blocchiamo la merce.",
+    "Alle tre del pomeriggio, l'asta, per il pesce del giorno.",
+    "In serata conferme e documenti; di notte la consegna. E la mattina dopo, il pesce è sul banco."
+   ]
+  },
+  {
+   "id": "ruoli",
+   "text": [
+    "Come ci dividiamo il lavoro? Una proposta.",
+    "Uno segue gli acquisti: mercato, aste, barche, e i rapporti con i fornitori come Mare Italia.",
+    "L'altro segue le vendite: le catene, gli ordini, i documenti, la logistica e l'amministrazione.",
+    "Così ognuno fa quello che sa fare meglio, e c'è sempre qualcuno che risponde."
+   ]
+  },
+  {
+   "id": "costi",
+   "text": [
+    "Quanto costa partire? Facciamo i conti, voce per voce. Sono cifre indicative.",
+    "Aprire una SRLS costa circa trecentoventi euro.",
+    "Il commercialista, tra mille e tremila euro l'anno.",
+    "Il corso HACCP e le pratiche sanitarie: poche centinaia di euro.",
+    "Le assicurazioni: un premio in percentuale sul fatturato.",
+    "E una cassa per le aste: con l'anticipo fatture bastano circa quattromiladuecento euro.",
+    "In tutto, con meno di diecimila euro si parte."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "5": 0.5
+   }
+  },
+  {
+   "id": "guadagni",
+   "text": [
+    "E quanto si guadagna?",
+    "Con settemila euro di fatture al giorno, quattro giorni a settimana, sono circa un milione e quattrocentocinquantaseimila euro l'anno.",
+    "Con un ricarico del quindici per cento e trasporti al due, l'utile prima delle tasse è circa centotrentaquattromila euro.",
+    "Dopo le tasse della società restano circa novantasettemila euro."
+   ]
+  },
+  {
+   "id": "divisione",
+   "text": [
+    "Ora dividiamo. Esempio: soci al cinquanta per cento.",
+    "Sono circa quarantottomila euro a testa.",
+    "Presi come dividendo, si paga il ventisei per cento: restano circa trentaseimila euro a testa, quasi tremila euro al mese.",
+    "Nello scenario prudente, con ricarico del sette per cento, sarebbero circa ottocentottanta euro al mese a testa.",
+    "Da qui vanno tolti i contributi previdenziali dell'Inps: la forma migliore la sceglie il commercialista."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "2": 0.5
+   }
+  },
+  {
+   "id": "quote",
+   "text": [
+    "E le quote?",
+    "Possiamo essere soci alla pari, cinquanta e cinquanta.",
+    "Oppure uno mette più capitale e l'altro più lavoro, con quote diverse.",
+    "In ogni caso, mettiamo tutto per iscritto: ruoli, quote, decisioni, e cosa succede se uno vuole uscire."
+   ]
+  },
+  {
+   "id": "rischi",
+   "text": [
+    "E i rischi? Li conosciamo, e li gestiamo.",
+    "Compriamo solo su ordine: niente invenduto.",
+    "Se un cliente non paga, c'è l'assicurazione crediti, o il factoring pro soluto.",
+    "Se il camion perde il freddo, c'è l'assicurazione delle merci trasportate.",
+    "E se il mare è grosso sul Tirreno, lavoriamo l'Adriatico e il mercato."
+   ]
+  },
+  {
+   "id": "roadmap",
+   "text": [
+    "La tabella di marcia.",
+    "Primo mese: società, pratiche sanitarie, contratti con Mare Italia e con il trasporto.",
+    "Dal secondo mese: i primi ordini delle catene.",
+    "Dal quarto mese: aste e barche, con anticipo fatture e assicurazione crediti.",
+    "Entro il primo anno: la certificazione IFS Broker, e più catene."
+   ]
+  },
+  {
+   "id": "fine",
+   "text": [
+    "Questa è Argo Maris.",
+    "Un'idea semplice, pochi costi per partire, e un mare di possibilità.",
+    "Se ci stai, partiamo insieme."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "1": 0.6
+   },
+   "rates": {
+    "0": "-6%",
+    "2": "-5%"
+   },
+   "pad": 0.4
+  }
+ ]
+}

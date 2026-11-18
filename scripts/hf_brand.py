@@ -45,6 +45,7 @@ html, body {{ width: 1920px; height: 1080px; overflow: hidden; background: #020B
 #emblem {{ position: absolute; left: 50%; top: {"70" if pimg else "110"}px; width: 400px; height: 400px; margin-left: -200px; }}
 #name {{ position: absolute; top: {"700" if pimg else "720"}px; width: 100%; text-align: center; }}
 #name .lbl {{ font-weight: 800; font-size: 26px; letter-spacing: 8px; color: #E8FBFF; opacity: .8; margin-bottom: 14px; }}
+#name .ptxt {{ display: inline-block; font-weight: 900; font-size: 54px; letter-spacing: 8px; color: #E8FBFF; padding: 16px 40px; border-radius: 22px; border: 4px solid #E8FBFF; background: linear-gradient(160deg, #0B5FA5, #06244A); }}
 #name img {{ height: 150px; border-radius: 22px; border: 4px solid #E8FBFF; box-shadow: 0 20px 60px rgba(0,0,0,.5); }}
 .ch {{ display: inline-block; }}
 #l2 {{ position: absolute; top: {"500" if pimg else "545"}px; width: 100%; text-align: center; font-weight: 800; font-size: 54px; color: #3FE0D0; }}
@@ -63,7 +64,7 @@ html, body {{ width: 1920px; height: 1080px; overflow: hidden; background: #020B
     <svg id="ringsvg" viewBox="-100 -100 200 200" width="400" height="400" style="position:absolute;left:0;top:0"><circle id="ring" r="96" fill="none" stroke="#3FE0D0" stroke-width="7" stroke-dasharray="604" stroke-dashoffset="604" transform="rotate(-90)"/></svg>
     <img id="disc" src="logo.png" style="position:absolute;left:14px;top:14px;width:372px;height:372px"/>
   </div>
-  <div id="name" class="clip" data-start="0" data-duration="{dur}" data-track-index="2">{('<div class="lbl">' + (partner or 'IN COLLABORAZIONE CON') + '</div><img id="pimg" src="partner.jpg"/>') if pimg else ''}</div>
+  <div id="name" class="clip" data-start="0" data-duration="{dur}" data-track-index="2">{('<div class="lbl">' + (partner or 'IN COLLABORAZIONE CON') + '</div><img id="pimg" src="partner.jpg"/>') if pimg else (('<div class="ptxt">' + partner + '</div>') if partner else '')}</div>
   <div id="line" class="clip" data-start="0" data-duration="{dur}" data-track-index="3"></div>
   <div id="l2" class="clip" data-start="0" data-duration="{dur}" data-track-index="4">{line1}</div>
   <div id="l3" class="clip" data-start="0" data-duration="{dur}" data-track-index="5">{line2}</div>

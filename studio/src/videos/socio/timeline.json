@@ -1,0 +1,4809 @@
+{
+ "slug": "socio",
+ "fps": 30,
+ "voice": "it-IT-GiuseppeMultilingualNeural",
+ "total": 264.56,
+ "frames": 7937,
+ "scenes": [
+  {
+   "id": "intro",
+   "start": 0.8,
+   "dur": 12.893,
+   "beats": [
+    {
+     "i": 0,
+     "start": 0.8,
+     "end": 5.726,
+     "text": "Ciao! Se stai pensando di fare Argo Maris insieme a me, questo video è per te."
+    },
+    {
+     "i": 1,
+     "start": 6.046,
+     "end": 13.093,
+     "text": "Ti spiego l'idea, cosa facciamo ogni giorno, quanto costa partire, quanto si può guadagnare, e come ci dividiamo il lavoro."
+    }
+   ],
+   "words": [
+    {
+     "w": "Ciao",
+     "start": 0.85,
+     "end": 1.299,
+     "t": "Ciao!",
+     "beat": 0
+    },
+    {
+     "w": "Se",
+     "start": 1.627,
+     "end": 1.833,
+     "t": "Se",
+     "beat": 0
+    },
+    {
+     "w": "stai",
+     "start": 1.833,
+     "end": 2.076,
+     "t": "stai",
+     "beat": 0
+    },
+    {
+     "w": "pensando",
+     "start": 2.076,
+     "end": 2.525,
+     "t": "pensando",
+     "beat": 0
+    },
+    {
+     "w": "di",
+     "start": 2.525,
+     "end": 2.622,
+     "t": "di",
+     "beat": 0
+    },
+    {
+     "w": "fare",
+     "start": 2.622,
+     "end": 2.937,
+     "t": "fare",
+     "beat": 0
+    },
+    {
+     "w": "Argo",
+     "start": 2.937,
+     "end": 3.229,
+     "t": "Argo",
+     "beat": 0
+    },
+    {
+     "w": "Maris",
+     "start": 3.229,
+     "end": 3.665,
+     "t": "Maris",
+     "beat": 0
+    },
+    {
+     "w": "insieme",
+     "start": 3.666,
+     "end": 4.09,
+     "t": "insieme",
+     "beat": 0
+    },
+    {
+     "w": "a",
+     "start": 4.09,
+     "end": 4.115,
+     "t": "a",
+     "beat": 0
+    },
+    {
+     "w": "me",
+     "start": 4.115,
+     "end": 4.321,
+     "t": "me,",
+     "beat": 0
+    },
+    {
+     "w": "questo",
+     "start": 4.661,
+     "end": 4.94,
+     "t": "questo",
+     "beat": 0
+    },
+    {
+     "w": "video",
+     "start": 4.94,
+     "end": 5.292,
+     "t": "video",
+     "beat": 0
+    },
+    {
+     "w": "è",
+     "start": 5.292,
+     "end": 5.34,
+     "t": "è",
+     "beat": 0
+    },
+    {
+     "w": "per",
+     "start": 5.34,
+     "end": 5.51,
+     "t": "per",
+     "beat": 0
+    },
+    {
+     "w": "te",
+     "start": 5.51,
+     "end": 5.726,
+     "t": "te.",
+     "beat": 0
+    },
+    {
+     "w": "Ti",
+     "start": 6.096,
+     "end": 6.266,
+     "t": "Ti",
+     "beat": 1
+    },
+    {
+     "w": "spiego",
+     "start": 6.266,
+     "end": 6.606,
+     "t": "spiego",
+     "beat": 1
+    },
+    {
+     "w": "l'idea",
+     "start": 6.606,
+     "end": 7.055,
+     "t": "l'idea,",
+     "beat": 1
+    },
+    {
+     "w": "cosa",
+     "start": 7.261,
+     "end": 7.528,
+     "t": "cosa",
+     "beat": 1
+    },
+    {
+     "w": "facciamo",
+     "start": 7.528,
+     "end": 7.916,
+     "t": "facciamo",
+     "beat": 1
+    },
+    {
+     "w": "ogni",
+     "start": 7.916,
+     "end": 8.098,
+     "t": "ogni",
+     "beat": 1
+    },
+    {
+     "w": "giorno",
+     "start": 8.098,
+     "end": 8.56,
+     "t": "giorno,",
+     "beat": 1
+    },
+    {
+     "w": "quanto",
+     "start": 8.814,
+     "end": 9.142,
+     "t": "quanto",
+     "beat": 1
+    },
+    {
+     "w": "costa",
+     "start": 9.142,
+     "end": 9.433,
+     "t": "costa",
+     "beat": 1
+    },
+    {
+     "w": "partire",
+     "start": 9.433,
+     "end": 9.919,
+     "t": "partire,",
+     "beat": 1
+    },
+    {
+     "w": "quanto",
+     "start": 10.162,
+     "end": 10.501,
+     "t": "quanto",
+     "beat": 1
+    },
+    {
+     "w": "si",
+     "start": 10.501,
+     "end": 10.611,
+     "t": "si",
+     "beat": 1
+    },
+    {
+     "w": "può",
+     "start": 10.611,
+     "end": 10.768,
+     "t": "può",
+     "beat": 1
+    },
+    {
+     "w": "guadagnare",
+     "start": 10.768,
+     "end": 11.387,
+     "t": "guadagnare,",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 11.642,
+     "end": 11.763,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "come",
+     "start": 11.763,
+     "end": 12.079,
+     "t": "come",
+     "beat": 1
+    },
+    {
+     "w": "ci",
+     "start": 12.079,
+     "end": 12.176,
+     "t": "ci",
+     "beat": 1
+    },
+    {
+     "w": "dividiamo",
+     "start": 12.176,
+     "end": 12.649,
+     "t": "dividiamo",
+     "beat": 1
+    },
+    {
+     "w": "il",
+     "start": 12.649,
+     "end": 12.686,
+     "t": "il",
+     "beat": 1
+    },
+    {
+     "w": "lavoro",
+     "start": 12.686,
+     "end": 13.093,
+     "t": "lavoro.",
+     "beat": 1
+    }
+   ],
+   "text": "Ciao! Se stai pensando di fare Argo Maris insieme a me, questo video è per te. Ti spiego l'idea, cosa facciamo ogni giorno, quanto costa partire, quanto si può guadagnare, e come ci dividiamo il lavoro."
+  },
+  {
+   "id": "idea",
+   "start": 13.693,
+   "dur": 18.167,
+   "beats": [
+    {
+     "i": 0,
+     "start": 13.693,
+     "end": 15.451,
+     "text": "L'idea in trenta secondi."
+    },
+    {
+     "i": 1,
+     "start": 15.771,
+     "end": 18.886,
+     "text": "Le catene di supermercati ci mandano un solo ordine."
+    },
+    {
+     "i": 2,
+     "start": 19.206,
+     "end": 24.164,
+     "text": "Noi compriamo il pesce migliore: al mercato di Roma, alle aste e dalle barche."
+    },
+    {
+     "i": 3,
+     "start": 24.484,
+     "end": 31.26,
+     "text": "Lo rivendiamo con il nostro margine. Niente magazzino, niente banco: compriamo solo quello che è già venduto."
+    }
+   ],
+   "words": [
+    {
+     "w": "L'idea",
+     "start": 13.743,
+     "end": 14.326,
+     "t": "L'idea",
+     "beat": 0
+    },
+    {
+     "w": "in",
+     "start": 14.326,
+     "end": 14.483,
+     "t": "in",
+     "beat": 0
+    },
+    {
+     "w": "trenta",
+     "start": 14.483,
+     "end": 14.896,
+     "t": "trenta",
+     "beat": 0
+    },
+    {
+     "w": "secondi",
+     "start": 14.896,
+     "end": 15.451,
+     "t": "secondi.",
+     "beat": 0
+    },
+    {
+     "w": "Le",
+     "start": 15.821,
+     "end": 16.039,
+     "t": "Le",
+     "beat": 1
+    },
+    {
+     "w": "catene",
+     "start": 16.039,
+     "end": 16.428,
+     "t": "catene",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 16.428,
+     "end": 16.549,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "supermercati",
+     "start": 16.549,
+     "end": 17.423,
+     "t": "supermercati",
+     "beat": 1
+    },
+    {
+     "w": "ci",
+     "start": 17.423,
+     "end": 17.532,
+     "t": "ci",
+     "beat": 1
+    },
+    {
+     "w": "mandano",
+     "start": 17.532,
+     "end": 17.933,
+     "t": "mandano",
+     "beat": 1
+    },
+    {
+     "w": "un",
+     "start": 17.933,
+     "end": 18.09,
+     "t": "un",
+     "beat": 1
+    },
+    {
+     "w": "solo",
+     "start": 18.09,
+     "end": 18.418,
+     "t": "solo",
+     "beat": 1
+    },
+    {
+     "w": "ordine",
+     "start": 18.418,
+     "end": 18.886,
+     "t": "ordine.",
+     "beat": 1
+    },
+    {
+     "w": "Noi",
+     "start": 19.256,
+     "end": 19.632,
+     "t": "Noi",
+     "beat": 2
+    },
+    {
+     "w": "compriamo",
+     "start": 19.632,
+     "end": 20.154,
+     "t": "compriamo",
+     "beat": 2
+    },
+    {
+     "w": "il",
+     "start": 20.154,
+     "end": 20.227,
+     "t": "il",
+     "beat": 2
+    },
+    {
+     "w": "pesce",
+     "start": 20.227,
+     "end": 20.555,
+     "t": "pesce",
+     "beat": 2
+    },
+    {
+     "w": "migliore",
+     "start": 20.555,
+     "end": 21.076,
+     "t": "migliore:",
+     "beat": 2
+    },
+    {
+     "w": "al",
+     "start": 21.38,
+     "end": 21.538,
+     "t": "al",
+     "beat": 2
+    },
+    {
+     "w": "mercato",
+     "start": 21.538,
+     "end": 21.962,
+     "t": "mercato",
+     "beat": 2
+    },
+    {
+     "w": "di",
+     "start": 21.962,
+     "end": 22.059,
+     "t": "di",
+     "beat": 2
+    },
+    {
+     "w": "Roma",
+     "start": 22.059,
+     "end": 22.423,
+     "t": "Roma,",
+     "beat": 2
+    },
+    {
+     "w": "alle",
+     "start": 22.642,
+     "end": 22.945,
+     "t": "alle",
+     "beat": 2
+    },
+    {
+     "w": "aste",
+     "start": 22.945,
+     "end": 23.382,
+     "t": "aste",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 23.382,
+     "end": 23.467,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "dalle",
+     "start": 23.467,
+     "end": 23.698,
+     "t": "dalle",
+     "beat": 2
+    },
+    {
+     "w": "barche",
+     "start": 23.698,
+     "end": 24.164,
+     "t": "barche.",
+     "beat": 2
+    },
+    {
+     "w": "Lo",
+     "start": 24.534,
+     "end": 24.777,
+     "t": "Lo",
+     "beat": 3
+    },
+    {
+     "w": "rivendiamo",
+     "start": 24.777,
+     "end": 25.396,
+     "t": "rivendiamo",
+     "beat": 3
+    },
+    {
+     "w": "con",
+     "start": 25.396,
+     "end": 25.602,
+     "t": "con",
+     "beat": 3
+    },
+    {
+     "w": "il",
+     "start": 25.602,
+     "end": 25.711,
+     "t": "il",
+     "beat": 3
+    },
+    {
+     "w": "nostro",
+     "start": 25.711,
+     "end": 26.051,
+     "t": "nostro",
+     "beat": 3
+    },
+    {
+     "w": "margine",
+     "start": 26.051,
+     "end": 26.646,
+     "t": "margine.",
+     "beat": 3
+    },
+    {
+     "w": "Niente",
+     "start": 26.973,
+     "end": 27.41,
+     "t": "Niente",
+     "beat": 3
+    },
+    {
+     "w": "magazzino",
+     "start": 27.41,
+     "end": 28.053,
+     "t": "magazzino,",
+     "beat": 3
+    },
+    {
+     "w": "niente",
+     "start": 28.26,
+     "end": 28.599,
+     "t": "niente",
+     "beat": 3
+    },
+    {
+     "w": "banco",
+     "start": 28.6,
+     "end": 29.073,
+     "t": "banco:",
+     "beat": 3
+    },
+    {
+     "w": "compriamo",
+     "start": 29.364,
+     "end": 29.874,
+     "t": "compriamo",
+     "beat": 3
+    },
+    {
+     "w": "solo",
+     "start": 29.874,
+     "end": 30.153,
+     "t": "solo",
+     "beat": 3
+    },
+    {
+     "w": "quello",
+     "start": 30.153,
+     "end": 30.432,
+     "t": "quello",
+     "beat": 3
+    },
+    {
+     "w": "che",
+     "start": 30.432,
+     "end": 30.529,
+     "t": "che",
+     "beat": 3
+    },
+    {
+     "w": "è",
+     "start": 30.529,
+     "end": 30.578,
+     "t": "è",
+     "beat": 3
+    },
+    {
+     "w": "già",
+     "start": 30.578,
+     "end": 30.748,
+     "t": "già",
+     "beat": 3
+    },
+    {
+     "w": "venduto",
+     "start": 30.748,
+     "end": 31.26,
+     "t": "venduto.",
+     "beat": 3
+    }
+   ],
+   "text": "L'idea in trenta secondi. Le catene di supermercati ci mandano un solo ordine. Noi compriamo il pesce migliore: al mercato di Roma, alle aste e dalle barche. Lo rivendiamo con il nostro margine. Niente magazzino, niente banco: compriamo solo quello che è già venduto."
+  },
+  {
+   "id": "perche",
+   "start": 31.86,
+   "dur": 18.802,
+   "beats": [
+    {
+     "i": 0,
+     "start": 31.86,
+     "end": 33.084,
+     "text": "Perché funziona?"
+    },
+    {
+     "i": 1,
+     "start": 33.404,
+     "end": 40.041,
+     "text": "Perché la grande distribuzione lavora con margini bassi, intorno al tre per cento, e un buon buyer le fa risparmiare."
+    },
+    {
+     "i": 2,
+     "start": 40.361,
+     "end": 45.465,
+     "text": "Perché a Roma c'è uno dei più grandi mercati ittici d'Italia, con oltre quattrocento aziende."
+    },
+    {
+     "i": 3,
+     "start": 45.785,
+     "end": 50.062,
+     "text": "E perché abbiamo due mari a portata di mano: il Tirreno e l'Adriatico."
+    }
+   ],
+   "words": [
+    {
+     "w": "Perché",
+     "start": 31.91,
+     "end": 32.347,
+     "t": "Perché",
+     "beat": 0
+    },
+    {
+     "w": "funziona",
+     "start": 32.347,
+     "end": 33.084,
+     "t": "funziona?",
+     "beat": 0
+    },
+    {
+     "w": "Perché",
+     "start": 33.454,
+     "end": 33.842,
+     "t": "Perché",
+     "beat": 1
+    },
+    {
+     "w": "la",
+     "start": 33.842,
+     "end": 33.952,
+     "t": "la",
+     "beat": 1
+    },
+    {
+     "w": "grande",
+     "start": 33.952,
+     "end": 34.243,
+     "t": "grande",
+     "beat": 1
+    },
+    {
+     "w": "distribuzione",
+     "start": 34.243,
+     "end": 35.032,
+     "t": "distribuzione",
+     "beat": 1
+    },
+    {
+     "w": "lavora",
+     "start": 35.032,
+     "end": 35.371,
+     "t": "lavora",
+     "beat": 1
+    },
+    {
+     "w": "con",
+     "start": 35.371,
+     "end": 35.529,
+     "t": "con",
+     "beat": 1
+    },
+    {
+     "w": "margini",
+     "start": 35.529,
+     "end": 35.918,
+     "t": "margini",
+     "beat": 1
+    },
+    {
+     "w": "bassi",
+     "start": 35.918,
+     "end": 36.379,
+     "t": "bassi,",
+     "beat": 1
+    },
+    {
+     "w": "intorno",
+     "start": 36.67,
+     "end": 37.119,
+     "t": "intorno",
+     "beat": 1
+    },
+    {
+     "w": "al",
+     "start": 37.119,
+     "end": 37.216,
+     "t": "al",
+     "beat": 1
+    },
+    {
+     "w": "tre",
+     "start": 37.216,
+     "end": 37.386,
+     "t": "tre",
+     "beat": 1
+    },
+    {
+     "w": "per",
+     "start": 37.386,
+     "end": 37.544,
+     "t": "per",
+     "beat": 1
+    },
+    {
+     "w": "cento",
+     "start": 37.544,
+     "end": 38.005,
+     "t": "cento,",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 38.272,
+     "end": 38.381,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "un",
+     "start": 38.381,
+     "end": 38.515,
+     "t": "un",
+     "beat": 1
+    },
+    {
+     "w": "buon",
+     "start": 38.515,
+     "end": 38.709,
+     "t": "buon",
+     "beat": 1
+    },
+    {
+     "w": "buyer",
+     "start": 38.709,
+     "end": 39.121,
+     "t": "buyer",
+     "beat": 1
+    },
+    {
+     "w": "le",
+     "start": 39.121,
+     "end": 39.243,
+     "t": "le",
+     "beat": 1
+    },
+    {
+     "w": "fa",
+     "start": 39.243,
+     "end": 39.388,
+     "t": "fa",
+     "beat": 1
+    },
+    {
+     "w": "risparmiare",
+     "start": 39.388,
+     "end": 40.041,
+     "t": "risparmiare.",
+     "beat": 1
+    },
+    {
+     "w": "Perché",
+     "start": 40.411,
+     "end": 40.775,
+     "t": "Perché",
+     "beat": 2
+    },
+    {
+     "w": "a",
+     "start": 40.775,
+     "end": 40.824,
+     "t": "a",
+     "beat": 2
+    },
+    {
+     "w": "Roma",
+     "start": 40.824,
+     "end": 41.248,
+     "t": "Roma",
+     "beat": 2
+    },
+    {
+     "w": "c'è",
+     "start": 41.248,
+     "end": 41.394,
+     "t": "c'è",
+     "beat": 2
+    },
+    {
+     "w": "uno",
+     "start": 41.394,
+     "end": 41.6,
+     "t": "uno",
+     "beat": 2
+    },
+    {
+     "w": "dei",
+     "start": 41.6,
+     "end": 41.746,
+     "t": "dei",
+     "beat": 2
+    },
+    {
+     "w": "più",
+     "start": 41.746,
+     "end": 41.879,
+     "t": "più",
+     "beat": 2
+    },
+    {
+     "w": "grandi",
+     "start": 41.879,
+     "end": 42.231,
+     "t": "grandi",
+     "beat": 2
+    },
+    {
+     "w": "mercati",
+     "start": 42.231,
+     "end": 42.717,
+     "t": "mercati",
+     "beat": 2
+    },
+    {
+     "w": "ittici",
+     "start": 42.717,
+     "end": 43.069,
+     "t": "ittici",
+     "beat": 2
+    },
+    {
+     "w": "d'Italia",
+     "start": 43.069,
+     "end": 43.554,
+     "t": "d'Italia,",
+     "beat": 2
+    },
+    {
+     "w": "con",
+     "start": 43.845,
+     "end": 44.003,
+     "t": "con",
+     "beat": 2
+    },
+    {
+     "w": "oltre",
+     "start": 44.003,
+     "end": 44.307,
+     "t": "oltre",
+     "beat": 2
+    },
+    {
+     "w": "quattrocento",
+     "start": 44.307,
+     "end": 44.938,
+     "t": "quattrocento",
+     "beat": 2
+    },
+    {
+     "w": "aziende",
+     "start": 44.938,
+     "end": 45.465,
+     "t": "aziende.",
+     "beat": 2
+    },
+    {
+     "w": "E",
+     "start": 45.835,
+     "end": 46.005,
+     "t": "E",
+     "beat": 3
+    },
+    {
+     "w": "perché",
+     "start": 46.005,
+     "end": 46.32,
+     "t": "perché",
+     "beat": 3
+    },
+    {
+     "w": "abbiamo",
+     "start": 46.32,
+     "end": 46.66,
+     "t": "abbiamo",
+     "beat": 3
+    },
+    {
+     "w": "due",
+     "start": 46.66,
+     "end": 46.903,
+     "t": "due",
+     "beat": 3
+    },
+    {
+     "w": "mari",
+     "start": 46.903,
+     "end": 47.206,
+     "t": "mari",
+     "beat": 3
+    },
+    {
+     "w": "a",
+     "start": 47.206,
+     "end": 47.279,
+     "t": "a",
+     "beat": 3
+    },
+    {
+     "w": "portata",
+     "start": 47.279,
+     "end": 47.704,
+     "t": "portata",
+     "beat": 3
+    },
+    {
+     "w": "di",
+     "start": 47.704,
+     "end": 47.777,
+     "t": "di",
+     "beat": 3
+    },
+    {
+     "w": "mano",
+     "start": 47.777,
+     "end": 48.141,
+     "t": "mano:",
+     "beat": 3
+    },
+    {
+     "w": "il",
+     "start": 48.444,
+     "end": 48.638,
+     "t": "il",
+     "beat": 3
+    },
+    {
+     "w": "Tirreno",
+     "start": 48.638,
+     "end": 49.233,
+     "t": "Tirreno",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 49.233,
+     "end": 49.318,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "l'Adriatico",
+     "start": 49.318,
+     "end": 50.062,
+     "t": "l'Adriatico.",
+     "beat": 3
+    }
+   ],
+   "text": "Perché funziona? Perché la grande distribuzione lavora con margini bassi, intorno al tre per cento, e un buon buyer le fa risparmiare. Perché a Roma c'è uno dei più grandi mercati ittici d'Italia, con oltre quattrocento aziende. E perché abbiamo due mari a portata di mano: il Tirreno e l'Adriatico."
+  },
+  {
+   "id": "partner",
+   "start": 50.662,
+   "dur": 13.737,
+   "beats": [
+    {
+     "i": 0,
+     "start": 50.662,
+     "end": 52.123,
+     "text": "E non partiamo da soli."
+    },
+    {
+     "i": 1,
+     "start": 52.443,
+     "end": 59.742,
+     "text": "Il nostro partner di riferimento al mercato è Mare Italia: un grossista nei box quarantasei e quarantasette del mercato ittico di Roma."
+    },
+    {
+     "i": 2,
+     "start": 60.062,
+     "end": 63.8,
+     "text": "Da loro compriamo la base, e completiamo con aste e barche."
+    }
+   ],
+   "words": [
+    {
+     "w": "E",
+     "start": 50.712,
+     "end": 50.894,
+     "t": "E",
+     "beat": 0
+    },
+    {
+     "w": "non",
+     "start": 50.894,
+     "end": 51.112,
+     "t": "non",
+     "beat": 0
+    },
+    {
+     "w": "partiamo",
+     "start": 51.113,
+     "end": 51.586,
+     "t": "partiamo",
+     "beat": 0
+    },
+    {
+     "w": "da",
+     "start": 51.586,
+     "end": 51.707,
+     "t": "da",
+     "beat": 0
+    },
+    {
+     "w": "soli",
+     "start": 51.707,
+     "end": 52.123,
+     "t": "soli.",
+     "beat": 0
+    },
+    {
+     "w": "Il",
+     "start": 52.493,
+     "end": 52.699,
+     "t": "Il",
+     "beat": 1
+    },
+    {
+     "w": "nostro",
+     "start": 52.699,
+     "end": 53.015,
+     "t": "nostro",
+     "beat": 1
+    },
+    {
+     "w": "partner",
+     "start": 53.015,
+     "end": 53.464,
+     "t": "partner",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 53.464,
+     "end": 53.573,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "riferimento",
+     "start": 53.573,
+     "end": 54.071,
+     "t": "riferimento",
+     "beat": 1
+    },
+    {
+     "w": "al",
+     "start": 54.071,
+     "end": 54.131,
+     "t": "al",
+     "beat": 1
+    },
+    {
+     "w": "mercato",
+     "start": 54.131,
+     "end": 54.665,
+     "t": "mercato",
+     "beat": 1
+    },
+    {
+     "w": "è",
+     "start": 54.665,
+     "end": 54.726,
+     "t": "è",
+     "beat": 1
+    },
+    {
+     "w": "Mare",
+     "start": 54.726,
+     "end": 54.993,
+     "t": "Mare",
+     "beat": 1
+    },
+    {
+     "w": "Italia",
+     "start": 54.993,
+     "end": 55.478,
+     "t": "Italia:",
+     "beat": 1
+    },
+    {
+     "w": "un",
+     "start": 55.806,
+     "end": 55.964,
+     "t": "un",
+     "beat": 1
+    },
+    {
+     "w": "grossista",
+     "start": 55.964,
+     "end": 56.474,
+     "t": "grossista",
+     "beat": 1
+    },
+    {
+     "w": "nei",
+     "start": 56.474,
+     "end": 56.619,
+     "t": "nei",
+     "beat": 1
+    },
+    {
+     "w": "box",
+     "start": 56.619,
+     "end": 56.959,
+     "t": "box",
+     "beat": 1
+    },
+    {
+     "w": "quarantasei",
+     "start": 56.959,
+     "end": 57.59,
+     "t": "quarantasei",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 57.59,
+     "end": 57.651,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "quarantasette",
+     "start": 57.651,
+     "end": 58.391,
+     "t": "quarantasette",
+     "beat": 1
+    },
+    {
+     "w": "del",
+     "start": 58.391,
+     "end": 58.512,
+     "t": "del",
+     "beat": 1
+    },
+    {
+     "w": "mercato",
+     "start": 58.512,
+     "end": 58.961,
+     "t": "mercato",
+     "beat": 1
+    },
+    {
+     "w": "ittico",
+     "start": 58.961,
+     "end": 59.326,
+     "t": "ittico",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 59.326,
+     "end": 59.423,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "Roma",
+     "start": 59.423,
+     "end": 59.742,
+     "t": "Roma.",
+     "beat": 1
+    },
+    {
+     "w": "Da",
+     "start": 60.112,
+     "end": 60.318,
+     "t": "Da",
+     "beat": 2
+    },
+    {
+     "w": "loro",
+     "start": 60.318,
+     "end": 60.61,
+     "t": "loro",
+     "beat": 2
+    },
+    {
+     "w": "compriamo",
+     "start": 60.61,
+     "end": 61.095,
+     "t": "compriamo",
+     "beat": 2
+    },
+    {
+     "w": "la",
+     "start": 61.095,
+     "end": 61.168,
+     "t": "la",
+     "beat": 2
+    },
+    {
+     "w": "base",
+     "start": 61.168,
+     "end": 61.605,
+     "t": "base,",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 61.896,
+     "end": 62.017,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "completiamo",
+     "start": 62.017,
+     "end": 62.685,
+     "t": "completiamo",
+     "beat": 2
+    },
+    {
+     "w": "con",
+     "start": 62.685,
+     "end": 62.855,
+     "t": "con",
+     "beat": 2
+    },
+    {
+     "w": "aste",
+     "start": 62.855,
+     "end": 63.243,
+     "t": "aste",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 63.243,
+     "end": 63.292,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "barche",
+     "start": 63.292,
+     "end": 63.8,
+     "t": "barche.",
+     "beat": 2
+    }
+   ],
+   "text": "E non partiamo da soli. Il nostro partner di riferimento al mercato è Mare Italia: un grossista nei box quarantasei e quarantasette del mercato ittico di Roma. Da loro compriamo la base, e completiamo con aste e barche."
+  },
+  {
+   "id": "giornata",
+   "start": 64.4,
+   "dur": 23.055,
+   "beats": [
+    {
+     "i": 0,
+     "start": 64.4,
+     "end": 67.494,
+     "text": "Ecco una giornata tipo, con un esempio concreto."
+    },
+    {
+     "i": 1,
+     "start": 67.814,
+     "end": 72.22,
+     "text": "Alle dieci arriva l'ordine: quaranta chili di orate e venticinque di calamari."
+    },
+    {
+     "i": 2,
+     "start": 72.54,
+     "end": 76.086,
+     "text": "Entro mezzogiorno confrontiamo i prezzi e blocchiamo la merce."
+    },
+    {
+     "i": 3,
+     "start": 76.406,
+     "end": 80.042,
+     "text": "Alle tre del pomeriggio, l'asta, per il pesce del giorno."
+    },
+    {
+     "i": 4,
+     "start": 80.362,
+     "end": 86.855,
+     "text": "In serata conferme e documenti; di notte la consegna. E la mattina dopo, il pesce è sul banco."
+    }
+   ],
+   "words": [
+    {
+     "w": "Ecco",
+     "start": 64.45,
+     "end": 64.851,
+     "t": "Ecco",
+     "beat": 0
+    },
+    {
+     "w": "una",
+     "start": 64.851,
+     "end": 65.057,
+     "t": "una",
+     "beat": 0
+    },
+    {
+     "w": "giornata",
+     "start": 65.057,
+     "end": 65.506,
+     "t": "giornata",
+     "beat": 0
+    },
+    {
+     "w": "tipo",
+     "start": 65.506,
+     "end": 65.906,
+     "t": "tipo,",
+     "beat": 0
+    },
+    {
+     "w": "con",
+     "start": 66.185,
+     "end": 66.367,
+     "t": "con",
+     "beat": 0
+    },
+    {
+     "w": "un",
+     "start": 66.367,
+     "end": 66.465,
+     "t": "un",
+     "beat": 0
+    },
+    {
+     "w": "esempio",
+     "start": 66.465,
+     "end": 66.889,
+     "t": "esempio",
+     "beat": 0
+    },
+    {
+     "w": "concreto",
+     "start": 66.889,
+     "end": 67.494,
+     "t": "concreto.",
+     "beat": 0
+    },
+    {
+     "w": "Alle",
+     "start": 67.864,
+     "end": 68.143,
+     "t": "Alle",
+     "beat": 1
+    },
+    {
+     "w": "dieci",
+     "start": 68.143,
+     "end": 68.531,
+     "t": "dieci",
+     "beat": 1
+    },
+    {
+     "w": "arriva",
+     "start": 68.531,
+     "end": 68.908,
+     "t": "arriva",
+     "beat": 1
+    },
+    {
+     "w": "l'ordine",
+     "start": 68.908,
+     "end": 69.393,
+     "t": "l'ordine:",
+     "beat": 1
+    },
+    {
+     "w": "quaranta",
+     "start": 69.697,
+     "end": 70.097,
+     "t": "quaranta",
+     "beat": 1
+    },
+    {
+     "w": "chili",
+     "start": 70.097,
+     "end": 70.376,
+     "t": "chili",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 70.376,
+     "end": 70.497,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "orate",
+     "start": 70.497,
+     "end": 70.898,
+     "t": "orate",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 70.898,
+     "end": 70.971,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "venticinque",
+     "start": 70.971,
+     "end": 71.614,
+     "t": "venticinque",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 71.614,
+     "end": 71.687,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "calamari",
+     "start": 71.687,
+     "end": 72.22,
+     "t": "calamari.",
+     "beat": 1
+    },
+    {
+     "w": "Entro",
+     "start": 72.59,
+     "end": 73.027,
+     "t": "Entro",
+     "beat": 2
+    },
+    {
+     "w": "mezzogiorno",
+     "start": 73.027,
+     "end": 73.779,
+     "t": "mezzogiorno",
+     "beat": 2
+    },
+    {
+     "w": "confrontiamo",
+     "start": 73.779,
+     "end": 74.423,
+     "t": "confrontiamo",
+     "beat": 2
+    },
+    {
+     "w": "i",
+     "start": 74.423,
+     "end": 74.471,
+     "t": "i",
+     "beat": 2
+    },
+    {
+     "w": "prezzi",
+     "start": 74.471,
+     "end": 74.981,
+     "t": "prezzi",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 74.981,
+     "end": 75.09,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "blocchiamo",
+     "start": 75.09,
+     "end": 75.563,
+     "t": "blocchiamo",
+     "beat": 2
+    },
+    {
+     "w": "la",
+     "start": 75.563,
+     "end": 75.636,
+     "t": "la",
+     "beat": 2
+    },
+    {
+     "w": "merce",
+     "start": 75.636,
+     "end": 76.086,
+     "t": "merce.",
+     "beat": 2
+    },
+    {
+     "w": "Alle",
+     "start": 76.456,
+     "end": 76.784,
+     "t": "Alle",
+     "beat": 3
+    },
+    {
+     "w": "tre",
+     "start": 76.784,
+     "end": 76.99,
+     "t": "tre",
+     "beat": 3
+    },
+    {
+     "w": "del",
+     "start": 76.99,
+     "end": 77.148,
+     "t": "del",
+     "beat": 3
+    },
+    {
+     "w": "pomeriggio",
+     "start": 77.148,
+     "end": 77.791,
+     "t": "pomeriggio,",
+     "beat": 3
+    },
+    {
+     "w": "l'asta",
+     "start": 78.058,
+     "end": 78.616,
+     "t": "l'asta,",
+     "beat": 3
+    },
+    {
+     "w": "per",
+     "start": 78.859,
+     "end": 79.017,
+     "t": "per",
+     "beat": 3
+    },
+    {
+     "w": "il",
+     "start": 79.017,
+     "end": 79.114,
+     "t": "il",
+     "beat": 3
+    },
+    {
+     "w": "pesce",
+     "start": 79.114,
+     "end": 79.454,
+     "t": "pesce",
+     "beat": 3
+    },
+    {
+     "w": "del",
+     "start": 79.454,
+     "end": 79.599,
+     "t": "del",
+     "beat": 3
+    },
+    {
+     "w": "giorno",
+     "start": 79.599,
+     "end": 80.042,
+     "t": "giorno.",
+     "beat": 3
+    },
+    {
+     "w": "In",
+     "start": 80.412,
+     "end": 80.643,
+     "t": "In",
+     "beat": 4
+    },
+    {
+     "w": "serata",
+     "start": 80.643,
+     "end": 81.092,
+     "t": "serata",
+     "beat": 4
+    },
+    {
+     "w": "conferme",
+     "start": 81.092,
+     "end": 81.723,
+     "t": "conferme",
+     "beat": 4
+    },
+    {
+     "w": "e",
+     "start": 81.723,
+     "end": 81.759,
+     "t": "e",
+     "beat": 4
+    },
+    {
+     "w": "documenti",
+     "start": 81.759,
+     "end": 82.414,
+     "t": "documenti;",
+     "beat": 4
+    },
+    {
+     "w": "di",
+     "start": 82.742,
+     "end": 82.888,
+     "t": "di",
+     "beat": 4
+    },
+    {
+     "w": "notte",
+     "start": 82.888,
+     "end": 83.191,
+     "t": "notte",
+     "beat": 4
+    },
+    {
+     "w": "la",
+     "start": 83.191,
+     "end": 83.276,
+     "t": "la",
+     "beat": 4
+    },
+    {
+     "w": "consegna",
+     "start": 83.276,
+     "end": 83.931,
+     "t": "consegna.",
+     "beat": 4
+    },
+    {
+     "w": "E",
+     "start": 84.259,
+     "end": 84.441,
+     "t": "E",
+     "beat": 4
+    },
+    {
+     "w": "la",
+     "start": 84.441,
+     "end": 84.55,
+     "t": "la",
+     "beat": 4
+    },
+    {
+     "w": "mattina",
+     "start": 84.55,
+     "end": 84.927,
+     "t": "mattina",
+     "beat": 4
+    },
+    {
+     "w": "dopo",
+     "start": 84.927,
+     "end": 85.327,
+     "t": "dopo,",
+     "beat": 4
+    },
+    {
+     "w": "il",
+     "start": 85.582,
+     "end": 85.752,
+     "t": "il",
+     "beat": 4
+    },
+    {
+     "w": "pesce",
+     "start": 85.752,
+     "end": 86.14,
+     "t": "pesce",
+     "beat": 4
+    },
+    {
+     "w": "è",
+     "start": 86.14,
+     "end": 86.201,
+     "t": "è",
+     "beat": 4
+    },
+    {
+     "w": "sul",
+     "start": 86.201,
+     "end": 86.371,
+     "t": "sul",
+     "beat": 4
+    },
+    {
+     "w": "banco",
+     "start": 86.371,
+     "end": 86.855,
+     "t": "banco.",
+     "beat": 4
+    }
+   ],
+   "text": "Ecco una giornata tipo, con un esempio concreto. Alle dieci arriva l'ordine: quaranta chili di orate e venticinque di calamari. Entro mezzogiorno confrontiamo i prezzi e blocchiamo la merce. Alle tre del pomeriggio, l'asta, per il pesce del giorno. In serata conferme e documenti; di notte la consegna. E la mattina dopo, il pesce è sul banco."
+  },
+  {
+   "id": "ruoli",
+   "start": 87.455,
+   "dur": 21.467,
+   "beats": [
+    {
+     "i": 0,
+     "start": 87.455,
+     "end": 90.488,
+     "text": "Come ci dividiamo il lavoro? Una proposta."
+    },
+    {
+     "i": 1,
+     "start": 90.808,
+     "end": 96.996,
+     "text": "Uno segue gli acquisti: mercato, aste, barche, e i rapporti con i fornitori come Mare Italia."
+    },
+    {
+     "i": 2,
+     "start": 97.316,
+     "end": 103.751,
+     "text": "L'altro segue le vendite: le catene, gli ordini, i documenti, la logistica e l'amministrazione."
+    },
+    {
+     "i": 3,
+     "start": 104.071,
+     "end": 108.322,
+     "text": "Così ognuno fa quello che sa fare meglio, e c'è sempre qualcuno che risponde."
+    }
+   ],
+   "words": [
+    {
+     "w": "Come",
+     "start": 87.505,
+     "end": 87.845,
+     "t": "Come",
+     "beat": 0
+    },
+    {
+     "w": "ci",
+     "start": 87.845,
+     "end": 87.966,
+     "t": "ci",
+     "beat": 0
+    },
+    {
+     "w": "dividiamo",
+     "start": 87.966,
+     "end": 88.537,
+     "t": "dividiamo",
+     "beat": 0
+    },
+    {
+     "w": "il",
+     "start": 88.537,
+     "end": 88.609,
+     "t": "il",
+     "beat": 0
+    },
+    {
+     "w": "lavoro",
+     "start": 88.609,
+     "end": 89.119,
+     "t": "lavoro?",
+     "beat": 0
+    },
+    {
+     "w": "Una",
+     "start": 89.447,
+     "end": 89.799,
+     "t": "Una",
+     "beat": 0
+    },
+    {
+     "w": "proposta",
+     "start": 89.799,
+     "end": 90.488,
+     "t": "proposta.",
+     "beat": 0
+    },
+    {
+     "w": "Uno",
+     "start": 90.858,
+     "end": 91.125,
+     "t": "Uno",
+     "beat": 1
+    },
+    {
+     "w": "segue",
+     "start": 91.125,
+     "end": 91.416,
+     "t": "segue",
+     "beat": 1
+    },
+    {
+     "w": "gli",
+     "start": 91.416,
+     "end": 91.489,
+     "t": "gli",
+     "beat": 1
+    },
+    {
+     "w": "acquisti",
+     "start": 91.489,
+     "end": 91.974,
+     "t": "acquisti:",
+     "beat": 1
+    },
+    {
+     "w": "mercato",
+     "start": 92.266,
+     "end": 92.958,
+     "t": "mercato,",
+     "beat": 1
+    },
+    {
+     "w": "aste",
+     "start": 93.212,
+     "end": 93.686,
+     "t": "aste,",
+     "beat": 1
+    },
+    {
+     "w": "barche",
+     "start": 93.941,
+     "end": 94.462,
+     "t": "barche,",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 94.729,
+     "end": 94.814,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "i",
+     "start": 94.814,
+     "end": 94.911,
+     "t": "i",
+     "beat": 1
+    },
+    {
+     "w": "rapporti",
+     "start": 94.911,
+     "end": 95.373,
+     "t": "rapporti",
+     "beat": 1
+    },
+    {
+     "w": "con",
+     "start": 95.373,
+     "end": 95.506,
+     "t": "con",
+     "beat": 1
+    },
+    {
+     "w": "i",
+     "start": 95.506,
+     "end": 95.555,
+     "t": "i",
+     "beat": 1
+    },
+    {
+     "w": "fornitori",
+     "start": 95.555,
+     "end": 96.089,
+     "t": "fornitori",
+     "beat": 1
+    },
+    {
+     "w": "come",
+     "start": 96.089,
+     "end": 96.295,
+     "t": "come",
+     "beat": 1
+    },
+    {
+     "w": "Mare",
+     "start": 96.295,
+     "end": 96.513,
+     "t": "Mare",
+     "beat": 1
+    },
+    {
+     "w": "Italia",
+     "start": 96.513,
+     "end": 96.996,
+     "t": "Italia.",
+     "beat": 1
+    },
+    {
+     "w": "L'altro",
+     "start": 97.366,
+     "end": 97.912,
+     "t": "L'altro",
+     "beat": 2
+    },
+    {
+     "w": "segue",
+     "start": 97.912,
+     "end": 98.203,
+     "t": "segue",
+     "beat": 2
+    },
+    {
+     "w": "le",
+     "start": 98.203,
+     "end": 98.264,
+     "t": "le",
+     "beat": 2
+    },
+    {
+     "w": "vendite",
+     "start": 98.264,
+     "end": 98.762,
+     "t": "vendite:",
+     "beat": 2
+    },
+    {
+     "w": "le",
+     "start": 99.053,
+     "end": 99.198,
+     "t": "le",
+     "beat": 2
+    },
+    {
+     "w": "catene",
+     "start": 99.199,
+     "end": 99.708,
+     "t": "catene,",
+     "beat": 2
+    },
+    {
+     "w": "gli",
+     "start": 99.951,
+     "end": 100.145,
+     "t": "gli",
+     "beat": 2
+    },
+    {
+     "w": "ordini",
+     "start": 100.145,
+     "end": 100.618,
+     "t": "ordini,",
+     "beat": 2
+    },
+    {
+     "w": "i",
+     "start": 100.849,
+     "end": 100.934,
+     "t": "i",
+     "beat": 2
+    },
+    {
+     "w": "documenti",
+     "start": 100.934,
+     "end": 101.589,
+     "t": "documenti,",
+     "beat": 2
+    },
+    {
+     "w": "la",
+     "start": 101.832,
+     "end": 101.978,
+     "t": "la",
+     "beat": 2
+    },
+    {
+     "w": "logistica",
+     "start": 101.978,
+     "end": 102.669,
+     "t": "logistica",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 102.669,
+     "end": 102.754,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "l'amministrazione",
+     "start": 102.754,
+     "end": 103.751,
+     "t": "l'amministrazione.",
+     "beat": 2
+    },
+    {
+     "w": "Così",
+     "start": 104.121,
+     "end": 104.473,
+     "t": "Così",
+     "beat": 3
+    },
+    {
+     "w": "ognuno",
+     "start": 104.473,
+     "end": 104.898,
+     "t": "ognuno",
+     "beat": 3
+    },
+    {
+     "w": "fa",
+     "start": 104.898,
+     "end": 105.043,
+     "t": "fa",
+     "beat": 3
+    },
+    {
+     "w": "quello",
+     "start": 105.043,
+     "end": 105.347,
+     "t": "quello",
+     "beat": 3
+    },
+    {
+     "w": "che",
+     "start": 105.347,
+     "end": 105.468,
+     "t": "che",
+     "beat": 3
+    },
+    {
+     "w": "sa",
+     "start": 105.468,
+     "end": 105.602,
+     "t": "sa",
+     "beat": 3
+    },
+    {
+     "w": "fare",
+     "start": 105.602,
+     "end": 105.784,
+     "t": "fare",
+     "beat": 3
+    },
+    {
+     "w": "meglio",
+     "start": 105.784,
+     "end": 106.221,
+     "t": "meglio,",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 106.512,
+     "end": 106.657,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "c'è",
+     "start": 106.657,
+     "end": 106.779,
+     "t": "c'è",
+     "beat": 3
+    },
+    {
+     "w": "sempre",
+     "start": 106.779,
+     "end": 107.179,
+     "t": "sempre",
+     "beat": 3
+    },
+    {
+     "w": "qualcuno",
+     "start": 107.179,
+     "end": 107.628,
+     "t": "qualcuno",
+     "beat": 3
+    },
+    {
+     "w": "che",
+     "start": 107.628,
+     "end": 107.737,
+     "t": "che",
+     "beat": 3
+    },
+    {
+     "w": "risponde",
+     "start": 107.738,
+     "end": 108.322,
+     "t": "risponde.",
+     "beat": 3
+    }
+   ],
+   "text": "Come ci dividiamo il lavoro? Una proposta. Uno segue gli acquisti: mercato, aste, barche, e i rapporti con i fornitori come Mare Italia. L'altro segue le vendite: le catene, gli ordini, i documenti, la logistica e l'amministrazione. Così ognuno fa quello che sa fare meglio, e c'è sempre qualcuno che risponde."
+  },
+  {
+   "id": "costi",
+   "start": 108.922,
+   "dur": 33.129,
+   "beats": [
+    {
+     "i": 0,
+     "start": 108.922,
+     "end": 115.005,
+     "text": "Quanto costa partire? Facciamo i conti, voce per voce. Sono cifre indicative."
+    },
+    {
+     "i": 1,
+     "start": 115.505,
+     "end": 119.759,
+     "text": "Aprire una SRLS costa circa trecentoventi euro."
+    },
+    {
+     "i": 2,
+     "start": 120.079,
+     "end": 123.241,
+     "text": "Il commercialista, tra mille e tremila euro l'anno."
+    },
+    {
+     "i": 3,
+     "start": 123.561,
+     "end": 128.454,
+     "text": "Il corso HACCP e le pratiche sanitarie: poche centinaia di euro."
+    },
+    {
+     "i": 4,
+     "start": 128.774,
+     "end": 132.435,
+     "text": "Le assicurazioni: un premio in percentuale sul fatturato."
+    },
+    {
+     "i": 5,
+     "start": 132.755,
+     "end": 137.908,
+     "text": "E una cassa per le aste: con l'anticipo fatture bastano circa quattromiladuecento euro."
+    },
+    {
+     "i": 6,
+     "start": 138.408,
+     "end": 141.451,
+     "text": "In tutto, con meno di diecimila euro si parte."
+    }
+   ],
+   "words": [
+    {
+     "w": "Quanto",
+     "start": 108.972,
+     "end": 109.421,
+     "t": "Quanto",
+     "beat": 0
+    },
+    {
+     "w": "costa",
+     "start": 109.421,
+     "end": 109.809,
+     "t": "costa",
+     "beat": 0
+    },
+    {
+     "w": "partire",
+     "start": 109.809,
+     "end": 110.453,
+     "t": "partire?",
+     "beat": 0
+    },
+    {
+     "w": "Facciamo",
+     "start": 110.78,
+     "end": 111.278,
+     "t": "Facciamo",
+     "beat": 0
+    },
+    {
+     "w": "i",
+     "start": 111.278,
+     "end": 111.314,
+     "t": "i",
+     "beat": 0
+    },
+    {
+     "w": "conti",
+     "start": 111.314,
+     "end": 111.788,
+     "t": "conti,",
+     "beat": 0
+    },
+    {
+     "w": "voce",
+     "start": 112.115,
+     "end": 112.479,
+     "t": "voce",
+     "beat": 0
+    },
+    {
+     "w": "per",
+     "start": 112.479,
+     "end": 112.625,
+     "t": "per",
+     "beat": 0
+    },
+    {
+     "w": "voce",
+     "start": 112.625,
+     "end": 113.086,
+     "t": "voce.",
+     "beat": 0
+    },
+    {
+     "w": "Sono",
+     "start": 113.414,
+     "end": 113.814,
+     "t": "Sono",
+     "beat": 0
+    },
+    {
+     "w": "cifre",
+     "start": 113.814,
+     "end": 114.239,
+     "t": "cifre",
+     "beat": 0
+    },
+    {
+     "w": "indicative",
+     "start": 114.239,
+     "end": 115.005,
+     "t": "indicative.",
+     "beat": 0
+    },
+    {
+     "w": "Aprire",
+     "start": 115.555,
+     "end": 116.077,
+     "t": "Aprire",
+     "beat": 1
+    },
+    {
+     "w": "una",
+     "start": 116.077,
+     "end": 116.392,
+     "t": "una",
+     "beat": 1
+    },
+    {
+     "w": "SRLS",
+     "start": 116.392,
+     "end": 117.752,
+     "t": "SRLS",
+     "beat": 1
+    },
+    {
+     "w": "costa",
+     "start": 117.752,
+     "end": 118.176,
+     "t": "costa",
+     "beat": 1
+    },
+    {
+     "w": "circa",
+     "start": 118.176,
+     "end": 118.565,
+     "t": "circa",
+     "beat": 1
+    },
+    {
+     "w": "trecentoventi",
+     "start": 118.565,
+     "end": 119.426,
+     "t": "trecentoventi",
+     "beat": 1
+    },
+    {
+     "w": "euro",
+     "start": 119.426,
+     "end": 119.759,
+     "t": "euro.",
+     "beat": 1
+    },
+    {
+     "w": "Il",
+     "start": 120.129,
+     "end": 120.372,
+     "t": "Il",
+     "beat": 2
+    },
+    {
+     "w": "commercialista",
+     "start": 120.372,
+     "end": 121.282,
+     "t": "commercialista,",
+     "beat": 2
+    },
+    {
+     "w": "tra",
+     "start": 121.537,
+     "end": 121.731,
+     "t": "tra",
+     "beat": 2
+    },
+    {
+     "w": "mille",
+     "start": 121.731,
+     "end": 122.083,
+     "t": "mille",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 122.083,
+     "end": 122.144,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "tremila",
+     "start": 122.144,
+     "end": 122.653,
+     "t": "tremila",
+     "beat": 2
+    },
+    {
+     "w": "euro",
+     "start": 122.653,
+     "end": 122.835,
+     "t": "euro",
+     "beat": 2
+    },
+    {
+     "w": "l'anno",
+     "start": 122.835,
+     "end": 123.241,
+     "t": "l'anno.",
+     "beat": 2
+    },
+    {
+     "w": "Il",
+     "start": 123.611,
+     "end": 123.829,
+     "t": "Il",
+     "beat": 3
+    },
+    {
+     "w": "corso",
+     "start": 123.829,
+     "end": 124.351,
+     "t": "corso",
+     "beat": 3
+    },
+    {
+     "w": "H.A.C.C.P.",
+     "start": 124.351,
+     "end": 125.528,
+     "t": "HACCP",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 125.528,
+     "end": 125.638,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "le",
+     "start": 125.638,
+     "end": 125.747,
+     "t": "le",
+     "beat": 3
+    },
+    {
+     "w": "pratiche",
+     "start": 125.747,
+     "end": 126.135,
+     "t": "pratiche",
+     "beat": 3
+    },
+    {
+     "w": "sanitarie",
+     "start": 126.135,
+     "end": 126.742,
+     "t": "sanitarie:",
+     "beat": 3
+    },
+    {
+     "w": "poche",
+     "start": 127.094,
+     "end": 127.422,
+     "t": "poche",
+     "beat": 3
+    },
+    {
+     "w": "centinaia",
+     "start": 127.422,
+     "end": 127.968,
+     "t": "centinaia",
+     "beat": 3
+    },
+    {
+     "w": "di",
+     "start": 127.968,
+     "end": 128.126,
+     "t": "di",
+     "beat": 3
+    },
+    {
+     "w": "euro",
+     "start": 128.126,
+     "end": 128.454,
+     "t": "euro.",
+     "beat": 3
+    },
+    {
+     "w": "Le",
+     "start": 128.824,
+     "end": 129.042,
+     "t": "Le",
+     "beat": 4
+    },
+    {
+     "w": "assicurazioni",
+     "start": 129.042,
+     "end": 129.928,
+     "t": "assicurazioni:",
+     "beat": 4
+    },
+    {
+     "w": "un",
+     "start": 130.256,
+     "end": 130.438,
+     "t": "un",
+     "beat": 4
+    },
+    {
+     "w": "premio",
+     "start": 130.438,
+     "end": 130.814,
+     "t": "premio",
+     "beat": 4
+    },
+    {
+     "w": "in",
+     "start": 130.814,
+     "end": 130.936,
+     "t": "in",
+     "beat": 4
+    },
+    {
+     "w": "percentuale",
+     "start": 130.936,
+     "end": 131.64,
+     "t": "percentuale",
+     "beat": 4
+    },
+    {
+     "w": "sul",
+     "start": 131.64,
+     "end": 131.797,
+     "t": "sul",
+     "beat": 4
+    },
+    {
+     "w": "fatturato",
+     "start": 131.797,
+     "end": 132.435,
+     "t": "fatturato.",
+     "beat": 4
+    },
+    {
+     "w": "E",
+     "start": 132.805,
+     "end": 132.963,
+     "t": "E",
+     "beat": 5
+    },
+    {
+     "w": "una",
+     "start": 132.963,
+     "end": 133.145,
+     "t": "una",
+     "beat": 5
+    },
+    {
+     "w": "cassa",
+     "start": 133.145,
+     "end": 133.521,
+     "t": "cassa",
+     "beat": 5
+    },
+    {
+     "w": "per",
+     "start": 133.521,
+     "end": 133.642,
+     "t": "per",
+     "beat": 5
+    },
+    {
+     "w": "le",
+     "start": 133.642,
+     "end": 133.752,
+     "t": "le",
+     "beat": 5
+    },
+    {
+     "w": "aste",
+     "start": 133.752,
+     "end": 134.164,
+     "t": "aste:",
+     "beat": 5
+    },
+    {
+     "w": "con",
+     "start": 134.455,
+     "end": 134.625,
+     "t": "con",
+     "beat": 5
+    },
+    {
+     "w": "l'anticipo",
+     "start": 134.625,
+     "end": 135.159,
+     "t": "l'anticipo",
+     "beat": 5
+    },
+    {
+     "w": "fatture",
+     "start": 135.159,
+     "end": 135.645,
+     "t": "fatture",
+     "beat": 5
+    },
+    {
+     "w": "bastano",
+     "start": 135.645,
+     "end": 136.118,
+     "t": "bastano",
+     "beat": 5
+    },
+    {
+     "w": "circa",
+     "start": 136.118,
+     "end": 136.482,
+     "t": "circa",
+     "beat": 5
+    },
+    {
+     "w": "quattromiladuecento",
+     "start": 136.482,
+     "end": 137.599,
+     "t": "quattromiladuecento",
+     "beat": 5
+    },
+    {
+     "w": "euro",
+     "start": 137.599,
+     "end": 137.908,
+     "t": "euro.",
+     "beat": 5
+    },
+    {
+     "w": "In",
+     "start": 138.458,
+     "end": 138.676,
+     "t": "In",
+     "beat": 6
+    },
+    {
+     "w": "tutto",
+     "start": 138.676,
+     "end": 139.138,
+     "t": "tutto,",
+     "beat": 6
+    },
+    {
+     "w": "con",
+     "start": 139.38,
+     "end": 139.587,
+     "t": "con",
+     "beat": 6
+    },
+    {
+     "w": "meno",
+     "start": 139.587,
+     "end": 139.866,
+     "t": "meno",
+     "beat": 6
+    },
+    {
+     "w": "di",
+     "start": 139.866,
+     "end": 139.999,
+     "t": "di",
+     "beat": 6
+    },
+    {
+     "w": "diecimila",
+     "start": 139.999,
+     "end": 140.642,
+     "t": "diecimila",
+     "beat": 6
+    },
+    {
+     "w": "euro",
+     "start": 140.642,
+     "end": 140.885,
+     "t": "euro",
+     "beat": 6
+    },
+    {
+     "w": "si",
+     "start": 140.885,
+     "end": 141.007,
+     "t": "si",
+     "beat": 6
+    },
+    {
+     "w": "parte",
+     "start": 141.007,
+     "end": 141.451,
+     "t": "parte.",
+     "beat": 6
+    }
+   ],
+   "text": "Quanto costa partire? Facciamo i conti, voce per voce. Sono cifre indicative. Aprire una SRLS costa circa trecentoventi euro. Il commercialista, tra mille e tremila euro l'anno. Il corso HACCP e le pratiche sanitarie: poche centinaia di euro. Le assicurazioni: un premio in percentuale sul fatturato. E una cassa per le aste: con l'anticipo fatture bastano circa quattromiladuecento euro. In tutto, con meno di diecimila euro si parte."
+  },
+  {
+   "id": "guadagni",
+   "start": 142.051,
+   "dur": 20.711,
+   "beats": [
+    {
+     "i": 0,
+     "start": 142.051,
+     "end": 143.427,
+     "text": "E quanto si guadagna?"
+    },
+    {
+     "i": 1,
+     "start": 143.747,
+     "end": 150.926,
+     "text": "Con settemila euro di fatture al giorno, quattro giorni a settimana, sono circa un milione e quattrocentocinquantaseimila euro l'anno."
+    },
+    {
+     "i": 2,
+     "start": 151.246,
+     "end": 157.982,
+     "text": "Con un ricarico del quindici per cento e trasporti al due, l'utile prima delle tasse è circa centotrentaquattromila euro."
+    },
+    {
+     "i": 3,
+     "start": 158.302,
+     "end": 162.163,
+     "text": "Dopo le tasse della società restano circa novantasettemila euro."
+    }
+   ],
+   "words": [
+    {
+     "w": "E",
+     "start": 142.101,
+     "end": 142.283,
+     "t": "E",
+     "beat": 0
+    },
+    {
+     "w": "quanto",
+     "start": 142.283,
+     "end": 142.708,
+     "t": "quanto",
+     "beat": 0
+    },
+    {
+     "w": "si",
+     "start": 142.708,
+     "end": 142.829,
+     "t": "si",
+     "beat": 0
+    },
+    {
+     "w": "guadagna",
+     "start": 142.829,
+     "end": 143.427,
+     "t": "guadagna?",
+     "beat": 0
+    },
+    {
+     "w": "Con",
+     "start": 143.797,
+     "end": 144.064,
+     "t": "Con",
+     "beat": 1
+    },
+    {
+     "w": "settemila",
+     "start": 144.064,
+     "end": 144.634,
+     "t": "settemila",
+     "beat": 1
+    },
+    {
+     "w": "euro",
+     "start": 144.634,
+     "end": 144.816,
+     "t": "euro",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 144.816,
+     "end": 144.913,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "fatture",
+     "start": 144.914,
+     "end": 145.302,
+     "t": "fatture",
+     "beat": 1
+    },
+    {
+     "w": "al",
+     "start": 145.302,
+     "end": 145.387,
+     "t": "al",
+     "beat": 1
+    },
+    {
+     "w": "giorno",
+     "start": 145.387,
+     "end": 145.836,
+     "t": "giorno,",
+     "beat": 1
+    },
+    {
+     "w": "quattro",
+     "start": 146.079,
+     "end": 146.43,
+     "t": "quattro",
+     "beat": 1
+    },
+    {
+     "w": "giorni",
+     "start": 146.43,
+     "end": 146.77,
+     "t": "giorni",
+     "beat": 1
+    },
+    {
+     "w": "a",
+     "start": 146.77,
+     "end": 146.831,
+     "t": "a",
+     "beat": 1
+    },
+    {
+     "w": "settimana",
+     "start": 146.831,
+     "end": 147.389,
+     "t": "settimana,",
+     "beat": 1
+    },
+    {
+     "w": "sono",
+     "start": 147.68,
+     "end": 147.875,
+     "t": "sono",
+     "beat": 1
+    },
+    {
+     "w": "circa",
+     "start": 147.875,
+     "end": 148.166,
+     "t": "circa",
+     "beat": 1
+    },
+    {
+     "w": "un",
+     "start": 148.166,
+     "end": 148.287,
+     "t": "un",
+     "beat": 1
+    },
+    {
+     "w": "milione",
+     "start": 148.287,
+     "end": 148.736,
+     "t": "milione",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 148.736,
+     "end": 148.785,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "quattrocentocinquantaseimila",
+     "start": 148.785,
+     "end": 150.375,
+     "t": "quattrocentocinquantaseimila",
+     "beat": 1
+    },
+    {
+     "w": "euro",
+     "start": 150.375,
+     "end": 150.545,
+     "t": "euro",
+     "beat": 1
+    },
+    {
+     "w": "l'anno",
+     "start": 150.545,
+     "end": 150.926,
+     "t": "l'anno.",
+     "beat": 1
+    },
+    {
+     "w": "Con",
+     "start": 151.296,
+     "end": 151.502,
+     "t": "Con",
+     "beat": 2
+    },
+    {
+     "w": "un",
+     "start": 151.502,
+     "end": 151.587,
+     "t": "un",
+     "beat": 2
+    },
+    {
+     "w": "ricarico",
+     "start": 151.587,
+     "end": 152.061,
+     "t": "ricarico",
+     "beat": 2
+    },
+    {
+     "w": "del",
+     "start": 152.061,
+     "end": 152.23,
+     "t": "del",
+     "beat": 2
+    },
+    {
+     "w": "quindici",
+     "start": 152.23,
+     "end": 152.692,
+     "t": "quindici",
+     "beat": 2
+    },
+    {
+     "w": "per",
+     "start": 152.692,
+     "end": 152.862,
+     "t": "per",
+     "beat": 2
+    },
+    {
+     "w": "cento",
+     "start": 152.862,
+     "end": 153.213,
+     "t": "cento",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 153.213,
+     "end": 153.25,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "trasporti",
+     "start": 153.25,
+     "end": 153.784,
+     "t": "trasporti",
+     "beat": 2
+    },
+    {
+     "w": "al",
+     "start": 153.784,
+     "end": 153.881,
+     "t": "al",
+     "beat": 2
+    },
+    {
+     "w": "due",
+     "start": 153.881,
+     "end": 154.184,
+     "t": "due,",
+     "beat": 2
+    },
+    {
+     "w": "l'utile",
+     "start": 154.548,
+     "end": 154.985,
+     "t": "l'utile",
+     "beat": 2
+    },
+    {
+     "w": "prima",
+     "start": 154.985,
+     "end": 155.252,
+     "t": "prima",
+     "beat": 2
+    },
+    {
+     "w": "delle",
+     "start": 155.252,
+     "end": 155.434,
+     "t": "delle",
+     "beat": 2
+    },
+    {
+     "w": "tasse",
+     "start": 155.434,
+     "end": 155.92,
+     "t": "tasse",
+     "beat": 2
+    },
+    {
+     "w": "è",
+     "start": 155.92,
+     "end": 156.065,
+     "t": "è",
+     "beat": 2
+    },
+    {
+     "w": "circa",
+     "start": 156.065,
+     "end": 156.442,
+     "t": "circa",
+     "beat": 2
+    },
+    {
+     "w": "centotrentaquattromila",
+     "start": 156.442,
+     "end": 157.704,
+     "t": "centotrentaquattromila",
+     "beat": 2
+    },
+    {
+     "w": "euro",
+     "start": 157.704,
+     "end": 157.982,
+     "t": "euro.",
+     "beat": 2
+    },
+    {
+     "w": "Dopo",
+     "start": 158.352,
+     "end": 158.765,
+     "t": "Dopo",
+     "beat": 3
+    },
+    {
+     "w": "le",
+     "start": 158.765,
+     "end": 158.837,
+     "t": "le",
+     "beat": 3
+    },
+    {
+     "w": "tasse",
+     "start": 158.837,
+     "end": 159.201,
+     "t": "tasse",
+     "beat": 3
+    },
+    {
+     "w": "della",
+     "start": 159.201,
+     "end": 159.432,
+     "t": "della",
+     "beat": 3
+    },
+    {
+     "w": "società",
+     "start": 159.432,
+     "end": 159.93,
+     "t": "società",
+     "beat": 3
+    },
+    {
+     "w": "restano",
+     "start": 159.93,
+     "end": 160.367,
+     "t": "restano",
+     "beat": 3
+    },
+    {
+     "w": "circa",
+     "start": 160.367,
+     "end": 160.755,
+     "t": "circa",
+     "beat": 3
+    },
+    {
+     "w": "novantasettemila",
+     "start": 160.755,
+     "end": 161.847,
+     "t": "novantasettemila",
+     "beat": 3
+    },
+    {
+     "w": "euro",
+     "start": 161.847,
+     "end": 162.163,
+     "t": "euro.",
+     "beat": 3
+    }
+   ],
+   "text": "E quanto si guadagna? Con settemila euro di fatture al giorno, quattro giorni a settimana, sono circa un milione e quattrocentocinquantaseimila euro l'anno. Con un ricarico del quindici per cento e trasporti al due, l'utile prima delle tasse è circa centotrentaquattromila euro. Dopo le tasse della società restano circa novantasettemila euro."
+  },
+  {
+   "id": "divisione",
+   "start": 162.763,
+   "dur": 28.325,
+   "beats": [
+    {
+     "i": 0,
+     "start": 162.763,
+     "end": 166.879,
+     "text": "Ora dividiamo. Esempio: soci al cinquanta per cento."
+    },
+    {
+     "i": 1,
+     "start": 167.379,
+     "end": 169.897,
+     "text": "Sono circa quarantottomila euro a testa."
+    },
+    {
+     "i": 2,
+     "start": 170.217,
+     "end": 177.546,
+     "text": "Presi come dividendo, si paga il ventisei per cento: restano circa trentaseimila euro a testa, quasi tremila euro al mese."
+    },
+    {
+     "i": 3,
+     "start": 178.046,
+     "end": 184.573,
+     "text": "Nello scenario prudente, con ricarico del sette per cento, sarebbero circa ottocentottanta euro al mese a testa."
+    },
+    {
+     "i": 4,
+     "start": 184.893,
+     "end": 190.488,
+     "text": "Da qui vanno tolti i contributi previdenziali dell'Inps: la forma migliore la sceglie il commercialista."
+    }
+   ],
+   "words": [
+    {
+     "w": "Ora",
+     "start": 162.813,
+     "end": 163.165,
+     "t": "Ora",
+     "beat": 0
+    },
+    {
+     "w": "dividiamo",
+     "start": 163.165,
+     "end": 163.893,
+     "t": "dividiamo.",
+     "beat": 0
+    },
+    {
+     "w": "Esempio",
+     "start": 164.221,
+     "end": 164.9,
+     "t": "Esempio:",
+     "beat": 0
+    },
+    {
+     "w": "soci",
+     "start": 165.18,
+     "end": 165.568,
+     "t": "soci",
+     "beat": 0
+    },
+    {
+     "w": "al",
+     "start": 165.568,
+     "end": 165.713,
+     "t": "al",
+     "beat": 0
+    },
+    {
+     "w": "cinquanta",
+     "start": 165.713,
+     "end": 166.247,
+     "t": "cinquanta",
+     "beat": 0
+    },
+    {
+     "w": "per",
+     "start": 166.247,
+     "end": 166.393,
+     "t": "per",
+     "beat": 0
+    },
+    {
+     "w": "cento",
+     "start": 166.393,
+     "end": 166.879,
+     "t": "cento.",
+     "beat": 0
+    },
+    {
+     "w": "Sono",
+     "start": 167.429,
+     "end": 167.745,
+     "t": "Sono",
+     "beat": 1
+    },
+    {
+     "w": "circa",
+     "start": 167.745,
+     "end": 168.157,
+     "t": "circa",
+     "beat": 1
+    },
+    {
+     "w": "quarantottomila",
+     "start": 168.157,
+     "end": 169.116,
+     "t": "quarantottomila",
+     "beat": 1
+    },
+    {
+     "w": "euro",
+     "start": 169.116,
+     "end": 169.359,
+     "t": "euro",
+     "beat": 1
+    },
+    {
+     "w": "a",
+     "start": 169.359,
+     "end": 169.383,
+     "t": "a",
+     "beat": 1
+    },
+    {
+     "w": "testa",
+     "start": 169.383,
+     "end": 169.897,
+     "t": "testa.",
+     "beat": 1
+    },
+    {
+     "w": "Presi",
+     "start": 170.267,
+     "end": 170.668,
+     "t": "Presi",
+     "beat": 2
+    },
+    {
+     "w": "come",
+     "start": 170.668,
+     "end": 170.898,
+     "t": "come",
+     "beat": 2
+    },
+    {
+     "w": "dividendo",
+     "start": 170.898,
+     "end": 171.468,
+     "t": "dividendo,",
+     "beat": 2
+    },
+    {
+     "w": "si",
+     "start": 171.663,
+     "end": 171.784,
+     "t": "si",
+     "beat": 2
+    },
+    {
+     "w": "paga",
+     "start": 171.784,
+     "end": 172.063,
+     "t": "paga",
+     "beat": 2
+    },
+    {
+     "w": "il",
+     "start": 172.063,
+     "end": 172.136,
+     "t": "il",
+     "beat": 2
+    },
+    {
+     "w": "ventisei",
+     "start": 172.136,
+     "end": 172.585,
+     "t": "ventisei",
+     "beat": 2
+    },
+    {
+     "w": "per",
+     "start": 172.585,
+     "end": 172.743,
+     "t": "per",
+     "beat": 2
+    },
+    {
+     "w": "cento",
+     "start": 172.743,
+     "end": 173.18,
+     "t": "cento:",
+     "beat": 2
+    },
+    {
+     "w": "restano",
+     "start": 173.495,
+     "end": 173.92,
+     "t": "restano",
+     "beat": 2
+    },
+    {
+     "w": "circa",
+     "start": 173.92,
+     "end": 174.26,
+     "t": "circa",
+     "beat": 2
+    },
+    {
+     "w": "trentaseimila",
+     "start": 174.26,
+     "end": 175.085,
+     "t": "trentaseimila",
+     "beat": 2
+    },
+    {
+     "w": "euro",
+     "start": 175.085,
+     "end": 175.267,
+     "t": "euro",
+     "beat": 2
+    },
+    {
+     "w": "a",
+     "start": 175.267,
+     "end": 175.291,
+     "t": "a",
+     "beat": 2
+    },
+    {
+     "w": "testa",
+     "start": 175.291,
+     "end": 175.752,
+     "t": "testa,",
+     "beat": 2
+    },
+    {
+     "w": "quasi",
+     "start": 176.019,
+     "end": 176.396,
+     "t": "quasi",
+     "beat": 2
+    },
+    {
+     "w": "tremila",
+     "start": 176.396,
+     "end": 176.881,
+     "t": "tremila",
+     "beat": 2
+    },
+    {
+     "w": "euro",
+     "start": 176.881,
+     "end": 177.075,
+     "t": "euro",
+     "beat": 2
+    },
+    {
+     "w": "al",
+     "start": 177.075,
+     "end": 177.148,
+     "t": "al",
+     "beat": 2
+    },
+    {
+     "w": "mese",
+     "start": 177.148,
+     "end": 177.546,
+     "t": "mese.",
+     "beat": 2
+    },
+    {
+     "w": "Nello",
+     "start": 178.096,
+     "end": 178.412,
+     "t": "Nello",
+     "beat": 3
+    },
+    {
+     "w": "scenario",
+     "start": 178.412,
+     "end": 178.848,
+     "t": "scenario",
+     "beat": 3
+    },
+    {
+     "w": "prudente",
+     "start": 178.848,
+     "end": 179.431,
+     "t": "prudente,",
+     "beat": 3
+    },
+    {
+     "w": "con",
+     "start": 179.625,
+     "end": 179.795,
+     "t": "con",
+     "beat": 3
+    },
+    {
+     "w": "ricarico",
+     "start": 179.795,
+     "end": 180.305,
+     "t": "ricarico",
+     "beat": 3
+    },
+    {
+     "w": "del",
+     "start": 180.305,
+     "end": 180.45,
+     "t": "del",
+     "beat": 3
+    },
+    {
+     "w": "sette",
+     "start": 180.45,
+     "end": 180.79,
+     "t": "sette",
+     "beat": 3
+    },
+    {
+     "w": "per",
+     "start": 180.79,
+     "end": 180.924,
+     "t": "per",
+     "beat": 3
+    },
+    {
+     "w": "cento",
+     "start": 180.924,
+     "end": 181.385,
+     "t": "cento,",
+     "beat": 3
+    },
+    {
+     "w": "sarebbero",
+     "start": 181.7,
+     "end": 182.101,
+     "t": "sarebbero",
+     "beat": 3
+    },
+    {
+     "w": "circa",
+     "start": 182.101,
+     "end": 182.416,
+     "t": "circa",
+     "beat": 3
+    },
+    {
+     "w": "ottocentottanta",
+     "start": 182.416,
+     "end": 183.387,
+     "t": "ottocentottanta",
+     "beat": 3
+    },
+    {
+     "w": "euro",
+     "start": 183.387,
+     "end": 183.678,
+     "t": "euro",
+     "beat": 3
+    },
+    {
+     "w": "al",
+     "start": 183.679,
+     "end": 183.8,
+     "t": "al",
+     "beat": 3
+    },
+    {
+     "w": "mese",
+     "start": 183.8,
+     "end": 184.079,
+     "t": "mese",
+     "beat": 3
+    },
+    {
+     "w": "a",
+     "start": 184.079,
+     "end": 184.103,
+     "t": "a",
+     "beat": 3
+    },
+    {
+     "w": "testa",
+     "start": 184.103,
+     "end": 184.573,
+     "t": "testa.",
+     "beat": 3
+    },
+    {
+     "w": "Da",
+     "start": 184.943,
+     "end": 185.161,
+     "t": "Da",
+     "beat": 4
+    },
+    {
+     "w": "qui",
+     "start": 185.161,
+     "end": 185.368,
+     "t": "qui",
+     "beat": 4
+    },
+    {
+     "w": "vanno",
+     "start": 185.368,
+     "end": 185.623,
+     "t": "vanno",
+     "beat": 4
+    },
+    {
+     "w": "tolti",
+     "start": 185.623,
+     "end": 185.999,
+     "t": "tolti",
+     "beat": 4
+    },
+    {
+     "w": "i",
+     "start": 185.999,
+     "end": 186.035,
+     "t": "i",
+     "beat": 4
+    },
+    {
+     "w": "contributi",
+     "start": 186.035,
+     "end": 186.642,
+     "t": "contributi",
+     "beat": 4
+    },
+    {
+     "w": "previdenziali",
+     "start": 186.642,
+     "end": 187.334,
+     "t": "previdenziali",
+     "beat": 4
+    },
+    {
+     "w": "dell'Inps",
+     "start": 187.334,
+     "end": 187.904,
+     "t": "dell'Inps:",
+     "beat": 4
+    },
+    {
+     "w": "la",
+     "start": 188.244,
+     "end": 188.414,
+     "t": "la",
+     "beat": 4
+    },
+    {
+     "w": "forma",
+     "start": 188.414,
+     "end": 188.742,
+     "t": "forma",
+     "beat": 4
+    },
+    {
+     "w": "migliore",
+     "start": 188.742,
+     "end": 189.142,
+     "t": "migliore",
+     "beat": 4
+    },
+    {
+     "w": "la",
+     "start": 189.142,
+     "end": 189.215,
+     "t": "la",
+     "beat": 4
+    },
+    {
+     "w": "sceglie",
+     "start": 189.215,
+     "end": 189.615,
+     "t": "sceglie",
+     "beat": 4
+    },
+    {
+     "w": "il",
+     "start": 189.615,
+     "end": 189.688,
+     "t": "il",
+     "beat": 4
+    },
+    {
+     "w": "commercialista",
+     "start": 189.688,
+     "end": 190.488,
+     "t": "commercialista.",
+     "beat": 4
+    }
+   ],
+   "text": "Ora dividiamo. Esempio: soci al cinquanta per cento. Sono circa quarantottomila euro a testa. Presi come dividendo, si paga il ventisei per cento: restano circa trentaseimila euro a testa, quasi tremila euro al mese. Nello scenario prudente, con ricarico del sette per cento, sarebbero circa ottocentottanta euro al mese a testa. Da qui vanno tolti i contributi previdenziali dell'Inps: la forma migliore la sceglie il commercialista."
+  },
+  {
+   "id": "quote",
+   "start": 191.088,
+   "dur": 16.93,
+   "beats": [
+    {
+     "i": 0,
+     "start": 191.088,
+     "end": 192.036,
+     "text": "E le quote?"
+    },
+    {
+     "i": 1,
+     "start": 192.356,
+     "end": 195.729,
+     "text": "Possiamo essere soci alla pari, cinquanta e cinquanta."
+    },
+    {
+     "i": 2,
+     "start": 196.049,
+     "end": 200.267,
+     "text": "Oppure uno mette più capitale e l'altro più lavoro, con quote diverse."
+    },
+    {
+     "i": 3,
+     "start": 200.587,
+     "end": 207.419,
+     "text": "In ogni caso, mettiamo tutto per iscritto: ruoli, quote, decisioni, e cosa succede se uno vuole uscire."
+    }
+   ],
+   "words": [
+    {
+     "w": "E",
+     "start": 191.138,
+     "end": 191.344,
+     "t": "E",
+     "beat": 0
+    },
+    {
+     "w": "le",
+     "start": 191.344,
+     "end": 191.478,
+     "t": "le",
+     "beat": 0
+    },
+    {
+     "w": "quote",
+     "start": 191.478,
+     "end": 192.036,
+     "t": "quote?",
+     "beat": 0
+    },
+    {
+     "w": "Possiamo",
+     "start": 192.406,
+     "end": 192.904,
+     "t": "Possiamo",
+     "beat": 1
+    },
+    {
+     "w": "essere",
+     "start": 192.904,
+     "end": 193.255,
+     "t": "essere",
+     "beat": 1
+    },
+    {
+     "w": "soci",
+     "start": 193.255,
+     "end": 193.595,
+     "t": "soci",
+     "beat": 1
+    },
+    {
+     "w": "alla",
+     "start": 193.595,
+     "end": 193.814,
+     "t": "alla",
+     "beat": 1
+    },
+    {
+     "w": "pari",
+     "start": 193.814,
+     "end": 194.166,
+     "t": "pari,",
+     "beat": 1
+    },
+    {
+     "w": "cinquanta",
+     "start": 194.445,
+     "end": 195.027,
+     "t": "cinquanta",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 195.027,
+     "end": 195.088,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "cinquanta",
+     "start": 195.088,
+     "end": 195.729,
+     "t": "cinquanta.",
+     "beat": 1
+    },
+    {
+     "w": "Oppure",
+     "start": 196.099,
+     "end": 196.609,
+     "t": "Oppure",
+     "beat": 2
+    },
+    {
+     "w": "uno",
+     "start": 196.609,
+     "end": 196.791,
+     "t": "uno",
+     "beat": 2
+    },
+    {
+     "w": "mette",
+     "start": 196.791,
+     "end": 197.106,
+     "t": "mette",
+     "beat": 2
+    },
+    {
+     "w": "più",
+     "start": 197.106,
+     "end": 197.24,
+     "t": "più",
+     "beat": 2
+    },
+    {
+     "w": "capitale",
+     "start": 197.24,
+     "end": 197.932,
+     "t": "capitale",
+     "beat": 2
+    },
+    {
+     "w": "e",
+     "start": 197.932,
+     "end": 198.041,
+     "t": "e",
+     "beat": 2
+    },
+    {
+     "w": "l'altro",
+     "start": 198.041,
+     "end": 198.441,
+     "t": "l'altro",
+     "beat": 2
+    },
+    {
+     "w": "più",
+     "start": 198.441,
+     "end": 198.563,
+     "t": "più",
+     "beat": 2
+    },
+    {
+     "w": "lavoro",
+     "start": 198.563,
+     "end": 198.975,
+     "t": "lavoro,",
+     "beat": 2
+    },
+    {
+     "w": "con",
+     "start": 199.242,
+     "end": 199.448,
+     "t": "con",
+     "beat": 2
+    },
+    {
+     "w": "quote",
+     "start": 199.449,
+     "end": 199.728,
+     "t": "quote",
+     "beat": 2
+    },
+    {
+     "w": "diverse",
+     "start": 199.728,
+     "end": 200.267,
+     "t": "diverse.",
+     "beat": 2
+    },
+    {
+     "w": "In",
+     "start": 200.637,
+     "end": 200.831,
+     "t": "In",
+     "beat": 3
+    },
+    {
+     "w": "ogni",
+     "start": 200.831,
+     "end": 201.025,
+     "t": "ogni",
+     "beat": 3
+    },
+    {
+     "w": "caso",
+     "start": 201.025,
+     "end": 201.426,
+     "t": "caso,",
+     "beat": 3
+    },
+    {
+     "w": "mettiamo",
+     "start": 201.596,
+     "end": 201.972,
+     "t": "mettiamo",
+     "beat": 3
+    },
+    {
+     "w": "tutto",
+     "start": 201.972,
+     "end": 202.263,
+     "t": "tutto",
+     "beat": 3
+    },
+    {
+     "w": "per",
+     "start": 202.263,
+     "end": 202.372,
+     "t": "per",
+     "beat": 3
+    },
+    {
+     "w": "iscritto",
+     "start": 202.372,
+     "end": 202.894,
+     "t": "iscritto:",
+     "beat": 3
+    },
+    {
+     "w": "ruoli",
+     "start": 203.283,
+     "end": 203.768,
+     "t": "ruoli,",
+     "beat": 3
+    },
+    {
+     "w": "quote",
+     "start": 203.974,
+     "end": 204.423,
+     "t": "quote,",
+     "beat": 3
+    },
+    {
+     "w": "decisioni",
+     "start": 204.654,
+     "end": 205.37,
+     "t": "decisioni,",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 205.625,
+     "end": 205.734,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "cosa",
+     "start": 205.734,
+     "end": 206.037,
+     "t": "cosa",
+     "beat": 3
+    },
+    {
+     "w": "succede",
+     "start": 206.037,
+     "end": 206.511,
+     "t": "succede",
+     "beat": 3
+    },
+    {
+     "w": "se",
+     "start": 206.511,
+     "end": 206.62,
+     "t": "se",
+     "beat": 3
+    },
+    {
+     "w": "uno",
+     "start": 206.62,
+     "end": 206.741,
+     "t": "uno",
+     "beat": 3
+    },
+    {
+     "w": "vuole",
+     "start": 206.741,
+     "end": 206.948,
+     "t": "vuole",
+     "beat": 3
+    },
+    {
+     "w": "uscire",
+     "start": 206.948,
+     "end": 207.419,
+     "t": "uscire.",
+     "beat": 3
+    }
+   ],
+   "text": "E le quote? Possiamo essere soci alla pari, cinquanta e cinquanta. Oppure uno mette più capitale e l'altro più lavoro, con quote diverse. In ogni caso, mettiamo tutto per iscritto: ruoli, quote, decisioni, e cosa succede se uno vuole uscire."
+  },
+  {
+   "id": "rischi",
+   "start": 208.019,
+   "dur": 21.542,
+   "beats": [
+    {
+     "i": 0,
+     "start": 208.019,
+     "end": 211.429,
+     "text": "E i rischi? Li conosciamo, e li gestiamo."
+    },
+    {
+     "i": 1,
+     "start": 211.749,
+     "end": 214.635,
+     "text": "Compriamo solo su ordine: niente invenduto."
+    },
+    {
+     "i": 2,
+     "start": 214.955,
+     "end": 219.865,
+     "text": "Se un cliente non paga, c'è l'assicurazione crediti, o il factoring pro soluto."
+    },
+    {
+     "i": 3,
+     "start": 220.185,
+     "end": 224.419,
+     "text": "Se il camion perde il freddo, c'è l'assicurazione delle merci trasportate."
+    },
+    {
+     "i": 4,
+     "start": 224.739,
+     "end": 228.96,
+     "text": "E se il mare è grosso sul Tirreno, lavoriamo l'Adriatico e il mercato."
+    }
+   ],
+   "words": [
+    {
+     "w": "E",
+     "start": 208.069,
+     "end": 208.263,
+     "t": "E",
+     "beat": 0
+    },
+    {
+     "w": "i",
+     "start": 208.263,
+     "end": 208.385,
+     "t": "i",
+     "beat": 0
+    },
+    {
+     "w": "rischi",
+     "start": 208.385,
+     "end": 208.931,
+     "t": "rischi?",
+     "beat": 0
+    },
+    {
+     "w": "Li",
+     "start": 209.258,
+     "end": 209.501,
+     "t": "Li",
+     "beat": 0
+    },
+    {
+     "w": "conosciamo",
+     "start": 209.501,
+     "end": 210.229,
+     "t": "conosciamo,",
+     "beat": 0
+    },
+    {
+     "w": "e",
+     "start": 210.484,
+     "end": 210.63,
+     "t": "e",
+     "beat": 0
+    },
+    {
+     "w": "li",
+     "start": 210.63,
+     "end": 210.787,
+     "t": "li",
+     "beat": 0
+    },
+    {
+     "w": "gestiamo",
+     "start": 210.787,
+     "end": 211.429,
+     "t": "gestiamo.",
+     "beat": 0
+    },
+    {
+     "w": "Compriamo",
+     "start": 211.799,
+     "end": 212.382,
+     "t": "Compriamo",
+     "beat": 1
+    },
+    {
+     "w": "solo",
+     "start": 212.382,
+     "end": 212.673,
+     "t": "solo",
+     "beat": 1
+    },
+    {
+     "w": "su",
+     "start": 212.673,
+     "end": 212.843,
+     "t": "su",
+     "beat": 1
+    },
+    {
+     "w": "ordine",
+     "start": 212.843,
+     "end": 213.255,
+     "t": "ordine:",
+     "beat": 1
+    },
+    {
+     "w": "niente",
+     "start": 213.583,
+     "end": 213.971,
+     "t": "niente",
+     "beat": 1
+    },
+    {
+     "w": "invenduto",
+     "start": 213.971,
+     "end": 214.635,
+     "t": "invenduto.",
+     "beat": 1
+    },
+    {
+     "w": "Se",
+     "start": 215.005,
+     "end": 215.223,
+     "t": "Se",
+     "beat": 2
+    },
+    {
+     "w": "un",
+     "start": 215.223,
+     "end": 215.345,
+     "t": "un",
+     "beat": 2
+    },
+    {
+     "w": "cliente",
+     "start": 215.345,
+     "end": 215.733,
+     "t": "cliente",
+     "beat": 2
+    },
+    {
+     "w": "non",
+     "start": 215.733,
+     "end": 215.903,
+     "t": "non",
+     "beat": 2
+    },
+    {
+     "w": "paga",
+     "start": 215.903,
+     "end": 216.316,
+     "t": "paga,",
+     "beat": 2
+    },
+    {
+     "w": "c'è",
+     "start": 216.522,
+     "end": 216.668,
+     "t": "c'è",
+     "beat": 2
+    },
+    {
+     "w": "l'assicurazione",
+     "start": 216.668,
+     "end": 217.432,
+     "t": "l'assicurazione",
+     "beat": 2
+    },
+    {
+     "w": "crediti",
+     "start": 217.432,
+     "end": 217.966,
+     "t": "crediti,",
+     "beat": 2
+    },
+    {
+     "w": "o",
+     "start": 218.294,
+     "end": 218.415,
+     "t": "o",
+     "beat": 2
+    },
+    {
+     "w": "il",
+     "start": 218.415,
+     "end": 218.512,
+     "t": "il",
+     "beat": 2
+    },
+    {
+     "w": "factoring",
+     "start": 218.512,
+     "end": 219.155,
+     "t": "factoring",
+     "beat": 2
+    },
+    {
+     "w": "pro",
+     "start": 219.155,
+     "end": 219.374,
+     "t": "pro",
+     "beat": 2
+    },
+    {
+     "w": "soluto",
+     "start": 219.374,
+     "end": 219.865,
+     "t": "soluto.",
+     "beat": 2
+    },
+    {
+     "w": "Se",
+     "start": 220.235,
+     "end": 220.453,
+     "t": "Se",
+     "beat": 3
+    },
+    {
+     "w": "il",
+     "start": 220.453,
+     "end": 220.551,
+     "t": "il",
+     "beat": 3
+    },
+    {
+     "w": "camion",
+     "start": 220.551,
+     "end": 220.987,
+     "t": "camion",
+     "beat": 3
+    },
+    {
+     "w": "perde",
+     "start": 220.987,
+     "end": 221.303,
+     "t": "perde",
+     "beat": 3
+    },
+    {
+     "w": "il",
+     "start": 221.303,
+     "end": 221.364,
+     "t": "il",
+     "beat": 3
+    },
+    {
+     "w": "freddo",
+     "start": 221.364,
+     "end": 221.849,
+     "t": "freddo,",
+     "beat": 3
+    },
+    {
+     "w": "c'è",
+     "start": 222.128,
+     "end": 222.286,
+     "t": "c'è",
+     "beat": 3
+    },
+    {
+     "w": "l'assicurazione",
+     "start": 222.286,
+     "end": 223.111,
+     "t": "l'assicurazione",
+     "beat": 3
+    },
+    {
+     "w": "delle",
+     "start": 223.111,
+     "end": 223.317,
+     "t": "delle",
+     "beat": 3
+    },
+    {
+     "w": "merci",
+     "start": 223.318,
+     "end": 223.669,
+     "t": "merci",
+     "beat": 3
+    },
+    {
+     "w": "trasportate",
+     "start": 223.669,
+     "end": 224.419,
+     "t": "trasportate.",
+     "beat": 3
+    },
+    {
+     "w": "E",
+     "start": 224.789,
+     "end": 224.971,
+     "t": "E",
+     "beat": 4
+    },
+    {
+     "w": "se",
+     "start": 224.971,
+     "end": 225.105,
+     "t": "se",
+     "beat": 4
+    },
+    {
+     "w": "il",
+     "start": 225.105,
+     "end": 225.165,
+     "t": "il",
+     "beat": 4
+    },
+    {
+     "w": "mare",
+     "start": 225.165,
+     "end": 225.469,
+     "t": "mare",
+     "beat": 4
+    },
+    {
+     "w": "è",
+     "start": 225.469,
+     "end": 225.529,
+     "t": "è",
+     "beat": 4
+    },
+    {
+     "w": "grosso",
+     "start": 225.529,
+     "end": 225.966,
+     "t": "grosso",
+     "beat": 4
+    },
+    {
+     "w": "sul",
+     "start": 225.966,
+     "end": 226.136,
+     "t": "sul",
+     "beat": 4
+    },
+    {
+     "w": "Tirreno",
+     "start": 226.136,
+     "end": 226.646,
+     "t": "Tirreno,",
+     "beat": 4
+    },
+    {
+     "w": "lavoriamo",
+     "start": 226.925,
+     "end": 227.471,
+     "t": "lavoriamo",
+     "beat": 4
+    },
+    {
+     "w": "l'Adriatico",
+     "start": 227.471,
+     "end": 228.223,
+     "t": "l'Adriatico",
+     "beat": 4
+    },
+    {
+     "w": "e",
+     "start": 228.223,
+     "end": 228.296,
+     "t": "e",
+     "beat": 4
+    },
+    {
+     "w": "il",
+     "start": 228.296,
+     "end": 228.369,
+     "t": "il",
+     "beat": 4
+    },
+    {
+     "w": "mercato",
+     "start": 228.369,
+     "end": 228.96,
+     "t": "mercato.",
+     "beat": 4
+    }
+   ],
+   "text": "E i rischi? Li conosciamo, e li gestiamo. Compriamo solo su ordine: niente invenduto. Se un cliente non paga, c'è l'assicurazione crediti, o il factoring pro soluto. Se il camion perde il freddo, c'è l'assicurazione delle merci trasportate. E se il mare è grosso sul Tirreno, lavoriamo l'Adriatico e il mercato."
+  },
+  {
+   "id": "roadmap",
+   "start": 229.56,
+   "dur": 22.03,
+   "beats": [
+    {
+     "i": 0,
+     "start": 229.56,
+     "end": 231.005,
+     "text": "La tabella di marcia."
+    },
+    {
+     "i": 1,
+     "start": 231.325,
+     "end": 237.021,
+     "text": "Primo mese: società, pratiche sanitarie, contratti con Mare Italia e con il trasporto."
+    },
+    {
+     "i": 2,
+     "start": 237.341,
+     "end": 240.489,
+     "text": "Dal secondo mese: i primi ordini delle catene."
+    },
+    {
+     "i": 3,
+     "start": 240.809,
+     "end": 245.865,
+     "text": "Dal quarto mese: aste e barche, con anticipo fatture e assicurazione crediti."
+    },
+    {
+     "i": 4,
+     "start": 246.185,
+     "end": 250.99,
+     "text": "Entro il primo anno: la certificazione IFS Broker, e più catene."
+    }
+   ],
+   "words": [
+    {
+     "w": "La",
+     "start": 229.61,
+     "end": 229.865,
+     "t": "La",
+     "beat": 0
+    },
+    {
+     "w": "tabella",
+     "start": 229.865,
+     "end": 230.362,
+     "t": "tabella",
+     "beat": 0
+    },
+    {
+     "w": "di",
+     "start": 230.362,
+     "end": 230.459,
+     "t": "di",
+     "beat": 0
+    },
+    {
+     "w": "marcia",
+     "start": 230.459,
+     "end": 231.005,
+     "t": "marcia.",
+     "beat": 0
+    },
+    {
+     "w": "Primo",
+     "start": 231.375,
+     "end": 231.691,
+     "t": "Primo",
+     "beat": 1
+    },
+    {
+     "w": "mese",
+     "start": 231.691,
+     "end": 232.103,
+     "t": "mese:",
+     "beat": 1
+    },
+    {
+     "w": "società",
+     "start": 232.382,
+     "end": 232.916,
+     "t": "società,",
+     "beat": 1
+    },
+    {
+     "w": "pratiche",
+     "start": 233.195,
+     "end": 233.657,
+     "t": "pratiche",
+     "beat": 1
+    },
+    {
+     "w": "sanitarie",
+     "start": 233.657,
+     "end": 234.263,
+     "t": "sanitarie,",
+     "beat": 1
+    },
+    {
+     "w": "contratti",
+     "start": 234.542,
+     "end": 235.101,
+     "t": "contratti",
+     "beat": 1
+    },
+    {
+     "w": "con",
+     "start": 235.101,
+     "end": 235.271,
+     "t": "con",
+     "beat": 1
+    },
+    {
+     "w": "Mare",
+     "start": 235.271,
+     "end": 235.501,
+     "t": "Mare",
+     "beat": 1
+    },
+    {
+     "w": "Italia",
+     "start": 235.501,
+     "end": 236.023,
+     "t": "Italia",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 236.023,
+     "end": 236.12,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "con",
+     "start": 236.12,
+     "end": 236.302,
+     "t": "con",
+     "beat": 1
+    },
+    {
+     "w": "il",
+     "start": 236.302,
+     "end": 236.387,
+     "t": "il",
+     "beat": 1
+    },
+    {
+     "w": "trasporto",
+     "start": 236.387,
+     "end": 237.021,
+     "t": "trasporto.",
+     "beat": 1
+    },
+    {
+     "w": "Dal",
+     "start": 237.391,
+     "end": 237.707,
+     "t": "Dal",
+     "beat": 2
+    },
+    {
+     "w": "secondo",
+     "start": 237.707,
+     "end": 238.131,
+     "t": "secondo",
+     "beat": 2
+    },
+    {
+     "w": "mese",
+     "start": 238.131,
+     "end": 238.544,
+     "t": "mese:",
+     "beat": 2
+    },
+    {
+     "w": "i",
+     "start": 238.908,
+     "end": 239.029,
+     "t": "i",
+     "beat": 2
+    },
+    {
+     "w": "primi",
+     "start": 239.029,
+     "end": 239.381,
+     "t": "primi",
+     "beat": 2
+    },
+    {
+     "w": "ordini",
+     "start": 239.381,
+     "end": 239.77,
+     "t": "ordini",
+     "beat": 2
+    },
+    {
+     "w": "delle",
+     "start": 239.77,
+     "end": 240.0,
+     "t": "delle",
+     "beat": 2
+    },
+    {
+     "w": "catene",
+     "start": 240.0,
+     "end": 240.489,
+     "t": "catene.",
+     "beat": 2
+    },
+    {
+     "w": "Dal",
+     "start": 240.859,
+     "end": 241.138,
+     "t": "Dal",
+     "beat": 3
+    },
+    {
+     "w": "quarto",
+     "start": 241.138,
+     "end": 241.417,
+     "t": "quarto",
+     "beat": 3
+    },
+    {
+     "w": "mese",
+     "start": 241.417,
+     "end": 241.818,
+     "t": "mese:",
+     "beat": 3
+    },
+    {
+     "w": "aste",
+     "start": 242.121,
+     "end": 242.558,
+     "t": "aste",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 242.558,
+     "end": 242.594,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "barche",
+     "start": 242.594,
+     "end": 243.092,
+     "t": "barche,",
+     "beat": 3
+    },
+    {
+     "w": "con",
+     "start": 243.359,
+     "end": 243.517,
+     "t": "con",
+     "beat": 3
+    },
+    {
+     "w": "anticipo",
+     "start": 243.517,
+     "end": 244.014,
+     "t": "anticipo",
+     "beat": 3
+    },
+    {
+     "w": "fatture",
+     "start": 244.014,
+     "end": 244.548,
+     "t": "fatture",
+     "beat": 3
+    },
+    {
+     "w": "e",
+     "start": 244.548,
+     "end": 244.645,
+     "t": "e",
+     "beat": 3
+    },
+    {
+     "w": "assicurazione",
+     "start": 244.645,
+     "end": 245.361,
+     "t": "assicurazione",
+     "beat": 3
+    },
+    {
+     "w": "crediti",
+     "start": 245.361,
+     "end": 245.865,
+     "t": "crediti.",
+     "beat": 3
+    },
+    {
+     "w": "Entro",
+     "start": 246.235,
+     "end": 246.636,
+     "t": "Entro",
+     "beat": 4
+    },
+    {
+     "w": "il",
+     "start": 246.636,
+     "end": 246.72,
+     "t": "il",
+     "beat": 4
+    },
+    {
+     "w": "primo",
+     "start": 246.72,
+     "end": 247.012,
+     "t": "primo",
+     "beat": 4
+    },
+    {
+     "w": "anno",
+     "start": 247.012,
+     "end": 247.351,
+     "t": "anno:",
+     "beat": 4
+    },
+    {
+     "w": "la",
+     "start": 247.631,
+     "end": 247.801,
+     "t": "la",
+     "beat": 4
+    },
+    {
+     "w": "certificazione",
+     "start": 247.801,
+     "end": 248.747,
+     "t": "certificazione",
+     "beat": 4
+    },
+    {
+     "w": "IFS",
+     "start": 248.747,
+     "end": 249.5,
+     "t": "IFS",
+     "beat": 4
+    },
+    {
+     "w": "Broker",
+     "start": 249.5,
+     "end": 249.961,
+     "t": "Broker,",
+     "beat": 4
+    },
+    {
+     "w": "e",
+     "start": 250.252,
+     "end": 250.337,
+     "t": "e",
+     "beat": 4
+    },
+    {
+     "w": "più",
+     "start": 250.337,
+     "end": 250.507,
+     "t": "più",
+     "beat": 4
+    },
+    {
+     "w": "catene",
+     "start": 250.507,
+     "end": 250.99,
+     "t": "catene.",
+     "beat": 4
+    }
+   ],
+   "text": "La tabella di marcia. Primo mese: società, pratiche sanitarie, contratti con Mare Italia e con il trasporto. Dal secondo mese: i primi ordini delle catene. Dal quarto mese: aste e barche, con anticipo fatture e assicurazione crediti. Entro il primo anno: la certificazione IFS Broker, e più catene."
+  },
+  {
+   "id": "fine",
+   "start": 251.59,
+   "dur": 9.969,
+   "beats": [
+    {
+     "i": 0,
+     "start": 251.59,
+     "end": 253.372,
+     "text": "Questa è Argo Maris."
+    },
+    {
+     "i": 1,
+     "start": 253.872,
+     "end": 258.245,
+     "text": "Un'idea semplice, pochi costi per partire, e un mare di possibilità."
+    },
+    {
+     "i": 2,
+     "start": 258.845,
+     "end": 261.16,
+     "text": "Se ci stai, partiamo insieme."
+    }
+   ],
+   "words": [
+    {
+     "w": "Questa",
+     "start": 251.64,
+     "end": 252.212,
+     "t": "Questa",
+     "beat": 0
+    },
+    {
+     "w": "è",
+     "start": 252.212,
+     "end": 252.371,
+     "t": "è",
+     "beat": 0
+    },
+    {
+     "w": "Argo",
+     "start": 252.371,
+     "end": 252.73,
+     "t": "Argo",
+     "beat": 0
+    },
+    {
+     "w": "Maris",
+     "start": 252.73,
+     "end": 253.355,
+     "t": "Maris.",
+     "beat": 0
+    },
+    {
+     "w": "Un'idea",
+     "start": 253.922,
+     "end": 254.432,
+     "t": "Un'idea",
+     "beat": 1
+    },
+    {
+     "w": "semplice",
+     "start": 254.432,
+     "end": 255.063,
+     "t": "semplice,",
+     "beat": 1
+    },
+    {
+     "w": "pochi",
+     "start": 255.33,
+     "end": 255.633,
+     "t": "pochi",
+     "beat": 1
+    },
+    {
+     "w": "costi",
+     "start": 255.633,
+     "end": 256.021,
+     "t": "costi",
+     "beat": 1
+    },
+    {
+     "w": "per",
+     "start": 256.022,
+     "end": 256.167,
+     "t": "per",
+     "beat": 1
+    },
+    {
+     "w": "partire",
+     "start": 256.167,
+     "end": 256.701,
+     "t": "partire,",
+     "beat": 1
+    },
+    {
+     "w": "e",
+     "start": 256.956,
+     "end": 257.065,
+     "t": "e",
+     "beat": 1
+    },
+    {
+     "w": "un",
+     "start": 257.065,
+     "end": 257.199,
+     "t": "un",
+     "beat": 1
+    },
+    {
+     "w": "mare",
+     "start": 257.199,
+     "end": 257.429,
+     "t": "mare",
+     "beat": 1
+    },
+    {
+     "w": "di",
+     "start": 257.429,
+     "end": 257.538,
+     "t": "di",
+     "beat": 1
+    },
+    {
+     "w": "possibilità",
+     "start": 257.539,
+     "end": 258.245,
+     "t": "possibilità.",
+     "beat": 1
+    },
+    {
+     "w": "Se",
+     "start": 258.895,
+     "end": 259.171,
+     "t": "Se",
+     "beat": 2
+    },
+    {
+     "w": "ci",
+     "start": 259.171,
+     "end": 259.303,
+     "t": "ci",
+     "beat": 2
+    },
+    {
+     "w": "stai",
+     "start": 259.303,
+     "end": 259.737,
+     "t": "stai,",
+     "beat": 2
+    },
+    {
+     "w": "partiamo",
+     "start": 260.04,
+     "end": 260.54,
+     "t": "partiamo",
+     "beat": 2
+    },
+    {
+     "w": "insieme",
+     "start": 260.54,
+     "end": 261.16,
+     "t": "insieme.",
+     "beat": 2
+    }
+   ],
+   "text": "Questa è Argo Maris. Un'idea semplice, pochi costi per partire, e un mare di possibilità. Se ci stai, partiamo insieme."
+  }
+ ]
+}

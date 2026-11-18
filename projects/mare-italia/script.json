@@ -1,0 +1,140 @@
+{
+ "title": "Mare Italia × Argo Maris",
+ "format": "16:9",
+ "fps": 30,
+ "voice": "it-IT-GiuseppeMultilingualNeural",
+ "rate": "+3%",
+ "beatPause": 0.34,
+ "gap": 0.6,
+ "pron": {
+  "Unicoop Etruria": "Unicoop, Etruria",
+  "HACCP": "H.A.C.C.P."
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "text": [
+    "Ogni notte, al mercato ittico di Roma, arriva il pesce.",
+    "All'alba è già pronto per i banchi."
+   ],
+   "pauses": {
+    "0": 0.6
+   },
+   "rates": {
+    "0": "-4%"
+   }
+  },
+  {
+   "id": "intro",
+   "text": [
+    "Mare Italia e Argo Maris:",
+    "una proposta di partnership, dal mercato di Roma alla grande distribuzione."
+   ]
+  },
+  {
+   "id": "chi",
+   "text": [
+    "Chi è Mare Italia?",
+    "Un grossista del mercato ittico del Centro Agroalimentare di Roma, nei box quarantasei e quarantasette.",
+    "Iscritta dal duemilaquindici, con sede a Guidonia Montecelio, e una squadra di circa sedici persone.",
+    "Ogni giorno, un assortimento ampio di prodotti ittici, a pochi metri da tutto il mercato."
+   ]
+  },
+  {
+   "id": "argo",
+   "text": [
+    "E chi è Argo Maris?",
+    "Il buyer del pesce per la grande distribuzione.",
+    "Raccoglie gli ordini delle catene, compra il pesce migliore al prezzo giusto, e lo rivende con un solo fornitore, un solo referente, una sola fattura."
+   ]
+  },
+  {
+   "id": "idea",
+   "text": [
+    "L'idea è semplice.",
+    "Le catene mandano gli ordini ad Argo Maris.",
+    "Argo Maris compra prima di tutto da Mare Italia, il suo partner di riferimento al mercato.",
+    "E quello che manca lo completa con le aste e le barche del Tirreno e dell'Adriatico."
+   ]
+  },
+  {
+   "id": "esempio",
+   "text": [
+    "Facciamo un esempio concreto.",
+    "Sono le dieci: la catena ordina quaranta chili di orate e venticinque di calamari.",
+    "Alle undici Argo Maris conferma l'ordine con Mare Italia, e la merce viene bloccata.",
+    "Di notte parte il camion refrigerato.",
+    "E la mattina dopo, orate e calamari sono sul banco del supermercato."
+   ],
+   "pauses": {
+    "0": 0.45
+   }
+  },
+  {
+   "id": "vantaggi_mi",
+   "text": [
+    "Cosa ci guadagna Mare Italia?",
+    "Nuovi clienti della grande distribuzione, senza costi commerciali: gli ordini li porta Argo Maris.",
+    "Ordini programmati al mattino: sapete prima cosa preparare.",
+    "Pagamenti regolari, con contratto scritto e termini chiari.",
+    "E un canale in più per il prodotto della giornata: se avanza qualcosa di buono, Argo Maris può proporlo subito alle catene."
+   ]
+  },
+  {
+   "id": "numeri",
+   "text": [
+    "Mettiamo qualche numero. Le cifre sono indicative.",
+    "Se Argo Maris fattura settemila euro al giorno, quattro giorni a settimana, e la metà degli acquisti passa da Mare Italia,",
+    "sono circa tremilacinquecento euro di vendite in più al giorno per Mare Italia.",
+    "In un anno, circa settecentoventottomila euro di fatturato aggiuntivo."
+   ],
+   "pauses": {
+    "0": 0.5
+   }
+  },
+  {
+   "id": "vantaggi_am",
+   "text": [
+    "E cosa ci guadagna Argo Maris?",
+    "Un fornitore di fiducia dentro il mercato, con la merce pronta all'alba.",
+    "Prezzi di riferimento stabili, su cui costruire le offerte alle catene.",
+    "E la forza di un grossista vero, mentre Argo Maris resta leggero: niente magazzino, niente banco."
+   ]
+  },
+  {
+   "id": "mari",
+   "text": [
+    "Insieme, l'assortimento diventa completo.",
+    "Il mercato di Roma, con Mare Italia.",
+    "Le marinerie del Tirreno, da Viareggio a Gaeta.",
+    "Le marinerie dell'Adriatico, da Chioggia a Manfredonia.",
+    "E, quando serve, l'estero."
+   ]
+  },
+  {
+   "id": "regole",
+   "text": [
+    "Tutto in regola, per entrambi.",
+    "Contratto scritto, pagamenti entro trenta giorni come prevede la legge per il fresco, tracciabilità di ogni lotto.",
+    "E assicurazioni su merci trasportate e responsabilità prodotti."
+   ]
+  },
+  {
+   "id": "fine",
+   "text": [
+    "Mare Italia e Argo Maris.",
+    "Dal mercato di Roma, ai banchi della grande distribuzione.",
+    "Il mare, scelto per voi."
+   ],
+   "pauses": {
+    "0": 0.5,
+    "1": 0.6
+   },
+   "rates": {
+    "0": "-6%",
+    "2": "-6%"
+   },
+   "pad": 0.4
+  }
+ ]
+}
