@@ -151,3 +151,12 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
   icon-192/512/maskable/apple-touch dal logo, barra in basso su mobile, pulsante «Installa l'app»;
   su iPhone: Safari → Condividi → Aggiungi alla schermata Home). Niente App Store per ora. Password admin iniziale nella
   variabile ADMIN_PASSWORD del servizio (mai scriverla nel repo).
+- PREZZI E AI (nov. 2026): menu "Acquisti e prezzi" = Confronto prezzi (`#/confronto`: ultimo listino
+  Attivo per fornitore affiancato, verde il più basso, ▲▼ vs listino precedente, prezzo suggerito =
+  miglior acquisto + ricarico GDO/HoReCa/Pescheria da Impostazioni, pulsante Ordina), Listini fornitori
+  (foto/PDF → «Leggi con AI» = Claude `claude-opus-5-5` con output JSON a schema, righe da controllare
+  prima di salvare), Assistente AI (domande sui listini/vendite, effort low). SDK `@anthropic-ai/sdk`
+  (unica dipendenza, in argo-maris/package.json). Serve la variabile ANTHROPIC_API_KEY su Railway:
+  senza, l'AI risulta "non attiva" e il resto funziona. Canale cliente/ordine (GDO, HoReCa, …) e
+  prezzi prodotto per canale. Foto prodotti e allegati in DATA_DIR/uploads (servite solo con login).
+  Test AI senza chiave: finto server Messages con ANTHROPIC_BASE_URL=http://localhost:4010.

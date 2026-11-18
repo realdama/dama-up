@@ -24,7 +24,8 @@ const entities = {
     label: 'Clienti', singular: 'Cliente', icon: 'users', group: 'Anagrafiche', display: 'ragione_sociale',
     fields: [
       ...anagrafica,
-      { name: 'tipo', label: 'Tipo cliente', type: 'select', options: ['Ristorante', 'Pescheria', 'GDO', 'Grossista', 'Catering', 'Industria', 'Estero', 'Altro'], list: true },
+      { name: 'canale', label: 'Canale', type: 'select', options: ['GDO', 'HoReCa', 'Pescheria', 'Grossista', 'Industria', 'Export', 'Altro'], list: true, badge: true },
+      { name: 'tipo', label: 'Tipo cliente', type: 'select', options: ['Ristorante', 'Hotel', 'Catering', 'Supermercato', 'Catena GDO', 'Pescheria', 'Grossista', 'Industria', 'Estero', 'Altro'], list: true },
       { name: 'codice_sdi', label: 'Codice SDI', type: 'text', default: '0000000' },
       { name: 'pagamento', label: 'Pagamento abituale', type: 'select', options: PAGAMENTI },
       { name: 'fido', label: 'Fido (€)', type: 'money' },
@@ -47,6 +48,7 @@ const entities = {
   prodotti: {
     label: 'Prodotti', singular: 'Prodotto', icon: 'fish', group: 'Anagrafiche', display: 'nome',
     fields: [
+      { name: 'foto', label: 'Foto', type: 'files', max: 1, list: true },
       { name: 'codice', label: 'Codice', type: 'text', list: true },
       { name: 'nome', label: 'Denominazione commerciale', type: 'text', required: true, list: true, wide: true },
       { name: 'nome_scientifico', label: 'Nome scientifico', type: 'text', list: true, italic: true },
@@ -58,7 +60,9 @@ const entities = {
       { name: 'pezzatura', label: 'Pezzatura / calibro', type: 'text' },
       { name: 'unita', label: 'Unità', type: 'select', options: ['kg', 'pz', 'cassa', 'cartone'], default: 'kg', list: true },
       { name: 'prezzo_acquisto', label: 'Prezzo acquisto €', type: 'money', list: true },
-      { name: 'prezzo_vendita', label: 'Prezzo vendita €', type: 'money', list: true },
+      { name: 'prezzo_vendita', label: 'Prezzo vendita base €', type: 'money', list: true },
+      { name: 'prezzo_gdo', label: 'Prezzo GDO €', type: 'money', list: true },
+      { name: 'prezzo_horeca', label: 'Prezzo HoReCa €', type: 'money', list: true },
       { name: 'iva', label: 'IVA %', type: 'number', default: 10 },
       { name: 'fornitore_id', label: 'Fornitore abituale', type: 'ref', ref: 'fornitori' },
       { name: 'temperatura', label: 'Conservazione', type: 'text', hint: 'es. 0/+4 °C, -18 °C' },
@@ -74,6 +78,7 @@ const entities = {
       { name: 'data', label: 'Data ordine', type: 'date', required: true, default: 'today', list: true },
       { name: 'cliente_id', label: 'Cliente', type: 'ref', ref: 'clienti', required: true, list: true },
       { name: 'fornitore_id', label: 'Fornitore', type: 'ref', ref: 'fornitori', required: true, list: true },
+      { name: 'canale', label: 'Canale', type: 'select', options: ['GDO', 'HoReCa', 'Pescheria', 'Grossista', 'Industria', 'Export', 'Altro'], list: true, badge: true },
       { name: 'data_consegna', label: 'Consegna prevista', type: 'date', list: true },
       { name: 'luogo_consegna', label: 'Luogo di consegna', type: 'text', wide: true },
       { name: 'stato', label: 'Stato', type: 'select', options: ['Bozza', 'Confermato', 'In preparazione', 'In consegna', 'Consegnato', 'Fatturato', 'Chiuso', 'Annullato'], default: 'Bozza', list: true, badge: true },
@@ -176,6 +181,31 @@ const entities = {
       { name: 'note', label: 'Note', type: 'text', wide: true, list: true },
     ],
   },
+  listini: {
+    label: 'Listini fornitori', singular: 'Listino', icon: 'tag', group: 'Acquisti e prezzi', display: "COALESCE(titolo, 'Listino') || ' ' || COALESCE(data, '')",
+    defaultSort: 'data DESC, id DESC',
+    fields: [
+      { name: 'fornitore_id', label: 'Fornitore', type: 'ref', ref: 'fornitori', required: true, list: true },
+      { name: 'data', label: 'Data listino', type: 'date', required: true, default: 'today', list: true },
+      { name: 'valido_fino', label: 'Valido fino al', type: 'date', list: true },
+      { name: 'titolo', label: 'Titolo / riferimento', type: 'text', list: true, hint: 'es. Listino settimana 47' },
+      { name: 'stato', label: 'Stato', type: 'select', options: ['Attivo', 'Archiviato'], default: 'Attivo', list: true, badge: true },
+      { name: 'allegati', label: 'Foto o PDF del listino', type: 'files', max: 10, wide: true, hint: 'Fotografa il listino o carica il PDF, poi premi «Leggi con AI»' },
+      { name: 'note', label: 'Note', type: 'textarea', wide: true },
+    ],
+    lines: {
+      table: 'listini_righe', label: 'Prezzi del listino',
+      fields: [
+        { name: 'prodotto_id', label: 'Prodotto (anagrafica)', type: 'ref', ref: 'prodotti' },
+        { name: 'descrizione', label: 'Come scritto nel listino', type: 'text' },
+        { name: 'origine', label: 'Origine / zona', type: 'text' },
+        { name: 'pezzatura', label: 'Pezzatura', type: 'text' },
+        { name: 'unita', label: 'U.M.', type: 'text' },
+        { name: 'prezzo', label: 'Prezzo €', type: 'money' },
+        { name: 'note', label: 'Note', type: 'text' },
+      ],
+    },
+  },
   spedizioni: {
     label: 'Spedizioni', singular: 'Spedizione', icon: 'truck', group: 'Operatività', display: 'codice', numbered: 'SP',
     defaultSort: 'data_partenza DESC, id DESC',
@@ -271,7 +301,7 @@ const entities = {
   },
 };
 
-const GROUPS = ['Operatività', 'Amministrazione', 'Anagrafiche', 'Personale', 'Sistema'];
+const GROUPS = ['Operatività', 'Acquisti e prezzi', 'Amministrazione', 'Anagrafiche', 'Personale', 'Sistema'];
 
 const SETTINGS = [
   { name: 'ragione_sociale', label: 'Ragione sociale', default: 'Argo Maris S.r.l.' },
@@ -289,6 +319,9 @@ const SETTINGS = [
   { name: 'regime_fiscale', label: 'Regime fiscale (FatturaPA)', default: 'RF01' },
   { name: 'rea', label: 'REA', default: '' },
   { name: 'provvigione_pct', label: 'Provvigione predefinita %', default: '3' },
+  { name: 'ricarico_gdo_pct', label: 'Ricarico suggerito GDO %', default: '15' },
+  { name: 'ricarico_horeca_pct', label: 'Ricarico suggerito HoReCa %', default: '30' },
+  { name: 'ricarico_pescheria_pct', label: 'Ricarico suggerito pescherie %', default: '22' },
   { name: 'iva_provvigione', label: 'IVA sulle provvigioni %', default: '22' },
 ];
 

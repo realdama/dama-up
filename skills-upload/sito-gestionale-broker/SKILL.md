@@ -62,6 +62,23 @@ Lavorare in autonomia, risposte brevi in italiano, commit + push sul branch di s
 - Test: server su porta di prova con `DATA_DIR` nello scratchpad, curl per API/ruoli, Playwright
   per il flusso completo (login → demo → ordine → DDT → fattura → incasso → turno → mobile).
 
+## 3a. Listini, confronto prezzi e AI
+- Listini fornitore = entità con righe (prodotto abbinato, descrizione originale, origine, pezzatura,
+  U.M., prezzo) + campo `files` (foto/PDF, caricamento base64 con ridimensionamento a 2000 px nel
+  browser, salvati in DATA_DIR/uploads, serviti solo dietro login).
+- Lettura con AI: SDK ufficiale `@anthropic-ai/sdk` (non fetch), `client.beta.messages.create` con
+  model `claude-opus-5-5`, `betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default'`,
+  `output_config: { effort, format: { type: 'json_schema', schema } }` (null con anyOf), immagini
+  `{type:'image', source:{type:'base64'}}` e PDF `{type:'document'}`; passare il catalogo prodotti per
+  l'abbinamento, prezzo null se illeggibile, l'utente controlla e salva. Gestire refusal/max_tokens ed
+  errori tipizzati (AuthenticationError, RateLimitError, APIConnectionError, APIError).
+- Confronto: ultimo listino Attivo per fornitore, chiave = prodotto_id o descrizione normalizzata,
+  trend vs listino precedente, ricarichi per canale nelle Impostazioni, link "Ordina" che precompila l'ordine.
+- Assistente: contesto JSON (listini attivi, anagrafica, vendite 60 gg, ricarichi), risposte brevi in
+  italiano senza inventare prezzi; storia breve in sessionStorage.
+- Chiave: ANTHROPIC_API_KEY tra le variabili del servizio (mai in chat o nel repo). Test con finto
+  endpoint Messages (ANTHROPIC_BASE_URL) e Playwright.
+
 ## 3b. App per telefono (PWA)
 - Quando chiedono "l'app": rendere il gestionale installabile (manifest con scope /app/,
   start_url /app/#/, display standalone, theme blu notte; icone quadrate dal logo su fondo blu

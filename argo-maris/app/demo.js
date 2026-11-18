@@ -14,7 +14,7 @@ module.exports = function demo({ saveRow, db, user, generaDDT, generaFattura, ge
     ['Osteria del Porto (demo)', 'Ristorante', 'Civitavecchia', 'RM', 'Rimessa diretta'],
     ['Catering Mareblu (demo)', 'Catering', 'Viterbo', 'VT', 'Bonifico 30 gg f.m.'],
     ['Ittica Rivabella (demo)', 'Grossista', 'Napoli', 'NA', 'Bonifico 30 gg d.f.'],
-  ].map(([r, tipo, citta, prov, pag], i) => S('clienti', { ragione_sociale: r, tipo, citta, provincia: prov, pagamento: pag, piva: String(10000000000 + i * 1234567), indirizzo: `Via del Mare ${10 + i}`, cap: '00100', telefono: `06 000 00${i}0`, email: `ordini${i}@esempio.it` }));
+  ].map(([r, tipo, citta, prov, pag], i) => S('clienti', { ragione_sociale: r, tipo, canale: { Ristorante: 'HoReCa', Catering: 'HoReCa', GDO: 'GDO', Pescheria: 'Pescheria', Grossista: 'Grossista' }[tipo] || 'Altro', citta, provincia: prov, pagamento: pag, piva: String(10000000000 + i * 1234567), indirizzo: `Via del Mare ${10 + i}`, cap: '00100', telefono: `06 000 00${i}0`, email: `ordini${i}@esempio.it` }));
   const fornitori = [
     ['Cooperativa Pescatori Adriatico (demo)', 'Armatore / pescatore', 'Ancona', '37.2.1', 3],
     ['Gamberi del Canale (demo)', 'Armatore / pescatore', 'Mazara del Vallo', '37.2.2', 4],
@@ -39,6 +39,16 @@ module.exports = function demo({ saveRow, db, user, generaDDT, generaFattura, ge
     ['AS01', 'Astice canadese', 'Homarus americanus', 'Crostacei', 'FAO 21 Atlantico nord-occidentale', 'Pescato', 'Nasse e trappole', 'Fresco', '500-600 g', 'kg', 26, 35, F[3]],
     ['MZ01', 'Merluzzo nordico, filetti', 'Gadus morhua', 'Congelato', 'FAO 27 Atlantico nord-orientale', 'Pescato', 'Reti da traino', 'Surgelato', '', 'kg', 9, 12.8, F[3]],
   ].map(([codice, nome, sci, cat, fao, met, att, st, pez, un, pa, pv, f]) => S('prodotti', { codice, nome, nome_scientifico: sci, categoria: cat, zona_fao: fao, metodo: met, attrezzo: att, stato_fisico: st, pezzatura: pez, unita: un, prezzo_acquisto: pa, prezzo_vendita: pv, iva: 10, fornitore_id: f, temperatura: st === 'Surgelato' ? '-18 °C' : '0/+4 °C', attivo: 1 }));
+  // prezzi per canale e listini fornitori (attuale + precedente) per il confronto
+  for (const p of prodotti) db.prepare('UPDATE prodotti SET prezzo_gdo=?, prezzo_horeca=? WHERE id=?').run(Math.round(p.prezzo_acquisto * 1.15 * 100) / 100, Math.round(p.prezzo_acquisto * 1.32 * 100) / 100, p.id);
+  for (const [fi, forn] of fornitori.entries()) {
+    const scelti = prodotti.filter((p, j) => p.fornitore_id === forn.id || (j + fi) % 3 === 0);
+    for (const [k, giorni] of [[0, -14], [1, -2]]) {
+      S('listini', { fornitore_id: forn.id, data: day(giorni), valido_fino: day(giorni + 7), titolo: k ? 'Listino settimana corrente' : 'Listino settimana precedente', stato: k ? 'Attivo' : 'Archiviato',
+        righe: scelti.map(p => ({ prodotto_id: p.id, descrizione: p.nome.toUpperCase(), origine: p.zona_fao, pezzatura: p.pezzatura, unita: p.unita,
+          prezzo: Math.round(p.prezzo_acquisto * (0.9 + rnd() * 0.22) * 100) / 100 })) });
+    }
+  }
   const vettori = [['Frigo Express (demo)', 'Tariffa a collo, consegna in giornata'], ['Trasporti Isotermici Sud (demo)', 'A viaggio'], ['Logistica Freddo Italia (demo)', 'Groupage refrigerato']]
     .map(([r, t], i) => S('vettori', { ragione_sociale: r, tariffa: t, telefono: `06 111 11${i}`, piva: String(30000000000 + i * 11) }));
   const mezzi = [['AB123CD', 'Iveco Daily isotermico', 'Furgone isotermico', 30], ['EF456GH', 'Fiat Ducato frigo', 'Furgone frigo', 70], ['IL789MN', 'Mercedes Atego frigo', 'Camion frigo', 200]]

@@ -183,6 +183,11 @@ function clean(fields, body) {
     else if (['number', 'money'].includes(f.type)) { v = +String(v).replace(',', '.'); if (Number.isNaN(v)) throw new HttpError(400, `${f.label}: numero non valido`); }
     else if (f.type === 'bool') v = v ? 1 : 0;
     else if (f.type === 'ref') v = +v || null;
+    else if (f.type === 'files') {
+      let arr = v; if (typeof arr === 'string') { try { arr = JSON.parse(arr); } catch { arr = []; } }
+      arr = (Array.isArray(arr) ? arr : []).filter(n => FILE_RE.test(n)).slice(0, f.max || 10);
+      v = arr.length ? JSON.stringify(arr) : null;
+    }
     else v = String(v).trim();
     out[f.name] = v;
   }
@@ -475,6 +480,159 @@ function currentUser(req) {
 }
 const loginAttempts = new Map();
 
+// ---------------------------------------------------------------- file caricati (foto prodotti, listini)
+const UPLOADS = path.join(DATA_DIR, 'uploads');
+fs.mkdirSync(UPLOADS, { recursive: true });
+const FILE_RE = /^[a-f0-9]{24}\.(jpg|png|webp|pdf)$/;
+const FILE_MIME = { jpg: 'image/jpeg', png: 'image/png', webp: 'image/webp', pdf: 'application/pdf' };
+function saveUpload(b) {
+  const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'application/pdf': 'pdf' }[b.type];
+  if (!ext) throw new HttpError(400, 'Formato non supportato: carica foto (JPG, PNG, WEBP) o PDF');
+  const buf = Buffer.from(String(b.data || ''), 'base64');
+  if (!buf.length) throw new HttpError(400, 'File vuoto');
+  if (buf.length > 15e6) throw new HttpError(413, 'File oltre 15 MB');
+  const name = crypto.randomBytes(12).toString('hex') + '.' + ext;
+  fs.writeFileSync(path.join(UPLOADS, name), buf);
+  return { name, type: b.type, size: buf.length };
+}
+
+// ---------------------------------------------------------------- confronto listini
+function confronto() {
+  const fornitori = db.prepare(`SELECT f.id, f.ragione_sociale nome, l.id listino_id, l.data, l.titolo,
+      (SELECT p.id FROM listini p WHERE p.fornitore_id=f.id AND p.id<>l.id AND p.data<=l.data ORDER BY p.data DESC, p.id DESC LIMIT 1) prev_id
+    FROM listini l JOIN fornitori f ON f.id=l.fornitore_id
+    WHERE l.stato='Attivo' AND l.id = (SELECT l2.id FROM listini l2 WHERE l2.fornitore_id=l.fornitore_id AND l2.stato='Attivo' ORDER BY l2.data DESC, l2.id DESC LIMIT 1)
+    ORDER BY f.ragione_sociale`).all();
+  const keyOf = r => r.prodotto_id ? 'p' + r.prodotto_id : 'd' + String(r.descrizione || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const rows = new Map();
+  const prodStmt = db.prepare('SELECT id, nome, nome_scientifico, categoria, foto, unita, pezzatura, prezzo_gdo, prezzo_horeca, prezzo_vendita FROM prodotti WHERE id=?');
+  for (const f of fornitori) {
+    const prev = new Map();
+    if (f.prev_id) for (const r of db.prepare('SELECT * FROM listini_righe WHERE parent_id=?').all(f.prev_id)) prev.set(keyOf(r), r.prezzo);
+    for (const r of db.prepare('SELECT * FROM listini_righe WHERE parent_id=? AND prezzo IS NOT NULL').all(f.listino_id)) {
+      const k = keyOf(r);
+      if (!rows.has(k)) {
+        const p = r.prodotto_id ? prodStmt.get(r.prodotto_id) : null;
+        rows.set(k, { key: k, prodotto_id: r.prodotto_id, nome: p ? p.nome : r.descrizione, nome_scientifico: p?.nome_scientifico || null,
+          categoria: p?.categoria || null, foto: p?.foto || null, unita: r.unita || p?.unita || 'kg', anagrafica: p || null, prezzi: {} });
+      }
+      const row = rows.get(k);
+      const cur = row.prezzi[f.id];
+      if (!cur || r.prezzo < cur.prezzo) row.prezzi[f.id] = { prezzo: r.prezzo, pezzatura: r.pezzatura, origine: r.origine, unita: r.unita, descrizione: r.descrizione, prev: prev.get(k) ?? null };
+    }
+  }
+  const s = allSettings();
+  return { fornitori, righe: [...rows.values()].sort((a, b) => String(a.nome).localeCompare(String(b.nome), 'it')),
+    ricarichi: { GDO: +s.ricarico_gdo_pct || 0, HoReCa: +s.ricarico_horeca_pct || 0, Pescheria: +s.ricarico_pescheria_pct || 0 } };
+}
+
+// ---------------------------------------------------------------- assistente AI (Claude)
+const AI_MODEL = process.env.AI_MODEL || 'claude-opus-5-5';
+let aiClient = null, aiSdk = null;
+function aiReady() { return !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN); }
+function getAi() {
+  if (!aiReady()) throw new HttpError(503, "Assistente AI non attivo: manca la chiave ANTHROPIC_API_KEY sul server (Railway → servizio argo-maris-web → Variables).");
+  if (!aiClient) {
+    try { aiSdk = require('@anthropic-ai/sdk'); } catch { throw new HttpError(503, 'Libreria AI non installata sul server (npm install)'); }
+    const Anthropic = aiSdk.default || aiSdk.Anthropic || aiSdk;
+    aiClient = new Anthropic();
+  }
+  return aiClient;
+}
+async function askClaude(params) {
+  const client = getAi();
+  let res;
+  try {
+    res = await client.beta.messages.create({
+      model: AI_MODEL, max_tokens: 16000,
+      betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default',
+      ...params,
+    });
+  } catch (err) {
+    const A = aiSdk.default || aiSdk;
+    if (A.AuthenticationError && err instanceof A.AuthenticationError) throw new HttpError(503, 'Chiave AI non valida: controlla ANTHROPIC_API_KEY sul server');
+    if (A.RateLimitError && err instanceof A.RateLimitError) throw new HttpError(429, "L'assistente AI è sovraccarico, riprova tra un minuto");
+    if (A.BadRequestError && err instanceof A.BadRequestError) throw new HttpError(400, 'Richiesta AI non valida: ' + (err.message || '').slice(0, 200));
+    if (A.APIConnectionError && err instanceof A.APIConnectionError) throw new HttpError(502, 'Servizio AI non raggiungibile, riprova');
+    if (A.APIError && err instanceof A.APIError) throw new HttpError(502, 'Servizio AI non disponibile (' + (err.status || 'errore') + '), riprova');
+    throw err;
+  }
+  if (res.stop_reason === 'refusal') throw new HttpError(422, "L'assistente AI non ha potuto rispondere a questa richiesta");
+  if (res.stop_reason === 'max_tokens') throw new HttpError(422, 'Risposta AI troppo lunga: prova con meno pagine alla volta');
+  return res.content.filter(b => b.type === 'text').map(b => b.text).join('').trim();
+}
+const nullable = (t, description) => ({ anyOf: [{ type: t }, { type: 'null' }], ...(description ? { description } : {}) });
+const LISTINO_SCHEMA = {
+  type: 'object', additionalProperties: false, required: ['fornitore', 'data', 'righe'],
+  properties: {
+    fornitore: nullable('string'), data: nullable('string', 'Data del listino in formato YYYY-MM-DD, se presente'),
+    righe: { type: 'array', items: {
+      type: 'object', additionalProperties: false,
+      required: ['descrizione', 'prodotto_id', 'origine', 'pezzatura', 'unita', 'prezzo', 'note'],
+      properties: {
+        descrizione: { type: 'string', description: 'Prodotto come scritto nel listino' },
+        prodotto_id: nullable('integer', 'id del catalogo solo se è chiaramente lo stesso prodotto, altrimenti null'),
+        origine: nullable('string'), pezzatura: nullable('string'),
+        unita: { type: 'string', description: 'kg, pz, cassa o cartone' },
+        prezzo: nullable('number', 'Prezzo in euro per unità, null se illeggibile'),
+        note: nullable('string'),
+      } } },
+  },
+};
+async function estraiListino(files) {
+  const names = (Array.isArray(files) ? files : []).filter(n => FILE_RE.test(n)).slice(0, 10);
+  if (!names.length) throw new HttpError(400, 'Carica prima almeno una foto o un PDF del listino');
+  const content = [];
+  for (const n of names) {
+    const ext = n.split('.').pop(); const data = fs.readFileSync(path.join(UPLOADS, n)).toString('base64');
+    content.push(ext === 'pdf'
+      ? { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data } }
+      : { type: 'image', source: { type: 'base64', media_type: FILE_MIME[ext], data } });
+  }
+  const catalogo = db.prepare('SELECT id, nome, nome_scientifico, pezzatura, unita FROM prodotti WHERE COALESCE(attivo,1)=1 ORDER BY nome').all();
+  content.push({ type: 'text', text: `Leggi questo listino prezzi di un fornitore di prodotti ittici e restituisci una riga per ogni prodotto con prezzo.
+- Copia la descrizione come è scritta; riporta origine/zona FAO e pezzatura se indicate.
+- prezzo: numero in euro per l'unità indicata (kg, pz, cassa, cartone). Se il prezzo non si legge con sicurezza metti null e spiega in note: non stimare.
+- prodotto_id: abbina al catalogo solo se è chiaramente la stessa specie e un formato compatibile, altrimenti null.
+- Ignora intestazioni, condizioni di vendita e righe senza prodotto.
+
+Catalogo prodotti (JSON):
+${JSON.stringify(catalogo)}` });
+  const text = await askClaude({
+    system: 'Sei l\'assistente acquisti di Argo Maris, broker e importatore di prodotti ittici al Centro Agroalimentare di Roma. Trascrivi i listini dei fornitori con precisione.',
+    messages: [{ role: 'user', content }],
+    output_config: { effort: 'medium', format: { type: 'json_schema', schema: LISTINO_SCHEMA } },
+  });
+  let out; try { out = JSON.parse(text); } catch { throw new HttpError(502, 'Risposta AI non leggibile, riprova'); }
+  const ids = new Set(catalogo.map(c => c.id));
+  out.righe = (out.righe || []).map(r => ({ ...r, prodotto_id: ids.has(r.prodotto_id) ? r.prodotto_id : null }));
+  const forn = out.fornitore ? db.prepare('SELECT id, ragione_sociale FROM fornitori').all()
+    .find(f => f.ragione_sociale.toLowerCase().split(/[\s()]+/).filter(w => w.length > 3).some(w => out.fornitore.toLowerCase().includes(w))) : null;
+  return { ...out, fornitore_id: forn ? forn.id : null };
+}
+async function chiediAi(domanda, storia) {
+  if (!String(domanda || '').trim()) throw new HttpError(400, 'Scrivi una domanda');
+  const c = confronto();
+  const listini = c.fornitori.map(f => ({ fornitore: f.nome, data: f.data,
+    prezzi: c.righe.filter(r => r.prezzi[f.id]).map(r => ({ prodotto: r.nome, ...r.prezzi[f.id] })) }));
+  const prodotti = db.prepare('SELECT nome, categoria, unita, prezzo_acquisto, prezzo_vendita, prezzo_gdo, prezzo_horeca FROM prodotti WHERE COALESCE(attivo,1)=1').all();
+  const vendite = db.prepare(`SELECT r.descrizione prodotto, COALESCE(o.canale, c.canale) canale, ROUND(SUM(r.quantita),1) quantita, ROUND(AVG(r.prezzo_vendita),2) prezzo_medio_vendita, ROUND(AVG(r.prezzo_acquisto),2) prezzo_medio_acquisto
+    FROM ordini_righe r JOIN ordini o ON o.id=r.parent_id LEFT JOIN clienti c ON c.id=o.cliente_id
+    WHERE o.data >= date('now','-60 days') AND o.stato<>'Annullato' GROUP BY 1,2 ORDER BY quantita DESC LIMIT 80`).all();
+  const contesto = JSON.stringify({ oggi: today(), ricarichi_suggeriti_pct: c.ricarichi, listini_attivi: listini, anagrafica_prodotti: prodotti, vendite_ultimi_60_giorni: vendite });
+  const messages = [];
+  for (const m of (Array.isArray(storia) ? storia : []).slice(-6)) if (m && ['user', 'assistant'].includes(m.role) && m.text) messages.push({ role: m.role, content: String(m.text).slice(0, 4000) });
+  messages.push({ role: 'user', content: `Dati aggiornati del gestionale (JSON):\n${contesto}\n\nDomanda: ${String(domanda).slice(0, 2000)}` });
+  return askClaude({
+    system: `Sei l'assistente acquisti e prezzi di Argo Maris, broker e importatore di prodotti ittici al CAR di Roma che vende a GDO, HoReCa e pescherie.
+Rispondi in italiano, in modo breve e pratico, usando solo i dati forniti: se un dato manca dillo, non inventare prezzi.
+Quando confronti fornitori indica sempre prezzo, unità, pezzatura e data del listino. Per i prezzi di vendita parti dal miglior prezzo d'acquisto e applica i ricarichi suggeriti, mostrando il calcolo.
+Usa elenchi puntati brevi; niente tabelle larghe.`,
+    messages,
+    output_config: { effort: 'low' },
+  });
+}
+
 // ---------------------------------------------------------------- HTTP
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.json': 'application/json', '.ico': 'image/x-icon', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json' };
 function send(res, code, body, type = 'application/json; charset=utf-8', extra = {}) {
@@ -490,9 +648,9 @@ function serveStatic(res, root, rel) {
   if (!fs.existsSync(f)) return send(res, 404, 'Non trovato', 'text/plain; charset=utf-8');
   send(res, 200, fs.readFileSync(f), MIME[path.extname(f)] || 'application/octet-stream', { 'Cache-Control': 'no-cache' });
 }
-async function readBody(req) {
+async function readBody(req, limit = 2e6) {
   let size = 0; const chunks = [];
-  for await (const c of req) { size += c.length; if (size > 2e6) throw new HttpError(413, 'Richiesta troppo grande'); chunks.push(c); }
+  for await (const c of req) { size += c.length; if (size > limit) throw new HttpError(413, 'File o richiesta troppo grande'); chunks.push(c); }
   if (!chunks.length) return {};
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { throw new HttpError(400, 'JSON non valido'); }
 }
@@ -545,6 +703,15 @@ async function api(req, res, url) {
     tx(() => require('./demo')({ saveRow, db, user, generaDDT, generaFattura, generaProvvigione }));
     return send(res, 200, { ok: true });
   }
+  if (parts[0] === 'upload' && method === 'POST') return send(res, 201, saveUpload(await readBody(req, 22e6)));
+  if (parts[0] === 'files' && parts[1] && method === 'GET') {
+    if (!FILE_RE.test(parts[1]) || !fs.existsSync(path.join(UPLOADS, parts[1]))) throw new HttpError(404, 'File non trovato');
+    return send(res, 200, fs.readFileSync(path.join(UPLOADS, parts[1])), FILE_MIME[parts[1].split('.').pop()], { 'Cache-Control': 'private, max-age=86400' });
+  }
+  if (parts[0] === 'confronto') return send(res, 200, confronto());
+  if (parts[0] === 'ai' && parts[1] === 'stato') return send(res, 200, { attivo: aiReady() });
+  if (parts[0] === 'ai' && parts[1] === 'estrai-listino' && method === 'POST') { const b = await readBody(req); const out = await estraiListino(b.allegati); log(user, 'AI', 'listini', null, `lette ${out.righe.length} righe`); return send(res, 200, out); }
+  if (parts[0] === 'ai' && parts[1] === 'chiedi' && method === 'POST') { const b = await readBody(req, 1e6); return send(res, 200, { risposta: await chiediAi(b.domanda, b.storia) }); }
   if (parts[0] === 'turni' && parts[1] === 'copia' && method === 'POST') { const b = await readBody(req); return send(res, 200, copiaSettimana(b.da, b.a, user)); }
   if (parts[0] === 'export' && parts[1]) {
     const ent = parts[1].replace(/\.csv$/, '');

@@ -33,6 +33,10 @@ const ICONS = {
   key: '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/>',
   gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
   list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  tag: '<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/>',
+  spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>',
+  compare: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
+  camera: '<path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="4"/>',
   plus: '<path d="M12 5v14M5 12h14"/>', search: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>',
   print: '<path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2"/><rect x="6" y="14" width="12" height="7"/>',
   download: '<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>', trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/>',
@@ -105,6 +109,7 @@ function buildNav() {
   const E = S.schema.entities;
   const items = {
     'Operatività': [['#/', 'Dashboard', 'home'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/e/ddt', 'DDT', 'file'], ['#/e/spedizioni', 'Spedizioni', 'truck']],
+    'Acquisti e prezzi': [['#/confronto', 'Confronto prezzi', 'compare'], ['#/e/listini', 'Listini fornitori', 'tag'], ['#/ai', 'Assistente AI', 'spark']],
     'Amministrazione': [['#/e/fatture', 'Fatture', 'euro'], ['#/e/pagamenti', 'Incassi e pagamenti', 'wallet'], ['#/scadenzario', 'Scadenzario', 'alarm']],
     'Anagrafiche': ['clienti', 'fornitori', 'prodotti', 'vettori', 'mezzi'].map(k => ['#/e/' + k, E[k].label, E[k].icon]),
     'Personale': [['#/e/dipendenti', 'Dipendenti', 'badge'], ['#/turni', 'Turni', 'calendar']],
@@ -116,7 +121,7 @@ function buildNav() {
   setTimeout(showInstall);
 }
 function buildTabbar() {
-  const t = [['#/', 'Home', 'home'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/e/spedizioni', 'Viaggi', 'truck'], ['#/turni', 'Turni', 'calendar']];
+  const t = [['#/', 'Home', 'home'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/confronto', 'Prezzi', 'tag'], ['#/turni', 'Turni', 'calendar']];
   $('#tabbar').innerHTML = t.map(([h, l, i]) => `<a href="${h}" data-tab>${icon(i)}<span>${l}</span></a>`).join('') +
     `<button type="button" id="tabMenu">${icon('list')}<span>Menu</span></button>`;
   $('#tabMenu').addEventListener('click', () => $('#side').classList.toggle('open'));
@@ -154,6 +159,8 @@ async function route() {
     if (p[0] === 'scadenzario') return await viewScadenzario();
     if (p[0] === 'impostazioni') return await viewSettings();
     if (p[0] === 'registro') return await viewLog();
+    if (p[0] === 'confronto') return await viewConfronto();
+    if (p[0] === 'ai') return await viewAi();
     if (p[0] === 'stampa') return await viewPrint(p[1], +p[2]);
     view.innerHTML = '<p class="empty">Pagina non trovata</p>';
   } catch (e) { if (e.message !== 'Accesso richiesto') view.innerHTML = `<p class="empty">${esc(e.message)}</p>`; }
@@ -248,6 +255,7 @@ async function viewList(ent, params = {}) {
     if (f.type === 'date') return f.expiry && val && val < addDays(today(), 30) ? `<span class="badge ${val < today() ? 'b-bad' : 'b-warn'}">${fdate(val)}</span>` : fdate(val);
     if (f.type === 'datetime') return fdate(val);
     if (f.type === 'bool') return val ? '✓' : '—';
+    if (f.type === 'files') { const a = parseFiles(val); return a[0] && !a[0].endsWith('.pdf') ? `<img class="cell-thumb" src="api/files/${a[0]}" alt="" loading="lazy">` : a.length ? `${a.length} file` : ''; }
     if (f.badge) return ent === 'fatture' && isOverdue(r) ? badge('Scaduta') : badge(val);
     if (f.italic) return `<span class="it">${esc(val)}</span>`;
     return esc(val);
@@ -297,10 +305,15 @@ function fieldInput(f, val, ro) {
     case 'number': return `<input id="${id}" type="number" step="any" name="${f.name}" value="${esc(val)}" ${dis}>`;
     case 'datetime': return `<input id="${id}" type="datetime-local" name="${f.name}" value="${esc(val ? String(val).replace(' ', 'T').slice(0, 16) : '')}" ${dis}>`;
     case 'password': return `<input id="${id}" type="password" name="${f.name}" autocomplete="new-password" ${dis}>`;
+    case 'files': { const arr = parseFiles(val);
+      return `<div class="files" data-max="${f.max || 10}"><input type="hidden" id="${id}" name="${f.name}" value="${esc(JSON.stringify(arr))}">
+        <div class="thumbs">${arr.map(fileThumb).join('')}</div>
+        ${ro ? '' : `<label class="btn small file-add">${icon('camera')}${f.max === 1 ? 'Carica foto' : 'Aggiungi foto o PDF'}<input type="file" accept="image/*,application/pdf" ${f.max === 1 ? '' : 'multiple'} hidden></label>`}</div>`; }
     default: return `<input id="${id}" type="${{ date: 'date', time: 'time', email: 'email', tel: 'tel', color: 'color' }[f.type] || 'text'}" name="${f.name}" value="${esc(val)}" ${f.readonly ? 'readonly placeholder="automatico"' : ''} ${dis}>`;
   }
 }
 function fieldBlock(f, val, ro) {
+  if (f.type === 'files') return `<div class="fieldwrap ${f.wide ? 'wide' : ''}" data-field="${f.name}"><span class="flabel">${esc(f.label)}</span>${fieldInput(f, val, ro)}${f.hint ? `<span class="hint">${esc(f.hint)}</span>` : ''}</div>`;
   if (f.type === 'bool') return `<label class="check ${f.wide ? 'wide' : ''}" data-field="${f.name}">${fieldInput(f, val, ro)} ${esc(f.label)}</label>`;
   return `<label class="${f.type === 'textarea' ? 'full' : f.wide ? 'wide' : ''}" data-field="${f.name}" for="f_${f.name}">${esc(f.label)}${f.required ? ' *' : ''}${fieldInput(f, val, ro)}${f.hint ? `<span class="hint">${esc(f.hint)}</span>` : ''}</label>`;
 }
@@ -321,10 +334,16 @@ async function viewForm(ent, id, params = {}) {
     if (ent === 'spedizioni') rec.data_partenza = today() + 'T05:00';
     Object.assign(rec, params);
     if (e.lines) rec.righe = [{}];
+    if (ent === 'ordini' && params.prodotto_id) {
+      const pr = (S.refs.prodotti || []).find(x => x.id === +params.prodotto_id);
+      if (pr) rec.righe = [{ prodotto_id: pr.id, descrizione: pr.nome, unita: pr.unita, prezzo_acquisto: params.prezzo || pr.prezzo_acquisto, prezzo_vendita: pr.prezzo_vendita, iva: pr.iva ?? 10 }];
+      delete rec.prodotto_id; delete rec.prezzo;
+    }
   }
   const ro = !canWrite();
   const title = id ? `${e.singular} ${labelOf(ent, rec)}` : `Nuovo ${e.singular.toLowerCase()}`;
   const acts = [];
+  if (ent === 'listini' && !ro) acts.push(`<button class="btn mint" data-ai-listino>${icon('spark')}Leggi con AI</button>`);
   if (id) {
     if (ent === 'ordini') acts.push(`<button class="btn" data-act="genera-ddt">${icon('file')}Genera DDT</button>`, `<button class="btn" data-act="genera-fattura">${icon('euro')}Fattura cliente</button>`, `<button class="btn" data-act="genera-provvigione">${icon('euro')}Fattura provvigione</button>`);
     if (ent === 'ddt') acts.push(`<button class="btn" data-act="genera-fattura">${icon('euro')}Genera fattura</button>`);
@@ -358,6 +377,8 @@ async function viewForm(ent, id, params = {}) {
       : `<input data-l="${f.name}" ${['number', 'money'].includes(f.type) ? `type="number" step="${f.type === 'money' ? '0.01' : 'any'}"` : ''} value="${esc(r[f.name])}" ${ro ? 'disabled' : ''}>`}</td>`).join('')}
       ${LINE_TOTAL[ent] ? '<td class="tot"></td>' : ''}<td>${ro ? '' : `<button type="button" class="icon-btn" data-rm title="Rimuovi riga">${icon('x')}</button>`}</td></tr>`;
     tb.innerHTML = (rec.righe && rec.righe.length ? rec.righe : [{}]).map(lineRow).join('');
+    form.addEventListener('am:setlines', ev => { tb.innerHTML = (ev.detail.length ? ev.detail : [{}]).map(lineRow).join(''); recalcTotalsRef(); });
+    const recalcTotalsRef = () => recalcTotals();
     const recalcTotals = () => {
       const righe = readLines(e);
       $$('#lines tr').forEach((tr, i) => { const td = $('.tot', tr); if (td) td.textContent = money(LINE_TOTAL[ent](righe[i] || {})); });
@@ -376,8 +397,11 @@ async function viewForm(ent, id, params = {}) {
       const sel = ev.target.closest('select[data-l="prodotto_id"]'); if (!sel) return;
       const p = (S.refs.prodotti || []).find(x => x.id === +sel.value); if (!p) return;
       const tr = sel.closest('tr'); const set = (k, val) => { const i = $(`[data-l="${k}"]`, tr); if (i && val != null) i.value = val; };
-      set('descrizione', p.nome); set('unita', p.unita); set('iva', p.iva ?? 10);
-      set('prezzo_acquisto', p.prezzo_acquisto); set('prezzo_vendita', p.prezzo_vendita); set('prezzo', ent === 'fatture' && readForm(e, form).tipo === 'Acquisto' ? p.prezzo_acquisto : p.prezzo_vendita);
+      if (ent !== 'listini' || !$('[data-l="descrizione"]', tr).value) set('descrizione', p.nome);
+      set('unita', p.unita); set('iva', p.iva ?? 10);
+      const canale = form.elements.canale ? form.elements.canale.value : '';
+      const pv = canale === 'GDO' ? (p.prezzo_gdo ?? p.prezzo_vendita) : canale === 'HoReCa' ? (p.prezzo_horeca ?? p.prezzo_vendita) : p.prezzo_vendita;
+      if (ent !== 'listini') { set('prezzo_acquisto', p.prezzo_acquisto); set('prezzo_vendita', pv); } set('prezzo', ent === 'fatture' && readForm(e, form).tipo === 'Acquisto' ? p.prezzo_acquisto : p.prezzo_vendita);
       set('nome_scientifico', p.nome_scientifico); set('zona_fao', p.zona_fao); set('metodo', [p.metodo, p.attrezzo].filter(Boolean).join(' – '));
       recalcTotals();
     });
@@ -390,6 +414,7 @@ async function viewForm(ent, id, params = {}) {
   form.addEventListener('change', ev => {
     const n = ev.target.name; const val = ev.target.value;
     if (ent === 'ordini' && n === 'fornitore_id') { const f = S.refs.fornitori.find(x => x.id === +val); if (f && f.provvigione_pct != null) form.provvigione_pct.value = f.provvigione_pct; form.dispatchEvent(new Event('input')); }
+    if (ent === 'ordini' && n === 'cliente_id') { const c = S.refs.clienti.find(x => x.id === +val); if (c && c.canale) form.canale.value = c.canale; }
     if (ent === 'ordini' && n === 'cliente_id' && !form.luogo_consegna.value) { const c = S.refs.clienti.find(x => x.id === +val); if (c) form.luogo_consegna.value = [c.indirizzo, c.cap, c.citta, c.provincia && `(${c.provincia})`].filter(Boolean).join(' '); }
     if (ent === 'fatture' && (n === 'cliente_id' || n === 'fornitore_id') && !form.pagamento.value) { const c = S.refs[n === 'cliente_id' ? 'clienti' : 'fornitori'].find(x => x.id === +val); if (c?.pagamento) form.pagamento.value = c.pagamento; }
     if (ent === 'fatture' && (n === 'pagamento' || n === 'data')) form.scadenza.value = '';
@@ -421,6 +446,22 @@ async function viewForm(ent, id, params = {}) {
   $$('[data-stato]').forEach(b => b.addEventListener('click', guard(async () => { await api(`ordini/${id}`, { method: 'PUT', body: { stato: b.dataset.stato } }); toast('Stato: ' + b.dataset.stato); viewForm(ent, id); })));
   $('[data-pay]')?.addEventListener('click', () => payModal(rec));
   $('[data-xml]')?.addEventListener('click', guard(async ev => { ev.preventDefault(); await api(`fatture/${id}/xml`); location.href = ev.currentTarget.href; }));
+
+  $('[data-ai-listino]')?.addEventListener('click', guard(async ev => {
+    const btn = ev.currentTarget; const files = parseFiles(form.elements.allegati.value);
+    if (!files.length) { toast('Carica prima la foto o il PDF del listino', true); return; }
+    const old = readLines(e).filter(r => r.descrizione || r.prezzo);
+    if (old.length && !confirm("Sostituire le righe attuali con quelle lette dall'AI?")) return;
+    btn.disabled = true; const label = btn.innerHTML; btn.innerHTML = `${icon('spark')}Lettura in corso…`;
+    try {
+      const out = await api('ai/estrai-listino', { method: 'POST', body: { allegati: files } });
+      if (out.fornitore_id && !form.fornitore_id.value) form.fornitore_id.value = out.fornitore_id;
+      if (out.data && /^\d{4}-\d{2}-\d{2}$/.test(out.data)) form.data.value = out.data;
+      form.dispatchEvent(new CustomEvent('am:setlines', { detail: out.righe.map(r => ({ prodotto_id: r.prodotto_id, descrizione: r.descrizione, origine: r.origine, pezzatura: r.pezzatura, unita: r.unita, prezzo: r.prezzo, note: r.note })) }));
+      const dubbi = out.righe.filter(r => r.prezzo == null || !r.prodotto_id).length;
+      toast(`Lette ${out.righe.length} righe${dubbi ? ` · ${dubbi} da controllare` : ''}: verifica e salva`);
+    } finally { btn.disabled = false; btn.innerHTML = label; }
+  }));
 
   if (id) await related(ent, rec);
 }
@@ -659,6 +700,138 @@ async function viewPrint(ent, id) {
   $('#shell').hidden = true; const P = $('#print'); P.hidden = false;
   P.innerHTML = `<div class="print-bar"><a class="btn" href="#/e/${ent}/${id}">${icon('left')}Indietro</a><button class="btn primary" onclick="window.print()">${icon('print')}Stampa / PDF</button></div><div class="doc">${html}</div>`;
   document.title = `${S.schema.entities[ent].singular} ${r.numero || r.codice || ''}`;
+}
+
+// ------------------------------------------------------------ file (foto e PDF)
+function parseFiles(v) { if (Array.isArray(v)) return v; try { const a = JSON.parse(v || '[]'); return Array.isArray(a) ? a : []; } catch { return []; } }
+function fileThumb(n) {
+  return `<span class="thumb" data-name="${esc(n)}"><a href="api/files/${esc(n)}" target="_blank" rel="noopener">${n.endsWith('.pdf') ? '<b class="pdf">PDF</b>' : `<img src="api/files/${esc(n)}" alt="">`}</a><button type="button" data-rmfile title="Rimuovi">×</button></span>`;
+}
+async function fileToUpload(file) {
+  if (file.type.startsWith('image/')) {
+    try {
+      const bmp = await createImageBitmap(file); const k = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+      c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+      return { type: 'image/jpeg', data: c.toDataURL('image/jpeg', 0.86).split(',')[1] };
+    } catch { /* formato non decodificabile (es. HEIC): si invia com'è */ }
+  }
+  const data = await new Promise((ok, ko) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(',')[1]); r.onerror = ko; r.readAsDataURL(file); });
+  return { type: file.type, data };
+}
+document.addEventListener('change', guard(async ev => {
+  const inp = ev.target.closest('.files input[type=file]'); if (!inp) return;
+  const box = inp.closest('.files'); const hidden = $('input[type=hidden]', box); const max = +box.dataset.max || 10;
+  let arr = parseFiles(hidden.value);
+  const label = inp.closest('label'); label.classList.add('busy');
+  try {
+    for (const file of [...inp.files].slice(0, max)) {
+      const up = await api('upload', { method: 'POST', body: await fileToUpload(file) });
+      arr = max === 1 ? [up.name] : [...arr, up.name].slice(0, max);
+    }
+  } finally { label.classList.remove('busy'); inp.value = ''; }
+  hidden.value = JSON.stringify(arr); $('.thumbs', box).innerHTML = arr.map(fileThumb).join('');
+  toast('File caricato');
+}));
+document.addEventListener('click', ev => {
+  const b = ev.target.closest('[data-rmfile]'); if (!b) return;
+  const box = b.closest('.files'); if (!box || $('.file-add', box) === null) return;
+  const hidden = $('input[type=hidden]', box); const name = b.closest('.thumb').dataset.name;
+  const arr = parseFiles(hidden.value).filter(n => n !== name); hidden.value = JSON.stringify(arr); b.closest('.thumb').remove();
+});
+
+// ------------------------------------------------------------ confronto prezzi
+const confrontoState = { q: '', cat: '', canale: 'HoReCa' };
+async function viewConfronto() {
+  const c = await api('confronto');
+  setTop('Confronto prezzi', '', `<a class="btn" href="#/e/listini/nuovo">${icon('camera')}Nuovo listino</a><a class="btn mint" href="#/ai">${icon('spark')}Chiedi all'AI</a>`);
+  const st = confrontoState; const v = $('#view');
+  const cats = [...new Set(c.righe.map(r => r.categoria).filter(Boolean))].sort();
+  if (!c.fornitori.length) {
+    v.innerHTML = `<section class="panel empty-state"><h2>Nessun listino attivo</h2><p class="muted">Carica i listini dei fornitori: fai una foto o allega il PDF, premi <b>Leggi con AI</b> e controlla le righe. Qui vedrai i prezzi affiancati, il fornitore più conveniente e il prezzo di vendita suggerito per GDO e HoReCa.</p>
+      <p style="margin-top:14px"><a class="btn primary" href="#/e/listini/nuovo">${icon('camera')}Carica il primo listino</a></p></section><div id="aiBox" style="margin-top:16px"></div>`;
+    await aiPanel($('#aiBox'), true); return;
+  }
+  v.innerHTML = `<div class="toolbar">
+      <div class="search">${icon('search')}<input id="cq" placeholder="Cerca prodotto…" value="${esc(st.q)}"></div>
+      <select id="ccat"><option value="">Tutte le categorie</option>${cats.map(x => `<option ${x === st.cat ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select>
+      <select id="ccan" title="Canale per il prezzo suggerito">${Object.keys(c.ricarichi).map(k => `<option value="${k}" ${k === st.canale ? 'selected' : ''}>Prezzo per ${k} (+${num.format(c.ricarichi[k])}%)</option>`).join('')}</select>
+    </div>
+    <div class="kpis" id="ckpi"></div>
+    <div class="table-wrap"><table class="data compare"><thead><tr><th>Prodotto</th>${c.fornitori.map(f => `<th class="num"><a href="#/e/listini/${f.listino_id}">${esc(f.nome)}</a><small>${fdate(f.data)}</small></th>`).join('')}<th class="num">Miglior acquisto</th><th class="num" id="cth">Vendita suggerita</th><th></th></tr></thead><tbody></tbody></table></div>
+    <p class="count-note">Verde = prezzo più basso · ▲▼ variazione rispetto al listino precedente dello stesso fornitore. Prezzo suggerito = miglior acquisto + ricarico (modificabile in Impostazioni).</p>
+    <div id="aiBox" style="margin-top:18px"></div>`;
+  const render = () => {
+    const q = st.q.toLowerCase();
+    const rows = c.righe.filter(r => (!st.cat || r.categoria === st.cat) && (!q || `${r.nome} ${r.nome_scientifico || ''}`.toLowerCase().includes(q)));
+    const pct = c.ricarichi[st.canale] || 0; let multi = 0, gap = 0;
+    $('#cth').textContent = `Vendita ${st.canale}`;
+    $('tbody', v).innerHTML = rows.map(r => {
+      const entries = c.fornitori.map(f => [f, r.prezzi[f.id]]).filter(([, x]) => x);
+      const best = entries.reduce((m, [f, x]) => !m || x.prezzo < m[1].prezzo ? [f, x] : m, null);
+      const worst = entries.reduce((m, [, x]) => Math.max(m, x.prezzo), 0);
+      if (entries.length > 1) { multi++; gap += (worst - best[1].prezzo) / best[1].prezzo * 100; }
+      const ana = r.anagrafica ? (st.canale === 'GDO' ? r.anagrafica.prezzo_gdo : st.canale === 'HoReCa' ? r.anagrafica.prezzo_horeca : r.anagrafica.prezzo_vendita) : null;
+      const sugg = best[1].prezzo * (1 + pct / 100);
+      const foto = parseFiles(r.foto)[0];
+      return `<tr><td class="prod">${foto && !foto.endsWith('.pdf') ? `<img class="cell-thumb" src="api/files/${foto}" alt="">` : `<span class="cell-thumb ph">${icon('tag')}</span>`}<span><b>${esc(r.nome)}</b>${r.nome_scientifico ? `<i>${esc(r.nome_scientifico)}</i>` : ''}${!r.prodotto_id ? '<em class="badge b-warn">non abbinato</em>' : ''}</span></td>
+        ${c.fornitori.map(f => { const x = r.prezzi[f.id]; if (!x) return '<td class="num muted">—</td>';
+          const isBest = best && best[0].id === f.id; const diff = (x.prezzo - best[1].prezzo) / best[1].prezzo * 100;
+          const trend = x.prev != null && x.prev !== x.prezzo ? (x.prezzo > x.prev ? `<span class="up" title="prima ${money(x.prev)}">▲</span>` : `<span class="down" title="prima ${money(x.prev)}">▼</span>`) : '';
+          return `<td class="num ${isBest && entries.length > 1 ? 'best' : ''}"><b>${money(x.prezzo)}</b>${trend}<small>/${esc(x.unita || r.unita)}${x.pezzatura ? ' · ' + esc(x.pezzatura) : ''}${!isBest ? ` · +${num.format(Math.round(diff))}%` : ''}</small></td>`; }).join('')}
+        <td class="num"><b>${money(best[1].prezzo)}</b><small>${esc(best[0].nome)}</small></td>
+        <td class="num"><b>${money(sugg)}</b>${ana ? `<small>listino tuo ${money(ana)}</small>` : ''}</td>
+        <td>${r.prodotto_id && canWrite() ? `<a class="btn small" href="#/e/ordini/nuovo?fornitore_id=${best[0].id}&prodotto_id=${r.prodotto_id}&prezzo=${best[1].prezzo}">Ordina</a>` : ''}</td></tr>`;
+    }).join('') || `<tr><td colspan="${c.fornitori.length + 4}" class="empty">Nessun prodotto</td></tr>`;
+    $('#ckpi').innerHTML = `<div class="kpi dark"><small>Prodotti a listino</small><b>${rows.length}</b><span>${c.fornitori.length} fornitori con listino attivo</span></div>
+      <div class="kpi"><small>Confrontabili</small><b>${multi}</b><span>offerti da più fornitori</span></div>
+      <div class="kpi"><small>Scarto medio</small><b>${multi ? num.format(Math.round(gap / multi)) + '%' : '—'}</b><span>tra il più caro e il più economico</span></div>
+      <div class="kpi"><small>Ricarico ${esc(st.canale)}</small><b>${num.format(pct)}%</b><span><a href="#/impostazioni">modifica</a></span></div>`;
+  };
+  let t; $('#cq').addEventListener('input', e2 => { st.q = e2.target.value; clearTimeout(t); t = setTimeout(render, 150); });
+  $('#ccat').addEventListener('change', e2 => { st.cat = e2.target.value; render(); });
+  $('#ccan').addEventListener('change', e2 => { st.canale = e2.target.value; render(); });
+  render();
+  await aiPanel($('#aiBox'), true);
+}
+
+// ------------------------------------------------------------ assistente AI
+const AI_SUGG = ['Qual è il fornitore più conveniente per ogni prodotto?', 'Quali prezzi sono aumentati rispetto al listino precedente?', 'Proponi i prezzi di vendita GDO e HoReCa per i crostacei', 'Cosa conviene ordinare questa settimana per la GDO?'];
+function mdLite(t) {
+  return esc(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').split('\n').map(l => /^\s*[-•*]\s+/.test(l) ? `<li>${l.replace(/^\s*[-•*]\s+/, '')}</li>` : l.trim() ? `<p>${l}</p>` : '').join('').replace(/(<li>.*?<\/li>)+/g, m => `<ul>${m}</ul>`);
+}
+async function viewAi() {
+  setTop('Assistente AI', '', `<a class="btn" href="#/confronto">${icon('compare')}Confronto prezzi</a>`);
+  $('#view').innerHTML = '<div id="aiBox"></div>';
+  await aiPanel($('#aiBox'), false);
+}
+async function aiPanel(box, compact) {
+  const st = await api('ai/stato').catch(() => ({ attivo: false }));
+  let storia = []; try { storia = JSON.parse(sessionStorage.getItem('am_ai') || '[]'); } catch { storia = []; }
+  const save = () => { try { sessionStorage.setItem('am_ai', JSON.stringify(storia.slice(-12))); } catch { /* ignorato */ } };
+  box.innerHTML = `<section class="panel ai-panel"><h2><span>${icon('spark')} Assistente acquisti e prezzi</span>${storia.length ? '<button class="link" id="aiClear">Nuova conversazione</button>' : ''}</h2>
+    ${st.attivo ? '' : `<p class="ai-off">L'assistente AI non è ancora attivo: va aggiunta la chiave <b>ANTHROPIC_API_KEY</b> nelle variabili del server (Railway). Confronto e listini funzionano comunque.</p>`}
+    <div class="ai-log" id="aiLog">${storia.map(m => `<div class="msg ${m.role}">${m.role === 'user' ? esc(m.text) : mdLite(m.text)}</div>`).join('') || `<p class="muted">Chiedi qualcosa sui listini, i prezzi e le vendite: l'assistente legge i dati aggiornati del gestionale.</p>`}</div>
+    <div class="chips">${AI_SUGG.map(q => `<button type="button" class="chip-q">${esc(q)}</button>`).join('')}</div>
+    <form class="ai-form" id="aiForm"><textarea name="q" rows="${compact ? 1 : 2}" placeholder="Es. Chi ha il gambero rosso più economico questa settimana?" ${st.attivo ? '' : 'disabled'}></textarea><button class="btn primary" ${st.attivo ? '' : 'disabled'}>${icon('arrow')}Chiedi</button></form></section>`;
+  const log = $('#aiLog', box); const form = $('#aiForm', box);
+  const ask = guard(async q => {
+    q = q.trim(); if (!q || !st.attivo) return;
+    if (!storia.length) log.innerHTML = '';
+    log.insertAdjacentHTML('beforeend', `<div class="msg user">${esc(q)}</div><div class="msg assistant pending">Sto analizzando i dati…</div>`);
+    log.scrollTop = log.scrollHeight; form.q.value = '';
+    const pending = $('.pending', log);
+    try {
+      const { risposta } = await api('ai/chiedi', { method: 'POST', body: { domanda: q, storia } });
+      storia.push({ role: 'user', text: q }, { role: 'assistant', text: risposta }); save();
+      pending.classList.remove('pending'); pending.innerHTML = mdLite(risposta);
+    } catch (err) { pending.remove(); throw err; }
+    log.scrollTop = log.scrollHeight;
+  });
+  form.addEventListener('submit', e2 => { e2.preventDefault(); ask(form.q.value); });
+  form.q.addEventListener('keydown', e2 => { if (e2.key === 'Enter' && !e2.shiftKey) { e2.preventDefault(); ask(form.q.value); } });
+  $$('.chip-q', box).forEach(b => b.addEventListener('click', () => ask(b.textContent)));
+  $('#aiClear', box)?.addEventListener('click', () => { storia = []; save(); aiPanel(box, compact); });
 }
 
 // ------------------------------------------------------------ app installabile (PWA)
