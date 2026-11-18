@@ -19,6 +19,11 @@ import argparse, asyncio, json, os, re, subprocess, sys, tempfile, time
 from pathlib import Path
 
 import edge_tts
+import edge_tts.communicate as _C
+# qualità doppia: mp3 96 kbps al posto di 48 kbps (unico formato superiore accettato dal servizio)
+_src = open(_C.__file__).read().replace('"outputFormat":"audio-24khz-48kbitrate-mono-mp3"', '"outputFormat":"audio-24khz-96kbitrate-mono-mp3"')
+exec(compile(_src, _C.__file__, "exec"), _C.__dict__)
+edge_tts.Communicate = _C.Communicate
 
 ROOT = Path(__file__).resolve().parent.parent
 TICKS = 10_000_000
@@ -42,7 +47,7 @@ async def tts_once(text, voice, rate, pitch, out_mp3):
 async def tts(text, voice, rate, pitch, sem):
     """sintesi con cache su disco e retry (il servizio a volte risponde vuoto)"""
     import hashlib
-    key = hashlib.sha1(f"{voice}|{rate}|{pitch}|{text}".encode()).hexdigest()[:16]
+    key = hashlib.sha1(f"96k|{voice}|{rate}|{pitch}|{text}".encode()).hexdigest()[:16]
     CACHE.mkdir(parents=True, exist_ok=True)
     mp3, js = CACHE / f"{key}.mp3", CACHE / f"{key}.json"
     if mp3.exists() and js.exists() and mp3.stat().st_size > 0:
@@ -138,7 +143,7 @@ def main():
             mp3, ws = res[(sc["id"], bi)]
             wav = tmp / f"{sc['id']}_{bi}.wav"
             # rifila il silenzio di coda del TTS per controllare le pause
-            ff("-i", str(mp3), "-af", "areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse",
+            ff("-i", str(mp3), "-af", "areverse,silenceremove=start_periods=1:start_threshold=-55dB,areverse,apad=pad_dur=0.06,afade=t=in:d=0.008,areverse,afade=t=in:d=0.05,areverse",
                "-ar", "48000", "-ac", "1", str(wav))
             lead_trim = 0.0  # la testa non viene rifilata: i tempi delle parole restano esatti
             d = duration(wav)

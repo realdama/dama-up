@@ -7,6 +7,8 @@ const W = 1920, H = 1080;
 const t10 = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-10m.json'));
 const t50 = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-50m.json'));
 const P = {
+  spagna: [-0.38, 39.47], francia: [-4.1, 47.9], portogallo: [-9.14, 38.72], norvegia: [6.15, 62.47], marocco: [-9.6, 30.42],
+  tunisia: [10.18, 36.81], egitto: [29.92, 31.2], senegal: [-17.44, 14.69], roma2: [12.5, 41.9],
   viareggio: [10.243, 43.865], livorno: [10.305, 43.548], piombino: [10.527, 42.925], castiglione: [10.876, 42.763],
   santostefano: [11.117, 42.437], portoercole: [11.205, 42.394], terracina: [13.249, 41.286], gaeta: [13.571, 41.213],
   chioggia: [12.279, 45.219], rimini: [12.577, 44.069], cesenatico: [12.400, 44.200], fano: [13.019, 43.845],
@@ -25,7 +27,19 @@ const views = {
   italia: {bbox: [[5.5, 36.2], [19.5, 47.3]], topo: t10},
   tirrenoV: {bbox: [[9.0, 40.95], [14.6, 44.15]], topo: t10},
   adriaticoV: {bbox: [[10.6, 41.35], [17.4, 45.45]], topo: t10},
+  fao: {bbox: [[-26, 11], [40, 66]], topo: t50},
   europa: {bbox: [[-11, 34.5], [31, 60.5]], topo: t50},
+};
+const ZONES = {
+  '27': [[-24, 43], [-24, 66], [12, 66], [12, 57], [-1, 50], [-9, 44], [-9, 36], [-24, 36]],
+  '34': [[-24, 36], [-6, 36], [-5.6, 35.8], [-9.5, 30], [-13, 26], [-17, 21], [-17.5, 12], [-24, 12]],
+  '37.1.1': [[-5.5, 36], [-1.5, 35.2], [4.5, 36.8], [4.5, 40], [3, 42.4], [0.5, 40.6], [-0.4, 38.7], [-2, 36.7]],
+  '37.1.2': [[3, 42.4], [4.5, 40], [7.6, 41.2], [7.6, 43.6], [6, 43.1], [4.5, 43.4]],
+  '37.1.3': [[7.6, 41.2], [7.6, 43.6], [10, 44.1], [12.3, 41.5], [15.7, 40.0], [15.7, 38.0], [12.4, 37.9], [11.3, 37.2], [10, 37.2], [8.6, 36.9], [7.6, 37]],
+  '37.2.1': [[12.3, 44.2], [12.4, 45.5], [13.7, 45.7], [16, 43.5], [19.4, 41.9], [19.4, 40.3], [18.5, 40.1], [16, 41.4], [14, 42.3]],
+  '37.2.2': [[15.7, 40.0], [18.5, 40.1], [19.4, 40.3], [21.5, 38.5], [23, 36.5], [23, 34], [19.5, 31], [15, 32.5], [11.2, 33.5], [10.5, 35.5], [11.3, 37.2], [12.4, 37.9], [15.7, 38.0]],
+  '37.3.1': [[22.5, 40.8], [26.5, 40.9], [27.8, 37.5], [28.2, 36.4], [23, 36.3]],
+  '37.3.2': [[28.2, 36.4], [36, 36.6], [35.5, 31], [32, 31.1], [25, 31.6], [23, 34], [23, 36.3]],
 };
 const out = {W, H, views: {}};
 for (const [name, v] of Object.entries(views)) {
@@ -41,7 +55,8 @@ for (const [name, v] of Object.entries(views)) {
   });
   const shapes = countries.filter((c) => { const [[a, b], [c2, d]] = path.bounds(c); return isFinite(a) && c2 > -W && a < 2 * W && d > -H && b < 2 * H && (c2 - a) * (d - b) > 4 && c.properties.name !== 'Maldives'; }).map((c) => ({id: c.id, name: c.properties.name, d: path(c)?.replace(/(\.\d)\d+/g, '$1')})).filter((s) => s.d && s.d.length > 20);
   const pts = Object.fromEntries(Object.entries(P).map(([k, ll]) => [k, proj(ll).map((n) => Math.round(n * 10) / 10)]));
-  out.views[name] = {shapes, pts};
+  const zones = name === 'fao' ? Object.fromEntries(Object.entries(ZONES).map(([k, poly]) => [k, 'M ' + poly.map((ll) => proj(ll).map((n) => Math.round(n)).join(' ')).join(' L ') + ' Z'])) : undefined;
+  out.views[name] = {shapes, pts, zones};
   console.log(name, shapes.length, 'paesi', Math.round(JSON.stringify(shapes).length / 1024), 'KB');
 }
 fs.writeFileSync('src/lib/maps.json', JSON.stringify(out));

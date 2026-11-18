@@ -1,34 +1,20 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
-import {Backdrop, Fish, Icon, Card, Header, Title, C} from '../../lib/wide/ui';
-import {MapView, Port, pt, Route, Fleet, Storm, SeaLabel} from '../../lib/wide/MapView';
+import {Backdrop, Fish, SPECIES, C, FONT} from '../../lib/wide/ui';
+import {MapView, Port, pt, SeaLabel} from '../../lib/wide/MapView';
 
-export const TestMap: React.FC<{v: string}> = ({v}) => {
-  const view = v as any;
-  const P = (k: string) => pt(view, k);
+export const TestMap: React.FC<{v: string}> = ({v}) => <AbsoluteFill><MapView view={v as any} /></AbsoluteFill>;
+export const TestKit: React.FC = () => {
+  const keys = Object.keys(SPECIES);
   return (
     <AbsoluteFill>
-      <MapView view={view}>
-        {['civitavecchia', 'fiumicino', 'anzio', 'car', 'adrP1', 'adrP2', 'adrP3', 'adrP4', 'roma', 'scozia', 'olanda', 'grecia', 'croazia', 'turchia'].map((k) => (
-          <Port key={k} x={P(k)[0]} y={P(k)[1]} at={0} label={k} />
-        ))}
-        <SeaLabel x={P('tir2')[0]} y={P('tir2')[1]} at={0} text="TIRRENO" />
-      </MapView>
+      <Backdrop />
+      <svg width={1920} height={1080} style={{position: 'absolute'}}>
+        {keys.map((k, i) => {
+          const x = 140 + (i % 8) * 235, y = 110 + Math.floor(i / 8) * 205;
+          return <g key={k}><Fish sp={k} x={x} y={y} s={0.75} /><text x={x} y={y + 85} textAnchor="middle" fontFamily={FONT} fontWeight={800} fontSize={22} fill={C.foam}>{SPECIES[k].name}</text></g>;
+        })}
+      </svg>
     </AbsoluteFill>
   );
 };
-export const TestKit: React.FC = () => (
-  <AbsoluteFill>
-    <Backdrop />
-    <Header subtitle="per Unicoop Etruria" chapter="Il pesce locale" idx={3} total={17} progress={0.3} />
-    <Title kicker="Il nostro mare" title="Dal Tirreno alla piattaforma" at={-30} />
-    <svg width={1920} height={1080} style={{position: 'absolute'}}>
-      {['triglia', 'alice', 'calamaro', 'gambero', 'spada', 'ricciola', 'orata', 'spigola', 'salmone'].map((s, i) => (
-        <Fish key={s} sp={s} x={250 + (i % 5) * 340} y={480 + Math.floor(i / 5) * 220} s={1} />
-      ))}
-    </svg>
-    <div style={{position: 'absolute', left: 120, top: 900, display: 'flex', gap: 20}}>
-      {['order', 'truck', 'boat', 'fish', 'check', 'clock', 'euro', 'shield', 'people', 'store', 'warehouse', 'gavel', 'doc', 'bank', 'snow', 'globe', 'storm', 'handshake', 'pin', 'thermo', 'box', 'money'].map((n) => <Icon key={n} name={n} size={60} />)}
-    </div>
-  </AbsoluteFill>
-);
