@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argo Maris · Gestionale</title>
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="login" class="login" hidden>
+  <form class="login-card" id="loginForm">
+    <img src="logo.svg" alt="" width="64" height="64">
+    <h1>Argo Maris</h1>
+    <p>Gestionale broker · area riservata</p>
+    <label>Utente<input name="username" autocomplete="username" required></label>
+    <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">Entra</button>
+    <p class="err" id="loginErr"></p>
+    <a class="back" href="/">← Torna al sito</a>
+  </form>
+</div>
+
+<div id="shell" class="shell" hidden>
+  <aside class="side" id="side">
+    <a class="side-brand" href="#/"><img src="logo-light.svg" alt="" width="38" height="38"><span><b>ARGO MARIS</b><small>Gestionale broker</small></span></a>
+    <nav id="nav"></nav>
+    <div class="side-user"><span id="who"></span><button class="link" id="logout">Esci</button></div>
+  </aside>
+  <div class="main">
+    <header class="top">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-actions" id="topActions"></div>
+    </header>
+    <main id="view" class="view"></main>
+  </div>
+</div>
+<div id="print" class="print-root" hidden></div>
+<div id="modal" class="modal" hidden><div class="modal-card" id="modalCard"></div></div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
