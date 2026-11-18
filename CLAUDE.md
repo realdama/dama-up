@@ -101,3 +101,6 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
   box 46–47, iscritta 2015, Guidonia, ~16 persone. Logo Mare Italia NON disponibile: nome in grafica (`MareItaliaMark`).
 - `socio` — il progetto per il futuro socio (4:25): costi (< 10.000 €), guadagni al 50% (≈2.980 €/mese centrale,
   ≈880 €/mese prudente), ruoli, quote, rischi.
+- `elite-city` — video personale in stile "Miami anni '80" (9:16, 59,8 s): omaggio di genere ORIGINALE
+  (nessun logo/font/HUD/musica del gioco). Musica synthwave generata (`scripts/synthwave.py`, 110 BPM),
+  scontorno foto con RMBG-1.4 ONNX (`scripts/cutout.py`), stile illustrazione (`scripts/retro_style.py`).
