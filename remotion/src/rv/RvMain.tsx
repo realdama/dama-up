@@ -8,6 +8,7 @@ import {pts, P} from '../Maps';
 import {Calibro, Chain, Hook, IdCard, Meno6, MedMap, Stamps, TeamPoll, UE, ZoneMap} from './Scenes';
 import {RV_COL, RV_CUT_AT, RV_HIDE_SUBS, RV_LOGO_AT, RV_SCENES, RV_SHIFT, RV_SHOTS, RV_TOTAL, rvSh} from './timeline';
 import words from './words.json';
+import {Swooshes} from './Fx';
 
 loadFonts();
 const fr = (s: number) => Math.round(s * FPS);
@@ -33,9 +34,9 @@ export const RvMain: React.FC = () => (
     <Grade />
     <S k="hook" render={(d) => <Hook dur={d} />} />
     <S k="med" render={(d, t) => <MedMap dur={d} t0={t} />} />
-    <S k="idRosso" render={(d, t) => <IdCard dur={d} t0={t} color={RV_COL.rosso} tint="#4a1a22" photo="gambero" pos="62% 40%" num="01" name="GAMBERO ROSSO" latin="ARISTAEOMORPHA FOLIACEA" rows={[['ROSSO INTENSO', 10.3], ['UNIFORME', 11.06], ['PIÙ GRANDE', 11.92], ['CARNOSO', 12.38]]} />} />
+    <S k="idRosso" render={(d, t) => <IdCard dur={d} t0={t} color={RV_COL.rosso} tint="#4a1a22" photo="gambero" pos="62% 40%" num="01" ill="ill_rosso" name="GAMBERO ROSSO" latin="ARISTAEOMORPHA FOLIACEA" rows={[['ROSSO INTENSO', 10.3], ['UNIFORME', 11.06], ['PIÙ GRANDE', 11.92], ['CARNOSO', 12.38]]} />} />
     <S k="sicilia" render={(d, t) => <ZoneMap dur={d} t0={t} cam0={{cx: 1420, cy: -4590, w: 760}} cam1={{cx: 1400, cy: -4545, w: 560}} card={['CANALE DI SICILIA', 14.98]} boatsAt={16.42} pins={[{p: pts.mazara, t: 16.3, color: RV_COL.rosso, tag: 'MAZARA DEL VALLO', tagSub: 'LA FLOTTA'}]} />} />
-    <S k="idViola" render={(d, t) => <IdCard dur={d} t0={t} color={RV_COL.viola} tint="#35204f" photo="viola1" pos="50% 45%" num="02" name="GAMBERO VIOLA" latin="ARISTEUS ANTENNATUS" rows={[['RIFLESSI VIOLA-ROSATI', 19.88], ['PIÙ SLANCIATO', 21.2], ['PIÙ DOLCE', 22.96], ['E DELICATO', 23.52]]} />} />
+    <S k="idViola" render={(d, t) => <IdCard dur={d} t0={t} color={RV_COL.viola} tint="#35204f" photo="viola1" pos="50% 45%" num="02" ill="ill_viola" name="GAMBERO VIOLA" latin="ARISTEUS ANTENNATUS" rows={[['RIFLESSI VIOLA-ROSATI', 19.88], ['PIÙ SLANCIATO', 21.2], ['PIÙ DOLCE', 22.96], ['E DELICATO', 23.52]]} />} />
     <S k="italia" render={(d, t) => <ZoneMap dur={d} t0={t} cam0={{cx: 1430, cy: -5150, w: 1700}} cam1={{cx: 1467, cy: -5180, w: 1320}} card={['DOVE TROVI IL VIOLA', 24.3]} pins={[
       {p: pts.lazio, t: 24.6, color: RV_COL.viola, label: 'LAZIO', side: 'r'},
       {p: pts.sardegna, t: 25.84, color: RV_COL.viola, label: 'SARDEGNA', side: 'r'},
@@ -58,6 +59,7 @@ export const RvMain: React.FC = () => (
       </div>
     )} />} />
     <S k="stamps" render={(d, t) => <Stamps dur={d} t0={t} />} />
+    <Swooshes times={[3.58, 8.84, 13.04, 17.92, 24.24, 29.36, 39.45, 49.37, 56.89, 60.31, 65.97, 68.55, 73.03]} />
     <Labels shots={RV_SHOTS} />
     <Subs groups={words as never} hide={RV_HIDE_SUBS} />
     <S k="poll" render={(d, t) => <TeamPoll dur={d + 10} t0={t} />} />

@@ -1,5 +1,6 @@
 import React from 'react';
-import {Composition} from 'remotion';
+import {Composition, Still} from 'remotion';
+import {RvCover} from './rv/Cover';
 import {Main} from './Main';
 import {FPS, H, W} from './theme';
 import {TOTAL} from './timeline';
@@ -10,5 +11,6 @@ export const Root: React.FC = () => (
   <>
     <Composition id="Main" component={Main} durationInFrames={Math.round(TOTAL * FPS)} fps={FPS} width={W} height={H} />
     <Composition id="RossoViola" component={RvMain} durationInFrames={Math.round(RV_TOTAL * FPS)} fps={FPS} width={W} height={H} />
+    <Still id="RvCover" component={RvCover} width={W} height={H} />
   </>
 );

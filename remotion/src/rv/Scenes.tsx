@@ -3,6 +3,7 @@ import {AbsoluteFill, Img, interpolate, Easing, spring, staticFile, useCurrentFr
 import {C, FPS, H, W} from '../theme';
 import {Base, Boat, Cam, Grid, P, Pin, SceneWrap, Tag, pts, toScreen} from '../Maps';
 import {RV_COL} from './timeline';
+import {Bubbles, Illus, Rays, Sparkles} from './Fx';
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 const useAt = (t0: number) => {
@@ -20,13 +21,20 @@ const TopCard: React.FC<{txt: string; f: number}> = ({txt, f}) => {
   const x = interpolate(f, [0, 9], [-900, 0], {...clamp, easing: Easing.out(Easing.back(1.1))});
   return (
     <div style={{position: 'absolute', top: 318, left: 70, transform: `translateX(${x}px)`}}>
-      <div style={{background: C.cream, color: C.navy, fontFamily: 'Inter', fontWeight: 800, fontSize: 46, padding: '14px 26px 12px', borderRadius: 10, borderLeft: `10px solid ${C.orange}`, boxShadow: '0 12px 40px rgba(0,0,0,.35)'}}>{txt}</div>
+      <div style={{display: 'flex', alignItems: 'stretch', borderRadius: 14, overflow: 'hidden', boxShadow: '0 16px 44px rgba(0,0,0,.45), 0 0 0 2px rgba(255,255,255,.35)'}}>
+        <div style={{width: 14, background: `linear-gradient(180deg, ${RV_COL.rosso}, ${C.orange}, ${RV_COL.viola})`}} />
+        <div style={{background: 'linear-gradient(180deg, #fbf8f1, #ece6da)', color: C.navy, fontFamily: 'Inter', fontWeight: 900, fontSize: 46, padding: '14px 28px 12px', letterSpacing: 0.5}}>{txt}</div>
+      </div>
     </div>
   );
 };
 
 const NavyBg: React.FC<{tint?: string}> = ({tint}) => (
-  <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 35%, ${tint ?? '#18305c'} 0%, #0b1a33 55%, #040b18 100%)`}} />
+  <>
+    <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 35%, ${tint ?? '#18305c'} 0%, #0b1a33 55%, #040b18 100%)`}} />
+    <Rays opacity={0.55} />
+    <Bubbles n={18} />
+  </>
 );
 
 const BlurPhoto: React.FC<{src: string; dark?: number}> = ({src, dark = 0.5}) => (
@@ -72,6 +80,10 @@ export const Hook: React.FC<{dur: number}> = ({dur}) => {
       {half('viola1', H / 2, bot, false, '55% 50%', 1.2, 'VIOLA', RV_COL.viola)}
       <div style={{position: 'absolute', left: 0, top: H / 2 - 5, width: W, height: 10, background: `linear-gradient(90deg, ${RV_COL.rosso}, #fff, ${RV_COL.viola})`, transform: `scaleX(${vs})`}} />
       <div style={{position: 'absolute', left: W / 2 - 100, top: H / 2 - 100, width: 200, height: 200, borderRadius: '50%', background: C.navy, border: '10px solid #fff', transform: `scale(${vs}) rotate(${(1 - vs) * -90}deg)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 92, color: '#fff', boxShadow: '0 20px 60px rgba(0,0,0,.6)'}}>VS</div>
+      <Sparkles cx={W / 2} cy={H / 2} r={150} n={10} />
+      <div style={{position: 'absolute', top: 222, width: '100%', textAlign: 'center', opacity: sp(f - 4), transform: `translateY(${(1 - sp(f - 4)) * -30}px)`}}>
+        <span style={{display: 'inline-block', fontFamily: 'Inter', fontWeight: 900, fontSize: 40, letterSpacing: 6, color: '#fff', padding: '10px 28px', borderRadius: 40, background: `linear-gradient(90deg, ${RV_COL.rosso}, ${RV_COL.viola})`, boxShadow: '0 12px 40px rgba(0,0,0,.5)'}}>QUALE SCEGLI?</span>
+      </div>
       {f >= at(0.92) && f < at(2.28) && (
         <div style={{position: 'absolute', top: 1330, width: '100%', textAlign: 'center', transform: `scale(${0.6 + 0.4 * t1})`}}>
           <Pill txt="SEMBRANO CUGINI…" bg={C.cream} size={76} />
@@ -110,6 +122,8 @@ export const MedMap: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
       <div style={{position: 'absolute', left: sea[0], top: sea[1], transform: 'translate(-50%,-50%)', fontFamily: 'Cinzel', fontWeight: 700, fontSize: 50, letterSpacing: 12, color: 'rgba(230,236,248,.85)', textAlign: 'center', opacity: interpolate(f, [at(5.6), at(6.0)], [0, 1], clamp)}}>
         MAR<br />MEDITERRANEO
       </div>
+      <Illus src="ill_rosso" x={560} y={470} w={460} rot={-6} delay={at(4.6)} glow="rgba(255,120,90,.45)" />
+      <Illus src="ill_viola" x={30} y={560} w={500} rot={4} delay={at(5.0)} glow="rgba(200,140,255,.45)" />
       <Pin x={r[0]} y={r[1]} f={f - at(4.3)} color={RV_COL.rosso} />
       <Pin x={v[0]} y={v[1]} f={f - at(4.5)} color={RV_COL.viola} />
       <TopCard txt="GAMBERI DI PROFONDITÀ" f={f - at(4.3)} />
@@ -121,7 +135,7 @@ export const MedMap: React.FC<{dur: number; t0: number}> = ({dur, t0}) => {
 
 // ---------- 3. Carta identikit ----------
 type Row = [string, number];
-export const IdCard: React.FC<{dur: number; t0: number; color: string; photo: string; pos: string; num: string; name: string; latin: string; rows: Row[]; tint: string}> = ({dur, t0, color, photo, pos, num, name, latin, rows, tint}) => {
+export const IdCard: React.FC<{dur: number; t0: number; color: string; photo: string; pos: string; num: string; name: string; latin: string; rows: Row[]; tint: string; ill?: string}> = ({dur, t0, color, photo, pos, num, name, latin, rows, tint, ill}) => {
   const {f, at} = useAt(t0);
   const flip = interpolate(f, [0, 14], [90, 0], {...clamp, easing: Easing.out(Easing.back(1.2))});
   const nm = sp(f - 8, 12, 180);
@@ -137,6 +151,7 @@ export const IdCard: React.FC<{dur: number; t0: number; color: string; photo: st
         <div style={{fontFamily: 'Inter', fontWeight: 900, fontSize: 86, color, lineHeight: 1, textShadow: '0 6px 30px rgba(0,0,0,.6)'}}>{name}</div>
         <div style={{fontFamily: 'Cinzel', fontWeight: 600, fontSize: 30, color: 'rgba(230,236,248,.8)', letterSpacing: 4, marginTop: 8}}>{latin}</div>
       </div>
+      {ill && <Illus src={ill} x={600} y={1000} w={440} rot={-8} opacity={0.55} delay={10} glow={color + '66'} />}
       {rows.map(([txt, s], i) => {
         const lf = f - at(s);
         if (lf < 0) return null;
