@@ -137,3 +137,8 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
 - Storico: 2026-11-18 sito + gestionale v1 (ordini, DDT, fatture/FatturaPA, incassi,
   scadenzario, spedizioni, vettori, mezzi, dipendenti, turni, utenti, registro, backup, CSV);
   poi sezione "Rete globale" futuristica (CAR, import mondo, GDO/HoReCa).
+- ONLINE su Railway (progetto "argo-maris", servizio "argo-maris-web", regione iad, volume /data
+  con DATA_DIR=/data): sito https://argo-maris-web-production.up.railway.app/ e gestionale
+  https://argo-maris-web-production.up.railway.app/app/. Deploy automatico a ogni push sul branch
+  collegato (claude/admiring-curie-xpyj2t, cartella argo-maris/). Password admin iniziale nella
+  variabile ADMIN_PASSWORD del servizio (mai scriverla nel repo).
