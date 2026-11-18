@@ -7,7 +7,8 @@ Prima di ogni nuovo video leggere anche la skill `.claude/skills/argo-maris-vide
 ## Chi è Argo Maris (contenuti da rispettare)
 - **Buyer / broker senza deposito**: riceve un solo ordine dalla catena, compra al **Mercato di Roma (CAR, oltre 400
   aziende — dire "uno dei più grandi", non "il più grande")**, alle **aste** e dalle **barche**, rivende con il suo margine.
-  Niente magazzino, niente banco. Un solo fornitore, un solo referente, una sola fattura.
+  Niente magazzino, niente banco.
+  Al CAR ci sono **circa 50 fornitori di pesce, confrontati a rotazione** (dato dell'utente: citarlo sempre). Un solo fornitore, un solo referente, una sola fattura.
 - **NIENTE "ufficio commerciale"/squadra**: l'utente è il **buyer di fiducia** — ascolta richieste, riceve ordini e trova tutto
   (mercato di Roma, aste, barche) → "Voi chiedete, io trovo". Ordine REALE: il cliente manda l'ordine (e-mail, messaggio,
   telefono) e **poi parte la ricerca**, poi conferma e consegna (NON un portale con listino da tablet).

@@ -300,6 +300,7 @@ export const Car: React.FC<SP> = (p) => {
   return (
     <AbsoluteFill>
       <Title kicker="Il primo vantaggio" title="Centro Agroalimentare di Roma" at={B(0) - 6} size={66} />
+      <Pill at={Wd('cinquanta')} x={470} y={898} text="≈ 50 fornitori di pesce · a rotazione" color={C.gold} icon="fish" size={28} />
       <Big at={Wd('quattrocento')} x={470} y={450} text="+400" size={190} color={C.aqua} sub="AZIENDE" />
       <div style={{position: 'absolute', left: 120, top: 640, width: 760}}>
         {[['Un magazzino virtuale', 2, C.foam, 'warehouse'], ['Ogni giorno prezzo e qualità migliori', 3, C.gold, 'star'], ['Merce mancante? Un altro a pochi metri', 4, C.aqua, 'check']].map(([t, b, c, i], k) => {
