@@ -109,6 +109,7 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
+- 2026-11-18 — "Rosso o viola?" v6 FINALE: 76,2 s, pause dentro le frasi accorciate (tighten + Warp), voce DNSMOS 3,02.
 - 2026-11-18 — "Rosso o viola?" v5: audio DeepFilterNet3 (OVRL 2,99), foto dubbie sostituite: Team rosso = foto NOAA A. foliacea, crudo = viola crudo (Palamós). Foto rawpixel 'hook' e piatto flickr 'crudo2' NON usare (specie incerta).
 - 2026-11-18 — "Rosso o viola?" v4: illustrazioni incise (ill_rosso/ill_viola), raggi+bolle, transizioni a scia, copertina (Still RvCover) e didascalia in videos/.
 - 2026-11-17 — "Rosso o viola?" v2 (vocale "Via Paolo Buzzi 180 37"): 80,25 s, audio RNNoise; tagliate anche "questi gamberi crescono lentamente, così" (non verificabile); logo a 76,37 s. v1: tagliate "Oltre al
