@@ -2,7 +2,8 @@
 
 Canale TikTok **Dama Reservèe** (exclusive seafood, prodotti ittici di nicchia). L'utente manda un vocale
 (.m4a) e scrive **"crea video"** (o "genera video"): si fa tutto in autonomia, senza domande,
-seguendo la skill `video-tiktok-dama-reservee` (copia aggiornata in `.claude/skills/`).
+seguendo la skill `video-tiktok-dama-reservee` (versione aggiornata in `.claude/skills/` e zip per
+claude.ai in `skills-upload/video-tiktok-dama-reservee.zip`: la skill è il riassunto operativo, questo file i dettagli).
 Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, yt-dlp, headroom
 (ruoli nella sezione 0 della skill). Risposte all'utente: brevi, in italiano.
 

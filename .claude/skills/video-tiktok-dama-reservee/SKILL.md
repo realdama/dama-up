@@ -1,80 +1,61 @@
 ---
 name: "video-tiktok-dama-reservee"
-description: "Montare video TikTok verticali per il canale Dama Reservèe (ittico/prodotti di nicchia) partendo da un audio vocale: pulizia audio, tagli, footage CC0, sottotitoli moderni, scene animate, logo finale. Usare SEMPRE quando l'utente scrive \"crea video\" o \"genera video\" e manda un vocale."
+description: "Montare video TikTok verticali per il canale Dama Reservèe (ittico/prodotti di nicchia) partendo da un audio vocale: verifica dei fatti, voce pulita e fluida (DeepFilterNet3, pause accorciate, misura DNSMOS), foto CC0 verificate per specie, scene animate Remotion, illustrazioni, logo ufficiale, copertina e didascalia. Usare SEMPRE quando l'utente scrive \"crea video\" o \"genera video\" e manda un vocale."
 ---
 
-# Video TikTok — stile Dama Reservèe
+# Video TikTok — stile Dama Reservèe (versione aggiornata nov. 2026)
 
-Obiettivo: video 9:16 (1080×1920, 30 fps), di nicchia, moderni, semplici ma iper professionali, spiegati bene, costruiti per far crescere il canale con video che nessun altro sa fare. STILE DEFINITIVO di riferimento: video "Gambero rosso di Mazara" (nov. 2026) — foto + molte grafiche animate (mappe con effetto viaggio, contatori, checklist, sondaggio finale). Prima di inviare ricontrollare SEMPRE fotogrammi, sincronia, audio e pause e correggere da soli, senza che l'utente debba chiedere.
+Obiettivo: video 9:16 (1080×1920, 30 fps), di nicchia, moderni, iper professionali, spiegati bene, per far crescere il canale. Riferimenti: "Gambero rosso di Mazara" e "Rosso o viola?" (v6 finale). Lavorare in autonomia, senza domande; prima di inviare ricontrollare SEMPRE fotogrammi, sincronia, audio, pause e fatti, e correggere da soli. Risposte all'utente brevi, in italiano.
 
-Avvio: l'utente scrive "crea video" (o "genera video") + manda l'audio. Vale in ogni chat: si parte sempre da queste indicazioni.
+Avvio: l'utente scrive "crea video" (o "genera video") + manda il vocale. Vale in ogni chat e per ogni progetto futuro.
+Progetto pronto nel repo **realdama/dama-up** (`remotion/`, `pipeline/`, `CLAUDE.md` con tutte le note tecniche): riusarlo, non ripartire da zero.
 
-## 0. Strumenti (usarli sempre tutti, ognuno nel suo ruolo)
-- **Whisper** (faster-whisper small + large-v3): trascrizione, parole dubbie, tempi parola dei sottotitoli.
-- **ffmpeg**: pulizia/tagli audio, mix, loudnorm, grana, encode finale.
-- **Remotion**: tutte le animazioni (foto con movimento e transizioni, etichette, sottotitoli, mappe, contatori, checklist, sondaggio, logo).
-- **HyperFrames** (npm `hyperframes`): controllo audio del mix (`npx hyperframes audio mix.wav`: dove cadono whoosh/boom, loudness, silenzi) e, se utile, composizioni HTML extra.
-- **OpenMontage** (github OpenMontageInc/OpenMontage): linee guida da regista/montatore; usare il suo controllo "slideshow risk" (niente durate tutte uguali, ogni scena con uno scopo, sound design) come revisione prima della consegna.
-- **yt-dlp**: solo per clip con licenza libera (CC0/pubblico dominio) o fornite dall'utente; mai video protetti.
-- **headroom** (`headroom-ai`): compressore di log/output per risparmiare contesto nelle sessioni lunghe; non tocca il video.
-- Progetto pronto nel repo realdama/dama-up (`remotion/`, `pipeline/`, CLAUDE.md con note sull'ambiente cloud): riusarlo invece di ripartire da zero.
- Fare tutto in autonomia, senza domande (autorizzato a tagliare e rifinire l'audio come serve). Strumenti: Whisper (trascrizione/sottotitoli), ffmpeg (audio, montaggio, transizioni, export), Remotion (animazione titoli, grafiche e logo). Se il logo non è nella sessione, chiederlo o usare quello allegato.
+## 0. Strumenti (ognuno nel suo ruolo)
+- **Whisper** (faster-whisper `small` bozza, `large-v3` per parole dubbie e tempi finali): passare un array numpy da WAV 16 kHz (`pipeline/transcribe.py`).
+- **DeepFilterNet3**: pulizia voce (unica elaborazione che migliora davvero la qualità).
+- **DNSMOS** (pacchetto `speechmos`, `pipeline/mos.py`): voto oggettivo della voce, perché l'audio non si ascolta.
+- **ffmpeg**: tagli, mix, encode. **Remotion**: tutte le grafiche. **HyperFrames** (`npx hyperframes audio`): controllo di dove cadono whoosh/boom e loudness.
+- **OpenMontage**: revisione "slideshow risk" (niente durate tutte uguali, ogni scena con uno scopo).
+- **yt-dlp** solo per clip libere o dell'utente; **headroom** solo per risparmiare contesto.
+- Ricerca web per la verifica dei fatti (WebSearch; Firecrawl/Tavily/Perplexity se hanno le chiavi).
 
-## 0b. Verifica dei fatti (sempre)
-- Prima di montare, verificare con ricerca web ogni affermazione del vocale. Se falsa o non verificabile: tagliarla dall'audio e segnalarlo con le fonti.
+## 1. Verifica dei fatti (OBBLIGATORIA, prima del montaggio)
+- Verificare con fonti ogni dato del vocale (numeri, leggi, percentuali, luoghi, specie, biologia).
+- Falso o non verificabile → tagliare la frase dall'audio e dirlo all'utente con le fonti. Dubbio ma plausibile → tenerlo e segnalarlo.
+- Fatti già verificati: -6% limite gambero rosso 2025 acque IT/FR (Reg. UE 2025/219); limiti di cattura UE per rosso e viola nel Mediterraneo occidentale dal 2022 + limite giorni di pesca (Reg. UE 2022/110); gambero viola famoso a Gallipoli, Liguria, Sardegna. Tolta: "questi gamberi crescono lentamente".
 
-## 1. Audio (sempre)
-- Trascrivere con faster-whisper (modello `small`, lingua it, word_timestamps) da un WAV 16 kHz mono (convertire prima con ffmpeg; non passare il .m4a diretto).
-- Tagliare: frasi che l'utente chiede di togliere, ripetizioni, esitazioni, parole poco chiare o sbagliate, domande riempitive tipo "e voi lo sapevate?". Se una frase è confusa, tagliarla piuttosto che lasciarla.
-- Pause: rilevarle con silencedetect (-38 dB, d 0,12) sull'audio originale, non con i tempi di Whisper (che allungano le parole). Ogni silenzio ≥ 0,30 s va ridotto a 0,22 s (0,27 s se era ≥ 0,55 s); i silenzi più corti restano; micro-fade 12–25 ms. Dopo il mix verificare che non restino silenzi > 0,3 s a -24 dB.
-- Parole dubbie: ricontrollarle con faster-whisper large-v3 su clip brevi. Se una parola suona male o in modo equivoco (es. "flotte" pronunciato "fotte"), tagliare la frase e segnalarlo all'utente.
-- Catena: highpass 90 Hz → arnndn RNNoise (modello sh.rnnn del repo, mix 0,85) → afftdn leggero → adeclick → EQ (-2,5 dB a 250 Hz, +2 dB a 3 kHz, +1 dB shelf 9 kHz) → deesser → compressore 3:1 → atempo 1,04 (mai più veloce: l'utente non vuole il parlato accelerato) → limiter → loudnorm.
-- Musica: base originale sintetizzata (niente brani protetti), tranquilla ed elegante (~85–95 BPM, pad morbidi), ducking con sidechaincompress sotto la voce, sale sul logo finale.
-- SFX: whoosh leggero all'entrata dei titoli, boom + shimmer all'entrata del logo.
-- Mix finale a -14 LUFS, true peak -1,2.
+## 2. Audio — regola attuale (l'utente ha bocciato le catene pesanti)
+1. Trascrivere; tagliare ripetizioni, esitazioni, frasi confuse o parole equivoche (es. "flotte" che suona "fotte", "terreno" per "Tirreno"); verificare i punti di ripresa con large-v3 su clip montati.
+2. Solo tagli + pause ≥0,30 s → 0,22 s (`pipeline/cut_only.py`), niente filtri.
+3. **DeepFilterNet3** (`pipeline/dfn_run.py`, venv con torch + deepfilternet, modello `DeepFilterNet3.zip` da raw.githubusercontent.com/Rikorose/DeepFilterNet, `atten_lim_db=12`) → highpass 70 → **atempo 1,04** (mai più veloce, mai rubberband).
+4. Volume pareggiato **per frase** (`pipeline/phrase_level.py`, ±6 dB, rampe 80 ms) → gain lineare a -18 LUFS in float → alimiter 0,89.
+5. **Pause dentro le frasi** (`pipeline/tighten.py`): tra parole 0,07 s, dopo virgola 0,14 s, fine frase 0,22 s. Deve suonare come un discorso unico e fluido.
+6. VIETATO: livellatore parola per parola, compressori, RNNoise/afftdn forti, saturazione (lavorare in float, controllare i picchi).
+7. Misure obbligatorie: DNSMOS OVRL della voce finale ≥ originale (a pari RMS); probabilità parole Whisper non peggiore; nessun clipping.
+8. Musica originale sintetizzata (90 BPM, pad + arpeggio morbido, niente hi-hat) a volume 0,30 con ducking sotto la voce; whoosh morbidi sulle scene; boom + shimmer sul logo. Mix finale con gain lineare: circa -15,5 LUFS, true peak -1,2.
 
-## 2. Immagini e video
-- SOLO immagini senza obbligo di attribuzione: Openverse con license=cc0,pdm (interrogato via curl). Per Wikimedia scaricare con Special:FilePath/<nome>?width=1920 e uno user-agent dedicato (l'originale dà 429). Niente crediti nella descrizione: l'utente non li vuole.
-- Le foto CC0 sono poche: compensare con le scene animate (sezione 3b).
-- Ogni cambio ogni 2–3 s, scelto per ciò che si dice in quel momento. Tagli nei punti in cui inizia la frase.
-- Se l'utente manda le sue clip/foto, usarle per prime.
+## 3. Foto e illustrazioni
+- Solo CC0 / pubblico dominio (Openverse cc0,pdm; Wikimedia Commons con licenza CC0/PD; NOAA = pubblico dominio). Niente crediti nella descrizione.
+- **Verificare la specie di ogni foto** (descrizione/categoria Commons o fonte) prima di usarla; mai foto generiche o piatti misti spacciati per la specie. Gambero rosso: NOAA "Fish4525" (*Aristaeomorpha foliacea*). Gambero viola: Commons "Gamba de Palamós" (*Aristeus antennatus*). Da NON usare: rawpixel "prawns" e il piatto flickr "GAMBERI ROSSI".
+- Illustrazioni: tavole scientifiche in pubblico dominio trasformate in linee luminose (`ill_viola.png`), o illustrazione ricavata dalla foto scientifica (`ill_rosso.png`); usarle su mappe e schede.
+- Se l'utente manda foto/clip sue, usarle per prime.
 
-## 3. Stile visivo (moderno)
-- Tutto schermo 9:16: immagini scalate a 1620×2880 + zoompan (punch-in sui primi 6 frame + push/pull lento alternato). I video vanno ritagliati a 9:16 (hqdn3d + unsharp).
-- Sfumatura blu notte in alto e in basso per la leggibilità.
-- Transizioni xfade da 0,3 s, a rotazione (smoothleft, zoomin, hblur, smoothup, slideleft, wipeup, circleopen); fadeblack verso il logo.
-- Grading: colorbalance caldo/teal, contrasto +5 %, vignetta, grana leggera; barra di avanzamento argento (8 px) in cima.
-- Testi ASS (libass):
-  - Marchio fisso in alto: "DAMA RESERVÈE" in Cinzel + "— EXCLUSIVE SEAFOOD —".
-  - Titoli a etichetta: Inter ExtraBold, riquadro chiaro e testo blu notte, entrata scorrendo da sinistra, y≈340.
-  - Sottotitoli: Inter Black fino a 112 px, maiuscolo, 1–2 parole alla volta, pop d'entrata; la parola attiva è arancione (&H0047B4FF&) e scalata al 115 %; y≈1400; dimensione adattata automaticamente per stare entro ~860 px.
-  - Correggere sempre a mano gli errori di trascrizione nei sottotitoli.
-  - Area sicura TikTok: niente testi oltre y 1550, lato destro libero.
-- Momenti chiave (date, numeri, certificazioni) in grande al centro-alto con zoom pop.
+## 4. Stile visivo (Remotion)
+- Marchio fisso "DAMA RESERVÈE" (Cinzel) + "— EXCLUSIVE SEAFOOD —"; barra di avanzamento argento 8 px.
+- Etichette con barra sfumata rosso→arancio→viola, testo blu notte, entrano da sinistra a y≈318.
+- Sottotitoli Inter Black ≤112 px, 1–2 parole, parola attiva arancione #FFB447 al 115 % (non deve sovrapporsi alla vicina), y≈1400; correggere a mano gli errori di trascrizione; nasconderli durante checklist, timbri, sondaggio e logo. Area sicura: niente testi sotto y 1550.
+- Scene blu con raggi di luce e bolle; transizioni a "scia" colorata ai cambi scena; foto con punch-in e push/pull lento.
+- Libreria pronta: mappa viaggio (aereo), mappa distanze (≈ KM + barche), mappa zone con segnaposto, contatore profondità, checklist ✓/✗, carta identikit (foto, nome, nome latino, righe ✓ sulle parole + illustrazione), calibro (vassoio 1 KG), Unione Europea (stelle, barra limite con STOP, calendario giorni di pesca), anno + percentuale, catena causa→effetto, timbri, sondaggio a schermo diviso ("TEAM X o TEAM Y").
+- Hook nei primi 2 s: schermo diviso o titolo forte + domanda ("QUALE SCEGLI?"). CTA "SCRIVILO NEI COMMENTI".
+- Se si tagliano pause/frasi a video già fatto: riallineare con lo shift (`rvSh`) o con `Warp.tsx` (Sequence annidate), senza riscrivere le scene.
 
-## 3b. Scene animate Remotion (stile definitivo)
-Testi, sottotitoli e scene sono fatti in Remotion come overlay ProRes 4444 con alpha, sovrapposto al montaggio ffmpeg. Le scene a schermo intero entrano con dissolvenza + sfocatura e sono sincronizzate alle parole:
-- Mappa viaggio: Natural Earth (ne_10m_land + ne_50m_admin_0_countries da GitHub raw), proiezione in km, telecamera SVG viewBox animata, aereo su arco tratteggiato arancione (es. Roma → luogo), segnaposto con anelli pulsanti, cartellino Cinzel. Terra #2b3a5e, Italia #3a5799 con bordo chiaro, mare blu notte scuro.
-- Mappa distanze: linea tratteggiata con "≈ X KM", barche animate, nomi dei luoghi (le etichette non devono uscire dallo schermo né coprire i sottotitoli).
-- Contatori: es. profondità 0 → 500+ M con righello, particelle e sfondo che si scurisce.
-- Checklist ("COME RICONOSCERLO"): card chiare con spunta verde / X rossa che entrano sulla parola detta; sfondo con la foto sfocata.
-- Sondaggio finale ("CRUDO o COTTO"): schermo diviso con due foto, cerchio centrale, fumetto "SCRIVILO NEI COMMENTI".
-- Durante checklist e sondaggio nascondere i sottotitoli.
-- Prima del render completo provare i fotogrammi con `remotion still` composti sul montaggio.
-
-## 4. Chiusura
-- Logo UFFICIALE sempre: `assets/DAMA_Reservee_BRUT_logo_1080.png` del repo realdama/dama-up (DR con chela e conchiglia, "DAMA Reservèe BRUT", argento su blu notte); non chiederlo e non rifarlo a mano. Logo ritagliato a cerchio su sfondo radiale blu notte; scale-in 0,7 s, riflesso argento, alone, scritta "SEGUI PER ALTRE ECCELLENZE".
-- Il logo entra quando nell'audio si sente "Dama Reservèe"; poi resta ~3–4 s.
-- Nei testi non mettere la firma "Manuel Desio" né "Mare Italia".
-
-## 5. Attirare il pubblico
-- Hook nei primi 1–2 s: titolo forte + immagine più spettacolare per prima.
-- Ritmo serrato, nessun tempo morto; una curiosità o un dato ogni ~10 s.
-- CTA finale chiara (commenta / segui), poi il logo.
-- Quando serve, suggerire all'utente un hook o una frase migliore da registrare.
+## 5. Chiusura
+- Logo UFFICIALE sempre: `assets/DAMA_Reservee_BRUT_logo_1080.png` (DR con chela e conchiglia, "DAMA Reservèe BRUT"), ritagliato a cerchio, sfondo radiale blu notte, scale-in, riflesso argento, alone, "SEGUI PER ALTRE ECCELLENZE". Entra quando si sente "Dama Reservèe", resta ~3–4 s.
+- Mai firma "Manuel Desio" né "Mare Italia".
 
 ## 6. Consegna
-- Encode finale: libx264 crf ~20, maxrate 14M, AAC 256k, faststart (~80 MB per 70 s).
-- Controllare i fotogrammi chiave (testi dentro lo schermo, immagini giuste) prima di inviare.
-- Controllare anche la griglia di fotogrammi di tutto il video (scene a tempo con le parole) e i silenzi residui; correggere senza chiedere.
-- Inviare solo l'MP4; risposta breve in italiano. Dire che l'audio è verificato con misure (non ascoltato) e segnalare le frasi tagliate.
+- Encode libx264 crf ~20, maxrate 14M, AAC 256k, faststart.
+- Controllare la griglia di fotogrammi di tutto il video (1 ogni 2 s) e i punti di giunzione.
+- Inviare **MP4 + copertina TikTok (Still con titolo grande + logo) + didascalia con hashtag**.
+- Nella risposta: cosa è cambiato, frasi tagliate, fatti verificati con fonti, misure audio (dire che è verificato con misure, non ascoltato).
+- Salvare tutto nel repo (`videos/`, `CLAUDE.md` storico) e fare push.
