@@ -82,6 +82,19 @@ python3 scripts/transcribe.py out/<slug>_FINAL.mp4 /tmp/check.json   # verifica
 - Precisione: verificare i numeri (i conti del GDO v6 tornano: 7.000 €×4×52 = 1.456.000 €; utile 7% 25–54k,
   15% 120–149k, 20% 172–202k; 10 cent/kg ≈ 21.000 €/anno). "CAR = primo mercato d'Italia" → dire "uno dei più grandi".
 
+## v3 (regole aggiornate dall'utente)
+- Audio: voce edge-tts a **96 kbps** (patch in voice.py, il default era 48 kbps = audio scadente); niente più fruscio
+  "mare" sintetico: colonna sonora originale `scripts/corporate_music.py` (pianoforte/pad, 92 BPM) abbassata sotto la voce.
+- Le voci `studio/public/*/voice.wav` NON vanno su git (>100 MB): si rigenerano con voice.py.
+- Pesce: citare TANTE specie (40+ in `SPECIES`): locale (triglie, scorfani, gallinelle, San Pietro, pagelli, dentici, saraghi,
+  ricciole, lecce, spigole, orate, cefali, sogliole, rombi), azzurro, molluschi, crostacei, frutti di mare; allevato
+  (orate, spigole, ombrine da Italia, Grecia, Turchia, Croazia); import finale (Norvegia, Francia, Spagna, Portogallo,
+  Marocco, Senegal, Tunisia, Egitto); zone FAO (37.1.3 Tirreno, 37.2.1 Adriatico, 37.2.2 Ionio, 27, 34).
+- Foto reali dell'utente in `studio/public/car/` (pesci del CAR) e clip reali (`clip_banco`, `clip_cassette`): si usano.
+- Scene pro in `lib/wide/Pro.tsx`: Ufficio (cartoon), Piattaforma ordini, Specie, CarFoto, Allevato, FruttiMare, Fao,
+  Import, BrokerVsDiretto, Contatto, Freschezza (+ personaggio `Person`). Testi standard dei beat nello script builder.
+- Video Coop: insegna Unicoop Etruria anche nell'intestazione (`partnerImg`) e nella piattaforma.
+
 ## Kit 16:9 (studio/src/lib/wide)
 - `ui.tsx`: Backdrop oceano, Header con capitoli, Captions16, Title cinetico, Card, Icon (30 icone vettoriali),
   Fish (specie: triglia, alice, calamaro, gambero, spada, ricciola, orata, spigola, salmone, merluzzo), Boat, Truck, Emblem.
