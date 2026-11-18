@@ -17,7 +17,17 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - Hook nei primi 2 s (titolo grande + foto più spettacolare). CTA "scrivilo nei commenti" + logo.
 - Mai firma "Manuel Desio" né "Mare Italia". Mai crediti nelle descrizioni.
 
-## Audio (verificato con misure, non ascoltato)
+## Audio — REGOLA ATTUALE (sostituisce le catene sotto; l'utente ha giudicato "pessima" la v3)
+- Misurare SEMPRE con DNSMOS (`pipeline/mos.py`, pacchetto speechmos, confronto a pari RMS):
+  la voce finale non deve avere OVRL più basso dell'originale. Originale 2,97; catena RNNoise+rider 2,73 (peggio!).
+- Catena buona (OVRL 2,99, BAK 4,03): `pipeline/cut_only.py` (solo tagli) → DeepFilterNet3
+  (`pipeline/dfn_run.py`, venv con torch/deepfilternet, modello da raw.githubusercontent.com
+  Rikorose/DeepFilterNet models/DeepFilterNet3.zip, atten_lim_db=12) → highpass 70 → atempo 1,04
+  (NON rubberband: peggiora) → `pipeline/phrase_level.py` (guadagno per FRASE ±6 dB, rampe 80 ms)
+  → gain lineare a -18 LUFS in float → alimiter 0,89 → mix con musica 0,30 e sfx 0,6, gain
+  lineare finale (≈ -15,6 LUFS, TP -1,2). VIETATI: vocal rider per parola, compressori, afftdn/arnndn forti.
+
+## Audio (storico, verificato con misure, non ascoltato)
 - Whisper: faster-whisper `small` per bozza, `large-v3` per verificare parole dubbie e per i
   tempi parola finali (ritrascrivere la voce GIÀ montata: tempi più precisi).
 - Il rumore di fondo dei vocali è alto: silencedetect a -38 dB non trova nulla sull'originale.
@@ -96,7 +106,8 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
-- 2026-11-18 — "Rosso o viola?" v4 finale: illustrazioni incise (ill_rosso/ill_viola), raggi+bolle, transizioni a scia, copertina (Still RvCover) e didascalia in videos/.
+- 2026-11-18 — "Rosso o viola?" v5: audio DeepFilterNet3 (OVRL 2,99), foto dubbie sostituite: Team rosso = foto NOAA A. foliacea, crudo = viola crudo (Palamós). Foto rawpixel 'hook' e piatto flickr 'crudo2' NON usare (specie incerta).
+- 2026-11-18 — "Rosso o viola?" v4: illustrazioni incise (ill_rosso/ill_viola), raggi+bolle, transizioni a scia, copertina (Still RvCover) e didascalia in videos/.
 - 2026-11-17 — "Rosso o viola?" v2 (vocale "Via Paolo Buzzi 180 37"): 80,25 s, audio RNNoise; tagliate anche "questi gamberi crescono lentamente, così" (non verificabile); logo a 76,37 s. v1: tagliate "Oltre al
   Tirreno" (si sente "terreno") ed "E poi le quote UE" (incomprensibile); logo a 78,84 s.
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
