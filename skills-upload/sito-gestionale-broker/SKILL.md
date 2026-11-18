@@ -15,9 +15,12 @@ Lavorare in autonomia, risposte brevi in italiano, commit + push sul branch di s
 - Se il sito è bloccato dalla rete (proxy 403): `get_environment` → `update_environment`
   con `add_allowed_hosts` (già consentiti: mareitaliasrl.com, www.mareitaliasrl.com).
   Leggere HTML + `styles.css` con curl e estrarre variabili CSS (`--ink`, `--mint`…) e font.
-- Stile Argo Maris: blu notte #052b3c / #031d29, menta #b0ebe6, teal #3e8186, ghiaccio #f0f8fa;
-  titoli DM Serif Display (parola in corsivo colorata), testo Manrope; HUD/futuristico:
-  JetBrains Mono + neon #5ff3e6. Logo: nave stilizzata SVG (`sito/img/logo.svg`).
+- Se l'utente fornisce un logo, TUTTO si basa su quello: palette, font, marchio, favicon, login,
+  intestazioni delle stampe. Ritaglio tondo con PIL (maschera ellittica) in 512/180/64 px.
+- Stile Argo Maris (dal logo ufficiale `argo-maris/assets/logo_argo_maris_originale.png`):
+  blu notte #0a1a3d/#050d24, giallo #ffd21f, blu #1d5fd1, ciano #3fd6f5, argento (gradiente
+  testo); titoli Exo 2 800-900 corsivo, testo Manrope, HUD JetBrains Mono. Hero con il logo
+  grande fluttuante a destra (anello tratteggiato che ruota); foto della sede al CAR in "Chi siamo".
 - Sezioni: hero foto + onde SVG animate, punti di forza, chi siamo, rete globale (futuristica),
   gamma (card foto), metodo in 4 passi (sfondo scuro), per chi (GDO, HoReCa, pescherie,
   produttori), valori, contatti (modulo → mailto), footer con link "Area riservata" → `/app/`.

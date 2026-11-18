@@ -126,8 +126,14 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
 - Codice in `argo-maris/`: `sito/` (vetrina statica), `app/` (gestionale Node ≥22.13 + node:sqlite,
   zero dipendenze: `cd argo-maris/app && node server.js` → sito `/`, gestionale `/app/`,
   login iniziale admin/argomaris), `tools/dotmap.py` (mappa mondo a puntini).
-- Il sito prende SOLO lo stile da mareitaliasrl.com (blu notte, menta, DM Serif Display +
-  Manrope): mai copiarne testi, dati, foto. Telefono, indirizzo, P. IVA = segnaposto finché
+- LOGO UFFICIALE Argo Maris (dato dall'utente, usarlo SEMPRE): `argo-maris/assets/logo_argo_maris_originale.png`
+  (cerchio blu notte, mappa mondo con rotte ciano, "ARGO" argento corsivo, "MARIS" giallo, peschereccio
+  con tricolore). Ritagli tondi: `sito/img/logo.png|logo-180.png|favicon.png`, `app/public/logo.png`.
+  Foto sede al CAR con insegne: `assets/sede_car_originale.png` → `sito/img/sede-car.jpg`.
+- Identità visiva (dal logo, sostituisce menta/DM Serif): blu notte #0a1a3d/#050d24, giallo #ffd21f,
+  blu #1d5fd1, ciano #3fd6f5, argento (gradiente); titoli Exo 2 800-900 corsivo, testo Manrope;
+  marchio scritto "ARGO" argento + "MARIS" giallo. Dal sito mareitaliasrl.com solo l'impaginazione:
+  mai copiarne testi, dati, foto. Telefono, indirizzo, P. IVA = segnaposto finché
   l'utente non li dà. Nel gestionale i dati aziendali vanno in Impostazioni (servono per l'XML).
 - Parole chiave da usare: CAR Roma, import mondiale, GDO, HoReCa, catena del freddo, tracciabilità.
   Grafiche "futuristiche": mappa a puntini con rotte neon verso "ROMA · CAR", schema

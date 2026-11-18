@@ -168,7 +168,7 @@ async function viewDashboard() {
     <div class="dash">
       <div class="grid">
         <section class="panel"><h2>Venduto e margine · 12 mesi</h2>${chart(d.mesi)}
-          <div class="legend"><span><i style="background:#052b3c"></i>Venduto</span><span><i style="background:#7fd3cb"></i>Margine</span></div></section>
+          <div class="legend"><span><i style="background:#0a1a3d"></i>Venduto</span><span><i style="background:#ffd21f"></i>Margine</span></div></section>
         <section class="panel"><h2>Ordini da evadere <a href="#/e/ordini">Tutti →</a></h2>
           ${d.ordini.length ? `<table class="mini">${d.ordini.map(o => `<tr data-href="#/e/ordini/${o.id}"><td><b>${esc(o.numero)}</b><br><span class="muted">${esc(o.cliente)}</span></td><td>${o.data_consegna ? 'consegna ' + fdate(o.data_consegna) : ''}</td><td>${badge(o.stato)}</td><td class="r">${money(o.totale)}</td></tr>`).join('')}</table>` : '<p class="empty">Nessun ordine aperto</p>'}
         </section>
@@ -203,8 +203,8 @@ function chart(mesi) {
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Grafico venduto e margine">
     ${ticks.map(v => `<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="#e6eff2"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v >= 1000 ? Math.round(v / 1000) + 'k' : Math.round(v)}</text>`).join('')}
     ${months.map((m, i) => { const r = by[m] || { venduto: 0, margine: 0 }; const x = L + i * cw + cw * .18; const bw = cw * .32;
-      return `<rect x="${x}" y="${y(r.venduto)}" width="${bw}" height="${H - B - y(r.venduto)}" rx="3" fill="#052b3c"><title>${m}: ${money(r.venduto)}</title></rect>
-      <rect x="${x + bw + 3}" y="${y(r.margine)}" width="${bw}" height="${H - B - y(r.margine)}" rx="3" fill="#7fd3cb"><title>margine ${money(r.margine)}</title></rect>
+      return `<rect x="${x}" y="${y(r.venduto)}" width="${bw}" height="${H - B - y(r.venduto)}" rx="3" fill="#0a1a3d"><title>${m}: ${money(r.venduto)}</title></rect>
+      <rect x="${x + bw + 3}" y="${y(r.margine)}" width="${bw}" height="${H - B - y(r.margine)}" rx="3" fill="#ffd21f"><title>margine ${money(r.margine)}</title></rect>
       <text x="${L + i * cw + cw / 2}" y="${H - 8}" text-anchor="middle">${mn[+m.slice(5) - 1]}</text>`; }).join('')}
   </svg>`;
 }
@@ -603,7 +603,7 @@ async function viewPrint(ent, id) {
   const get = async (e2, i) => i ? api(`${e2}/${i}`).catch(() => ({})) : {};
   const addr = o => [o.indirizzo, [o.cap, o.citta, o.provincia && `(${o.provincia})`].filter(Boolean).join(' ')].filter(Boolean).map(esc).join('<br>');
   const ana = o => `<b>${esc(o.ragione_sociale || '')}</b><br>${addr(o)}${o.piva ? `<br>P. IVA ${esc(o.piva)}` : ''}${o.codice_sdi && o.codice_sdi !== '0000000' ? ` · SDI ${esc(o.codice_sdi)}` : ''}`;
-  const head = (title, sub) => `<div class="doc-head"><div class="co"><img src="logo.svg" width="54" height="54" alt=""><div><b>${esc(s.ragione_sociale || 'Argo Maris')}</b><p>${[s.indirizzo, [s.cap, s.citta, s.provincia && `(${s.provincia})`].filter(Boolean).join(' ')].filter(Boolean).map(esc).join(' · ')}<br>${s.piva ? 'P. IVA ' + esc(s.piva) + ' · ' : ''}${esc(s.telefono || '')} ${esc(s.email || '')}</p></div></div><div class="doc-title"><h1>${title}</h1><p>${sub}</p></div></div>`;
+  const head = (title, sub) => `<div class="doc-head"><div class="co"><img src="logo.png" width="62" height="62" alt=""><div><b>${esc(s.ragione_sociale || 'Argo Maris')}</b><p>${[s.indirizzo, [s.cap, s.citta, s.provincia && `(${s.provincia})`].filter(Boolean).join(' ')].filter(Boolean).map(esc).join(' · ')}<br>${s.piva ? 'P. IVA ' + esc(s.piva) + ' · ' : ''}${esc(s.telefono || '')} ${esc(s.email || '')}</p></div></div><div class="doc-title"><h1>${title}</h1><p>${sub}</p></div></div>`;
   let html = '';
   if (ent === 'ddt') {
     const [cli, forn, vet] = await Promise.all([get('clienti', r.cliente_id), get('fornitori', r.fornitore_id), get('vettori', r.vettore_id)]);
