@@ -455,6 +455,7 @@ export const Import: React.FC<SP> = (p) => {
 export const BrokerVsDiretto: React.FC<SP> = (p) => {
   const {f, B} = useScene(p);
   const chaos = f >= B(1), calm = f >= B(2);
+  const calmIn = useIn(B(2) + 10, {damping: 10});
   const rows = [['Fornitori da gestire', '10', '1'], ['Telefonate al giorno', '10+', '1'], ['Fatture al mese', '200+', '1 sola'], ['Consegne da controllare', '10', '1'], ['Prezzi confrontati', 'pochi', 'tutto il mercato']];
   return (
     <AbsoluteFill>
@@ -480,7 +481,7 @@ export const BrokerVsDiretto: React.FC<SP> = (p) => {
           <line x1={1360} y1={440} x2={1560} y2={440} stroke="#7CF29A" strokeWidth={5} strokeDasharray="10 8" strokeDashoffset={-f} opacity={calm ? 1 : 0} />
         </g>
       </Svg>
-      {calm && <div style={{position: 'absolute', left: 1580, top: 370, transform: `scale(${useIn(B(2) + 10, {damping: 10})})`}}><Emblem size={140} /></div>}
+      {calm && <div style={{position: 'absolute', left: 1580, top: 370, transform: `scale(${calmIn})`}}><Emblem size={140} /></div>}
       <div style={{position: 'absolute', left: 110, top: 690, width: 1700, opacity: ez(f, B(2) + 20, B(2) + 34)}}>
         {rows.map(([k, a, b], i) => (
           <div key={i} style={{display: 'flex', alignItems: 'center', height: 40, fontFamily: FONT, fontWeight: 800, fontSize: 24, color: C.foam, borderBottom: '1px solid rgba(232,251,255,0.12)', opacity: ez(f, B(2) + 20 + i * 8, B(2) + 30 + i * 8)}}>
