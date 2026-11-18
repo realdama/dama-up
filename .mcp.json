@@ -2,23 +2,62 @@
   "mcpServers": {
     "firecrawl": {
       "command": "npx",
-      "args": ["-y", "firecrawl-mcp@3.40.0"],
-      "env": {"FIRECRAWL_API_KEY": "fc-placeholder-injected-by-proxy"}
+      "args": [
+        "-y",
+        "firecrawl-mcp@3.40.0"
+      ],
+      "env": {
+        "FIRECRAWL_API_KEY": "fc-placeholder-injected-by-proxy"
+      }
     },
     "tavily": {
       "command": "npx",
-      "args": ["-y", "tavily-mcp@0.2.22"],
-      "env": {"TAVILY_API_KEY": "tvly-placeholder-injected-by-proxy"}
+      "args": [
+        "-y",
+        "tavily-mcp@0.2.22"
+      ],
+      "env": {
+        "TAVILY_API_KEY": "tvly-placeholder-injected-by-proxy"
+      }
     },
     "perplexity": {
       "command": "npx",
-      "args": ["-y", "@perplexity-ai/mcp-server@1.3.0"],
-      "env": {"PERPLEXITY_API_KEY": "pplx-placeholder-injected-by-proxy"}
+      "args": [
+        "-y",
+        "@perplexity-ai/mcp-server@1.3.0"
+      ],
+      "env": {
+        "PERPLEXITY_API_KEY": "pplx-placeholder-injected-by-proxy"
+      }
     },
     "posthog": {
       "type": "http",
       "url": "https://mcp.posthog.com/mcp",
-      "headers": {"Authorization": "Bearer phx-placeholder-injected-by-proxy"}
+      "headers": {
+        "Authorization": "Bearer phx-placeholder-injected-by-proxy"
+      }
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@0.0.84",
+        "--headless",
+        "--isolated",
+        "--executable-path",
+        "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome",
+        "--no-sandbox"
+      ]
+    },
+    "elevenlabs": {
+      "command": "uvx",
+      "args": [
+        "elevenlabs-mcp==0.12.2"
+      ],
+      "env": {
+        "ELEVENLABS_API_KEY": "el-placeholder-injected-by-proxy",
+        "ELEVENLABS_MCP_BASE_PATH": "/home/user/dama-up/assets/elevenlabs"
+      }
     }
   }
 }

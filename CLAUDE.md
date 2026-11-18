@@ -116,3 +116,14 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
 - 2026-11-17 — Gambero rosso di Mazara del Vallo (v2, vocale "Via Paolo Buzzi 180 35"):
   59,6 s; tagliata la frase sulle "flotte"; logo su "Dama Reservèe" a 55,7 s.
+
+## Strumenti extra (installati 2026-11-18)
+- Skill in `.claude/skills/`: hallmark, taste-skill (design pagine web), ig-* (13 skill Instagram:
+  reel, caption, carousel, viral, plan…), strix-code-security. Agenti in `.claude/agents/`:
+  content-marketer, seo-specialist, prompt-engineer (da awesome-claude-code-subagents).
+- MCP in `.mcp.json`: playwright (Chromium di /opt/pw-browsers), elevenlabs (chiave = segreto di
+  rete per api.elevenlabs.io, header xi-api-key; file in `assets/elevenlabs`).
+- `bash scripts/setup-tools.sh` riclona in /home/user/tools tutti i repo (freellmapi, claude-mem,
+  graphify, strix, my-claude-code-setup, awesome-design-md…) e installa la CLI `graphify`.
+- Non attivi: claude-mem (serve worker locale persistente), freellmapi (server con chiavi di 87
+  provider), strix completo (pentest con Docker + chiave LLM).
