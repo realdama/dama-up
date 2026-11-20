@@ -183,5 +183,9 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
   categorie generiche, l'utente non vuole specie troppo specifiche) → stacco su "box del CAR" con
   cassa di polistirolo, ghiaccio e container refrigerato col logo. Capitoli HTML sovrapposti, barra
   laterale cliccabile, cornice HUD gialla. Senza WebGL o con movimento ridotto: schede con foto.
+  v2 ("fai tu un bel lavoro"): mappa d'ambiente PMREM (riflessi argento), corpo dei pesci a tornio
+  affusolato + nuoto nel vertex shader (onBeforeCompile, coda che ondeggia), raggi di luce sott'acqua,
+  nome ARGO MARIS sulle fiancate (CanvasTexture), gamberi con antenne curve e zampe, polpo con mantello,
+  occhi e tentacoli affusolati a sfere con ventose.
   Bug già risolti: InstancedMesh.frustumCulled=false (sennò spariscono), colori da g0.userData nel merge.
   Test: Playwright con --use-angle=swiftshader, screenshot a vari punti dello scroll.

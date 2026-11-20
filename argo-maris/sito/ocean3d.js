@@ -26,9 +26,21 @@ function start() {
   const fogAbove = new THREE.Fog(0x0b1d44, 80, 320);
   const fogBelow = new THREE.FogExp2(0x062a52, 0.028);
 
+  // ambiente per i riflessi (cielo sfumato + sole), generato una volta
+  {
+    const envScene = new THREE.Scene();
+    const g = new THREE.SphereGeometry(10, 32, 16); const cols = [];
+    const cTop = new THREE.Color(0xcfe4ff), cMid = new THREE.Color(0x2a5fa8), cLow = new THREE.Color(0x061428);
+    for (let i = 0; i < g.attributes.position.count; i++) { const y = g.attributes.position.getY(i) / 10; const c = y > 0 ? cMid.clone().lerp(cTop, Math.pow(y, 0.7)) : cMid.clone().lerp(cLow, Math.min(1, -y * 2)); cols.push(c.r, c.g, c.b); }
+    g.setAttribute('color', new THREE.Float32BufferAttribute(cols, 3));
+    envScene.add(new THREE.Mesh(g, new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide })));
+    const sunPatch = new THREE.Mesh(new THREE.SphereGeometry(1.4, 16, 8), new THREE.MeshBasicMaterial({ color: 0xfff4dc })); sunPatch.position.set(-5, 7, 3); envScene.add(sunPatch);
+    const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromScene(envScene, 0.035).texture; pm.dispose();
+  }
+
   // luci
-  const hemi = new THREE.HemisphereLight(0xbfd8ff, 0x0a1a3d, 1.15); scene.add(hemi);
-  const sun = new THREE.DirectionalLight(0xfff1d6, 2.2); sun.position.set(-40, 80, 30); scene.add(sun);
+  const hemi = new THREE.HemisphereLight(0xbfd8ff, 0x0a1a3d, 0.7); scene.add(hemi);
+  const sun = new THREE.DirectionalLight(0xfff1d6, 1.7); sun.position.set(-40, 80, 30); scene.add(sun);
   const rim = new THREE.DirectionalLight(0x6fb6ff, 0.9); rim.position.set(30, 20, -60); scene.add(rim);
 
   // cielo: cupola con sfumatura
@@ -43,7 +55,7 @@ function start() {
   const seg = small ? 70 : 110;
   const oceanGeo = new THREE.PlaneGeometry(420, 420, seg, seg); oceanGeo.rotateX(-Math.PI / 2);
   const oceanBase = oceanGeo.attributes.position.array.slice();
-  const ocean = new THREE.Mesh(oceanGeo, new THREE.MeshStandardMaterial({ color: C.sea, roughness: 0.32, metalness: 0.15, flatShading: true, side: THREE.DoubleSide, transparent: true, opacity: 0.96 }));
+  const ocean = new THREE.Mesh(oceanGeo, new THREE.MeshStandardMaterial({ color: C.sea, roughness: 0.42, metalness: 0.25, flatShading: true, envMapIntensity: 0.9, side: THREE.DoubleSide, transparent: true, opacity: 0.96 }));
   ocean.position.z = -60; scene.add(ocean);
   const waves = t => {
     const a = oceanGeo.attributes.position.array;
@@ -71,11 +83,22 @@ function start() {
   lower.position.y = 0.6; upper.position.y = 3.0;
   const deck = new THREE.Mesh(new THREE.ShapeGeometry(hullShape), new THREE.MeshStandardMaterial({ color: 0x1b2b4f, roughness: 0.8, side: THREE.DoubleSide }));
   deck.rotation.x = Math.PI / 2; deck.position.y = 3.02; ship.add(deck);
+  // nome sullo scafo, sui due fianchi
+  {
+    const cv = document.createElement('canvas'); cv.width = 1024; cv.height = 128; const x = cv.getContext('2d');
+    x.font = 'italic 800 92px Archivo, "Arial Narrow", sans-serif'; x.textBaseline = 'middle';
+    x.fillStyle = '#f3f6fa'; x.fillText('ARGO', 24, 66); const w = x.measureText('ARGO ').width; x.fillStyle = '#ffd21f'; x.fillText('MARIS', 24 + w, 66);
+    const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false });
+    const geo = new THREE.PlaneGeometry(16, 2);
+    const sb = new THREE.Mesh(geo, mat); sb.position.set(4.38, 1.8, 3); sb.rotation.y = Math.PI / 2; ship.add(sb);
+    const pt = new THREE.Mesh(geo, mat); pt.position.set(-4.38, 1.8, 3); pt.rotation.y = -Math.PI / 2; ship.add(pt);
+  }
   // container
   const boxGeo = new THREE.BoxGeometry(2.35, 2.3, 5.6);
   const palette = [C.yellow, C.white, C.red, C.blue, C.navy, 0x2f8f6f, C.cyan, 0xd8682e].map(c => new THREE.Color(c));
   const slots = []; for (let row = 0; row < 5; row++) for (let col = 0; col < 3; col++) for (let lv = 0; lv < 3; lv++) if (!(lv === 2 && (row + col) % 3 === 0)) slots.push([col, row, lv]);
-  const boxes = new THREE.InstancedMesh(boxGeo, new THREE.MeshStandardMaterial({ roughness: 0.55, metalness: 0.1 }), slots.length);
+  const boxes = new THREE.InstancedMesh(boxGeo, new THREE.MeshStandardMaterial({ roughness: 0.5, metalness: 0.35, flatShading: true }), slots.length);
   const m4 = new THREE.Matrix4(); const tmpC = new THREE.Color();
   slots.forEach(([col, row, lv], i) => { m4.makeTranslation((col - 1) * 2.45, 4.2 + lv * 2.34, -15 + row * 5.9); boxes.setMatrixAt(i, m4); boxes.setColorAt(i, tmpC.copy(palette[(i * 7 + lv * 3) % palette.length])); });
   ship.add(boxes);
@@ -113,7 +136,9 @@ function start() {
     g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); return g;
   }
   function fishGeo({ len = 1, h = 0.32, w = 0.16, back = 0x1d4f7a, belly = 0xdfe6ee, tail = 'fork', fin = 0x1d3d66 }) {
-    const body = new THREE.SphereGeometry(0.5, 18, 12); body.scale(len, h, w); shadeByY(body, back, belly);
+    const prof = []; const N = 22;
+    for (let i = 0; i <= N; i++) { const t = i / N; const r = 0.5 * Math.pow(Math.sin(Math.PI * t), 0.55) * (1 - 0.72 * t * t); prof.push(new THREE.Vector2(Math.max(r, i === 0 || i === N ? 0 : 0.012), 0.5 - t)); }
+    const body = new THREE.LatheGeometry(prof, 16); body.rotateZ(-Math.PI / 2); body.scale(len, h, w); shadeByY(body, back, belly);
     const ts = new THREE.Shape();
     if (tail === 'moon') { ts.moveTo(0, 0); ts.quadraticCurveTo(-0.25 * len, 0.1, -0.42 * len, 0.48 * h * 2); ts.quadraticCurveTo(-0.22 * len, 0, -0.42 * len, -0.48 * h * 2); ts.quadraticCurveTo(-0.25 * len, -0.1, 0, 0); }
     else { ts.moveTo(0, 0); ts.lineTo(-0.3 * len, 0.36 * h * 2); ts.lineTo(-0.22 * len, 0); ts.lineTo(-0.3 * len, -0.36 * h * 2); ts.lineTo(0, 0); }
@@ -132,7 +157,11 @@ function start() {
       s.translate(Math.cos(ang) * r - r, Math.sin(ang) * r * 0.85, 0); tint(s, i % 2 ? 0xe2552b : 0xf06a3a); parts.push(s);
     }
     const fan = new THREE.ConeGeometry(0.16, 0.32, 6); fan.scale(1.4, 1, 0.3); fan.rotateZ(Math.PI * 0.6); fan.translate(-1.38, 0.1, 0); tint(fan, 0xd2452a); parts.push(fan);
-    for (const z of [-0.06, 0.06]) { const a = new THREE.CylinderGeometry(0.012, 0.006, 1.8, 4); a.rotateZ(-Math.PI * 0.42); a.translate(0.85, 0.35, z); tint(a, 0xf38a5c); parts.push(a); }
+    for (const z of [-0.05, 0.05]) {
+      const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0.12, 0.22, z), new THREE.Vector3(0.7, 0.5, z * 2), new THREE.Vector3(0.55, 1.05, z * 5), new THREE.Vector3(-0.5, 1.35, z * 9), new THREE.Vector3(-1.4, 1.2, z * 12)]);
+      const a = new THREE.TubeGeometry(curve, 24, 0.014, 3); tint(a, 0xf38a5c); parts.push(a);
+    }
+    for (let k = 0; k < 5; k++) { const leg = new THREE.CylinderGeometry(0.012, 0.008, 0.32, 3); leg.rotateZ(0.5); leg.translate(-0.25 - k * 0.14, -0.12, 0); tint(leg, 0xf06a3a); parts.push(leg); }
     const eye = new THREE.SphereGeometry(0.05, 6, 6); eye.translate(0.12, 0.14, 0.12); tint(eye, 0x05070c); parts.push(eye);
     return merge(parts);
   }
@@ -144,23 +173,40 @@ function start() {
 
   // ---------------------------------------------------------- stazioni sott'acqua
   const ST = [0, -45, -90, -135, -180]; const Y = -12;
-  const fishMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.35, metalness: 0.55, flatShading: true });
+  const fishMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.3, metalness: 0.7, flatShading: true, envMapIntensity: 1.3 });
+  const swimTime = { value: 0 };
+  function swimMat(len, amp, freq, speed) {
+    const m = fishMat.clone();
+    m.onBeforeCompile = sh => {
+      Object.assign(sh.uniforms, { uTime: swimTime, uLen: { value: len }, uAmp: { value: amp }, uFreq: { value: freq }, uSpeed: { value: speed } });
+      sh.vertexShader = 'uniform float uTime, uLen, uAmp, uFreq, uSpeed;\n' + sh.vertexShader.replace('#include <begin_vertex>', `#include <begin_vertex>
+        #ifdef USE_INSTANCING
+          float ph = instanceMatrix[3].x * 0.9 + instanceMatrix[3].z * 0.6;
+        #else
+          float ph = 0.0;
+        #endif
+        float wgt = smoothstep(0.15 * uLen, -0.55 * uLen, position.x);
+        transformed.z += sin(position.x / uLen * uFreq - uTime * uSpeed + ph) * uAmp * uLen * wgt * wgt;`);
+    };
+    m.customProgramCacheKey = () => 'swim' + len;
+    return m;
+  }
   const dummy = new THREE.Object3D();
   const groups = [];
 
   // 1 pesce azzurro: banco a vortice
   const nBlue = small ? 90 : 170;
-  const blue = new THREE.InstancedMesh(fishGeo({ len: 1.2, h: 0.28, w: 0.14, back: 0x1f6a8a, belly: 0xe6edf3, fin: 0x1d4f6a }), fishMat, nBlue);
+  const blue = new THREE.InstancedMesh(fishGeo({ len: 1.2, h: 0.28, w: 0.14, back: 0x1f6a8a, belly: 0xe6edf3, fin: 0x1d4f6a }), swimMat(1.2, 0.12, 6, 9), nBlue);
   const blueSeed = Array.from({ length: nBlue }, () => [Math.random() * Math.PI * 2, 3 + Math.random() * 4, (Math.random() - 0.5) * 6, 0.5 + Math.random() * 0.5]);
   scene.add(blue); groups.push({ z: ST[0], update(t) { blueSeed.forEach(([a0, r, dy, sp], i) => { const a = a0 + t * sp * 0.6; dummy.position.set(Math.cos(a) * r, Y + dy + Math.sin(a * 2 + i) * 0.4, ST[0] + Math.sin(a) * r); dummy.rotation.set(0, -a - Math.PI / 2, Math.sin(t * 8 + i) * 0.08); dummy.updateMatrix(); blue.setMatrixAt(i, dummy.matrix); }); blue.instanceMatrix.needsUpdate = true; } });
 
   // 2 pesce bianco: orate e spigole che girano lente
-  const white = new THREE.InstancedMesh(fishGeo({ len: 2.2, h: 0.9, w: 0.32, back: 0x7c8a99, belly: 0xf2f4f6, fin: 0x55606d }), fishMat, 22);
+  const white = new THREE.InstancedMesh(fishGeo({ len: 2.2, h: 0.9, w: 0.32, back: 0x7c8a99, belly: 0xf2f4f6, fin: 0x55606d }), swimMat(2.2, 0.08, 5, 4), 22);
   const whiteSeed = Array.from({ length: 22 }, () => [Math.random() * Math.PI * 2, 4 + Math.random() * 5, (Math.random() - 0.5) * 5]);
   scene.add(white); groups.push({ z: ST[1], update(t) { whiteSeed.forEach(([a0, r, dy], i) => { const a = a0 + t * 0.22 * (i % 2 ? 1 : -1); dummy.position.set(Math.cos(a) * r, Y + dy, ST[1] + Math.sin(a) * r); dummy.rotation.set(0, i % 2 ? -a - Math.PI / 2 : -a + Math.PI / 2, Math.sin(t * 3 + i) * 0.06); dummy.updateMatrix(); white.setMatrixAt(i, dummy.matrix); }); white.instanceMatrix.needsUpdate = true; } });
 
   // 3 tonni: grandi, in fila che attraversa
-  const tuna = new THREE.InstancedMesh(fishGeo({ len: 6.5, h: 1.6, w: 1.2, back: 0x0d1f4a, belly: 0xd5dde6, tail: 'moon', fin: 0x0b1838 }), fishMat, 6);
+  const tuna = new THREE.InstancedMesh(fishGeo({ len: 6.5, h: 1.6, w: 1.2, back: 0x0d1f4a, belly: 0xd5dde6, tail: 'moon', fin: 0x0b1838 }), swimMat(6.5, 0.06, 4.5, 3), 6);
   scene.add(tuna); groups.push({ z: ST[2], update(t) { for (let i = 0; i < 6; i++) { const x = ((t * 3.2 + i * 11) % 66) - 33; dummy.position.set(x, Y + (i % 3 - 1) * 2.6 + Math.sin(t + i) * 0.4, ST[2] + (i % 2 ? 3 : -3)); dummy.rotation.set(0, 0, Math.sin(t * 4 + i) * 0.03); dummy.updateMatrix(); tuna.setMatrixAt(i, dummy.matrix); } tuna.instanceMatrix.needsUpdate = true; } });
 
   // 4 crostacei: gamberi sospesi che ruotano
@@ -171,18 +217,41 @@ function start() {
 
   // 5 molluschi: polpo + cozze sul fondale
   const octo = new THREE.Group(); octo.position.set(0, -15.5, ST[4]); scene.add(octo);
-  const octoMat = new THREE.MeshStandardMaterial({ color: 0xb4554a, roughness: 0.5, flatShading: true });
-  const head = new THREE.Mesh(new THREE.SphereGeometry(1.4, 18, 14), octoMat); head.scale.set(1, 1.35, 1); head.position.y = 2.4; octo.add(head);
+  const octoMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.45, metalness: 0.05, flatShading: true });
+  // mantello: goccia inclinata all'indietro, più chiara sopra, con gli occhi
+  const mantle = new THREE.LatheGeometry(Array.from({ length: 17 }, (_, i) => { const t = i / 16; return new THREE.Vector2(Math.max(0.001, 1.25 * Math.pow(Math.sin(Math.PI * t), 0.7) * (0.75 + 0.35 * t)), 3.4 * (1 - t)); }), 18);
+  shadeByY(mantle, 0xd07a62, 0x8e3b33); mantle.rotateX(-0.45); mantle.translate(0, 0.9, -0.5);
+  const eyes = [-0.62, 0.62].flatMap(x => { const w = new THREE.SphereGeometry(0.26, 10, 8); w.translate(x, 1.2, 0.72); tint(w, 0xf3e3c8); const p = new THREE.SphereGeometry(0.13, 8, 6); p.translate(x * 1.08, 1.22, 0.92); tint(p, 0x0b0b10); return [w, p]; });
+  const headMesh = new THREE.Mesh(merge([mantle, ...eyes]), octoMat); octo.add(headMesh);
+  // tentacoli affusolati: catena di sfere lungo una curva che si arriccia in punta
   const tentacles = [];
   for (let i = 0; i < 8; i++) {
-    const a = (i / 8) * Math.PI * 2;
-    const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 1.4, 0), new THREE.Vector3(Math.cos(a) * 1.4, 0.6, Math.sin(a) * 1.4), new THREE.Vector3(Math.cos(a) * 3, -0.3, Math.sin(a) * 3), new THREE.Vector3(Math.cos(a + 0.5) * 4.2, 0.4, Math.sin(a + 0.5) * 4.2)]);
-    const tm = new THREE.Mesh(new THREE.TubeGeometry(curve, 24, 0.26, 7), octoMat); octo.add(tm); tentacles.push(tm);
+    const a = (i / 8) * Math.PI * 2 + 0.2;
+    const ca = Math.cos(a), sa = Math.sin(a);
+    const curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(ca * 0.5, 0.6, sa * 0.5), new THREE.Vector3(ca * 1.6, -0.4, sa * 1.6), new THREE.Vector3(ca * 3.0, -1.2, sa * 3.0),
+      new THREE.Vector3(Math.cos(a + 0.35) * 4.3, -0.9, Math.sin(a + 0.35) * 4.3), new THREE.Vector3(Math.cos(a + 0.75) * 4.6, 0.1, Math.sin(a + 0.75) * 4.6), new THREE.Vector3(Math.cos(a + 0.95) * 4.0, 0.5, Math.sin(a + 0.95) * 4.0)]);
+    const parts = []; const n = 30;
+    for (let k = 0; k < n; k++) {
+      const t = k / (n - 1); const p = curve.getPointAt(t); const r = 0.42 * (1 - t) + 0.05;
+      const s = new THREE.SphereGeometry(r, 8, 6); s.translate(p.x, p.y, p.z); tint(s, new THREE.Color(0xb4554a).lerp(new THREE.Color(0xe7a48a), t * 0.6)); parts.push(s);
+      if (k % 3 === 1 && t < 0.85) { const su = new THREE.SphereGeometry(r * 0.38, 6, 4); su.translate(p.x, p.y - r * 0.85, p.z); tint(su, 0xf2c9b0); parts.push(su); }
+    }
+    const tm = new THREE.Mesh(merge(parts), octoMat); octo.add(tm); tentacles.push(tm);
   }
   const nMus = 26; const mussels = new THREE.InstancedMesh(musselGeo(), new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.25, metalness: 0.4, flatShading: true }), nMus);
   for (let i = 0; i < nMus; i++) { const a = Math.random() * Math.PI * 2, r = 5 + Math.random() * 6; dummy.position.set(Math.cos(a) * r, -21.6, ST[4] + Math.sin(a) * r); dummy.rotation.set(0.2, Math.random() * 6, 0.3); dummy.scale.setScalar(1.6); dummy.updateMatrix(); mussels.setMatrixAt(i, dummy.matrix); }
   dummy.scale.setScalar(1); scene.add(mussels);
   groups.push({ z: ST[4], update(t) { octo.rotation.y = t * 0.15; tentacles.forEach((m, i) => { m.rotation.x = Math.sin(t * 1.2 + i) * 0.08; m.rotation.z = Math.cos(t * 1.1 + i) * 0.08; }); octo.position.y = -15.5 + Math.sin(t * 0.7) * 0.4; } });
+
+  // raggi di luce dalla superficie
+  const rayTex = (() => { const c = document.createElement('canvas'); c.width = 64; c.height = 256; const x = c.getContext('2d'); const g = x.createLinearGradient(0, 0, 0, 256); g.addColorStop(0, 'rgba(200,230,255,0.9)'); g.addColorStop(1, 'rgba(200,230,255,0)'); x.fillStyle = g; x.fillRect(0, 0, 64, 256); const h = x.createLinearGradient(0, 0, 64, 0); h.addColorStop(0, 'rgba(0,0,0,1)'); h.addColorStop(0.5, 'rgba(0,0,0,0)'); h.addColorStop(1, 'rgba(0,0,0,1)'); x.globalCompositeOperation = 'destination-out'; x.fillStyle = h; x.fillRect(0, 0, 64, 256); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const rays = new THREE.Group(); scene.add(rays);
+  const rayMat = new THREE.MeshBasicMaterial({ map: rayTex, transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+  for (let i = 0; i < (small ? 14 : 26); i++) {
+    const r = new THREE.Mesh(new THREE.PlaneGeometry(2 + Math.random() * 4, 34), rayMat);
+    r.position.set((Math.random() - 0.5) * 50, -17, 15 - Math.random() * 215); r.userData.sway = Math.random() * 6; r.rotation.z = (Math.random() - 0.5) * 0.25; rays.add(r);
+  }
 
   // plancton / bolle
   const nP = small ? 500 : 1100; const pGeo = new THREE.BufferGeometry(); const pp = new Float32Array(nP * 3);
@@ -284,6 +353,9 @@ function start() {
     const camZ = camera.position.z;
     groups.forEach(g => { if (Math.abs(camZ - g.z) < 75 && under) g.update(t); });
     plankton.position.y = (t * 0.25) % 2;
+    swimTime.value = t;
+    rays.visible = under;
+    if (under) rays.children.forEach(r => { r.rotation.y = Math.atan2(camera.position.x - r.position.x, camera.position.z - r.position.z); r.scale.x = 1 + Math.sin(t * 0.6 + r.userData.sway) * 0.25; });
     studio.visible = camera.position.y > 200; crate.rotation.y = Math.sin(t * 0.3) * 0.15;
     // capitoli
     chapters.forEach(ch => {
