@@ -1,0 +1,11 @@
+import fs from 'fs'; import path from 'path'; import {fileURLToPath} from 'url';
+const dir=path.dirname(fileURLToPath(import.meta.url));
+const src=fs.readFileSync(path.join(dir,'emblemi.js'),'utf8');
+const {EMB,emblemSVG}=new Function(src+';return {EMB,emblemSVG}')();
+const names={dir:'nereo',forn:'teti',social:'rio',cassa:'perla',clienti:'marco',aste:'dario',carichi:'orca'};
+for(const id in EMB) fs.writeFileSync(path.join(dir,names[id]+'.svg'),emblemSVG(id,512));
+const html=path.join(dir,'..','abisso-hq.html');
+let h=fs.readFileSync(html,'utf8');
+h=h.replace(/\/\*EMBLEMI\*\/[\s\S]*?\/\*FINE EMBLEMI\*\//,'/*EMBLEMI*/\n'+src.trim()+'\n/*FINE EMBLEMI*/');
+fs.writeFileSync(html,h);
+console.log('ok');

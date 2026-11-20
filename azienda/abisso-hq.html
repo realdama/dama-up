@@ -55,7 +55,8 @@ aside{display:flex;flex-direction:column;gap:14px;min-width:0}
 .ag{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:center;padding:8px;border-radius:8px;border:1px solid transparent;background:none;color:inherit;text-align:left;font:inherit;cursor:pointer}
 .ag:hover,.ag:focus-visible{background:var(--hull-2);outline:none}
 .ag[aria-pressed="true"]{border-color:var(--cyan);background:var(--hull-2)}
-.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;color:#06101c;font-size:14px}
+.av{width:34px;height:34px;display:block}.av svg{width:100%;height:100%;display:block}
+.femb{display:flex;gap:12px;align-items:center;margin-bottom:8px}.femb svg{width:64px;height:64px;flex:none}
 .ag .nm,.ag .act,.ag .bar{display:block}
 .ag .nm{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
 .ag .nm b{font-family:var(--f-display);font-size:15px;letter-spacing:.03em}
@@ -119,6 +120,27 @@ aside{display:flex;flex-direction:column;gap:14px;min-width:0}
 (()=>{
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 const W=1200,H=720,CORR=350;
+/*EMBLEMI*/
+// Emblemi dei 7 agenti di Abisso Broker HQ (sorgente unica: gen.mjs scrive gli SVG e li inietta nella pagina)
+const EMB={
+ dir:{col:'#ffd27a',sym:'<path d="M64 34V96"/><path d="M44 36V50Q44 62 64 62Q84 62 84 50V36"/><path d="M39 42L44 33L49 42M59 40L64 31L69 40M79 42L84 33L89 42"/><circle cx="64" cy="99" r="3.5" fill="C"/>'},
+ forn:{col:'#5ee08a',sym:'<circle cx="64" cy="37" r="6"/><path d="M64 43V94M51 53H77"/><path d="M38 76Q42 94 64 94Q86 94 90 76"/><path d="M32 81L38 74L44 81M84 81L90 74L96 81"/>'},
+ social:{col:'#ff6fb5',sym:'<path d="M38 40H90A8 8 0 0 1 98 48V74A8 8 0 0 1 90 82H62L48 93V82H38A8 8 0 0 1 30 74V48A8 8 0 0 1 38 40Z"/><path d="M57 51V71L74 61Z" fill="C"/>'},
+ cassa:{col:'#ffc552',sym:'<path d="M34 56Q64 18 94 56Z"/><path d="M64 56L47 39M64 56L64 32M64 56L81 39"/><path d="M34 74H94Q90 96 64 96Q38 96 34 74Z"/><circle cx="64" cy="65" r="6.5" fill="C" stroke="none"/>'},
+ clienti:{col:'#6fb2ff',sym:'<path d="M30 86H98"/><path d="M38 80Q38 50 64 50Q90 50 90 80Z"/><circle cx="64" cy="44" r="4"/><path d="M48 70Q50 60 58 57" stroke-width="3.5"/>'},
+ aste:{col:'#ff7a59',sym:'<g transform="rotate(-40 64 60)"><rect x="44" y="30" width="40" height="18" rx="4"/><path d="M64 48V90"/></g><path d="M30 98H66"/><rect x="34" y="88" width="28" height="10" rx="2"/>'},
+ carichi:{col:'#b98cff',sym:'<rect x="28" y="48" width="48" height="32" rx="3"/><path d="M76 58H88L98 70V80H76Z"/><circle cx="43" cy="86" r="6" fill="#0c1828"/><circle cx="87" cy="86" r="6" fill="#0c1828"/><path d="M52 55V73M44 59.5L60 68.5M44 68.5L60 59.5" stroke-width="3"/>'},
+};
+function emblemSVG(id,size){
+  const e=EMB[id],C=e.col,s=e.sym.replace(/"C"/g,'"'+C+'"');
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"'+(size?' width="'+size+'" height="'+size+'"':'')+'>'
+   +'<circle cx="64" cy="64" r="62" fill="#060d18"/>'
+   +'<circle cx="64" cy="64" r="57" fill="#0c1828" stroke="'+C+'" stroke-width="4"/>'
+   +'<circle cx="64" cy="64" r="49" fill="none" stroke="'+C+'" stroke-opacity=".4" stroke-width="1.5" stroke-dasharray="2 4"/>'
+   +'<g fill="none" stroke="'+C+'" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">'+s+'</g></svg>';
+}
+/*FINE EMBLEMI*/
+const EIMG={};for(const k in EMB){const im=new Image();im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(emblemSVG(k,128));EIMG[k]=im;}
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // --- Reparti (stanze) ---
@@ -242,8 +264,8 @@ function ped(a,t,sel){
   ctx.fillStyle='#f1d3b3';ctx.beginPath();ctx.arc(a.x,a.y-8+bob*0.4,7.5,0,7);ctx.fill(); // testa
   ctx.fillStyle='#3a2a20';ctx.beginPath();ctx.arc(a.x,a.y-10+bob*0.4,7.5,Math.PI,0);ctx.fill(); // capelli
   // targhetta nome
-  ctx.font='600 12px "Chakra Petch", sans-serif';const tw=ctx.measureText(a.name).width+12;
-  ctx.fillStyle='rgba(6,13,24,.85)';rr(a.x-tw/2,a.y-38,tw,16,4);ctx.fill();ctx.fillStyle=a.col;ctx.fillText(a.name,a.x-tw/2+6,a.y-26);
+  ctx.font='600 12px "Chakra Petch", sans-serif';const tw=ctx.measureText(a.name).width+30;
+  ctx.fillStyle='rgba(6,13,24,.85)';rr(a.x-tw/2,a.y-39,tw,18,9);ctx.fill();const im=EIMG[a.id];if(im.complete)ctx.drawImage(im,a.x-tw/2+1,a.y-39,18,18);ctx.fillStyle=a.col;ctx.fillText(a.name,a.x-tw/2+23,a.y-26);
   // fumetto quando lavora
   if(a.state==='work'&&(sel||Math.sin(t*0.6+a.x)>0.3)){
     ctx.font='500 11px "IBM Plex Sans", sans-serif';let s=a.act;if(s.length>34)s=s.slice(0,33)+'…';
@@ -299,7 +321,7 @@ function loop(now){const dt=Math.min(.05,(now-last)/1000);last=now;step(reduce?d
 const agEl=document.getElementById('agents'),focusEl=document.getElementById('focus');
 A.forEach(a=>{
   const b=document.createElement('button');b.className='ag';b.type='button';b.setAttribute('aria-pressed','false');b.id='ag-'+a.id;
-  b.innerHTML='<span class="av" style="background:'+a.col+'">'+a.name[0]+'</span><span style="min-width:0"><span class="nm"><b>'+a.name+'</b><span>'+a.role+'</span></span><span class="act" id="act-'+a.id+'"></span><span class="bar"><i id="bar-'+a.id+'"></i></span></span>';
+  b.innerHTML='<span class="av" aria-hidden="true">'+emblemSVG(a.id)+'</span><span style="min-width:0"><span class="nm"><b>'+a.name+'</b><span>'+a.role+'</span></span><span class="act" id="act-'+a.id+'"></span><span class="bar"><i id="bar-'+a.id+'"></i></span></span>';
   b.onclick=()=>select(sel===a?null:a);agEl.appendChild(b);a.btn=b;
 });
 function select(a){sel=a;A.forEach(x=>x.btn.setAttribute('aria-pressed',x===a?'true':'false'));focusEl.classList.toggle('on',!!a);}
@@ -308,7 +330,8 @@ function updPanel(){
   if(T-pt<0.2)return;pt=T;
   A.forEach(a=>{document.getElementById('act-'+a.id).textContent=(a.state==='walk'?'→ ':'')+a.act;document.getElementById('bar-'+a.id).style.width=(a.state==='work'?a.prog*100:0)+'%';});
   const h=Math.floor(clockMin/60)%24,m=Math.floor(clockMin%60);document.getElementById('clk').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
-  if(sel){const rm=roomAt(sel.x,sel.y);focusEl.innerHTML='<p><b style="color:'+sel.col+'">'+sel.name+'</b> · '+sel.role+' · ora in: <b>'+(rm?R[rm].n.toLowerCase():'corridoio')+'</b></p><p>Ultime attività</p><ul>'+sel.hist.map(h=>'<li>'+h+'</li>').join('')+'</ul>';}
+  if(sel){const rm=roomAt(sel.x,sel.y);if(focusEl.dataset.id!==sel.id){focusEl.dataset.id=sel.id;focusEl.innerHTML='<div class="femb">'+emblemSVG(sel.id)+'<p><b style="color:'+sel.col+'">'+sel.name+'</b> · '+sel.role+'<br><span id="f-room"></span></p></div><p>Ultime attività</p><ul id="f-hist"></ul>';}
+    document.getElementById('f-room').innerHTML='ora in: <b>'+(rm?R[rm].n.toLowerCase():'corridoio')+'</b>';document.getElementById('f-hist').innerHTML=sel.hist.map(h=>'<li>'+h+'</li>').join('');}
 }
 cv.addEventListener('click',e=>{
   const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
