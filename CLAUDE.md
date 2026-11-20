@@ -63,6 +63,10 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   `src/rv/timeline.ts`) invece di riscrivere tutti i tempi.
 
 ## Strumenti e ambiente (cloud)
+- Foto: Wikimedia e live.staticflickr.com possono andare in 429 per ore (IP bloccato). Alternativa che funziona:
+  iNaturalist CC0 (inaturalist-open-data.s3.amazonaws.com, trovate via Openverse source=inaturalist; i tag nel nome
+  comune coreano/hawaiano confermano la specie) e images.rawpixel.com. Se manca la foto di una specie: illustrazione SVG
+  (Still Remotion) invece di foto dubbie. URL di extmetadata hanno `?utm_...`: toglierli.
 - Ambiente cloud personale **dama-up**: host aperti per Hugging Face (huggingface.co,
   cas-server.xethub.hf.co, us.aws.cdn.hf.co…), Openverse, Wikimedia (commons + upload),
   live.staticflickr.com, pd.w.org, images.rawpixel.com.
@@ -110,6 +114,11 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
+- 2026-11-20 — "Il tonno è tutto uguale?" (vocale "Via Paolo Buzzi 180 45"): 95,6 s, nessuna frase tagliata (tutto verificato:
+  quota IT 2026-28 6.182,61 t/anno +17% sul 2025 = decreto Masaf 1/4/2026, 50% alla Sicilia; ICCAT piano 2006; asta Toyosu
+  gen. 2026 510 mln yen ≈ 3,2 mln $). Voce DNSMOS 3,18 = originale, Whisper prob 0,942→0,960. Codice `remotion/src/tonno/`
+  (Tuna.tsx = tonno SVG per specie, mappa larga `wide.json` da `scripts/prep-wide.mjs`, scene esempi: uomo vs 3 m,
+  8 persone = 600 kg, tachimetro, grafico stock, carne, profondità, asta $).
 - 2026-11-18 — "Rosso o viola?" v6 FINALE: 76,2 s, pause dentro le frasi accorciate (tighten + Warp), voce DNSMOS 3,02.
 - 2026-11-18 — "Rosso o viola?" v5: audio DeepFilterNet3 (OVRL 2,99), foto dubbie sostituite: Team rosso = foto NOAA A. foliacea, crudo = viola crudo (Palamós). Foto rawpixel 'hook' e piatto flickr 'crudo2' NON usare (specie incerta).
 - 2026-11-18 — "Rosso o viola?" v4: illustrazioni incise (ill_rosso/ill_viola), raggi+bolle, transizioni a scia, copertina (Still RvCover) e didascalia in videos/.
