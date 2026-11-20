@@ -1,0 +1,400 @@
+{
+ "prodotti": {
+  "gambero-rosso": {
+   "nome": "Gambero rosso",
+   "origine": "Mazara del Vallo",
+   "calibro": "1ª cat. 15-20 pz/kg",
+   "costo": 42,
+   "margine": 25,
+   "prezzoCar": 52.4,
+   "prezzoAsta": 48,
+   "aggiornato": "2026-11-20"
+  },
+  "gambero-viola": {
+   "nome": "Gambero viola",
+   "origine": "Gallipoli",
+   "calibro": "1ª cat. 20-25 pz/kg",
+   "costo": 49,
+   "margine": 22,
+   "prezzoCar": 61.8,
+   "prezzoAsta": 57,
+   "aggiornato": "2026-11-20"
+  },
+  "scampo": {
+   "nome": "Scampo",
+   "origine": "Ancona",
+   "calibro": "10-15 pz/kg",
+   "costo": 30,
+   "margine": 25,
+   "prezzoCar": 38.5,
+   "prezzoAsta": 36,
+   "aggiornato": "2026-11-20"
+  },
+  "ricciola": {
+   "nome": "Ricciola",
+   "origine": "Sicilia",
+   "calibro": "2-4 kg",
+   "costo": 15.5,
+   "margine": 30,
+   "prezzoCar": 22.1,
+   "prezzoAsta": 19,
+   "aggiornato": "2026-11-20"
+  },
+  "pesce-spada": {
+   "nome": "Pesce spada",
+   "origine": "Bagnara Calabra",
+   "calibro": "tranci",
+   "costo": 14,
+   "margine": 30,
+   "prezzoCar": 19.6,
+   "prezzoAsta": 18,
+   "aggiornato": "2026-11-20"
+  },
+  "tonno-rosso": {
+   "nome": "Tonno rosso",
+   "origine": "Sardegna",
+   "calibro": "filetto",
+   "costo": 26,
+   "margine": 28,
+   "prezzoCar": 34,
+   "prezzoAsta": 31,
+   "aggiornato": "2026-11-20"
+  },
+  "calamaro": {
+   "nome": "Calamaro",
+   "origine": "Anzio",
+   "calibro": "medio",
+   "costo": 12,
+   "margine": 35,
+   "prezzoCar": 17.3,
+   "prezzoAsta": 15.5,
+   "aggiornato": "2026-11-20"
+  },
+  "seppia": {
+   "nome": "Seppia",
+   "origine": "Chioggia",
+   "calibro": "media",
+   "costo": 9.5,
+   "margine": 35,
+   "prezzoCar": 13.8,
+   "prezzoAsta": 12.4,
+   "aggiornato": "2026-11-20"
+  }
+ },
+ "fornitori": {
+  "san-vito": {
+   "nome": "Peschereccio San Vito (esempio)",
+   "porto": "Mazara del Vallo",
+   "specie": [
+    "Gambero rosso",
+    "Scampo"
+   ],
+   "certificazioni": "Certificato di cattura UE, tracciabilità di filiera",
+   "rating": 5,
+   "stato": "attivo",
+   "ultimoOrdine": "2026-11-18"
+  },
+  "coop-gallipoli": {
+   "nome": "Cooperativa Pescatori Ionio (esempio)",
+   "porto": "Gallipoli",
+   "specie": [
+    "Gambero viola"
+   ],
+   "certificazioni": "Certificato di cattura UE",
+   "rating": 4,
+   "stato": "in valutazione",
+   "ultimoOrdine": ""
+  },
+  "marinera-anzio": {
+   "nome": "Marinera Tirreno (esempio)",
+   "porto": "Anzio",
+   "specie": [
+    "Calamaro",
+    "Seppia"
+   ],
+   "certificazioni": "Tracciabilità di filiera",
+   "rating": 4,
+   "stato": "attivo",
+   "ultimoOrdine": "2026-11-17"
+  },
+  "flotta-civitavecchia": {
+   "nome": "Flotta Alto Lazio (esempio)",
+   "porto": "Civitavecchia",
+   "specie": [
+    "Gambero viola",
+    "Gambero rosso"
+   ],
+   "certificazioni": "Certificato di cattura UE",
+   "rating": 3,
+   "stato": "attivo",
+   "ultimoOrdine": "2026-11-12"
+  },
+  "pesca-sulcis": {
+   "nome": "Pesca Sulcis (esempio)",
+   "porto": "Sardegna",
+   "specie": [
+    "Tonno rosso"
+   ],
+   "certificazioni": "Quote ICCAT tracciate",
+   "rating": 5,
+   "stato": "attivo",
+   "ultimoOrdine": "2026-11-10"
+  },
+  "bagnara": {
+   "nome": "Spada dello Stretto (esempio)",
+   "porto": "Bagnara Calabra",
+   "specie": [
+    "Pesce spada"
+   ],
+   "certificazioni": "",
+   "rating": 2,
+   "stato": "sospeso",
+   "ultimoOrdine": "2026-10-28"
+  }
+ },
+ "budget": {
+  "2026-11": {
+   "categorie": [
+    {
+     "k": "acquisti",
+     "nome": "Acquisti pescato",
+     "previsto": 180000
+    },
+    {
+     "k": "logistica",
+     "nome": "Logistica e camion frigo",
+     "previsto": 14000
+    },
+    {
+     "k": "marketing",
+     "nome": "Marketing e social",
+     "previsto": 3500
+    },
+    {
+     "k": "personale",
+     "nome": "Personale",
+     "previsto": 22000
+    },
+    {
+     "k": "aste",
+     "nome": "Aste e commissioni CAR",
+     "previsto": 6000
+    },
+    {
+     "k": "varie",
+     "nome": "Varie",
+     "previsto": 2500
+    }
+   ]
+  }
+ },
+ "spese": {
+  "s1": {
+   "data": "2026-11-03",
+   "descrizione": "Gambero rosso 380 kg · San Vito",
+   "categoria": "acquisti",
+   "importo": 15960
+  },
+  "s2": {
+   "data": "2026-11-05",
+   "descrizione": "Gasolio camion frigo FR-01 e FR-02",
+   "categoria": "logistica",
+   "importo": 2140
+  },
+  "s3": {
+   "data": "2026-11-07",
+   "descrizione": "Sponsorizzata TikTok ristoranti Roma",
+   "categoria": "marketing",
+   "importo": 300
+  },
+  "s4": {
+   "data": "2026-11-10",
+   "descrizione": "Commissioni postazione CAR",
+   "categoria": "aste",
+   "importo": 1850
+  },
+  "s5": {
+   "data": "2026-11-12",
+   "descrizione": "Gambero viola 210 kg · Flotta Alto Lazio",
+   "categoria": "acquisti",
+   "importo": 10290
+  },
+  "s6": {
+   "data": "2026-11-14",
+   "descrizione": "Manutenzione celle frigo",
+   "categoria": "logistica",
+   "importo": 1320
+  },
+  "s7": {
+   "data": "2026-11-15",
+   "descrizione": "Stipendi prima quindicina",
+   "categoria": "personale",
+   "importo": 11000
+  },
+  "s8": {
+   "data": "2026-11-18",
+   "descrizione": "Calamari e seppie · Marinera Tirreno",
+   "categoria": "acquisti",
+   "importo": 4870
+  }
+ },
+ "aste": {
+  "lotto-31": {
+   "lotto": "31",
+   "specie": "Gambero rosso",
+   "origine": "Mazara del Vallo",
+   "kg": 60,
+   "base": 46,
+   "offerta": 47.5,
+   "offerente": "Ristorante (esempio)",
+   "stato": "aperta"
+  },
+  "lotto-32": {
+   "lotto": "32",
+   "specie": "Gambero viola",
+   "origine": "Gallipoli",
+   "kg": 40,
+   "base": 55,
+   "offerta": 0,
+   "offerente": "",
+   "stato": "aperta"
+  },
+  "lotto-33": {
+   "lotto": "33",
+   "specie": "Scampo",
+   "origine": "Ancona",
+   "kg": 35,
+   "base": 34,
+   "offerta": 35.5,
+   "offerente": "Pescheria (esempio)",
+   "stato": "aperta"
+  },
+  "lotto-34": {
+   "lotto": "34",
+   "specie": "Ricciola",
+   "origine": "Sicilia",
+   "kg": 80,
+   "base": 17,
+   "offerta": 18.5,
+   "offerente": "Grossista CAR (esempio)",
+   "stato": "aggiudicata"
+  },
+  "lotto-35": {
+   "lotto": "35",
+   "specie": "Tonno rosso",
+   "origine": "Sardegna",
+   "kg": 50,
+   "base": 29,
+   "offerta": 0,
+   "offerente": "",
+   "stato": "aperta"
+  },
+  "lotto-36": {
+   "lotto": "36",
+   "specie": "Seppia",
+   "origine": "Chioggia",
+   "kg": 70,
+   "base": 11,
+   "offerta": 11.5,
+   "offerente": "Ristorante (esempio)",
+   "stato": "aggiudicata"
+  }
+ },
+ "social": {
+  "p1": {
+   "titolo": "Rosso o viola? Le differenze",
+   "canale": "TikTok",
+   "data": "2026-11-20",
+   "stato": "pubblicato",
+   "testo": "Sembrano cugini ma non sono uguali: rosso intenso e carnoso il primo, slanciato e dolcissimo il secondo. Tu da che parte stai?",
+   "metriche": "Esempio: 12.400 visualizzazioni · 310 commenti"
+  },
+  "p2": {
+   "titolo": "Come si riconosce un gambero fresco",
+   "canale": "Instagram",
+   "data": "2026-11-22",
+   "stato": "programmato",
+   "testo": "Colore vivo, testa ben attaccata, nessuna macchia nera: tre controlli in dieci secondi.",
+   "metriche": ""
+  },
+  "p3": {
+   "titolo": "Dietro le quinte dell'asta del mattino",
+   "canale": "TikTok",
+   "data": "2026-11-24",
+   "stato": "bozza",
+   "testo": "",
+   "metriche": ""
+  },
+  "p4": {
+   "titolo": "Il listino della settimana per i ristoranti",
+   "canale": "WhatsApp",
+   "data": "2026-11-21",
+   "stato": "programmato",
+   "testo": "",
+   "metriche": ""
+  },
+  "p5": {
+   "titolo": "Crudo di gambero viola: la ricetta dello chef",
+   "canale": "Instagram",
+   "data": "2026-11-27",
+   "stato": "idea",
+   "testo": "",
+   "metriche": ""
+  },
+  "p6": {
+   "titolo": "Una giornata al CAR di Roma",
+   "canale": "TikTok",
+   "data": "2026-11-29",
+   "stato": "idea",
+   "testo": "",
+   "metriche": ""
+  }
+ },
+ "email": {
+  "m1": {
+   "da": "Chef Ristorante Il Faro (esempio)",
+   "oggetto": "Ordine gambero rosso per venerdì",
+   "tipo": "Cliente",
+   "ricevuta": "2026-11-20 07:42",
+   "testo": "Buongiorno, per venerdì sera avrei bisogno di 20 kg di gambero rosso di prima categoria e 5 kg di scampi. Riuscite a consegnare entro le 10 di venerdì mattina? Mi mandate anche il prezzo aggiornato?\nGrazie, Luca",
+   "stato": "da leggere",
+   "bozza": ""
+  },
+  "m2": {
+   "da": "Cooperativa Pescatori Ionio (esempio)",
+   "oggetto": "Offerta gambero viola settimana prossima",
+   "tipo": "Fornitore",
+   "ricevuta": "2026-11-20 06:15",
+   "testo": "Salve, la prossima settimana avremo circa 300 kg di gambero viola di Gallipoli, calibro 20-25 pz/kg. Siete interessati? Possiamo fare un prezzo a quantità se confermate entro mercoledì.",
+   "stato": "da leggere",
+   "bozza": ""
+  },
+  "m3": {
+   "da": "Grossista Mercato CAR (esempio)",
+   "oggetto": "Richiesta listino aggiornato",
+   "tipo": "Cliente",
+   "ricevuta": "2026-11-19 18:30",
+   "testo": "Buonasera, potete inviarci il listino aggiornato di crostacei e molluschi? Siamo interessati soprattutto a calamari e seppie per il fine settimana.",
+   "stato": "letta",
+   "bozza": ""
+  },
+  "m4": {
+   "da": "Trattoria Da Rita (esempio)",
+   "oggetto": "Consegna di ieri in ritardo",
+   "tipo": "Reclamo",
+   "ricevuta": "2026-11-19 12:05",
+   "testo": "Ieri la consegna è arrivata alle 11:40 invece che alle 9:00 e abbiamo dovuto cambiare il menù del pranzo. Vorremmo capire cosa è successo e che non si ripeta.",
+   "stato": "da leggere",
+   "bozza": ""
+  },
+  "m5": {
+   "da": "Hotel Belvedere (esempio)",
+   "oggetto": "Preventivo cena aziendale 120 persone",
+   "tipo": "Preventivo",
+   "ricevuta": "2026-11-18 16:20",
+   "testo": "Buongiorno, organizziamo una cena aziendale per 120 persone il 12 dicembre. Ci servirebbe un preventivo per crudo di gambero rosso e viola come antipasto. Potete aiutarci?",
+   "stato": "letta",
+   "bozza": ""
+  }
+ }
+}

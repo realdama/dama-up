@@ -1,0 +1,776 @@
+<title>Argo HQ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,700;1,700;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra del marchio + schede (Sede 3D e strumenti). Sede: mondo 3D a isole + pannello supervisione; strumenti: tabelle e moduli su dati salvati. Tema unico notturno, colori Argo Maris (navy, argento, giallo, ciano rotte). */
+:root{
+  color-scheme: dark;
+  --deep:#040b19; --navy:#071631; --panel:#0b1c3a; --panel-2:#0f2548; --panel-3:#16305b; --line:#1d3866;
+  --ink:#e3eaf3; --ink-dim:#93a8c4; --ink-faint:#6c84a5;
+  --yellow:#ffc81e; --cyan:#39d3ff; --silver:#d9e1ea;
+  --d-dir:#ffc81e; --d-forn:#43d18c; --d-social:#ff6fb8; --d-cassa:#ffa53a; --d-clienti:#4ea8ff; --d-aste:#ff6450; --d-car:#ad8cff; --d-email:#39d3ff; --d-hub:#39d3ff;
+  --ok:#43d18c; --warn:#ffc81e; --bad:#ff6b6b;
+  --f-brand:"Exo 2","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--deep);color:var(--ink);font-family:var(--f-body);font-size:14px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 28px}
+.wrap{max-width:1560px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.brandbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:52px;height:52px;border-radius:50%;box-shadow:0 0 0 2px var(--silver),0 0 24px rgba(57,211,255,.25)}
+.brand h1{margin:0;font-family:var(--f-brand);font-style:italic;font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:.02em;line-height:1}
+.brand h1 span{color:var(--yellow)}
+.brand p{margin:3px 0 0;color:var(--ink-dim);font-size:12.5px}
+.status{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-family:var(--f-mono);font-size:12.5px;color:var(--ink-dim)}
+.status b{color:var(--ink);font-weight:500}
+.tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);padding:3px 8px;border-radius:4px}
+.tag.live{border-color:rgba(67,209,140,.5);color:var(--ok)}
+.tag.off{border-color:rgba(255,200,30,.5);color:var(--yellow)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);padding-bottom:0}
+nav.tabs a{flex:none;color:var(--ink-dim);text-decoration:none;font:600 13.5px var(--f-body);padding:9px 14px;border-radius:8px 8px 0 0;border:1px solid transparent;border-bottom:none;display:flex;gap:7px;align-items:center}
+nav.tabs a:hover{color:var(--ink)}
+nav.tabs a[aria-current="page"]{color:var(--ink);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--yellow)}
+nav.tabs a .n{font-family:var(--f-mono);font-size:11px;background:var(--panel-3);border-radius:999px;padding:0 6px;color:var(--ink-dim)}
+nav.tabs a .n.hot{background:var(--yellow);color:#1a1300}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+@media (max-width:980px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+.kpi small{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-dim)}
+.kpi b{font-family:var(--f-mono);font-weight:500;font-size:19px;font-variant-numeric:tabular-nums}
+.view[hidden]{display:none!important}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:12px;align-items:start}
+@media (max-width:1100px){.main{grid-template-columns:minmax(0,1fr)}}
+.stage{position:relative;background:var(--navy);border:1px solid var(--line);border-radius:12px;overflow:hidden;height:min(70vh,700px);min-height:440px}
+#world{position:absolute;inset:0}
+#world canvas{display:block}
+.toolbar{position:absolute;left:10px;top:10px;right:10px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none;z-index:3}
+.grp{display:flex;background:rgba(4,11,25,.85);border:1px solid var(--line);border-radius:8px;overflow:hidden;pointer-events:auto}
+.grp button{background:none;border:0;color:var(--ink);font:500 12.5px var(--f-body);padding:7px 11px;cursor:pointer}
+.grp button+button{border-left:1px solid var(--line)}
+.grp button[aria-pressed="true"]{background:var(--panel-3);color:var(--yellow)}
+.grp button:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.legend{position:absolute;left:10px;bottom:10px;display:flex;gap:6px;flex-wrap:wrap;z-index:3;max-width:calc(100% - 20px)}
+.legend span{display:inline-flex;align-items:center;gap:6px;background:rgba(4,11,25,.85);border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:11.5px;color:var(--ink-dim)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-dim);font-family:var(--f-mono);text-align:center;padding:20px}
+/* etichette 3D */
+.lbl{font-family:var(--f-brand);font-size:13px;font-weight:700;color:var(--ink);background:rgba(4,11,25,.9);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px;white-space:nowrap;display:flex;gap:6px;align-items:center;cursor:pointer}
+.lbl .ini{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:#06101c;font-size:11px;font-weight:800}
+.lbl .bang{display:none;background:var(--warn);color:#1a1300;border-radius:50%;width:17px;height:17px;font-size:12px;line-height:17px;text-align:center;font-weight:800}
+.lbl.wait .bang{display:inline-block}
+.lbl.sel{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow)}
+.bubble{margin-top:4px;font:500 12px var(--f-body);background:rgba(227,234,243,.96);color:#06101c;border-radius:7px;padding:4px 9px;max-width:250px;white-space:normal;border-left:4px solid var(--cyan);text-align:left}
+.isl{font-family:var(--f-brand);font-weight:700;font-size:13px;letter-spacing:.03em;padding:4px 11px 4px 6px;border-radius:999px;background:rgba(4,11,25,.88);border:1px solid var(--line);white-space:nowrap;display:flex;gap:7px;align-items:center;color:var(--ink)}
+.isl i{width:18px;height:18px;border-radius:50%;display:inline-block}
+.isl em{font-style:normal;font-family:var(--f-mono);font-weight:400;font-size:11.5px;color:var(--ink-dim)}
+aside{display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;min-width:0}
+.panel h2{display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:var(--f-brand);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);margin:0 0 10px;font-weight:700}
+.panel h2 .right{display:flex;gap:8px;align-items:center;letter-spacing:0;text-transform:none}
+.count{font-family:var(--f-mono);font-size:12px;background:var(--yellow);color:#1a1300;border-radius:999px;padding:1px 8px;letter-spacing:0}
+.count.zero{background:var(--panel-3);color:var(--ink-dim)}
+.stack{display:flex;flex-direction:column;gap:8px}
+.req{border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:9px 10px;background:var(--panel-2);display:flex;flex-direction:column;gap:6px}
+.req p{margin:0;font-size:13px;line-height:1.4}
+.req small{color:var(--ink-dim);font-size:12px}
+.row-acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:600 12.5px var(--f-body);border-radius:6px;padding:6px 12px;cursor:pointer;border:1px solid var(--line);background:var(--panel-3);color:var(--ink);white-space:nowrap}
+.btn:hover{border-color:var(--ink-faint)}
+.btn.pri{background:var(--yellow);border-color:var(--yellow);color:#1a1300}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#04140b}
+.btn.no{background:none;color:var(--bad);border-color:rgba(255,107,107,.5)}
+.btn.ghost{background:none}
+.btn.sm{padding:3px 8px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.empty{color:var(--ink-faint);font-size:12.5px;margin:0;line-height:1.5}
+.who{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-brand);font-weight:800;color:#06101c;flex:none}
+.who b{font-family:var(--f-brand);font-size:18px;display:block}
+.who span{color:var(--ink-dim);font-size:12.5px}
+.detail p{margin:0 0 8px;font-size:13px;line-height:1.5;color:var(--ink-dim)}
+.detail h3,.sub3{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin:10px 0 6px;font-weight:600}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;border-radius:999px;padding:2px 8px;color:#06101c;white-space:nowrap}
+.q{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:12.5px}
+.q li{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+form.f{display:flex;flex-direction:column;gap:6px}
+label{font-size:12px;color:var(--ink-dim)}
+select,input[type=text],input[type=number],input[type=date],textarea{width:100%;background:var(--panel-2);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 8px;font:13px var(--f-body)}
+textarea{min-height:130px;resize:vertical;line-height:1.5}
+input.cell{width:84px;padding:4px 6px;font-family:var(--f-mono);font-size:13px;text-align:right}
+select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+.lower{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:12px}
+@media (max-width:1100px){.lower{grid-template-columns:minmax(0,1fr)}}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+table.min{min-width:680px}
+th{text-align:left;font-weight:600;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px;border-bottom:1px solid rgba(29,56,102,.6);vertical-align:middle}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tr.row{cursor:pointer}
+tr.row:hover td{background:var(--panel-2)}
+tr.row.on td{background:var(--panel-3)}
+.pill{font-family:var(--f-mono);font-size:11.5px;border-radius:4px;padding:2px 7px;white-space:nowrap;display:inline-block}
+.p-ok{background:rgba(67,209,140,.15);color:var(--ok)}
+.p-move{background:rgba(78,168,255,.15);color:#8cc6ff}
+.p-warn{background:rgba(255,200,30,.16);color:var(--yellow)}
+.p-meet{background:rgba(57,211,255,.15);color:var(--cyan)}
+.p-dim{background:rgba(147,168,196,.15);color:var(--ink-dim)}
+.p-bad{background:rgba(255,107,107,.15);color:var(--bad)}
+.prog{height:5px;background:var(--line);border-radius:3px;overflow:hidden;min-width:70px}
+.prog i{display:block;height:100%}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.filters button{font:500 11.5px var(--f-body);border:1px solid var(--line);background:none;color:var(--ink-dim);border-radius:999px;padding:3px 9px;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+.filters button[aria-pressed="true"]{color:var(--ink);background:var(--panel-3)}
+.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-height:300px;overflow:auto;font-size:12.5px}
+.log li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;align-items:baseline}
+.log time{font-family:var(--f-mono);color:var(--ink-faint);font-size:11.5px}
+.note{color:var(--ink-faint);font-size:12px;margin:0}
+.tool-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.tool-head h2{margin:0;font-family:var(--f-brand);font-size:22px;letter-spacing:.01em;text-transform:none;color:var(--ink)}
+.tool-head p{margin:4px 0 0;color:var(--ink-dim);max-width:70ch}
+.grid2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:1000px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.card{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.card h4{margin:0;font-size:15px;font-family:var(--f-brand)}
+.card .meta{color:var(--ink-dim);font-size:12.5px}
+.stars button{background:none;border:0;color:var(--ink-faint);font-size:17px;cursor:pointer;padding:0 1px}
+.stars button.on{color:var(--yellow)}
+.kanban{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:10px;overflow-x:auto}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px;min-width:220px}
+.col h3{margin:0 0 2px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);display:flex;justify-content:space-between}
+.post{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:9px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+.post p{margin:0;color:var(--ink-dim);font-size:12.5px;line-height:1.45;white-space:pre-wrap}
+.mail{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:900px){.mail{grid-template-columns:minmax(0,1fr)}}
+.inbox{display:flex;flex-direction:column;gap:6px}
+.inbox button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:3px;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2)}
+.inbox button[aria-pressed="true"]{border-color:var(--yellow);background:var(--panel-3)}
+.inbox button:focus-visible{outline:2px solid var(--cyan)}
+.inbox .top{display:flex;justify-content:space-between;gap:8px;font-size:12.5px}
+.inbox .subj{font-weight:600;font-size:13.5px}
+.msg{white-space:pre-wrap;line-height:1.55;color:var(--ink);background:var(--panel-2);border-radius:8px;padding:12px;font-size:13.5px}
+.bar{height:22px;border-radius:4px;display:flex;align-items:center;padding:0 8px;font-family:var(--f-mono);font-size:12px;color:#06101c;white-space:nowrap;min-width:fit-content}
+.cmp{display:grid;grid-template-columns:150px minmax(0,1fr) 120px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(29,56,102,.6)}
+@media (max-width:640px){.cmp{grid-template-columns:minmax(0,1fr)}}
+.cmp .bars{display:flex;flex-direction:column;gap:3px;min-width:0}
+.listino{font-family:var(--f-mono);white-space:pre-wrap;background:#f6f8fb;color:#0a1a34;border-radius:8px;padding:14px;font-size:13px;line-height:1.55;max-height:420px;overflow:auto}
+.toast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--panel-3);border:1px solid var(--line);color:var(--ink);padding:10px 14px;border-radius:8px;font-size:13px;z-index:20;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.banner{background:rgba(255,200,30,.1);border:1px solid rgba(255,200,30,.4);color:var(--ink);border-radius:8px;padding:10px 12px;font-size:13px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <div class="brandbar">
+    <div class="brand">
+      <img src="argo-logo.png" alt="Logo Argo Maris">
+      <div><h1>ARGO <span>HQ</span></h1><p>Argo Maris · sede operativa del broker ittico</p></div>
+    </div>
+    <div class="status"><span>Turno <b id="clk">05:30</b></span><span id="dbstate" class="tag">Collegamento dati…</span></div>
+  </div>
+
+  <nav class="tabs" id="tabs" aria-label="Sezioni">
+    <a href="#sede" data-v="sede">Sede 3D</a>
+    <a href="#listini" data-v="listini">Listini</a>
+    <a href="#confronto" data-v="confronto">Confronto prezzi</a>
+    <a href="#fornitori" data-v="fornitori">Fornitori <span class="n" id="n-forn">0</span></a>
+    <a href="#budget" data-v="budget">Budget</a>
+    <a href="#aste" data-v="aste">Aste <span class="n" id="n-aste">0</span></a>
+    <a href="#social" data-v="social">Social <span class="n" id="n-social">0</span></a>
+    <a href="#email" data-v="email">Email <span class="n" id="n-email">0</span></a>
+  </nav>
+
+  <div class="kpis">
+    <div class="kpi"><small>Budget residuo mese</small><b id="k-res">—</b></div>
+    <div class="kpi"><small>Speso / previsto</small><b id="k-spe">—</b></div>
+    <div class="kpi"><small>Lotti all'asta</small><b id="k-lot">—</b></div>
+    <div class="kpi"><small>Email da gestire</small><b id="k-mail">—</b></div>
+    <div class="kpi"><small>Gambero rosso · CAR</small><b id="k-rosso">—</b></div>
+    <div class="kpi"><small>Gambero viola · CAR</small><b id="k-viola">—</b></div>
+  </div>
+  <div id="banner"></div>
+
+  <!-- ============ SEDE 3D ============ -->
+  <section class="view" id="v-sede">
+    <div class="main">
+      <div class="stage">
+        <div id="world"><div class="loading" id="loading">Caricamento del mondo 3D…</div></div>
+        <div class="toolbar">
+          <div class="grp" role="group" aria-label="Simulazione">
+            <button type="button" id="b-play" aria-pressed="false">⏸ Pausa</button>
+            <button type="button" data-speed="1" aria-pressed="true">1×</button>
+            <button type="button" data-speed="2" aria-pressed="false">2×</button>
+            <button type="button" data-speed="4" aria-pressed="false">4×</button>
+          </div>
+          <div class="grp" role="group" aria-label="Vista">
+            <button type="button" data-view="over" aria-pressed="true">Panoramica</button>
+            <button type="button" data-view="top" aria-pressed="false">Dall'alto</button>
+            <button type="button" data-view="follow" aria-pressed="false">Segui agente</button>
+          </div>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <aside>
+        <section class="panel">
+          <h2>Da approvare <span class="count zero" id="apcount">0</span></h2>
+          <div class="stack" id="appr"></div>
+        </section>
+        <section class="panel detail" id="detail"></section>
+      </aside>
+    </div>
+    <div class="lower" style="margin-top:12px">
+      <section class="panel">
+        <h2>Equipaggio</h2>
+        <div class="tablewrap"><table class="min">
+          <thead><tr><th>Agente</th><th>Stato</th><th>Compito in corso</th><th>Avanzamento</th><th>Dove</th></tr></thead>
+          <tbody id="team"></tbody>
+        </table></div>
+      </section>
+      <section class="panel">
+        <h2>Registro attività</h2>
+        <div class="filters" id="filters"></div>
+        <ul class="log" id="log"></ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- ============ STRUMENTI ============ -->
+  <section class="view" id="v-listini" hidden></section>
+  <section class="view" id="v-confronto" hidden></section>
+  <section class="view" id="v-fornitori" hidden></section>
+  <section class="view" id="v-budget" hidden></section>
+  <section class="view" id="v-aste" hidden></section>
+  <section class="view" id="v-social" hidden></section>
+  <section class="view" id="v-email" hidden></section>
+
+  <p class="note">Gli agenti della sede sono una simulazione; listini, fornitori, budget, aste, social ed email sono dati salvati che puoi modificare. Le email non partono davvero: Argo HQ prepara il testo da copiare nella tua posta. CAR = Centro Agroalimentare Roma.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>Number(v)||0;
+const eur=v=>{const n=Math.round(num(v));return (n<0?'−€ ':'€ ')+String(Math.abs(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');};
+const eur2=v=>num(v).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=v=>(v>0?'+':'')+v.toFixed(1).replace('.',',')+'%';
+const today=()=>new Date().toISOString().slice(0,10);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const CSSV=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600);}
+async function copy(text,btn){try{await navigator.clipboard.writeText(text);toast('Copiato');}catch(e){toast('Seleziona il testo e copialo a mano');}}
+
+/* =========================================================
+   DATI (capability db): prodotti, fornitori, budget, spese, aste, social, email, listini
+   ========================================================= */
+const S={prodotti:[],fornitori:[],budget:[],spese:[],aste:[],social:[],email:[],listini:[]};
+let db=null,sample=null,dbReady=false;
+const COLS=Object.keys(S);
+function setDb(state,text){const el=$('dbstate');el.className='tag '+state;el.textContent=text;}
+async function initData(){
+  if(!window.claude||!window.claude.use){setDb('off','Dati non disponibili');showBanner();return;}
+  window.claude.use('sample').then(s=>{sample=s;renderCurrent();}).catch(()=>{});
+  db=await window.claude.use('db').catch(()=>null);
+  if(!db){setDb('off','Dati non disponibili');showBanner();return;}
+  let pending=new Set(COLS);
+  const timer=setTimeout(()=>{if(pending.size){setDb('off','Dati non raggiungibili per ora');}},10000);
+  COLS.forEach(c=>{
+    db.collection(c).onSnapshot(snap=>{
+      S[c]=snap.docs.map(d=>Object.assign({id:d.id},d.data()));
+      if(!snap.metadata.fromCache)pending.delete(c);
+      if(!pending.size){clearTimeout(timer);dbReady=true;setDb('live','Dati salvati · in tempo reale');}
+      onData();
+    },e=>{pending.delete(c);setDb('off','Errore dati: '+e.code);});
+  });
+}
+function showBanner(){$('banner').innerHTML='<div class="banner">I dati aziendali non sono raggiungibili in questa vista (serve aprire la pagina su claude.ai con il tuo account). La sede 3D funziona comunque.</div>';}
+async function put(col,id,data){if(!db)return toast('Dati non disponibili');try{await db.doc(col+'/'+id).set(data);}catch(e){toast(e.code==='quota_exceeded'?'Spazio dati pieno: elimina qualche voce':'Salvataggio non riuscito ('+e.code+')');}}
+async function patch(col,id,data){if(!db)return toast('Dati non disponibili');try{await db.doc(col+'/'+id).update(data);}catch(e){toast('Modifica non riuscita ('+e.code+')');}}
+async function addDoc(col,data){if(!db)return toast('Dati non disponibili');try{await db.collection(col).add(data);}catch(e){toast(e.code==='quota_exceeded'?'Spazio dati pieno: elimina qualche voce':'Salvataggio non riuscito ('+e.code+')');}}
+async function del(col,id){if(!db)return;try{await db.doc(col+'/'+id).delete();}catch(e){toast('Eliminazione non riuscita');}}
+const prezzoListino=p=>num(p.costo)*(1+num(p.margine)/100);
+const findProd=re=>S.prodotti.find(p=>re.test(p.nome||''));
+const month=()=>today().slice(0,7);
+function budgetNow(){return S.budget.find(b=>b.id===month())||S.budget.slice().sort((a,b)=>String(b.id).localeCompare(a.id))[0]||null;}
+function speseOf(b){return b?S.spese.filter(s=>String(s.data||'').slice(0,7)===b.id):[];}
+function onData(){updCounters();renderCurrent();}
+function updCounters(){
+  const open=S.aste.filter(a=>a.stato==='aperta').length;
+  const mail=S.email.filter(m=>m.stato!=='inviata'&&m.stato!=='archiviata').length;
+  const sched=S.social.filter(p=>p.stato==='programmato').length;
+  $('n-forn').textContent=S.fornitori.filter(f=>f.stato==='attivo').length;
+  $('n-aste').textContent=open;$('n-aste').classList.toggle('hot',open>0);
+  $('n-email').textContent=mail;$('n-email').classList.toggle('hot',mail>0);
+  $('n-social').textContent=sched;
+  const b=budgetNow(),sp=speseOf(b).reduce((s,x)=>s+num(x.importo),0),prev=b?(b.categorie||[]).reduce((s,c)=>s+num(c.previsto),0):0;
+  $('k-res').textContent=b?eur(prev-sp):'—';$('k-spe').textContent=b&&prev?Math.round(sp/prev*100)+'%':'—';
+  $('k-lot').textContent=dbReady||S.aste.length?open:'—';$('k-mail').textContent=dbReady||S.email.length?mail:'—';
+  const r=findProd(/rosso/i),v=findProd(/viola/i);
+  $('k-rosso').textContent=r?eur2(r.prezzoCar)+' €/kg':'—';$('k-viola').textContent=v?eur2(v.prezzoCar)+' €/kg':'—';
+}
+
+/* =========================================================
+   ROUTING
+   ========================================================= */
+const VIEWS=['sede','listini','confronto','fornitori','budget','aste','social','email'];
+let cur='sede';
+function route(){const h=(location.hash||'').slice(1);cur=VIEWS.includes(h)?h:'sede';
+  VIEWS.forEach(v=>{$('v-'+v).hidden=v!==cur;});
+  document.querySelectorAll('#tabs a').forEach(a=>a.setAttribute('aria-current',a.dataset.v===cur?'page':'false'));
+  renderCurrent();if(cur==='sede'&&window.__resize3d)window.__resize3d();}
+addEventListener('hashchange',route);
+function editing(){const a=document.activeElement;return a&&a.closest&&a.closest('.view')&&/INPUT|TEXTAREA|SELECT/.test(a.tagName);}
+function renderCurrent(force){if(!force&&editing())return;const f={listini:rListini,confronto:rConfronto,fornitori:rFornitori,budget:rBudget,aste:rAste,social:rSocial,email:rEmail}[cur];if(f)f();}
+const emptyData=t=>'<div class="panel"><p class="empty">'+(db?(dbReady?t:'Caricamento dei dati…'):'Dati non disponibili in questa vista.')+'</p></div>';
+
+/* ---------- LISTINI ---------- */
+let lastListino=null;
+function rListini(){
+  const el=$('v-listini');
+  const rows=S.prodotti.slice().sort((a,b)=>String(a.nome).localeCompare(b.nome));
+  el.innerHTML='<div class="tool-head"><div><h2>Preparazione listini</h2><p>Imposta costo d\'acquisto e margine: il prezzo di listino si calcola da solo. Poi genera il listino del giorno da inviare ai clienti.</p></div><div class="row-acts"><button class="btn pri" id="gen" type="button">Genera listino del giorno</button></div></div>'+
+  (rows.length?'<div class="panel"><div class="tablewrap"><table class="min"><thead><tr><th>Prodotto</th><th>Origine</th><th>Calibro</th><th class="num">Costo €/kg</th><th class="num">Margine %</th><th class="num">Listino €/kg</th><th class="num">CAR €/kg</th><th class="num">Asta €/kg</th><th></th></tr></thead><tbody>'+
+   rows.map(p=>{const l=prezzoListino(p);return '<tr><td><b>'+esc(p.nome)+'</b></td><td>'+esc(p.origine)+'</td><td>'+esc(p.calibro)+'</td>'+
+   '<td class="num"><input class="cell" type="number" step="0.1" min="0" data-p="'+p.id+'" data-f="costo" value="'+num(p.costo)+'" aria-label="Costo '+esc(p.nome)+'"></td>'+
+   '<td class="num"><input class="cell" type="number" step="1" min="0" data-p="'+p.id+'" data-f="margine" value="'+num(p.margine)+'" aria-label="Margine '+esc(p.nome)+'"></td>'+
+   '<td class="num"><b style="color:var(--yellow)">'+eur2(l)+'</b></td><td class="num">'+eur2(p.prezzoCar)+'</td><td class="num">'+eur2(p.prezzoAsta)+'</td>'+
+   '<td><button class="btn sm ghost" data-delp="'+p.id+'" type="button" aria-label="Elimina '+esc(p.nome)+'">✕</button></td></tr>';}).join('')+
+   '</tbody></table></div></div>':emptyData('Nessun prodotto: aggiungine uno qui sotto.'))+
+  '<div class="grid2" style="margin-top:12px"><div class="panel"><h2>Listino generato</h2>'+(lastListino?'<div class="listino" id="lst">'+esc(lastListino)+'</div><div class="row-acts" style="margin-top:8px"><button class="btn" id="cpl" type="button">Copia testo</button></div>':'<p class="empty">Premi "Genera listino del giorno": comparirà qui, pronto da copiare in WhatsApp o in una email. Ogni listino generato viene salvato nello storico.</p>')+
+  '<h3 class="sub3">Storico listini</h3><ul class="q">'+(S.listini.slice().sort((a,b)=>String(b.creato).localeCompare(a.creato)).slice(0,6).map(l=>'<li><span class="pill p-dim">'+esc(l.data)+'</span> '+(l.righe||[]).length+' prodotti · <button class="btn sm ghost" data-ls="'+l.id+'" type="button">Mostra</button></li>').join('')||'<li class="empty">Ancora nessun listino salvato.</li>')+'</ul></div>'+
+  '<div class="panel"><h2>Aggiungi prodotto</h2><form class="f" id="fp"><label for="p-n">Nome</label><input id="p-n" type="text" required placeholder="Es. Scampo"><label for="p-o">Origine</label><input id="p-o" type="text" placeholder="Es. Ancona"><label for="p-c">Calibro</label><input id="p-c" type="text" placeholder="Es. 15-20 pz/kg"><label for="p-co">Costo €/kg</label><input id="p-co" type="number" step="0.1" min="0" required><label for="p-m">Margine %</label><input id="p-m" type="number" step="1" min="0" value="25"><label for="p-car">Prezzo CAR €/kg</label><input id="p-car" type="number" step="0.1" min="0"><label for="p-as">Prezzo asta €/kg</label><input id="p-as" type="number" step="0.1" min="0"><button class="btn pri" type="submit">Aggiungi</button></form></div></div>';
+  el.querySelectorAll('input.cell').forEach(i=>i.onchange=()=>{const v=Math.max(0,num(i.value));patch('prodotti',i.dataset.p,{[i.dataset.f]:v,aggiornato:today()});});
+  el.querySelectorAll('[data-delp]').forEach(b=>b.onclick=()=>{if(b.dataset.armed){del('prodotti',b.dataset.delp);}else{b.dataset.armed=1;b.textContent='Conferma';setTimeout(()=>{b.textContent='✕';delete b.dataset.armed;},3000);}});
+  const g=$('gen');if(g)g.onclick=async()=>{
+    if(!rows.length)return toast('Aggiungi prima dei prodotti');
+    const d=new Date().toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const righe=rows.map(p=>({nome:p.nome,origine:p.origine||'',calibro:p.calibro||'',prezzo:Math.round(prezzoListino(p)*10)/10}));
+    lastListino='ARGO MARIS · LISTINO DEL '+d.toUpperCase()+'\n'+'─'.repeat(44)+'\n'+righe.map(r=>(r.nome+(r.calibro?' ('+r.calibro+')':'')).padEnd(32,'.')+' € '+eur2(r.prezzo)+'/kg'+(r.origine?'\n   origine: '+r.origine:'')).join('\n')+'\n'+'─'.repeat(44)+'\nPrezzi IVA esclusa · validi fino a esaurimento\nOrdini entro le 18:00 per consegna il giorno dopo';
+    await addDoc('listini',{data:today(),creato:new Date().toISOString(),righe});rListini();toast('Listino generato e salvato');};
+  const c=$('cpl');if(c)c.onclick=()=>copy(lastListino);
+  el.querySelectorAll('[data-ls]').forEach(b=>b.onclick=()=>{const l=S.listini.find(x=>x.id===b.dataset.ls);if(!l)return;lastListino='ARGO MARIS · LISTINO DEL '+l.data+'\n'+(l.righe||[]).map(r=>(r.nome+(r.calibro?' ('+r.calibro+')':'')).padEnd(32,'.')+' € '+eur2(r.prezzo)+'/kg').join('\n');rListini();});
+  $('fp').onsubmit=e=>{e.preventDefault();const n=$('p-n').value.trim();if(!n)return;
+    addDoc('prodotti',{nome:n,origine:$('p-o').value.trim(),calibro:$('p-c').value.trim(),costo:num($('p-co').value),margine:num($('p-m').value),prezzoCar:num($('p-car').value),prezzoAsta:num($('p-as').value),aggiornato:today()});e.target.reset();toast('Prodotto aggiunto');};
+}
+
+/* ---------- CONFRONTO ---------- */
+function rConfronto(){
+  const el=$('v-confronto');const rows=S.prodotti.filter(p=>num(p.costo)>0);
+  if(!rows.length){el.innerHTML='<div class="tool-head"><div><h2>Confronto prezzi</h2></div></div>'+emptyData('Aggiungi i prodotti in Listini per confrontare i prezzi.');return;}
+  const mx=Math.max(...rows.flatMap(p=>[prezzoListino(p),num(p.prezzoCar),num(p.prezzoAsta)]))||1;
+  const ds=rows.map(p=>num(p.prezzoCar)?(prezzoListino(p)/num(p.prezzoCar)-1)*100:0);
+  const avg=ds.reduce((a,b)=>a+b,0)/ds.length;
+  const sopra=ds.filter(d=>d>5).length,sotto=ds.filter(d=>d<-5).length;
+  const bar=(v,c,t)=>'<div class="bar" style="width:'+Math.max(6,v/mx*100)+'%;background:'+c+'" title="'+t+'">'+t+' '+eur2(v)+'</div>';
+  el.innerHTML='<div class="tool-head"><div><h2>Confronto prezzi</h2><p>Il tuo listino contro il mercato ittico del CAR e l\'ultima asta. Sopra il 5% rispetto al CAR rischi di perdere clienti; sotto il 5% stai lasciando margine sul tavolo.</p></div></div>'+
+  '<div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:12px"><div class="kpi"><small>Scostamento medio dal CAR</small><b>'+pct(avg)+'</b></div><div class="kpi"><small>Prodotti sopra mercato (&gt;5%)</small><b style="color:var(--bad)">'+sopra+'</b></div><div class="kpi"><small>Prodotti sotto mercato (&lt;−5%)</small><b style="color:var(--cyan)">'+sotto+'</b></div></div>'+
+  '<div class="panel"><div class="legend" style="position:static;margin-bottom:8px"><span><i class="dot" style="background:var(--yellow)"></i>Tuo listino</span><span><i class="dot" style="background:var(--d-car)"></i>CAR</span><span><i class="dot" style="background:var(--d-aste)"></i>Asta</span></div>'+
+  rows.map((p,i)=>{const d=ds[i];const st=!num(p.prezzoCar)?'<span class="pill p-dim">manca prezzo CAR</span>':d>5?'<span class="pill p-bad">sopra '+pct(d)+'</span>':d<-5?'<span class="pill p-meet">sotto '+pct(d)+'</span>':'<span class="pill p-ok">allineato '+pct(d)+'</span>';
+   return '<div class="cmp"><div><b>'+esc(p.nome)+'</b><br><span style="color:var(--ink-dim);font-size:12px">'+esc(p.calibro||'')+'</span></div><div class="bars">'+bar(prezzoListino(p),'var(--yellow)','Listino')+(num(p.prezzoCar)?bar(num(p.prezzoCar),'var(--d-car)','CAR'):'')+(num(p.prezzoAsta)?bar(num(p.prezzoAsta),'var(--d-aste)','Asta'):'')+'</div><div>'+st+'</div></div>';}).join('')+'</div>';
+}
+
+/* ---------- FORNITORI ---------- */
+let fornFilter='';
+function rFornitori(){
+  const el=$('v-fornitori');
+  const list=S.fornitori.filter(f=>!fornFilter||(f.nome+' '+f.porto+' '+(f.specie||[]).join(' ')).toLowerCase().includes(fornFilter.toLowerCase())).sort((a,b)=>num(b.rating)-num(a.rating));
+  el.innerHTML='<div class="tool-head"><div><h2>Fornitori</h2><p>Pescherecci e cooperative: specie, certificazioni, valutazione e ultimo ordine.</p></div><div style="min-width:240px"><label for="ff">Cerca</label><input id="ff" type="text" placeholder="Nome, porto o specie" value="'+esc(fornFilter)+'"></div></div>'+
+  '<div class="grid2"><div>'+(list.length?'<div class="cards">'+list.map(f=>'<div class="card"><div style="display:flex;justify-content:space-between;gap:8px;align-items:start"><h4>'+esc(f.nome)+'</h4><span class="pill '+(f.stato==='attivo'?'p-ok':f.stato==='sospeso'?'p-bad':'p-warn')+'">'+esc(f.stato||'in valutazione')+'</span></div>'+
+   '<div class="meta">'+esc(f.porto)+(f.ultimoOrdine?' · ultimo ordine '+esc(f.ultimoOrdine):'')+'</div>'+
+   '<div style="display:flex;gap:5px;flex-wrap:wrap">'+(f.specie||[]).map(s=>'<span class="chip" style="background:var(--d-forn)">'+esc(s)+'</span>').join('')+'</div>'+
+   (f.certificazioni?'<div class="meta">Certificazioni: '+esc(f.certificazioni)+'</div>':'')+
+   '<div class="stars" aria-label="Valutazione">'+[1,2,3,4,5].map(n=>'<button type="button" class="'+(n<=num(f.rating)?'on':'')+'" data-fr="'+f.id+'" data-n="'+n+'" aria-label="'+n+' stelle">★</button>').join('')+'</div>'+
+   '<div class="row-acts"><button class="btn sm" type="button" data-fs="'+f.id+'" data-to="'+(f.stato==='attivo'?'sospeso':'attivo')+'">'+(f.stato==='attivo'?'Sospendi':'Attiva')+'</button><button class="btn sm ghost" type="button" data-fo="'+f.id+'">Segna ordine oggi</button></div></div>').join('')+'</div>':emptyData('Nessun fornitore trovato.'))+'</div>'+
+  '<div class="panel"><h2>Nuovo fornitore</h2><form class="f" id="fnf"><label for="f-n">Nome</label><input id="f-n" type="text" required placeholder="Es. Peschereccio San Vito"><label for="f-p">Porto</label><input id="f-p" type="text" placeholder="Es. Mazara del Vallo"><label for="f-s">Specie (separate da virgola)</label><input id="f-s" type="text" placeholder="Gambero rosso, scampo"><label for="f-c">Certificazioni</label><input id="f-c" type="text" placeholder="Es. MSC, tracciabilità di filiera"><button class="btn pri" type="submit">Aggiungi (in valutazione)</button></form></div></div>';
+  const ff=$('ff');ff.oninput=()=>{fornFilter=ff.value;clearTimeout(ff._t);ff._t=setTimeout(()=>{rFornitori();const n=$('ff');n.focus();n.setSelectionRange(n.value.length,n.value.length);},250);};
+  el.querySelectorAll('[data-fr]').forEach(b=>b.onclick=()=>patch('fornitori',b.dataset.fr,{rating:num(b.dataset.n)}));
+  el.querySelectorAll('[data-fs]').forEach(b=>b.onclick=()=>patch('fornitori',b.dataset.fs,{stato:b.dataset.to}));
+  el.querySelectorAll('[data-fo]').forEach(b=>b.onclick=()=>patch('fornitori',b.dataset.fo,{ultimoOrdine:today()}));
+  $('fnf').onsubmit=e=>{e.preventDefault();const n=$('f-n').value.trim();if(!n)return;
+    addDoc('fornitori',{nome:n,porto:$('f-p').value.trim(),specie:$('f-s').value.split(',').map(s=>s.trim()).filter(Boolean),certificazioni:$('f-c').value.trim(),rating:3,stato:'in valutazione',ultimoOrdine:''});e.target.reset();toast('Fornitore aggiunto');};
+}
+
+/* ---------- BUDGET ---------- */
+function rBudget(){
+  const el=$('v-budget');const b=budgetNow();
+  if(!b){el.innerHTML='<div class="tool-head"><div><h2>Budget</h2><p>Nessun budget impostato per questo mese.</p></div>'+(db?'<button class="btn pri" id="mkb" type="button">Crea il budget di '+month()+'</button>':'')+'</div>'+(db?'':emptyData(''));const mk=$('mkb');if(mk)mk.onclick=()=>put('budget',month(),{categorie:[{k:'acquisti',nome:'Acquisti pescato',previsto:0},{k:'logistica',nome:'Logistica e camion frigo',previsto:0},{k:'marketing',nome:'Marketing e social',previsto:0},{k:'personale',nome:'Personale',previsto:0},{k:'aste',nome:'Aste e commissioni CAR',previsto:0},{k:'varie',nome:'Varie',previsto:0}]});return;}
+  const sp=speseOf(b),cats=b.categorie||[];
+  const byCat=k=>sp.filter(s=>s.categoria===k).reduce((a,s)=>a+num(s.importo),0);
+  const prev=cats.reduce((a,c)=>a+num(c.previsto),0),tot=sp.reduce((a,s)=>a+num(s.importo),0);
+  el.innerHTML='<div class="tool-head"><div><h2>Budget · '+esc(new Date(b.id+'-01').toLocaleDateString('it-IT',{month:'long',year:'numeric'}))+'</h2><p>Previsto, speso e residuo per voce. Ogni spesa registrata aggiorna subito le barre.</p></div></div>'+
+  '<div class="kpis" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:12px"><div class="kpi"><small>Previsto</small><b>'+eur(prev)+'</b></div><div class="kpi"><small>Speso</small><b>'+eur(tot)+'</b></div><div class="kpi"><small>Residuo</small><b style="color:'+(prev-tot<0?'var(--bad)':'var(--ok)')+'">'+eur(prev-tot)+'</b></div></div>'+
+  '<div class="grid2"><div class="panel"><h2>Voci di budget</h2><div class="tablewrap"><table class="min"><thead><tr><th>Voce</th><th class="num">Previsto</th><th class="num">Speso</th><th>Uso</th><th class="num">Residuo</th></tr></thead><tbody>'+
+  cats.map(c=>{const s=byCat(c.k),u=num(c.previsto)?s/num(c.previsto):0;const col=u>1?'var(--bad)':u>.85?'var(--yellow)':'var(--ok)';
+   return '<tr><td>'+esc(c.nome)+'</td><td class="num"><input class="cell" type="number" min="0" step="100" data-bc="'+esc(c.k)+'" value="'+num(c.previsto)+'" aria-label="Previsto '+esc(c.nome)+'"></td><td class="num">'+eur(s)+'</td><td><div class="prog"><i style="width:'+Math.min(100,u*100)+'%;background:'+col+'"></i></div><span style="font-size:11.5px;color:var(--ink-dim)">'+Math.round(u*100)+'%</span></td><td class="num" style="color:'+(num(c.previsto)-s<0?'var(--bad)':'inherit')+'">'+eur(num(c.previsto)-s)+'</td></tr>';}).join('')+
+  '</tbody></table></div><h3 class="sub3">Ultime spese</h3><div class="tablewrap"><table><tbody>'+(sp.slice().sort((a,c)=>String(c.data).localeCompare(a.data)).slice(0,12).map(s=>'<tr><td style="color:var(--ink-dim);font-family:var(--f-mono);font-size:12px">'+esc(s.data)+'</td><td>'+esc(s.descrizione)+'</td><td><span class="pill p-dim">'+esc((cats.find(c=>c.k===s.categoria)||{}).nome||s.categoria)+'</span></td><td class="num">'+eur(s.importo)+'</td><td><button class="btn sm ghost" type="button" data-ds="'+s.id+'" aria-label="Elimina spesa">✕</button></td></tr>').join('')||'<tr><td class="empty">Nessuna spesa registrata questo mese.</td></tr>')+'</tbody></table></div></div>'+
+  '<div class="panel"><h2>Registra una spesa</h2><form class="f" id="fs"><label for="s-d">Descrizione</label><input id="s-d" type="text" required placeholder="Es. Gasolio camion frigo FR-02"><label for="s-c">Voce</label><select id="s-c">'+cats.map(c=>'<option value="'+esc(c.k)+'">'+esc(c.nome)+'</option>').join('')+'</select><label for="s-i">Importo €</label><input id="s-i" type="number" min="0" step="1" required><label for="s-dt">Data</label><input id="s-dt" type="date" value="'+today()+'"><button class="btn pri" type="submit">Registra</button></form></div></div>';
+  el.querySelectorAll('[data-bc]').forEach(i=>i.onchange=()=>{const nc=cats.map(c=>c.k===i.dataset.bc?Object.assign({},c,{previsto:Math.max(0,num(i.value))}):Object.assign({},c));patch('budget',b.id,{categorie:nc});});
+  el.querySelectorAll('[data-ds]').forEach(x=>x.onclick=()=>{if(x.dataset.armed){del('spese',x.dataset.ds);}else{x.dataset.armed=1;x.textContent='Conferma';setTimeout(()=>{x.textContent='✕';delete x.dataset.armed;},3000);}});
+  $('fs').onsubmit=e=>{e.preventDefault();const d=$('s-d').value.trim(),i=num($('s-i').value);if(!d||!i)return;
+    addDoc('spese',{descrizione:d,categoria:$('s-c').value,importo:i,data:$('s-dt').value||today()});e.target.reset();$('s-dt').value=today();toast('Spesa registrata');};
+}
+
+/* ---------- ASTE ---------- */
+function rAste(){
+  const el=$('v-aste');const order={aperta:0,aggiudicata:1,ritirata:2};
+  const lots=S.aste.slice().sort((a,b)=>(order[a.stato]??3)-(order[b.stato]??3)||String(a.lotto).localeCompare(b.lotto,undefined,{numeric:true}));
+  const incasso=lots.filter(l=>l.stato==='aggiudicata').reduce((s,l)=>s+num(l.offerta)*num(l.kg),0);
+  el.innerHTML='<div class="tool-head"><div><h2>Aste</h2><p>Lotti della sessione: base, offerta più alta e stato. Rilancia, aggiudica o ritira un lotto.</p></div><div class="kpi" style="min-width:200px"><small>Aggiudicato (stima)</small><b>'+eur(incasso)+'</b></div></div>'+
+  '<div class="grid2"><div class="panel">'+(lots.length?'<div class="tablewrap"><table class="min"><thead><tr><th>Lotto</th><th>Prodotto</th><th class="num">Kg</th><th class="num">Base €/kg</th><th class="num">Offerta €/kg</th><th>Offerente</th><th>Stato</th><th></th></tr></thead><tbody>'+
+  lots.map(l=>'<tr><td style="font-family:var(--f-mono)">'+esc(l.lotto)+'</td><td><b>'+esc(l.specie)+'</b><br><span style="color:var(--ink-dim);font-size:12px">'+esc(l.origine||'')+'</span></td><td class="num">'+num(l.kg)+'</td><td class="num">'+eur2(l.base)+'</td><td class="num"><b style="color:'+(num(l.offerta)>=num(l.base)?'var(--ok)':'var(--ink)')+'">'+(num(l.offerta)?eur2(l.offerta):'—')+'</b></td><td>'+esc(l.offerente||'—')+'</td>'+
+   '<td><span class="pill '+(l.stato==='aperta'?'p-warn':l.stato==='aggiudicata'?'p-ok':'p-dim')+'">'+esc(l.stato)+'</span></td>'+
+   '<td>'+(l.stato==='aperta'?'<div class="row-acts"><button class="btn sm" type="button" data-bid="'+l.id+'">+0,50</button><button class="btn sm ok" type="button" data-win="'+l.id+'"'+(num(l.offerta)<num(l.base)?' disabled title="Offerta sotto la base"':'')+'>Aggiudica</button><button class="btn sm no" type="button" data-wd="'+l.id+'">Ritira</button></div>':'')+'</td></tr>').join('')+
+  '</tbody></table></div>':'<p class="empty">'+(db?(dbReady?'Nessun lotto in catalogo: aggiungine uno.':'Caricamento…'):'Dati non disponibili.')+'</p>')+'</div>'+
+  '<div class="panel"><h2>Nuovo lotto</h2><form class="f" id="fl"><label for="l-n">Numero lotto</label><input id="l-n" type="text" required placeholder="Es. 37"><label for="l-s">Prodotto</label><input id="l-s" type="text" required placeholder="Es. Gambero viola"><label for="l-o">Origine</label><input id="l-o" type="text" placeholder="Es. Gallipoli"><label for="l-k">Kg</label><input id="l-k" type="number" min="1" step="1" required><label for="l-b">Base €/kg</label><input id="l-b" type="number" min="0" step="0.5" required><button class="btn pri" type="submit">Metti all\'asta</button></form></div></div>';
+  el.querySelectorAll('[data-bid]').forEach(b=>b.onclick=()=>{const l=S.aste.find(x=>x.id===b.dataset.bid);if(!l)return;const v=Math.round((Math.max(num(l.offerta),num(l.base)-0.5)+0.5)*100)/100;patch('aste',l.id,{offerta:v,offerente:'Argo Maris (rilancio)'});});
+  el.querySelectorAll('[data-win]').forEach(b=>b.onclick=()=>patch('aste',b.dataset.win,{stato:'aggiudicata'}));
+  el.querySelectorAll('[data-wd]').forEach(b=>b.onclick=()=>patch('aste',b.dataset.wd,{stato:'ritirata'}));
+  $('fl').onsubmit=e=>{e.preventDefault();addDoc('aste',{lotto:$('l-n').value.trim(),specie:$('l-s').value.trim(),origine:$('l-o').value.trim(),kg:num($('l-k').value),base:num($('l-b').value),offerta:0,offerente:'',stato:'aperta'});e.target.reset();toast('Lotto all\'asta');};
+}
+
+/* ---------- SOCIAL ---------- */
+const STATI=[['idea','Idee'],['bozza','Bozze'],['programmato','Programmati'],['pubblicato','Pubblicati']];
+const CANALI={TikTok:'#ff6fb8',Instagram:'#ffa53a',Facebook:'#4ea8ff',WhatsApp:'#43d18c'};
+async function aiText(prompt,btn,onDone){
+  if(!sample)return toast('Scrittura con AI non disponibile in questa vista');
+  const old=btn.textContent;btn.disabled=true;btn.textContent='Scrivo…';
+  try{const r=await sample(prompt,{modelTier:'default',cache:false});onDone((r.text||'').trim());}
+  catch(e){toast(e.code==='rate_limited'?'Troppe richieste: riprova tra poco':e.code==='not_granted'?'Scrittura AI non consentita':'Non riuscito');}
+  finally{btn.disabled=false;btn.textContent=old;}
+}
+function rSocial(){
+  const el=$('v-social');
+  el.innerHTML='<div class="tool-head"><div><h2>Gestione social</h2><p>Dall\'idea alla pubblicazione. Sposta i contenuti tra le colonne; il testo lo può scrivere l\'AI con lo stile di Argo Maris.</p></div></div>'+
+  '<div class="kanban">'+STATI.map(([k,n])=>{const ps=S.social.filter(p=>(p.stato||'idea')===k).sort((a,b)=>String(a.data).localeCompare(b.data));
+   return '<div class="col"><h3>'+n+' <span>'+ps.length+'</span></h3>'+ps.map(p=>'<div class="post"><div style="display:flex;justify-content:space-between;gap:6px;align-items:center"><span class="chip" style="background:'+(CANALI[p.canale]||'#93a8c4')+'">'+esc(p.canale)+'</span><span style="font-family:var(--f-mono);font-size:11.5px;color:var(--ink-dim)">'+esc(p.data||'')+'</span></div><b>'+esc(p.titolo)+'</b>'+(p.testo?'<p>'+esc(p.testo)+'</p>':'')+
+     (p.metriche?'<span style="font-size:11.5px;color:var(--ink-dim)">'+esc(p.metriche)+'</span>':'')+
+     '<div class="row-acts">'+(k!=='idea'?'<button class="btn sm ghost" type="button" data-mv="'+p.id+'" data-d="-1" aria-label="Indietro">←</button>':'')+(k!=='pubblicato'?'<button class="btn sm" type="button" data-mv="'+p.id+'" data-d="1">Avanti →</button>':'')+(k!=='pubblicato'?'<button class="btn sm ghost" type="button" data-ai="'+p.id+'">Testo con AI</button>':'')+'</div></div>').join('')+
+     (k==='idea'?'<form class="f" id="fso"><label for="so-t">Nuova idea</label><input id="so-t" type="text" required placeholder="Es. Come si pulisce uno scampo"><select id="so-c" aria-label="Canale">'+Object.keys(CANALI).map(c=>'<option>'+c+'</option>').join('')+'</select><input id="so-d" type="date" value="'+today()+'" aria-label="Data"><button class="btn pri" type="submit">Aggiungi idea</button></form>':'')+'</div>';}).join('')+'</div>';
+  el.querySelectorAll('[data-mv]').forEach(b=>b.onclick=()=>{const p=S.social.find(x=>x.id===b.dataset.mv);if(!p)return;const i=STATI.findIndex(s=>s[0]===(p.stato||'idea'))+num(b.dataset.d);if(i<0||i>=STATI.length)return;patch('social',p.id,{stato:STATI[i][0]});});
+  el.querySelectorAll('[data-ai]').forEach(b=>b.onclick=()=>{const p=S.social.find(x=>x.id===b.dataset.ai);if(!p)return;
+    aiText('Sei il social media manager di Argo Maris, broker ittico italiano (pesce fresco di qualità, gambero rosso di Mazara, gambero viola, aste, Centro Agroalimentare Roma). Scrivi in italiano il testo di un post '+p.canale+' sul tema: "'+p.titolo+'". Massimo 70 parole, tono competente e caldo, una domanda finale per i commenti, 3 hashtag. Nessun dato inventato su prezzi o numeri. Rispondi solo con il testo del post.',b,t=>{if(t)patch('social',p.id,{testo:t,stato:p.stato==='idea'?'bozza':p.stato});});});
+  const f=$('fso');if(f)f.onsubmit=e=>{e.preventDefault();const t=$('so-t').value.trim();if(!t)return;addDoc('social',{titolo:t,canale:$('so-c').value,data:$('so-d').value||today(),stato:'idea',testo:''});e.target.reset();};
+}
+
+/* ---------- EMAIL ---------- */
+let mailSel=null;
+function rEmail(){
+  const el=$('v-email');
+  const list=S.email.slice().sort((a,b)=>String(b.ricevuta).localeCompare(a.ricevuta));
+  if(!mailSel||!list.find(m=>m.id===mailSel))mailSel=list[0]?list[0].id:null;
+  const m=list.find(x=>x.id===mailSel);
+  const sp=s=>s==='inviata'?'p-ok':s==='bozza pronta'?'p-meet':s==='archiviata'?'p-dim':'p-warn';
+  el.innerHTML='<div class="tool-head"><div><h2>Gestione email</h2><p>Iris prepara le risposte; tu le controlli e le approvi. Argo HQ non spedisce: copia la risposta nella tua posta e segnala come inviata.</p></div></div>'+
+  (list.length?'<div class="mail"><div class="inbox" role="list">'+list.map(x=>'<button type="button" role="listitem" data-m="'+x.id+'" aria-pressed="'+(x.id===mailSel)+'"><span class="top"><span>'+esc(x.da)+'</span><span class="pill '+sp(x.stato)+'">'+esc(x.stato||'da leggere')+'</span></span><span class="subj">'+esc(x.oggetto)+'</span><span style="color:var(--ink-faint);font-size:12px">'+esc(x.ricevuta||'')+' · '+esc(x.tipo||'')+'</span></button>').join('')+'</div>'+
+  (m?'<div class="panel"><h2>'+esc(m.oggetto)+'<span class="right"><span class="pill '+sp(m.stato)+'">'+esc(m.stato||'da leggere')+'</span></span></h2><p style="margin:0 0 8px;color:var(--ink-dim);font-size:12.5px">Da <b style="color:var(--ink)">'+esc(m.da)+'</b> · '+esc(m.ricevuta||'')+'</p><div class="msg">'+esc(m.testo)+'</div>'+
+   '<h3 class="sub3">Risposta</h3><label for="rep" class="sr">Testo della risposta</label><textarea id="rep" placeholder="Scrivi la risposta o falla preparare all\'AI">'+esc(m.bozza||'')+'</textarea>'+
+   '<div class="row-acts" style="margin-top:8px"><button class="btn" type="button" id="m-ai">Bozza con AI</button><button class="btn" type="button" id="m-save">Salva bozza</button><button class="btn" type="button" id="m-copy">Copia risposta</button><button class="btn ok" type="button" id="m-sent">Segna come inviata</button><button class="btn ghost" type="button" id="m-arch">Archivia</button></div></div>':'')+'</div>':emptyData('Nessuna email.'));
+  el.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{mailSel=b.dataset.m;if(m&&m.stato==='da leggere'){}rEmail();const t=S.email.find(x=>x.id===mailSel);if(t&&(t.stato||'da leggere')==='da leggere')patch('email',t.id,{stato:'letta'});});
+  if(!m)return;
+  const ta=$('rep');
+  $('m-save').onclick=()=>{patch('email',m.id,{bozza:ta.value,stato:ta.value.trim()?'bozza pronta':m.stato});toast('Bozza salvata');};
+  $('m-copy').onclick=()=>copy(ta.value);
+  $('m-sent').onclick=()=>{if(!ta.value.trim())return toast('Scrivi prima la risposta');patch('email',m.id,{bozza:ta.value,stato:'inviata'});toast('Segnata come inviata');};
+  $('m-arch').onclick=()=>patch('email',m.id,{stato:'archiviata'});
+  $('m-ai').onclick=e=>aiText('Sei Iris, assistente commerciale di Argo Maris, broker ittico italiano (aste, gambero rosso e viola, consegne a Roma tramite il Centro Agroalimentare Roma). Scrivi in italiano una risposta professionale e cordiale a questa email.\nMittente: '+m.da+'\nOggetto: '+m.oggetto+'\nTesto:\n'+m.testo+'\n\nRegole: non inventare prezzi, quantità o date che non sono nell\'email; se servono dati che non conosci, scrivi [DA COMPLETARE]. Firma come "Argo Maris – Ufficio commerciale". Rispondi solo con il testo dell\'email.',e.target,t=>{if(t){ta.value=t;patch('email',m.id,{bozza:t,stato:'bozza pronta'});}});
+}
+
+/* =========================================================
+   SEDE 3D · agenti
+   ========================================================= */
+const ISL={
+  aste:{n:'Sala aste',c:CSSV('--d-aste'),a:0},
+  social:{n:'Social studio',c:CSSV('--d-social'),a:45},
+  car:{n:'CAR & prezzi',c:CSSV('--d-car'),a:90},
+  clienti:{n:'Clienti',c:CSSV('--d-clienti'),a:135},
+  cassa:{n:'Cassa & budget',c:CSSV('--d-cassa'),a:180},
+  email:{n:'Email & segreteria',c:CSSV('--d-email'),a:225},
+  forn:{n:'Fornitori',c:CSSV('--d-forn'),a:270},
+  dir:{n:'Direzione',c:CSSV('--d-dir'),a:315},
+};
+const R=22,HUB=6.5,IW=11,ID=7.5;
+for(const k in ISL){const s=ISL[k],r=s.a*Math.PI/180;s.k=k;s.ux=Math.sin(r);s.uz=-Math.cos(r);s.cx=s.ux*R;s.cz=s.uz*R;
+  s.door={x:s.cx-s.ux*(ID/2+.4),z:s.cz-s.uz*(ID/2+.4)};s.hub={x:s.ux*HUB,z:s.uz*HUB};s.desk={x:s.cx+s.ux*1.2,z:s.cz+s.uz*1.2};}
+const CAT={acq:{n:'Acquisto',c:'#43d18c'},ven:{n:'Vendita',c:'#4ea8ff'},fin:{n:'Finanza',c:'#ffa53a'},mkt:{n:'Marketing',c:'#ff6fb8'},ast:{n:'Asta',c:'#ff6450'},car:{n:'CAR · prezzi',c:'#ad8cff'},mail:{n:'Email',c:'#39d3ff'},dir:{n:'Direzione',c:'#ffc81e'}};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const openLot=()=>pick(S.aste.filter(a=>a.stato==='aperta'))||null;
+const anyProd=re=>findProd(re)||null;
+// compiti: testo (stringa o funzione che legge i dati), categoria, isola di destinazione, approvazione
+const AG=[
+ {id:'nereo',name:'Nereo',role:'Direttore',isl:'dir',about:'Coordina l\'equipaggio, fissa gli obiettivi del giorno e risponde a te.',resp:['Obiettivi e margini','Accordi con flotte e grossisti','Riunione del mattino'],
+  tasks:[['Rivede i margini della settimana','dir'],['Controlla il budget del mese con Perla','fin','cassa'],['Segue la sessione d\'asta','ast','aste'],['Firma l\'accordo con un peschereccio','acq',null,{t:'Firmare un accordo annuale con un peschereccio di Mazara'}],['Riunione dell\'equipaggio','dir','HUB']]},
+ {id:'teti',name:'Teti',role:'Fornitori',isl:'forn',about:'Gestisce pescherecci e cooperative: qualità, certificati di cattura, ordini e ritiri.',resp:['Certificati e tracciabilità','Ordini ai pescherecci','Valutazione fornitori'],
+  tasks:[[()=>{const f=pick(S.fornitori.filter(x=>x.stato==='attivo'));return f?'Verifica i certificati di '+f.nome:'Verifica i certificati di cattura';},'acq'],[()=>{const f=pick(S.fornitori);return f?'Ordina a '+f.nome+' ('+(f.porto||'')+')':'Ordina il pescato del giorno';},'acq'],['Coordina i ritiri con il CAR','car','car'],['Accredita un nuovo fornitore','acq',null,{t:'Accreditare un nuovo fornitore in valutazione'}],['Consegna le fatture a Perla','fin','cassa']]},
+ {id:'rio',name:'Rio',role:'Social media',isl:'social',about:'Racconta il pescato su TikTok e Instagram e porta clienti al marchio Argo Maris.',resp:['Reel e dirette','Calendario contenuti','Campagne sponsorizzate'],
+  tasks:[[()=>{const p=pick(S.social.filter(x=>x.stato==='bozza'||x.stato==='idea'));return p?'Lavora al post "'+p.titolo+'"':'Monta il reel del giorno';},'mkt'],['Risponde ai commenti','mkt'],['Diretta TikTok dalla sala aste','mkt','aste'],['Prepara una campagna sponsorizzata','mkt',null,{t:'Avviare una sponsorizzata da 300 € verso i ristoranti di Roma'}],['Raccoglie recensioni dai clienti','ven','clienti']]},
+ {id:'perla',name:'Perla',role:'Cassa & budget',isl:'cassa',about:'Tiene cassa, pagamenti e budget mensile; segnala gli scostamenti.',resp:['Incassi e riconciliazioni','Pagamenti fornitori','Budget e scostamenti'],
+  tasks:[['Riconcilia gli incassi d\'asta','fin'],['Prepara un pagamento a un fornitore','fin',null,{t:'Pagare la fattura di un peschereccio fornitore'}],['Porta il report di cassa al direttore','fin','dir'],[()=>{const b=budgetNow();return b?'Controlla le voci di budget di '+b.id:'Aggiorna il budget del mese';},'fin'],['Programma i pagamenti a 30 giorni','fin','forn']]},
+ {id:'marco',name:'Marco',role:'Clienti',isl:'clienti',about:'Segue ristoranti, pescherie e grossisti: ordini, offerte e consegne.',resp:['Ordini e preventivi','Rapporto con gli chef','Reclami e resi'],
+  tasks:[['Prende un ordine da un ristorante di Roma','ven'],['Propone uno sconto fedeltà','ven',null,{t:'Applicare uno sconto dell\'8% a un ristorante cliente'}],['Conferma la consegna del mattino','car','car'],['Prenota un lotto per un cliente','ast','aste'],['Invia il listino del giorno agli chef','ven']]},
+ {id:'dario',name:'Dario',role:'Battitore aste',isl:'aste',about:'Prepara il catalogo, batte i lotti e chiude le sessioni d\'asta.',resp:['Catalogo lotti','Prezzi di riserva','Chiusura sessione'],
+  tasks:[[()=>{const l=openLot();return l?'Batte il lotto '+l.lotto+' · '+l.specie:'Prepara il catalogo dei lotti';},'ast'],[()=>{const l=openLot();return l?'Propone la riserva del lotto '+l.lotto:'Propone un prezzo di riserva';},'ast',null,{t:'Confermare il prezzo di riserva del prossimo lotto'}],['Ritira le schede qualità','acq','forn'],['Chiude gli incassi della sessione','fin','cassa'],['Pubblica il catalogo online','ast']]},
+ {id:'orca',name:'Orca',role:'CAR & prezzi',isl:'car',about:'Presidia il CAR, Centro Agroalimentare Roma: rileva i prezzi del mercato ittico, aggiorna i listini e organizza le consegne.',resp:['Rilevazione prezzi al CAR','Listino del giorno','Consegne e camion frigo'],
+  tasks:[[()=>{const p=anyProd(/rosso/i);return p?'Rileva al CAR il gambero rosso: '+eur2(p.prezzoCar)+' €/kg':'Rileva i prezzi al mercato ittico del CAR';},'car'],['Confronta il listino con il CAR','car'],['Propone un ritocco al listino','car',null,{t:'Abbassare del 4% il listino del gambero viola per allinearlo al CAR'}],['Concorda le fasce di consegna','car','clienti'],['Traccia il camion frigo FR-02 (−1,5 °C)','car']]},
+ {id:'iris',name:'Iris',role:'Email & segreteria',isl:'email',about:'Legge la posta, prepara le risposte e smista le richieste ai reparti.',resp:['Smistamento posta','Bozze di risposta','Agenda e promemoria'],
+  tasks:[[()=>{const m=pick(S.email.filter(x=>x.stato!=='inviata'&&x.stato!=='archiviata'));return m?'Prepara la risposta a '+m.da:'Controlla la casella di posta';},'mail'],['Smista le richieste ai reparti','mail'],['Porta a Marco una richiesta di preventivo','ven','clienti'],['Invia un preventivo importante','mail',null,{t:'Inviare un preventivo da 6.800 € a un grossista'}],['Aggiorna l\'agenda del direttore','mail','dir']]},
+];
+let paused=false,speed=1,simMin=5*60+30,sel=null,view='over',reqId=0;
+const reqs=[],logItems=[];let logFilter='all';
+const hhmm=()=>String(Math.floor(simMin/60)%24).padStart(2,'0')+':'+String(Math.floor(simMin%60)).padStart(2,'0');
+const low=s=>s.charAt(0).toLowerCase()+s.slice(1);
+$('legend').innerHTML=Object.values(CAT).map(c=>'<span><i class="dot" style="background:'+c.c+'"></i>'+c.n+'</span>').join('');
+function filters(){const f=$('filters');f.innerHTML='';
+  const mk=(k,n,c)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',logFilter===k?'true':'false');b.innerHTML=(c?'<i class="dot" style="background:'+c+'"></i>':'')+esc(n);b.onclick=()=>{logFilter=k;filters();renderLog();};f.appendChild(b);};
+  mk('all','Tutti');for(const k in ISL)mk(k,ISL[k].n,ISL[k].c);}
+filters();
+function addLog(a,txt,cat){logItems.unshift({t:hhmm(),a,txt,cat});if(logItems.length>80)logItems.pop();renderLog();}
+function renderLog(){const it=logItems.filter(l=>logFilter==='all'||l.a.isl===logFilter).slice(0,40);
+  $('log').innerHTML=it.length?it.map(l=>'<li><time>'+l.t+'</time><span><b style="color:'+ISL[l.a.isl].c+'">'+l.a.name+'</b> '+esc(l.txt)+' <span class="chip" style="background:'+CAT[l.cat].c+'">'+CAT[l.cat].n+'</span></span></li>').join(''):'<li><span></span><span class="empty">Nessuna attività per questa isola.</span></li>';}
+function renderReqs(){const c=$('apcount');c.textContent=reqs.length;c.classList.toggle('zero',!reqs.length);const box=$('appr');
+  if(!reqs.length){box.innerHTML='<p class="empty">Nessuna decisione in attesa. Pagamenti, accordi, sconti, riserve d\'asta, sponsorizzate e preventivi importanti si fermano qui finché non decidi tu.</p>';return;}
+  box.innerHTML='';reqs.forEach(r=>{const d=document.createElement('div');d.className='req';
+    d.innerHTML='<p><b style="color:'+ISL[r.a.isl].c+'">'+r.a.name+'</b> chiede di: '+esc(low(r.t))+'</p><small>In attesa dalle '+r.at+' · '+ISL[r.a.isl].n+'</small>';
+    const a=document.createElement('div');a.className='row-acts';
+    const ok=document.createElement('button');ok.type='button';ok.className='btn ok sm';ok.textContent='Approva';ok.onclick=()=>decide(r,true);
+    const no=document.createElement('button');no.type='button';no.className='btn no sm';no.textContent='Rifiuta';no.onclick=()=>decide(r,false);
+    a.append(ok,no);d.appendChild(a);box.appendChild(d);});}
+function decide(r,ok){const i=reqs.indexOf(r);if(i<0)return;reqs.splice(i,1);const a=r.a;
+  if(ok){addLog(a,'ha il tuo OK: '+low(r.t),a.task.cat);a.state='work';a.t=0;}else{addLog(a,'annulla dopo il tuo rifiuto: '+low(r.t),a.task.cat);a.state='work';a.t=a.dur;}
+  renderReqs();renderDetail();}
+function stateInfo(a){if(paused)return['In pausa','p-dim'];if(a.state==='wait')return['Attende il tuo OK','p-warn'];if(a.meeting)return['In riunione','p-meet'];if(a.state==='walk')return['In movimento','p-move'];return['Al lavoro','p-ok'];}
+function whereIs(a){let best=null,bd=1e9;for(const k in ISL){const s=ISL[k],d=Math.hypot(a.x-s.cx,a.z-s.cz);if(d<bd){bd=d;best=k;}}if(bd<6.5)return ISL[best].n;if(Math.hypot(a.x,a.z)<HUB+.5)return'Hub centrale';return'Passerella';}
+function renderTeam(){const tb=$('team');let h='';
+  AG.forEach(a=>{const [s,cls]=stateInfo(a),pc=a.state==='work'&&!a.meeting?Math.round(Math.min(1,a.t/a.dur)*100):0;
+    h+='<tr class="row'+(a===sel?' on':'')+'" tabindex="0" data-ag="'+a.id+'"><td><span style="display:flex;gap:8px;align-items:center"><span class="av" style="width:28px;height:28px;font-size:13px;background:'+ISL[a.isl].c+'">'+a.name[0]+'</span><span><b>'+a.name+'</b><br><span style="color:var(--ink-dim);font-size:12px">'+a.role+'</span></span></span></td><td><span class="pill '+cls+'">'+s+'</span></td><td><span class="chip" style="background:'+CAT[a.task.cat].c+'">'+CAT[a.task.cat].n+'</span> '+esc(a.task.t)+'</td><td><div class="prog"><i style="width:'+pc+'%;background:'+CAT[a.task.cat].c+'"></i></div></td><td style="color:var(--ink-dim)">'+whereIs(a)+'</td></tr>';});
+  tb.innerHTML=h;tb.querySelectorAll('tr').forEach(tr=>{const a=AG.find(x=>x.id===tr.dataset.ag);tr.onclick=()=>select(a);tr.onkeydown=e=>{if(e.key==='Enter')select(a);};});}
+function upcoming(a){const out=a.queue.slice(0,3).map(t=>({t:t.t,cat:t.cat,mine:true}));let i=a.ti;while(out.length<3){const t=a.tasks[i%a.tasks.length];out.push({t:typeof t.t==='function'?t.t():t.t,cat:t.cat,ap:t.ap});i++;}return out;}
+function renderDetail(){const el=$('detail'),a=sel;
+  if(!a){el.innerHTML='<h2>Scheda agente</h2><p class="empty">Seleziona un agente nella sede o nella tabella.</p>';return;}
+  const [s,cls]=stateInfo(a);
+  el.innerHTML='<h2>Scheda agente <span class="pill '+cls+'">'+s+'</span></h2><div class="who"><span class="av" style="background:'+ISL[a.isl].c+'">'+a.name[0]+'</span><span><b>'+a.name+'</b><span>'+a.role+' · '+ISL[a.isl].n+'</span></span></div><p>'+esc(a.about)+'</p>'+
+  '<h3>Responsabilità</h3><ul class="q">'+a.resp.map(r=>'<li>• '+esc(r)+'</li>').join('')+'</ul><h3>Ora</h3><ul class="q"><li><span class="chip" style="background:'+CAT[a.task.cat].c+'">'+CAT[a.task.cat].n+'</span> '+esc(a.task.t)+'</li></ul>'+
+  '<h3>Prossimi compiti</h3><ul class="q">'+upcoming(a).map(t=>'<li><span class="chip" style="background:'+CAT[t.cat].c+'">'+CAT[t.cat].n+'</span> '+esc(t.t)+(t.mine?' <span style="color:var(--yellow);font-size:11.5px">· assegnato da te</span>':'')+(t.ap?' <span style="color:var(--warn);font-size:11.5px">· serve il tuo OK</span>':'')+'</li>').join('')+'</ul>'+
+  '<h3>Assegna un compito</h3><form class="f" id="assign"><input type="text" id="as-t" aria-label="Compito" placeholder="Es. Chiama il ristorante per l\'ordine di domani" maxlength="90"><div style="display:flex;gap:6px"><select id="as-c" aria-label="Tipo">'+Object.entries(CAT).map(([k,c])=>'<option value="'+k+'"'+(k===a.tasks[0].cat?' selected':'')+'>'+c.n+'</option>').join('')+'</select><select id="as-r" aria-label="Dove"><option value="">Alla sua isola</option>'+Object.entries(ISL).map(([k,d])=>'<option value="'+k+'">'+d.n+'</option>').join('')+'</select></div><button class="btn pri" type="submit">Assegna a '+a.name+'</button></form>';
+  $('assign').onsubmit=e=>{e.preventDefault();const t=$('as-t').value.trim();if(!t){$('as-t').focus();return;}a.queue.push({t,cat:$('as-c').value,isl:$('as-r').value||null});addLog(a,'riceve da te: '+t,$('as-c').value);renderDetail();};}
+
+AG.forEach((a,i)=>{a.tasks=a.tasks.map(t=>({t:t[0],cat:t[1],isl:t[2]||null,ap:t[3]||null}));const s=ISL[a.isl];
+  Object.assign(a,{x:s.desk.x,z:s.desk.z,path:[],state:'work',t:i*.7,dur:3,ti:0,queue:[],task:{t:'Accende la postazione',cat:a.tasks[0].cat},dir:0,walk:0});});
+function curIsl(a){for(const k in ISL){const s=ISL[k];if(Math.hypot(a.x-s.cx,a.z-s.cz)<6.5)return k;}return null;}
+function routeTo(a,dest,pt){const pts=[],c=curIsl(a);
+  if(c!==dest){if(c){const s=ISL[c];pts.push({...s.door},{...s.hub});}
+    if(dest==='HUB'){pts.push(pt);return pts;}
+    const t=ISL[dest];pts.push({...t.hub},{...t.door});}
+  pts.push(pt);return pts;}
+function spotIn(k){const s=ISL[k];const px=-s.uz,pz=s.ux,o=(Math.random()-.5)*6,d=(Math.random()-.3)*3;return{x:s.cx+px*o+s.ux*d,z:s.cz+pz*o+s.uz*d};}
+const deskPt=a=>({...ISL[a.isl].desk});
+function nextTask(a){const tk=a.queue.length?a.queue.shift():a.tasks[a.ti++%a.tasks.length];
+  if(tk.isl==='HUB'){meeting(a);return;}
+  a.task={t:typeof tk.t==='function'?tk.t():tk.t,cat:tk.cat,ap:tk.ap};a.rejected=false;
+  if(tk.isl&&tk.isl!==a.isl){a.path=routeTo(a,tk.isl,spotIn(tk.isl));a.back=true;}else{a.path=routeTo(a,a.isl,deskPt(a));a.back=false;}
+  a.state='walk';a.dur=7+Math.random()*6;addLog(a,low(a.task.t),a.task.cat);}
+function meeting(d){AG.forEach((a,i)=>{if(a.state==='wait')return;const ang=i/AG.length*Math.PI*2;a.resume=a===d?null:{t:a.task.t,cat:a.task.cat};
+  a.task={t:a===d?'Guida la riunione dell\'equipaggio':'In riunione all\'hub',cat:'dir'};a.meeting=true;a.path=routeTo(a,'HUB',{x:Math.sin(ang)*3.3,z:Math.cos(ang)*3.3});a.state='walk';a.dur=10;a.back=true;});
+  addLog(d,'convoca l\'equipaggio all\'hub centrale','dir');}
+function arrive(a){a.state='work';a.t=0;if(a.task.ap&&!a.meeting){a.state='wait';reqs.push({id:++reqId,a,t:a.task.ap.t,at:hhmm()});addLog(a,'chiede la tua approvazione',a.task.cat);renderReqs();}}
+function finish(a){if(a.meeting){a.meeting=false;if(a.resume&&!/postazione/.test(a.resume.t))a.queue.unshift(a.resume);a.resume=null;}
+  if(a.back){a.back=false;a.task={t:'Torna alla sua isola',cat:a.task.cat};a.path=routeTo(a,a.isl,deskPt(a));a.state='walk';a.dur=2;return;}nextTask(a);}
+function sim(dt){simMin+=dt*2;AG.forEach(a=>{
+  if(a.state==='walk'){const p=a.path[0];if(!p){arrive(a);return;}const dx=p.x-a.x,dz=p.z-a.z,d=Math.hypot(dx,dz),s=4.4*dt;a.dir=Math.atan2(dx,dz);a.walk+=dt;if(d<=s){a.x=p.x;a.z=p.z;a.path.shift();}else{a.x+=dx/d*s;a.z+=dz/d*s;}}
+  else if(a.state==='work'){a.t+=dt;if(a.t>=a.dur)finish(a);}});}
+
+/* ---------- Scena 3D ---------- */
+function select(a){sel=a;AG.forEach(x=>{if(x.selRing)x.selRing.visible=x===a;if(x.lblEl)x.lblEl.classList.toggle('sel',x===a);});renderDetail();renderTeam();}
+function start3d(){
+  const host=$('world');
+  if(!window.THREE||!THREE.OrbitControls||!THREE.CSS2DRenderer){$('loading').textContent='Il mondo 3D non si è caricato. Ricarica la pagina.';return false;}
+  $('loading').remove();
+  const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(2,devicePixelRatio));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputEncoding=THREE.sRGBEncoding;
+  host.appendChild(renderer.domElement);
+  const lr=new THREE.CSS2DRenderer();Object.assign(lr.domElement.style,{position:'absolute',inset:'0',pointerEvents:'none'});host.appendChild(lr.domElement);
+  const scene=new THREE.Scene();scene.background=new THREE.Color('#030a18');scene.fog=new THREE.Fog('#030a18',60,130);
+  const cam=new THREE.PerspectiveCamera(40,1,.1,400);cam.position.set(0,50,47);ctl.target.set(0,0,3);
+  const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.target.set(0,0,0);ctl.enableDamping=true;ctl.maxPolarAngle=1.32;ctl.minDistance=10;ctl.maxDistance=100;
+  scene.add(new THREE.HemisphereLight('#a8cfff','#061024',.55));
+  const sun=new THREE.DirectionalLight('#fff4e0',.9);sun.position.set(-25,45,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-40,right:40,top:40,bottom:-40,near:1,far:130});scene.add(sun);
+  const M=(c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.65,metalness:.12},o));
+  const add=(geo,mat,x,y,z,cast=true)=>{const m=new THREE.Mesh(geo,mat);m.position.set(x,y,z);m.castShadow=cast;m.receiveShadow=true;scene.add(m);return m;};
+  const box=(w,h,d,m,x,y,z,g)=>{const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);b.position.set(x,y,z);b.castShadow=true;b.receiveShadow=true;(g||scene).add(b);return b;};
+  const lbl=(html,cls,x,y,z,parent)=>{const d=document.createElement('div');d.className=cls;d.innerHTML=html;const o=new THREE.CSS2DObject(d);o.position.set(x,y,z);(parent||scene).add(o);return d;};
+  // oceano
+  const oceanGeo=new THREE.PlaneGeometry(200,200,70,70);oceanGeo.rotateX(-Math.PI/2);
+  const ocean=new THREE.Mesh(oceanGeo,new THREE.MeshStandardMaterial({color:'#0a2a55',roughness:.35,metalness:.3,flatShading:true}));ocean.position.y=-1.2;ocean.receiveShadow=true;scene.add(ocean);
+  const op=oceanGeo.attributes.position,base=op.array.slice();
+  // rotte luminose sull'acqua (come nel logo)
+  const routeMat=new THREE.MeshBasicMaterial({color:'#39d3ff',transparent:true,opacity:.35});
+  for(let i=0;i<3;i++){const t=new THREE.Mesh(new THREE.TorusGeometry(30+i*7,.06,4,160),routeMat);t.rotation.x=Math.PI/2;t.position.y=-.9;scene.add(t);}
+  // hub centrale
+  const hub=add(new THREE.CylinderGeometry(HUB,HUB+.4,1,48),M('#0d2244'),0,-.5,0);
+  add(new THREE.TorusGeometry(HUB,.09,8,96),M('#39d3ff',{emissive:'#39d3ff',emissiveIntensity:.9}),0,.02,0,false).rotation.x=Math.PI/2;
+  const logoTex=new THREE.TextureLoader().load('argo-logo.png');logoTex.encoding=THREE.sRGBEncoding;
+  const logo=new THREE.Mesh(new THREE.CircleGeometry(2.6,48),new THREE.MeshStandardMaterial({map:logoTex,transparent:true,roughness:.5}));logo.rotation.x=-Math.PI/2;logo.position.y=.03;logo.receiveShadow=true;scene.add(logo);
+  lbl('<i style="background:#39d3ff"></i>Hub · riunioni','isl',0,1.4,-HUB+.6);
+  // pesce olografico sopra l'hub
+  const holo=new THREE.Group();const hm=new THREE.MeshBasicMaterial({color:'#39d3ff',wireframe:true,transparent:true,opacity:.55});
+  const hb=new THREE.Mesh(new THREE.SphereGeometry(1.2,14,10),hm);hb.scale.set(2,1,.8);holo.add(hb);const ht=new THREE.Mesh(new THREE.ConeGeometry(.9,1.4,8),hm);ht.rotation.z=Math.PI/2;ht.position.x=-2.8;holo.add(ht);
+  holo.position.set(0,6.5,0);scene.add(holo);
+  // isole
+  const glass=new THREE.MeshPhysicalMaterial({color:'#a8dcff',transparent:true,opacity:.1,roughness:.1});
+  const islLabels={};
+  for(const k in ISL){const s=ISL[k],g=new THREE.Group();g.position.set(s.cx,0,s.cz);g.rotation.y=Math.atan2(s.ux,s.uz);scene.add(g);
+    const col=new THREE.Color(s.c);
+    box(IW,1,ID,M('#0c1f3f'),0,-.5,0,g);
+    const top=box(IW-.2,.05,ID-.2,M(col.clone().multiplyScalar(.12).add(new THREE.Color('#0b1a33'))),0,.02,0,g);
+    const em=M(s.c,{emissive:s.c,emissiveIntensity:.9});
+    [[IW,.08,.12,0,ID/2],[IW,.08,.12,0,-ID/2],[.12,.08,ID,IW/2,0],[.12,.08,ID,-IW/2,0]].forEach(e=>box(e[0],e[1],e[2],em,e[3],.06,e[4],g));
+    // pareti di vetro sul retro
+    box(IW-.4,1.4,.08,glass,0,.7,ID/2-.1,g);
+    // scrivania + monitor
+    const desk=box(2.8,.9,1.2,M('#1a3360'),0,.45,ID/2-2.2,g);const mon=box(1.5,.85,.08,M('#0a1530',{emissive:s.c,emissiveIntensity:.6}),0,1.35,ID/2-1.65,g);s.monitor=mon;
+    // schermo informativo
+    const cvs=document.createElement('canvas');cvs.width=512;cvs.height=200;const tex=new THREE.CanvasTexture(cvs);tex.encoding=THREE.sRGBEncoding;
+    const scr=new THREE.Mesh(new THREE.PlaneGeometry(5,1.95),new THREE.MeshBasicMaterial({map:tex}));scr.position.set(0,2.6,ID/2-.15);scr.rotation.y=Math.PI;g.add(scr);s.scr={cvs,tex};
+    // passerella verso l'hub
+    const L=R-ID/2-HUB,mid=(R-ID/2+HUB)/2;const walk=new THREE.Mesh(new THREE.BoxGeometry(2.4,.3,L),M('#0f2650'));walk.position.set(s.ux*mid,-.15,s.uz*mid);walk.rotation.y=Math.atan2(s.ux,s.uz);walk.receiveShadow=true;scene.add(walk);
+    [-1.2,1.2].forEach(o=>{const e=new THREE.Mesh(new THREE.BoxGeometry(.08,.06,L),em);e.position.set(s.ux*mid+(-s.uz)*o,.03,s.uz*mid+s.ux*o);e.rotation.y=Math.atan2(s.ux,s.uz);scene.add(e);});
+    islLabels[k]=lbl('<i style="background:'+s.c+'"></i>'+s.n+' <em></em>','isl',s.cx-s.ux*(ID/2+1.2),.8,s.cz-s.uz*(ID/2+1.2));
+    props(k,g,s);}
+  function props(k,g,s){
+    const fish=(c,x,y,z,sc=1)=>{const f=new THREE.Mesh(new THREE.SphereGeometry(.16*sc,8,6),M(c,{emissive:c,emissiveIntensity:.15}));f.scale.set(2.2,.7,.8);f.position.set(x,y,z);g.add(f);};
+    if(k==='aste'){box(2.2,1.1,1.2,M('#3a1c19'),2.8,.55,0,g);for(let r=0;r<2;r++)for(let i=0;i<5;i++)box(.8,.45,.8,M('#203a66'),-3.6+i*1.6,.22,-1.2-r*1.4,g);}
+    if(k==='car'){for(let i=0;i<3;i++){const x=-3.4+i*3.4;box(2.8,.9,1.3,M('#3b3263'),x,.45,-1.4,g);box(2.7,.1,1.2,M('#eef6ff',{roughness:.2}),x,.95,-1.4,g);for(let j=0;j<5;j++)fish(['#ff6450','#ad8cff','#ffa53a'][j%3],x-1+j*.5,1.08,-1.4+(j%2?.25:-.25));}}
+    if(k==='forn'){box(4.6,1,1.8,M('#e3eaf3'),-2,.5,-1.6,g);box(4.6,.22,1.85,M('#ffc81e'),-2,.15,-1.6,g);box(1.6,1.1,1.4,M('#f5f8fb'),-2.8,1.5,-1.6,g);for(let i=0;i<3;i++){box(1.1,.5,.8,M('#e8f0f7'),2.4+i*.0,.25+i*.5,-1.6,g);}}
+    if(k==='cassa'){const v=new THREE.Mesh(new THREE.CylinderGeometry(1.1,1.1,.3,28),M('#c9a23a',{metalness:.7,roughness:.3}));v.rotation.x=Math.PI/2;v.position.set(-3.6,1.3,ID/2-.3);g.add(v);}
+    if(k==='social'){const r=new THREE.Mesh(new THREE.TorusGeometry(.75,.08,8,40),M('#fff',{emissive:'#ffd6ef',emissiveIntensity:1}));r.position.set(3,1.9,-1);g.add(r);box(.08,1.9,.08,M('#888'),3,.95,-1,g);}
+    if(k==='clienti'){box(3,.55,1.1,M('#24426a'),-2.4,.28,-1.6,g);box(3,.55,1.1,M('#24426a'),2.4,.28,-1.6,g);}
+    if(k==='email'){for(let i=0;i<4;i++){const env=box(.9,.06,.6,M('#e3eaf3',{emissive:'#39d3ff',emissiveIntensity:.15}),-3+i*.3,1.4+i*.35,-1.5,g);env.userData.float=i;s.env=(s.env||[]).concat(env);}}
+    if(k==='dir'){box(3.6,.95,1.6,M('#2a3f66'),-2.6,.48,-1.4,g);}
+  }
+  // banchi di pesci che nuotano intorno alle isole
+  const schools=[];const fishGeo=new THREE.ConeGeometry(.18,.7,6);fishGeo.rotateZ(-Math.PI/2);
+  ['#ff6450','#ad8cff','#ffc81e','#39d3ff'].forEach((c,si)=>{const grp=[];for(let i=0;i<9;i++){const f=new THREE.Mesh(fishGeo,M(c,{emissive:c,emissiveIntensity:.35}));scene.add(f);grp.push({m:f,o:i*.18,dy:(Math.random()-.5)*.6,dr:(Math.random()-.5)*1.6});}schools.push({grp,r:13+si*3.2,s:.12+si*.03,ph:si*1.6,y:-.6+si*.05});});
+  // flotta Argo: pescherecci che navigano con scia luminosa
+  function makeBoat(stripeC,scale){const boat=new THREE.Group();const hull=new THREE.Mesh(new THREE.BoxGeometry(5,1.2,2),M('#f2f5f9'));hull.position.y=.2;boat.add(hull);
+    const bow=new THREE.Mesh(new THREE.ConeGeometry(1,1.6,4),M('#f2f5f9'));bow.rotation.z=-Math.PI/2;bow.rotation.x=Math.PI/4;bow.position.set(3.2,.2,0);bow.scale.set(1,1,.72);boat.add(bow);
+    const stripe=new THREE.Mesh(new THREE.BoxGeometry(5.05,.25,2.05),M(stripeC,{emissive:stripeC,emissiveIntensity:.4}));stripe.position.y=-.2;boat.add(stripe);
+    const cab=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.2,1.6),M('#ffffff'));cab.position.set(-.6,1.4,0);boat.add(cab);
+    const win=new THREE.Mesh(new THREE.BoxGeometry(1.82,.3,1.62),M('#0a1530',{emissive:'#39d3ff',emissiveIntensity:.8}));win.position.set(-.6,1.65,0);boat.add(win);
+    const mast=new THREE.Mesh(new THREE.CylinderGeometry(.06,.06,2.6),M('#93a8c4'));mast.position.set(1.2,1.8,0);boat.add(mast);
+    const crane=new THREE.Mesh(new THREE.BoxGeometry(1.8,.08,.08),M('#93a8c4'));crane.position.set(2,2.8,0);crane.rotation.z=-.5;boat.add(crane);
+    const light=new THREE.Mesh(new THREE.SphereGeometry(.12,8,6),M('#ffc81e',{emissive:'#ffc81e',emissiveIntensity:2}));light.position.set(1.2,3.15,0);boat.add(light);
+    boat.scale.setScalar(scale);boat.traverse(o=>{if(o.isMesh)o.castShadow=true;});scene.add(boat);
+    const wake=[0,1,2,3,4].map(i=>{const w=new THREE.Mesh(new THREE.RingGeometry(.3+i*.25,.45+i*.3,20),new THREE.MeshBasicMaterial({color:'#bfefff',transparent:true,opacity:.3,side:THREE.DoubleSide}));w.rotation.x=-Math.PI/2;scene.add(w);return w;});
+    return {g:boat,wake};}
+  const boats=[[30,'#ffc81e',1,.06,1,0],[35,'#39d3ff',.85,.045,-1,2],[29,'#ffc81e',.75,.07,1,3.4],[38,'#ff6450',.9,.04,1,1.1]].map(([r,c,sc,sp,dirn,ph])=>Object.assign(makeBoat(c,sc),{r,sp,dirn,ph}));
+  // pesci che saltano fuori dall'acqua
+  const jfGeo=new THREE.SphereGeometry(.35,10,8);jfGeo.scale(2.2,.8,.7);
+  const jumpers=[];for(let i=0;i<10;i++){const c=['#ff6450','#ad8cff','#39d3ff','#ffc81e'][i%4];const m=new THREE.Mesh(jfGeo,M(c,{emissive:c,emissiveIntensity:.5,metalness:.4,roughness:.3}));m.visible=false;scene.add(m);
+    const a=Math.random()*Math.PI*2,r=27+Math.random()*9;jumpers.push({m,x:Math.cos(a)*r,z:Math.sin(a)*r,dx:(Math.random()-.5)*5,dz:(Math.random()-.5)*5,per:5+Math.random()*6,o:Math.random()*10});}
+  // droni di consegna tra le isole
+  const drones=[['forn','car',.0],['car','clienti',.35],['aste','cassa',.7]].map(([a,b,o])=>{const g=new THREE.Group();const bd=new THREE.Mesh(new THREE.BoxGeometry(1.1,.25,1.1),M('#dfe6ef',{metalness:.6,roughness:.3}));g.add(bd);
+    const crate=new THREE.Mesh(new THREE.BoxGeometry(.7,.5,.6),M('#ffffff',{emissive:'#39d3ff',emissiveIntensity:.15}));crate.position.y=-.45;g.add(crate);
+    const rot=[[-.7,-.7],[.7,-.7],[-.7,.7],[.7,.7]].map(([x,z])=>{const r=new THREE.Mesh(new THREE.BoxGeometry(.9,.03,.1),M('#39d3ff',{emissive:'#39d3ff',emissiveIntensity:.8}));r.position.set(x,.2,z);g.add(r);return r;});
+    const led=new THREE.Mesh(new THREE.SphereGeometry(.1,8,6),M('#ffc81e',{emissive:'#ffc81e',emissiveIntensity:2}));led.position.y=.18;g.add(led);scene.add(g);return {g,rot,a,b,o};});
+  // stelle e particelle luminose
+  const pts=new THREE.BufferGeometry();const pa=new Float32Array(600*3);for(let i=0;i<600;i++){pa[i*3]=(Math.random()-.5)*180;pa[i*3+1]=8+Math.random()*40;pa[i*3+2]=(Math.random()-.5)*180;}
+  pts.setAttribute('position',new THREE.BufferAttribute(pa,3));scene.add(new THREE.Points(pts,new THREE.PointsMaterial({color:'#9fdcff',size:.25,transparent:true,opacity:.7})));
+  // personaggi (stile chibi: testa grande, divisa navy + colore del ruolo)
+  const skin=M('#f2cfa8'),navy=M('#13264a'),hair=M('#2a1d14');
+  AG.forEach(a=>{const g=new THREE.Group(),col=ISL[a.isl].c;g.scale.setScalar(1.6);
+    const lg=new THREE.BoxGeometry(.24,.7,.28);lg.translate(0,-.35,0);
+    const legL=new THREE.Mesh(lg,navy),legR=new THREE.Mesh(lg,navy);legL.position.set(-.16,.72,0);legR.position.set(.16,.72,0);
+    const body=new THREE.Mesh(new THREE.CylinderGeometry(.36,.42,.95,14),navy);body.position.y=1.2;
+    const vest=new THREE.Mesh(new THREE.CylinderGeometry(.37,.43,.35,14),M(col,{emissive:col,emissiveIntensity:.25}));vest.position.y=1.48;
+    const ag=new THREE.BoxGeometry(.17,.68,.2);ag.translate(0,-.34,0);const armL=new THREE.Mesh(ag,navy),armR=new THREE.Mesh(ag,navy);armL.position.set(-.5,1.6,0);armR.position.set(.5,1.6,0);
+    const head=new THREE.Mesh(new THREE.SphereGeometry(.42,18,14),skin);head.position.y=2.08;
+    const cap=new THREE.Mesh(new THREE.SphereGeometry(.44,18,10,0,Math.PI*2,0,Math.PI/2.2),M(col));cap.position.y=2.12;
+    const visor=new THREE.Mesh(new THREE.BoxGeometry(.5,.06,.3),M(col));visor.position.set(0,2.2,.42);
+    const eyes=[-.14,.14].map(x=>{const e=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),M('#0a1020'));e.position.set(x,2.08,.39);return e;});
+    const badge=new THREE.Mesh(new THREE.CircleGeometry(.12,16),M('#ffc81e',{emissive:'#ffc81e',emissiveIntensity:.5}));badge.position.set(.18,1.3,.425);
+    [legL,legR,body,vest,armL,armR,head,cap,visor,...eyes,badge].forEach(m=>{m.castShadow=true;m.userData.agent=a;g.add(m);});
+    const ring=new THREE.Mesh(new THREE.RingGeometry(.7,.9,32),new THREE.MeshBasicMaterial({color:'#ffc81e',side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.05;ring.visible=false;g.add(ring);
+    scene.add(g);
+    const wrap=document.createElement('div');Object.assign(wrap.style,{display:'flex',flexDirection:'column',alignItems:'center'});
+    const el=document.createElement('div');el.className='lbl';el.innerHTML='<span class="ini" style="background:'+col+'">'+a.name[0]+'</span>'+a.name+'<span class="bang">!</span>';el.style.pointerEvents='auto';el.onclick=()=>select(a);
+    const bub=document.createElement('div');bub.className='bubble';bub.hidden=true;wrap.append(el,bub);
+    const lo=new THREE.CSS2DObject(wrap);lo.position.set(0,2.75,0);g.add(lo);
+    Object.assign(a,{g,legL,legR,armL,armR,selRing:ring,lblEl:el,bub});});
+  const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+  renderer.domElement.addEventListener('click',e=>{const r=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mouse,cam);
+    const hits=ray.intersectObjects(AG.flatMap(a=>a.g.children.filter(c=>c.userData.agent)),false);if(hits.length)select(hits[0].object.userData.agent);});
+  function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();}
+  window.__resize3d=resize;new ResizeObserver(resize).observe(host);resize();
+  const goal={pos:null,tgt:null};
+  function setView(v){view=v;document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v?'true':'false'));
+    if(v==='over'){goal.pos=new THREE.Vector3(0,50,47);goal.tgt=new THREE.Vector3(0,0,3);}if(v==='top'){goal.pos=new THREE.Vector3(0,70,.1);goal.tgt=new THREE.Vector3(0,0,0);}if(v==='follow'&&!sel)select(AG[0]);}
+  document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+  ctl.addEventListener('start',()=>{goal.pos=null;});
+  // schermi delle isole: dati veri dove ci sono
+  function screenText(k){
+    const open=S.aste.filter(a=>a.stato==='aperta');const r=findProd(/rosso/i),v=findProd(/viola/i);const b=budgetNow();
+    const mail=S.email.filter(m=>m.stato!=='inviata'&&m.stato!=='archiviata');
+    switch(k){
+      case 'aste':return['ASTA',open.length?open.slice(0,2).map(l=>'L'+l.lotto+' '+l.specie+' '+eur2(Math.max(num(l.offerta),num(l.base)))):['Nessun lotto aperto']];
+      case 'car':return['CAR · MERCATO ITTICO',[r?'Rosso '+eur2(r.prezzoCar)+' €/kg':'Prezzi non caricati',v?'Viola '+eur2(v.prezzoCar)+' €/kg':'']];
+      case 'cassa':{const sp=speseOf(b).reduce((s,x)=>s+num(x.importo),0),pv=b?(b.categorie||[]).reduce((s,c)=>s+num(c.previsto),0):0;return['BUDGET',[b?'Residuo '+eur(pv-sp):'Budget non impostato',b?'Speso '+(pv?Math.round(sp/pv*100):0)+'%':'']];}
+      case 'social':return['SOCIAL',[S.social.filter(p=>p.stato==='programmato').length+' post programmati',S.social.filter(p=>p.stato==='bozza').length+' bozze']];
+      case 'email':return['POSTA',[mail.length+' email da gestire',S.email.filter(m=>m.stato==='bozza pronta').length+' bozze pronte']];
+      case 'forn':return['FORNITORI',[S.fornitori.filter(f=>f.stato==='attivo').length+' attivi',S.fornitori.filter(f=>f.stato==='in valutazione').length+' in valutazione']];
+      case 'clienti':return['CLIENTI',['Listini inviati: '+S.listini.length,'Consegne via CAR']];
+      default:return['DIREZIONE',[reqs.length+' decisioni per te','Turno '+hhmm()]];
+    }}
+  function drawScreens(){for(const k in ISL){const s=ISL[k],[t,lines]=screenText(k),g=s.scr.cvs.getContext('2d');
+    g.fillStyle='#050d1e';g.fillRect(0,0,512,200);g.fillStyle=s.c;g.fillRect(0,0,8,200);
+    g.fillStyle=s.c;g.font='700 30px "Exo 2", sans-serif';g.fillText(t,26,44);g.fillStyle='#e3eaf3';g.font='500 26px "IBM Plex Mono", monospace';
+    lines.filter(Boolean).forEach((l,i)=>g.fillText(String(l).slice(0,30),26,100+i*44));s.scr.tex.needsUpdate=true;
+    const em=islLabels[k].querySelector('em');const n=k==='aste'?S.aste.filter(a=>a.stato==='aperta').length+' lotti':k==='email'?S.email.filter(m=>m.stato!=='inviata'&&m.stato!=='archiviata').length+' da gestire':k==='forn'?S.fornitori.filter(f=>f.stato==='attivo').length+' attivi':k==='social'?S.social.filter(p=>p.stato==='programmato').length+' programmati':'';
+    em.textContent=n;}}
+  drawScreens();
+  let last=performance.now(),T=0,uiT=0,scrT=0,detT=0;
+  function frame(now){const raw=Math.min(.05,(now-last)/1000);last=now;const dt=paused?0:raw*speed*(reduce?.6:1);T+=dt;
+    if(!paused)sim(dt);
+    if(cur==='sede'){
+      // onde
+      const arr=op.array;for(let i=0;i<arr.length;i+=3){const x=base[i],z=base[i+2];arr[i+1]=Math.sin(x*.12+T*.9)*.35+Math.cos(z*.15+T*.7)*.3;}op.needsUpdate=true;
+      AG.forEach(a=>{a.g.position.set(a.x,0,a.z);const tr=a.g.rotation.y,d=((a.dir-tr+Math.PI*3)%(Math.PI*2))-Math.PI;a.g.rotation.y=tr+d*Math.min(1,raw*10);
+        const sw=a.state==='walk'?Math.sin(a.walk*9)*.6:0;a.legL.rotation.x=sw;a.legR.rotation.x=-sw;a.armL.rotation.x=-sw*.8;a.armR.rotation.x=sw*.8;
+        if(a.state==='work'&&!a.meeting&&!paused){a.armR.rotation.x=-.9+Math.sin(T*14)*.12;a.armL.rotation.x=-.9+Math.cos(T*14)*.12;}
+        a.lblEl.classList.toggle('wait',a.state==='wait');const show=a===sel||a.state==='wait';a.bub.hidden=!show;
+        if(show){a.bub.textContent=a.state==='wait'?(a===sel?'Attende il tuo OK: '+low(a.task.ap.t):'Attende il tuo OK'):a.task.t;a.bub.style.borderLeftColor=a.state==='wait'?CSSV('--warn'):CAT[a.task.cat].c;}});
+      for(const k in ISL){const s=ISL[k],busy=AG.some(a=>a.isl===k&&a.state==='work'&&curIsl(a)===k);s.monitor.material.emissiveIntensity=busy?.9+Math.sin(T*6)*.15:.35;if(s.env)s.env.forEach(e=>{e.position.y=1.4+e.userData.float*.35+Math.sin(T*2+e.userData.float)*.12;e.rotation.y=T*.5+e.userData.float;});}
+      holo.rotation.y=T*.4;holo.position.y=6.5+Math.sin(T)*.3;
+      schools.forEach(sc=>sc.grp.forEach(f=>{const a=T*sc.s+sc.ph-f.o;f.m.position.set(Math.cos(a)*(sc.r+f.dr),sc.y+f.dy+Math.sin(T*2+f.o*5)*.15,Math.sin(a)*(sc.r+f.dr));f.m.rotation.y=-a;}));
+      boats.forEach(b=>{const ba=T*b.sp*b.dirn+b.ph;b.g.position.set(Math.cos(ba)*b.r,-.6+Math.sin(T*1.5+b.ph)*.15,Math.sin(ba)*b.r);b.g.rotation.y=-ba+(b.dirn<0?Math.PI:0);b.g.rotation.z=Math.sin(T*1.2+b.ph)*.05;
+        b.wake.forEach((w,i)=>{const wa=ba-b.dirn*(i+1)*.03;w.position.set(Math.cos(wa)*b.r,-.75,Math.sin(wa)*b.r);w.material.opacity=.35-i*.05;});});
+      jumpers.forEach(j=>{const t=((T+j.o)%j.per)/j.per;if(t<.25){const u=t/.25;j.m.visible=true;const x=j.x+j.dx*u,z=j.z+j.dz*u;j.m.position.set(x,-.8+Math.sin(u*Math.PI)*2.4,z);j.m.rotation.set(0,Math.atan2(j.dx,j.dz)-Math.PI/2,Math.cos(u*Math.PI)*.9);}else j.m.visible=false;});
+      drones.forEach(d=>{const t=((T*.08+d.o)%1);const u=t<.5?t*2:2-t*2;const a=ISL[d.a],b2=ISL[d.b];d.g.position.set(a.cx+(b2.cx-a.cx)*u,4+Math.sin(u*Math.PI)*3,a.cz+(b2.cz-a.cz)*u);d.g.rotation.y+=raw*.5;d.rot.forEach(r=>r.rotation.y+=raw*30);});
+      if(view==='follow'&&sel){const tg=new THREE.Vector3(sel.x,1,sel.z);ctl.target.lerp(tg,Math.min(1,raw*3));cam.position.lerp(tg.clone().add(new THREE.Vector3(0,13,15)),Math.min(1,raw*2));}
+      else if(goal.pos){cam.position.lerp(goal.pos,Math.min(1,raw*2.5));ctl.target.lerp(goal.tgt,Math.min(1,raw*2.5));if(cam.position.distanceTo(goal.pos)<.2)goal.pos=null;}
+      ctl.update();renderer.render(scene,cam);lr.render(scene,cam);
+      uiT+=raw;scrT+=raw;detT+=raw;
+      if(uiT>.5){uiT=0;renderTeam();}
+      if(detT>2&&sel&&!(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#assign'))){detT=0;renderDetail();}
+      if(scrT>3){scrT=0;drawScreens();}
+    }
+    $('clk').textContent=hhmm();
+    requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+  return true;}
+document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{speed=+b.dataset.speed;document.querySelectorAll('[data-speed]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));});
+$('b-play').onclick=()=>{paused=!paused;$('b-play').textContent=paused?'▶ Riprendi':'⏸ Pausa';$('b-play').setAttribute('aria-pressed',paused?'true':'false');renderTeam();renderDetail();};
+
+addLog(AG[0],'apre il turno: asta alle 7:00, CAR aperto dalle 3:00','dir');
+renderReqs();route();select(AG[5]);
+if(!start3d()){setInterval(()=>{if(!paused)sim(.25*speed);renderTeam();$('clk').textContent=hhmm();},250);}
+initData();
+})();
+</script>
