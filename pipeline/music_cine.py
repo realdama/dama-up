@@ -118,7 +118,7 @@ L = hp(L, 35); R = hp(R, 35)
 g = np.ones(N)
 for a, b2, n in SEC:
     i0, i1 = int(a * SR), int(min(T, b2) * SR); g[i0:i1] = 0.75 + 0.35 * INT[n]
-g = np.convolve(g, np.ones(int(0.6 * SR)) / int(0.6 * SR), 'same')
+g = fftconvolve(g, np.ones(int(0.6 * SR)) / int(0.6 * SR), 'same')
 g *= np.minimum(1, t / 0.6) * np.minimum(1, np.maximum(0, (T - t) / 2.0))
 mus = np.stack([L * g, R * g], 1)
 
@@ -126,7 +126,7 @@ mus = np.stack([L * g, R * g], 1)
 v, vsr = sf.read(voice_p); v = v if v.ndim == 1 else v.mean(1)
 if vsr != SR: raise SystemExit('voce a 48 kHz')
 v = np.pad(v, (0, max(0, N - len(v))))[:N]
-w = int(0.05 * SR); env = np.sqrt(np.convolve(v ** 2, np.ones(w) / w, 'same'))
+w = int(0.05 * SR); env = np.sqrt(np.abs(fftconvolve(v ** 2, np.ones(w) / w, 'same')))
 act = (20 * np.log10(env + 1e-9) > -42).astype(float)
 a_att = 1 - np.exp(-1 / (0.06 * SR)); a_rel = 1 - np.exp(-1 / (0.45 * SR))
 sm = np.empty(N); st = 0.0
