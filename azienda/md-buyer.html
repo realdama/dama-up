@@ -1,0 +1,519 @@
+<title>MD Buyer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: barra in alto con il cliente e il tetto d'asta, schede Oggi / Aste / Cliente / Fornitori / Note; tabelle che a telefono diventano schede. Mondo: il mercato ittico all'alba, tabellone d'asta e luce al sodio. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --sunk:#e8ecea; --line:#d3dad7;
+  --ink:#10201d; --ink-2:#4a5b57; --ink-3:#74847f;
+  --sea:#0f4c4a; --sea-ink:#ffffff;
+  --sodium:#e08a12; --sodium-soft:#fbe8c8; --sodium-ink:#5a3300;
+  --ok:#1f7a4d; --ok-soft:#d6efe2; --bad:#b23a2e; --bad-soft:#f6dcd8; --info:#2b5f9e; --info-soft:#dce7f5;
+  --f-board:"Barlow Condensed","Arial Narrow",sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1413; --surface:#13201e; --sunk:#0f1a18; --line:#2a3d3a;
+  --ink:#e6eeec; --ink-2:#a8b8b4; --ink-3:#7c8e8a;
+  --sea:#5fc0b6; --sea-ink:#06201d;
+  --sodium:#ffb03a; --sodium-soft:#3a2a10; --sodium-ink:#ffd59a;
+  --ok:#6fd3a0; --ok-soft:#163327; --bad:#ff8a7a; --bad-soft:#3a1d19; --info:#8db8f0; --info-soft:#172739;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1413; --surface:#13201e; --sunk:#0f1a18; --line:#2a3d3a;
+  --ink:#e6eeec; --ink-2:#a8b8b4; --ink-3:#7c8e8a;
+  --sea:#5fc0b6; --sea-ink:#06201d;
+  --sodium:#ffb03a; --sodium-soft:#3a2a10; --sodium-ink:#ffd59a;
+  --ok:#6fd3a0; --ok-soft:#163327; --bad:#ff8a7a; --bad-soft:#3a1d19; --info:#8db8f0; --info-soft:#172739;
+  color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-body);font-size:14px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--sodium);outline-offset:2px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Testata */
+.top{background:var(--sea);color:var(--sea-ink);margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 14px);padding-bottom:0}
+.top .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-end;justify-content:space-between}
+.mark{display:flex;align-items:baseline;gap:10px;min-width:0}
+.mark b{font-family:var(--f-board);font-weight:700;font-size:30px;letter-spacing:.04em;line-height:1}
+.mark span{font-size:12px;opacity:.8;letter-spacing:.08em;text-transform:uppercase}
+.client{font-size:12px;opacity:.9;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.client strong{font-weight:600}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;width:100%;margin-top:6px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;background:transparent;color:inherit;opacity:.75;padding:10px 14px 11px;font-family:var(--f-board);font-size:18px;font-weight:600;letter-spacing:.04em;border-radius:8px 8px 0 0;display:flex;gap:6px;align-items:center}
+.tabs button[aria-selected="true"]{background:var(--bg);color:var(--ink);opacity:1}
+.tabs .cnt{font-family:var(--f-mono);font-size:11px;background:var(--sodium);color:#1d1200;border-radius:999px;padding:0 6px;font-weight:600}
+
+main{padding-block:18px 60px;display:flex;flex-direction:column;gap:18px}
+#view{display:flex;flex-direction:column;gap:18px;min-width:0}
+td.num,td .num{white-space:nowrap}
+.status{font-size:12px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.status .dot{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.status.live .dot{background:var(--ok)}
+.status.warn .dot{background:var(--sodium)}
+
+h2{font-family:var(--f-board);font-weight:700;font-size:24px;letter-spacing:.03em;margin:0;line-height:1.1;text-wrap:balance}
+h3{font-size:13px;margin:0;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);font-weight:600}
+.head{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.sub{color:var(--ink-2);margin:4px 0 0;max-width:70ch}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;font-weight:600;font-size:13px}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--sea);color:var(--sea-ink);border-color:var(--sea)}
+.btn.amber{background:var(--sodium);color:#1d1200;border-color:var(--sodium)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.small{padding:4px 9px;font-size:12px}
+.link{border:0;background:none;color:var(--ink-3);padding:2px 4px;font-size:12px;text-decoration:underline;text-underline-offset:2px}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.kpi small{color:var(--ink-3);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.kpi b{font-family:var(--f-board);font-size:30px;font-weight:700;line-height:1.1}
+.kpi span{font-size:12px;color:var(--ink-2)}
+.kpi.hot b{color:var(--sodium)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+@media(min-width:900px){.cols{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+
+/* Tabellone asta */
+.board{background:#0b1513;color:#e9f1ee;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.board h3{color:#9fb4ae}
+.brow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid #ffffff14}
+.brow .sp{min-width:0}
+.brow .sp b{font-family:var(--f-board);font-size:19px;font-weight:600;letter-spacing:.02em;display:block;line-height:1.1}
+.brow .sp span{font-size:11px;color:#9fb4ae}
+.led{font-family:var(--f-mono);font-size:17px;color:#ffb03a;text-shadow:0 0 10px #ffb03a55;text-align:right}
+.led small{display:block;font-size:10px;color:#9fb4ae;text-shadow:none}
+.brow .led.cap{color:#7fe0b0;text-shadow:0 0 10px #7fe0b044}
+
+/* Tabelle */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:600;padding:9px 10px;border-bottom:1px solid var(--line);background:var(--sunk);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+td .muted{color:var(--ink-3);font-size:12px}
+.best{background:var(--ok-soft)}
+.ex{font-size:10px;font-family:var(--f-mono);color:var(--ink-3);border:1px dashed var(--ink-3);border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:1px}
+
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600;border:0;white-space:nowrap}
+.s-seguire{background:var(--info-soft);color:var(--info)}
+.s-offerta{background:var(--sodium-soft);color:var(--sodium-ink)}
+.s-preso{background:var(--ok-soft);color:var(--ok)}
+.s-perso{background:var(--bad-soft);color:var(--bad)}
+.s-aperta{background:var(--sodium-soft);color:var(--sodium-ink)}
+.s-coperta{background:var(--ok-soft);color:var(--ok)}
+.s-chiusa{background:var(--sunk);color:var(--ink-3)}
+.delta-ok{color:var(--ok)} .delta-bad{color:var(--bad)}
+
+.meter{height:8px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--sea)}
+.meter.full i{background:var(--ok)}
+
+.req{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-top:1px solid var(--line)}
+.req:first-of-type{border-top:0}
+.req b{font-weight:600}
+.req .meter{grid-column:1/-1}
+.req .muted{color:var(--ink-3);font-size:12px}
+
+/* Calcolatore */
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;align-items:end}
+.capout{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;background:var(--sodium-soft);color:var(--sodium-ink);border-radius:10px;padding:10px 14px}
+.capout b{font-family:var(--f-board);font-size:32px;line-height:1}
+.capout span{font-size:12px}
+
+/* Form */
+.sheet{background:var(--surface);border:2px solid var(--sea);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--ink-2);min-width:0}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:14px;width:100%;min-width:0}
+textarea{min-height:64px;resize:vertical}
+.wide{grid-column:1/-1}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.err{color:var(--bad);font-size:12px;margin:0}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filters input,.filters select{width:auto;min-width:140px;flex:1 1 140px;max-width:240px}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.note p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.note .meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--ink-3);align-items:center;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:600;border-radius:4px;padding:1px 6px;background:var(--sunk);color:var(--ink-2)}
+.tag.asta{background:var(--sodium-soft);color:var(--sodium-ink)}
+.tag.cliente{background:var(--info-soft);color:var(--info)}
+.tag.fornitore{background:var(--ok-soft);color:var(--ok)}
+
+.empty{border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--ink-3)}
+.confirm{display:inline-flex;gap:6px;align-items:center;font-size:12px}
+
+@media(max-width:640px){
+  .mark b{font-size:26px}
+  .tabs button{font-size:16px;padding:9px 11px 10px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="mark"><b>MD BUYER</b><span>Aste · Cliente · Fornitori</span></div>
+    <div class="client">Compro per <strong id="hdrClient">il cliente</strong> · margine <strong id="hdrMargin" class="num">–</strong> <button class="link" style="color:inherit" data-go="cliente" type="button">modifica</button></div>
+    <nav class="tabs" role="tablist" aria-label="Sezioni" id="tabs"></nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+  <div class="status" id="status"><span class="dot"></span><span>Collegamento all'archivio…</span></div>
+  <div id="view"></div>
+</main>
+
+<script>
+/* ---------- Stato ---------- */
+const TABS=[["oggi","Oggi"],["aste","Aste"],["cliente","Cliente"],["fornitori","Fornitori"],["note","Note"]];
+const MERCATI=["Mazara del Vallo","Sciacca","Porticello","Catania","Chioggia","Ancona","San Benedetto del Tronto","Viareggio","Livorno","Civitavecchia","Gaeta","Molfetta","Altro"];
+const STATI_LOTTO=[["seguire","Da seguire"],["offerta","In offerta"],["preso","Aggiudicato"],["perso","Perso"]];
+const STATI_RICH=[["aperta","Aperta"],["coperta","Coperta"],["chiusa","Chiusa"]];
+const DEF_CFG={cliente:"Cliente",margine:12,trasporto:0.6,imballo:0.35,calo:3,budgetGiorno:3000,contatto:"",note:""};
+const S={tab:"oggi",cfg:{...DEF_CFG},lotti:[],richieste:[],listini:[],note:[],form:null,confirm:null,filter:{q:"",mercato:"",stato:""},dbOk:false};
+let db=null;
+
+const today=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const eur=(n,d=2)=>isFinite(n)?"€ "+Number(n).toLocaleString("it-IT",{minimumFractionDigits:d,maximumFractionDigits:d}):"–";
+const kg=n=>isFinite(n)?Number(n).toLocaleString("it-IT",{maximumFractionDigits:1})+" kg":"–";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtDate=s=>{if(!s)return"–";const[y,m,d]=s.split("-");return d+"/"+m};
+const num=v=>{const n=parseFloat(String(v).replace(",","."));return isFinite(n)?n:0};
+const label=(arr,k)=>(arr.find(a=>a[0]===k)||[k,k])[1];
+
+/* Tetto d'asta: quanto posso battere al massimo per restare nel margine.
+   (prezzo al cliente × (1 − margine) − trasporto − imballo) × (1 − calo peso) */
+function tetto(prezzoCliente,cfg=S.cfg){
+  const p=num(prezzoCliente); if(!p) return NaN;
+  return (p*(1-num(cfg.margine)/100)-num(cfg.trasporto)-num(cfg.imballo))*(1-num(cfg.calo)/100);
+}
+const reqById=id=>S.richieste.find(r=>r.id===id);
+function lotTetto(l){ if(num(l.tetto)) return num(l.tetto); const r=reqById(l.richiesta); return r?tetto(r.prezzoCliente):NaN; }
+function copertura(r){ return S.lotti.filter(l=>l.richiesta===r.id&&l.stato==="preso").reduce((a,l)=>a+num(l.kg),0); }
+
+/* ---------- Archivio ---------- */
+const COLL={lotti:"lotti",richieste:"richieste",listini:"listini",note:"note"};
+async function connect(){
+  const st=document.getElementById("status");
+  let timer=setTimeout(()=>{st.className="status warn";st.innerHTML='<span class="dot"></span><span>L\'archivio non risponde ancora. Riprova tra poco: i dati che vedi potrebbero non essere aggiornati.</span>';},10000);
+  try{ db=window.claude?.use? await window.claude.use("db"):null; }catch(e){ db=null; }
+  if(!db){ clearTimeout(timer); st.className="status warn"; st.innerHTML='<span class="dot"></span><span>Archivio non disponibile in questa vista (serve aver fatto l\'accesso). Puoi provare l\'app, ma quello che inserisci non viene salvato.</span>'; render(); return; }
+  let first=new Set();
+  const done=k=>{first.add(k); if(first.size>=5){clearTimeout(timer); st.className="status live"; st.innerHTML='<span class="dot"></span><span>Salvato in archivio · aggiornato in tempo reale</span>'; S.dbOk=true; render();}};
+  const fail=e=>{clearTimeout(timer); st.className="status warn"; st.innerHTML='<span class="dot"></span><span>Archivio non raggiungibile ('+esc(e.code)+'). Ricarica la pagina più tardi.</span>';};
+  for(const k of Object.keys(COLL)){
+    db.collection(COLL[k]).onSnapshot(snap=>{ S[k]=snap.docs.map(d=>({id:d.id,...d.data()})); if(!snap.metadata.fromCache) done(k); render(); },fail);
+  }
+  db.doc("config/buyer").onSnapshot(s=>{ if(s.exists) S.cfg={...DEF_CFG,...s.data()}; if(!s.metadata.fromCache) done("cfg"); render(); },fail);
+}
+async function save(kind,obj){
+  const data={...obj}; const id=data.id; delete data.id; data.agg=new Date().toISOString();
+  if(!db){ const list=S[kind]; if(id){const i=list.findIndex(x=>x.id===id); list[i]={id,...data};} else list.push({id:"tmp"+Date.now(),...data}); render(); return; }
+  try{ if(id) await db.collection(COLL[kind]).doc(id).set(data); else await db.collection(COLL[kind]).add(data); }
+  catch(e){ alertBar(e.code==="quota_exceeded"?"Archivio pieno: elimina qualche voce vecchia.":"Non salvato ("+e.code+"). Riprova."); }
+}
+async function patch(kind,id,data){
+  if(!db){ const o=S[kind].find(x=>x.id===id); Object.assign(o,data); render(); return; }
+  try{ await db.collection(COLL[kind]).doc(id).update({...data,agg:new Date().toISOString()}); }catch(e){ alertBar("Modifica non salvata ("+e.code+")."); }
+}
+async function remove(kind,id){
+  if(!db){ S[kind]=S[kind].filter(x=>x.id!==id); render(); return; }
+  try{ await db.collection(COLL[kind]).doc(id).delete(); }catch(e){ alertBar("Non eliminato ("+e.code+")."); }
+}
+async function saveCfg(cfg){
+  S.cfg={...S.cfg,...cfg}; render();
+  if(db){ try{ await db.doc("config/buyer").set(S.cfg); }catch(e){ alertBar("Impostazioni non salvate ("+e.code+")."); } }
+}
+function alertBar(msg){ const st=document.getElementById("status"); st.className="status warn"; st.innerHTML='<span class="dot"></span><span>'+esc(msg)+'</span>'; }
+
+/* ---------- Render ---------- */
+function captureForm(){
+  const f=document.getElementById("frm"); if(!f) return; if(!S.form&&f.dataset.kind==="note") S.form={kind:"note",data:{}}; if(!S.form||f.dataset.kind!==S.form.kind) return;
+  for(const [k,id] of Object.entries(FIELDS[S.form.kind])){ const el=document.getElementById(id); if(el) S.form.data[k]=el.value; }
+}
+function render(){
+  captureForm();
+  if(document.activeElement&&document.activeElement.closest&&document.activeElement.closest("#cfg")) { return; }
+  document.getElementById("hdrClient").textContent=S.cfg.cliente||"il cliente";
+  document.getElementById("hdrMargin").textContent=num(S.cfg.margine)+" %";
+  const aperte=S.richieste.filter(r=>r.stato==="aperta").length;
+  const inAsta=S.lotti.filter(l=>l.data===today()&&(l.stato==="seguire"||l.stato==="offerta")).length;
+  const counts={oggi:inAsta,aste:0,cliente:aperte,fornitori:0,note:0};
+  document.getElementById("tabs").innerHTML=TABS.map(([k,t])=>`<button role="tab" type="button" data-tab="${k}" aria-selected="${S.tab===k}">${t}${counts[k]?`<span class="cnt">${counts[k]}</span>`:""}</button>`).join("");
+  const v=document.getElementById("view");
+  const keep=document.activeElement&&document.activeElement.id&&v.contains(document.activeElement)?{id:document.activeElement.id,pos:document.activeElement.selectionStart}:null;
+  v.innerHTML=({oggi:vOggi,aste:vAste,cliente:vCliente,fornitori:vFornitori,note:vNote})[S.tab]();
+  if(keep){const el=document.getElementById(keep.id); if(el){el.focus(); try{el.setSelectionRange(keep.pos,keep.pos)}catch(e){}}}
+}
+const ex=o=>o.esempio?'<span class="ex" title="Voce di esempio: eliminala o modificala">esempio</span>':"";
+const chip=(s,arr,kind,id)=>`<button type="button" class="chip s-${s}" data-cycle="${kind}" data-id="${id}" title="Cambia stato">${label(arr,s)} ▾</button>`;
+function delBtn(kind,id){
+  if(S.confirm===kind+id) return `<span class="confirm">Eliminare? <button class="btn small danger" type="button" data-del="${kind}" data-id="${id}">Sì</button><button class="link" type="button" data-cancel>No</button></span>`;
+  return `<button class="link" type="button" data-ask="${kind}" data-id="${id}">elimina</button>`;
+}
+
+/* OGGI */
+function vOggi(){
+  const t=today();
+  const lotOggi=S.lotti.filter(l=>l.data===t);
+  const presi=lotOggi.filter(l=>l.stato==="preso");
+  const spesa=presi.reduce((a,l)=>a+num(l.kg)*num(l.battuta),0);
+  const kgPresi=presi.reduce((a,l)=>a+num(l.kg),0);
+  const risp=presi.reduce((a,l)=>{const c=lotTetto(l);return isFinite(c)?a+(c-num(l.battuta))*num(l.kg):a},0);
+  const aperte=S.richieste.filter(r=>r.stato==="aperta").sort((a,b)=>(a.consegna||"").localeCompare(b.consegna||""));
+  const kgMancanti=aperte.reduce((a,r)=>a+Math.max(0,num(r.kg)-copertura(r)),0);
+  const budget=num(S.cfg.budgetGiorno);
+  const daSeguire=lotOggi.filter(l=>l.stato==="seguire"||l.stato==="offerta");
+  const giorno=new Date().toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
+  return `
+  <div class="head"><div><h2>Asta di ${esc(giorno)}</h2><p class="sub">Cosa batte oggi, quanto puoi spendere e cosa manca al cliente.</p></div>
+    <div class="row"><button class="btn amber" type="button" data-new="lotti">+ Lotto in asta</button><button class="btn" type="button" data-new="richieste" data-gotab="cliente">+ Richiesta cliente</button></div></div>
+  <div class="kpis">
+    <div class="kpi hot"><small>Lotti da battere oggi</small><b class="num">${daSeguire.length}</b><span>${lotOggi.length} lotti segnati in totale</span></div>
+    <div class="kpi"><small>Speso oggi</small><b class="num">${eur(spesa,0)}</b><span>${budget?`su budget ${eur(budget,0)} · ${Math.round(spesa/budget*100)} %`:"budget non impostato"}</span></div>
+    <div class="kpi"><small>Comprato oggi</small><b class="num">${kg(kgPresi)}</b><span>${presi.length} lotti aggiudicati</span></div>
+    <div class="kpi"><small>Sotto il tetto</small><b class="num ${risp>=0?"delta-ok":"delta-bad"}">${eur(risp,0)}</b><span>margine in più rispetto al massimo</span></div>
+    <div class="kpi"><small>Mancano al cliente</small><b class="num">${kg(kgMancanti)}</b><span>${aperte.length} richieste aperte</span></div>
+  </div>
+  <div class="cols">
+    <section class="board" aria-label="Tabellone asta di oggi">
+      <h3>Tabellone · lotti da seguire</h3>
+      ${daSeguire.length?daSeguire.map(l=>{const c=lotTetto(l);const r=reqById(l.richiesta);return `<div class="brow">
+        <div class="sp"><b>${esc(l.specie)} ${esc(l.calibro||"")}</b><span>${esc(l.mercato||"")} · ${kg(num(l.kg))}${l.cassette?` · ${esc(l.cassette)} cass.`:""}${r?" · per richiesta cliente":""}</span></div>
+        <div class="led">${num(l.base)?eur(l.base):"–"}<small>partenza</small></div>
+        <div class="led cap">${isFinite(c)?eur(c):"–"}<small>tetto</small></div></div>`}).join(""):`<p style="margin:0;color:#9fb4ae">Nessun lotto segnato per oggi. Aggiungine uno con «+ Lotto in asta».</p>`}
+    </section>
+    <section class="panel">
+      <div class="head"><h3>Richieste del cliente da coprire</h3><button class="link" type="button" data-go="cliente">tutte</button></div>
+      ${aperte.length?aperte.slice(0,6).map(reqRow).join(""):`<div class="empty">Nessuna richiesta aperta.</div>`}
+    </section>
+  </div>
+  <section class="panel">
+    <div class="head"><h3>Miglior prezzo fornitori per specie</h3><button class="link" type="button" data-go="fornitori">listini</button></div>
+    ${bestTable()}
+  </section>`;
+}
+function reqRow(r){
+  const c=copertura(r), k=num(r.kg), pct=k?Math.min(100,c/k*100):0, cap=tetto(r.prezzoCliente);
+  return `<div class="req"><div><b>${esc(r.specie)}</b> ${esc(r.calibro||"")}${ex(r)}<div class="muted">consegna ${fmtDate(r.consegna)} · cliente paga ${eur(num(r.prezzoCliente))}/kg · tetto asta <span class="num">${eur(cap)}</span></div></div>
+    <div class="num" style="text-align:right">${kg(c)} / ${kg(k)}</div>
+    <div class="meter ${pct>=100?"full":""}"><i style="width:${pct}%"></i></div></div>`;
+}
+function bestTable(){
+  const by={};
+  for(const l of S.listini){const key=(l.specie||"").trim().toLowerCase()+"|"+(l.calibro||"").trim().toLowerCase(); if(!by[key]||num(l.prezzo)<num(by[key].prezzo)) by[key]=l;}
+  const rows=Object.values(by).sort((a,b)=>a.specie.localeCompare(b.specie));
+  if(!rows.length) return `<div class="empty">Nessun prezzo fornitore. Inseriscili in «Fornitori».</div>`;
+  return `<div class="tablewrap"><table style="min-width:560px"><thead><tr><th>Specie</th><th>Calibro</th><th>Fornitore</th><th class="r">€/kg</th><th>Aggiornato</th></tr></thead><tbody>
+  ${rows.map(l=>`<tr><td>${esc(l.specie)}${ex(l)}</td><td>${esc(l.calibro||"–")}</td><td>${esc(l.fornitore)}</td><td class="r num">${eur(num(l.prezzo))}</td><td>${fmtDate(l.data)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+
+/* ASTE */
+function vAste(){
+  const f=S.filter, q=f.q.toLowerCase();
+  const list=S.lotti.filter(l=>(!q||(l.specie+" "+(l.note||"")+" "+(l.calibro||"")).toLowerCase().includes(q))&&(!f.mercato||l.mercato===f.mercato)&&(!f.stato||l.stato===f.stato))
+    .sort((a,b)=>(b.data||"").localeCompare(a.data||"")||(a.specie||"").localeCompare(b.specie||""));
+  const presi=list.filter(l=>l.stato==="preso");
+  const media=presi.length?presi.reduce((a,l)=>a+num(l.battuta)*num(l.kg),0)/Math.max(1,presi.reduce((a,l)=>a+num(l.kg),0)):NaN;
+  return `
+  <div class="head"><div><h2>Aste</h2><p class="sub">Ogni lotto che segui: base, tetto, prezzo di battuta. Il tetto viene dalla richiesta del cliente collegata, oppure lo scrivi tu.</p></div>
+    <button class="btn amber" type="button" data-new="lotti">+ Lotto</button></div>
+  ${S.form?.kind==="lotti"?formLotto():""}
+  ${calcPanel()}
+  <div class="filters">
+    <input id="fq" type="search" placeholder="Cerca specie, calibro, note" value="${esc(f.q)}" aria-label="Cerca">
+    <select id="fm" aria-label="Mercato"><option value="">Tutti i mercati</option>${MERCATI.map(m=>`<option ${m===f.mercato?"selected":""}>${m}</option>`).join("")}</select>
+    <select id="fs" aria-label="Stato"><option value="">Tutti gli stati</option>${STATI_LOTTO.map(([k,t])=>`<option value="${k}" ${k===f.stato?"selected":""}>${t}</option>`).join("")}</select>
+    <span class="status">${list.length} lotti${isFinite(media)?` · media aggiudicata <b class="num">&nbsp;${eur(media)}/kg</b>`:""}</span>
+  </div>
+  ${list.length?`<div class="tablewrap"><table><thead><tr><th>Data</th><th>Mercato</th><th>Specie · calibro</th><th class="r">Kg</th><th class="r">Base</th><th class="r">Tetto</th><th class="r">Battuta</th><th class="r">vs tetto</th><th>Stato</th><th>Note</th><th></th></tr></thead><tbody>
+  ${list.map(l=>{const c=lotTetto(l),b=num(l.battuta),d=isFinite(c)&&b?c-b:NaN;return `<tr>
+    <td class="num">${fmtDate(l.data)}</td><td>${esc(l.mercato||"–")}</td>
+    <td><b>${esc(l.specie)}</b> ${esc(l.calibro||"")}${ex(l)}${reqById(l.richiesta)?`<div class="muted">↳ richiesta cliente</div>`:""}</td>
+    <td class="r num">${num(l.kg)||"–"}</td><td class="r num">${num(l.base)?eur(l.base):"–"}</td>
+    <td class="r num">${isFinite(c)?eur(c):"–"}</td><td class="r num">${b?eur(b):"–"}</td>
+    <td class="r num ${d>=0?"delta-ok":"delta-bad"}">${isFinite(d)?(d>=0?"+":"")+eur(d):"–"}</td>
+    <td>${chip(l.stato,STATI_LOTTO,"lotti",l.id)}</td><td><span class="muted">${esc(l.note||"")}</span></td>
+    <td style="white-space:nowrap"><button class="link" type="button" data-edit="lotti" data-id="${l.id}">modifica</button> ${delBtn("lotti",l.id)}</td></tr>`}).join("")}
+  </tbody></table></div>`:`<div class="empty">Nessun lotto${f.q||f.mercato||f.stato?" con questi filtri":""}. Segna il primo lotto che vuoi seguire con «+ Lotto».</div>`}`;
+}
+function calcPanel(){
+  const c=S.calc||{p:""}; const cap=tetto(c.p);
+  return `<section class="panel"><h3>Calcola il tetto d'asta</h3>
+  <div class="calc">
+    <label for="cp">Prezzo al cliente €/kg<input id="cp" inputmode="decimal" value="${esc(c.p)}" placeholder="es. 32"></label>
+    <label for="cm">Margine %<input id="cm" inputmode="decimal" value="${esc(S.cfg.margine)}"></label>
+    <label for="ct">Trasporto €/kg<input id="ct" inputmode="decimal" value="${esc(S.cfg.trasporto)}"></label>
+    <label for="ci">Imballo e ghiaccio €/kg<input id="ci" inputmode="decimal" value="${esc(S.cfg.imballo)}"></label>
+    <label for="cc">Calo peso %<input id="cc" inputmode="decimal" value="${esc(S.cfg.calo)}"></label>
+    <div class="capout"><span>Batti al massimo</span><b class="num">${isFinite(cap)&&cap>0?eur(cap):"–"}</b><span>/kg · oltre questo prezzo il margine scende sotto il ${num(S.cfg.margine)} %</span></div>
+  </div></section>`;
+}
+function formLotto(){
+  const o=S.form.data;
+  const reqs=S.richieste.filter(r=>r.stato!=="chiusa");
+  return `<form class="sheet" id="frm" data-kind="lotti"><h3>${o.id?"Modifica lotto":"Nuovo lotto in asta"}</h3><div class="fgrid">
+  <label for="l-data">Data<input id="l-data" type="date" value="${esc(o.data||today())}" required></label>
+  <label for="l-mercato">Mercato<select id="l-mercato">${MERCATI.map(m=>`<option ${m===o.mercato?"selected":""}>${m}</option>`).join("")}</select></label>
+  <label for="l-specie">Specie<input id="l-specie" value="${esc(o.specie)}" placeholder="es. Gambero rosso" required></label>
+  <label for="l-calibro">Calibro / categoria<input id="l-calibro" value="${esc(o.calibro)}" placeholder="es. 1ª cat. 10-15 pz/kg"></label>
+  <label for="l-kg">Kg<input id="l-kg" inputmode="decimal" value="${esc(o.kg)}"></label>
+  <label for="l-cassette">Cassette<input id="l-cassette" inputmode="numeric" value="${esc(o.cassette)}"></label>
+  <label for="l-base">Base d'asta €/kg<input id="l-base" inputmode="decimal" value="${esc(o.base)}"></label>
+  <label for="l-richiesta">Per la richiesta<select id="l-richiesta"><option value="">Nessuna (scorta)</option>${reqs.map(r=>`<option value="${r.id}" ${r.id===o.richiesta?"selected":""}>${esc(r.specie)} ${esc(r.calibro||"")} · ${fmtDate(r.consegna)}</option>`).join("")}</select></label>
+  <label for="l-tetto">Tetto €/kg (vuoto = dalla richiesta)<input id="l-tetto" inputmode="decimal" value="${esc(o.tetto)}"></label>
+  <label for="l-battuta">Prezzo di battuta €/kg<input id="l-battuta" inputmode="decimal" value="${esc(o.battuta)}"></label>
+  <label for="l-stato">Stato<select id="l-stato">${STATI_LOTTO.map(([k,t])=>`<option value="${k}" ${k===(o.stato||"seguire")?"selected":""}>${t}</option>`).join("")}</select></label>
+  <label for="l-note" class="wide">Note (qualità, occhio, pescatore, barca)<textarea id="l-note">${esc(o.note)}</textarea></label>
+  </div><p class="err" id="ferr" hidden></p><div class="row"><button class="btn primary" type="submit">Salva lotto</button><button class="btn" type="button" data-close>Annulla</button></div></form>`;
+}
+
+/* CLIENTE */
+function vCliente(){
+  const c=S.cfg;
+  const list=[...S.richieste].sort((a,b)=>({aperta:0,coperta:1,chiusa:2}[a.stato]-({aperta:0,coperta:1,chiusa:2}[b.stato]))||(a.consegna||"").localeCompare(b.consegna||""));
+  return `
+  <div class="head"><div><h2>Cliente</h2><p class="sub">Lavori per un solo cliente: qui ci sono le sue condizioni e cosa ti chiede. Il tetto d'asta di ogni richiesta parte dal prezzo che paga lui.</p></div>
+    <button class="btn amber" type="button" data-new="richieste">+ Richiesta</button></div>
+  <section class="panel"><h3>Condizioni</h3>
+    <form id="cfg" class="fgrid">
+      <label for="g-cliente">Nome cliente<input id="g-cliente" value="${esc(c.cliente)}"></label>
+      <label for="g-contatto">Referente<input id="g-contatto" value="${esc(c.contatto)}" placeholder="es. responsabile acquisti"></label>
+      <label for="g-margine">Margine %<input id="g-margine" inputmode="decimal" value="${esc(c.margine)}"></label>
+      <label for="g-trasporto">Trasporto €/kg<input id="g-trasporto" inputmode="decimal" value="${esc(c.trasporto)}"></label>
+      <label for="g-imballo">Imballo e ghiaccio €/kg<input id="g-imballo" inputmode="decimal" value="${esc(c.imballo)}"></label>
+      <label for="g-calo">Calo peso %<input id="g-calo" inputmode="decimal" value="${esc(c.calo)}"></label>
+      <label for="g-budget">Budget asta al giorno €<input id="g-budget" inputmode="decimal" value="${esc(c.budgetGiorno)}"></label>
+      <label for="g-note" class="wide">Preferenze del cliente (calibri, provenienze, giorni di consegna, cosa non vuole)<textarea id="g-note">${esc(c.note)}</textarea></label>
+      <div class="row wide"><button class="btn primary" type="submit">Salva condizioni</button></div>
+    </form></section>
+  ${S.form?.kind==="richieste"?formRich():""}
+  ${list.length?`<div class="tablewrap"><table><thead><tr><th>Consegna</th><th>Specie · calibro</th><th class="r">Kg</th><th class="r">Prezzo cliente</th><th class="r">Tetto asta</th><th>Coperto</th><th>Stato</th><th>Note</th><th></th></tr></thead><tbody>
+  ${list.map(r=>{const cv=copertura(r),k=num(r.kg),pct=k?Math.min(100,cv/k*100):0;return `<tr>
+    <td class="num">${fmtDate(r.consegna)}</td><td><b>${esc(r.specie)}</b> ${esc(r.calibro||"")}${ex(r)}</td>
+    <td class="r num">${k||"–"}</td><td class="r num">${eur(num(r.prezzoCliente))}</td><td class="r num">${eur(tetto(r.prezzoCliente))}</td>
+    <td style="min-width:120px"><div class="num" style="font-size:12px">${kg(cv)}</div><div class="meter ${pct>=100?"full":""}"><i style="width:${pct}%"></i></div></td>
+    <td>${chip(r.stato,STATI_RICH,"richieste",r.id)}</td><td><span class="muted">${esc(r.note||"")}</span></td>
+    <td style="white-space:nowrap"><button class="link" type="button" data-edit="richieste" data-id="${r.id}">modifica</button> ${delBtn("richieste",r.id)}</td></tr>`}).join("")}
+  </tbody></table></div>`:`<div class="empty">Nessuna richiesta. Quando il cliente ti chiede un prodotto, segnalo con «+ Richiesta».</div>`}`;
+}
+function formRich(){
+  const o=S.form.data;
+  return `<form class="sheet" id="frm" data-kind="richieste"><h3>${o.id?"Modifica richiesta":"Nuova richiesta del cliente"}</h3><div class="fgrid">
+  <label for="r-specie">Specie<input id="r-specie" value="${esc(o.specie)}" required></label>
+  <label for="r-calibro">Calibro<input id="r-calibro" value="${esc(o.calibro)}"></label>
+  <label for="r-kg">Kg richiesti<input id="r-kg" inputmode="decimal" value="${esc(o.kg)}"></label>
+  <label for="r-prezzo">Prezzo al cliente €/kg<input id="r-prezzo" inputmode="decimal" value="${esc(o.prezzoCliente)}"></label>
+  <label for="r-consegna">Consegna<input id="r-consegna" type="date" value="${esc(o.consegna||today())}"></label>
+  <label for="r-stato">Stato<select id="r-stato">${STATI_RICH.map(([k,t])=>`<option value="${k}" ${k===(o.stato||"aperta")?"selected":""}>${t}</option>`).join("")}</select></label>
+  <label for="r-note" class="wide">Note<textarea id="r-note">${esc(o.note)}</textarea></label>
+  </div><p class="err" id="ferr" hidden></p><div class="row"><button class="btn primary" type="submit">Salva richiesta</button><button class="btn" type="button" data-close>Annulla</button></div></form>`;
+}
+
+/* FORNITORI */
+function vFornitori(){
+  const q=(S.fq||"").toLowerCase();
+  const list=S.listini.filter(l=>!q||(l.specie+" "+l.fornitore+" "+(l.calibro||"")).toLowerCase().includes(q))
+    .sort((a,b)=>a.specie.localeCompare(b.specie)||num(a.prezzo)-num(b.prezzo));
+  const bestKey={}; for(const l of list){const k=l.specie.toLowerCase()+"|"+(l.calibro||"").toLowerCase(); if(!bestKey[k]||num(l.prezzo)<num(bestKey[k].prezzo)) bestKey[k]=l;}
+  const forn=[...new Set(S.listini.map(l=>l.fornitore))];
+  return `
+  <div class="head"><div><h2>Fornitori</h2><p class="sub">I prezzi che ti fanno pescherecci, grossisti e cooperative, fuori asta. In verde il più basso per ogni specie e calibro: confrontalo con il tetto prima di andare in asta.</p></div>
+    <button class="btn amber" type="button" data-new="listini">+ Prezzo</button></div>
+  ${S.form?.kind==="listini"?formListino(forn):""}
+  <div class="filters"><input id="fq2" type="search" placeholder="Cerca specie o fornitore" value="${esc(S.fq||"")}" aria-label="Cerca"><span class="status">${forn.length} fornitori · ${S.listini.length} prezzi</span></div>
+  ${list.length?`<div class="tablewrap"><table><thead><tr><th>Specie · calibro</th><th>Fornitore</th><th class="r">€/kg</th><th>Data</th><th>Zona / provenienza</th><th>Condizioni</th><th></th></tr></thead><tbody>
+  ${list.map(l=>{const k=l.specie.toLowerCase()+"|"+(l.calibro||"").toLowerCase();const best=bestKey[k]===l;return `<tr class="${best?"best":""}">
+    <td><b>${esc(l.specie)}</b> ${esc(l.calibro||"")}${ex(l)}</td><td>${esc(l.fornitore)}</td><td class="r num">${eur(num(l.prezzo))}${best?" ★":""}</td>
+    <td class="num">${fmtDate(l.data)}</td><td>${esc(l.zona||"–")}</td><td><span class="muted">${esc(l.condizioni||"")}</span></td>
+    <td style="white-space:nowrap"><button class="link" type="button" data-edit="listini" data-id="${l.id}">modifica</button> ${delBtn("listini",l.id)}</td></tr>`}).join("")}
+  </tbody></table></div>`:`<div class="empty">Nessun prezzo. Segna il primo listino con «+ Prezzo».</div>`}`;
+}
+function formListino(forn){
+  const o=S.form.data;
+  return `<form class="sheet" id="frm" data-kind="listini"><h3>${o.id?"Modifica prezzo":"Nuovo prezzo fornitore"}</h3><div class="fgrid">
+  <label for="p-fornitore">Fornitore<input id="p-fornitore" list="fornlist" value="${esc(o.fornitore)}" required><datalist id="fornlist">${forn.map(f=>`<option value="${esc(f)}">`).join("")}</datalist></label>
+  <label for="p-specie">Specie<input id="p-specie" value="${esc(o.specie)}" required></label>
+  <label for="p-calibro">Calibro<input id="p-calibro" value="${esc(o.calibro)}"></label>
+  <label for="p-prezzo">Prezzo €/kg<input id="p-prezzo" inputmode="decimal" value="${esc(o.prezzo)}" required></label>
+  <label for="p-data">Data<input id="p-data" type="date" value="${esc(o.data||today())}"></label>
+  <label for="p-zona">Zona FAO / provenienza<input id="p-zona" value="${esc(o.zona)}" placeholder="es. FAO 37.2.2"></label>
+  <label for="p-condizioni" class="wide">Condizioni (pagamento, minimo d'ordine, resa franco…)<textarea id="p-condizioni">${esc(o.condizioni)}</textarea></label>
+  </div><p class="err" id="ferr" hidden></p><div class="row"><button class="btn primary" type="submit">Salva prezzo</button><button class="btn" type="button" data-close>Annulla</button></div></form>`;
+}
+
+/* NOTE */
+function vNote(){
+  const list=[...S.note].sort((a,b)=>(b.creata||"").localeCompare(a.creata||""));
+  const o=S.form?.kind==="note"?S.form.data:{};
+  return `
+  <div class="head"><div><h2>Note</h2><p class="sub">Appunti veloci dal banco d'asta, dalle telefonate con il cliente e con i fornitori.</p></div></div>
+  <form class="sheet" id="frm" data-kind="note" style="border-width:1px"><div class="fgrid">
+    <label for="n-testo" class="wide">${o.id?"Modifica nota":"Nuova nota"}<textarea id="n-testo" placeholder="es. Domani poco prodotto da Mazara per il maltempo: anticipare l'ordine">${esc(o.testo)}</textarea></label>
+    <label for="n-tag">Riguarda<select id="n-tag">${["asta","cliente","fornitore","altro"].map(t=>`<option ${t===(o.tag||"asta")?"selected":""}>${t}</option>`).join("")}</select></label>
+  </div><p class="err" id="ferr" hidden></p><div class="row"><button class="btn primary" type="submit">${o.id?"Salva nota":"Aggiungi nota"}</button>${o.id?'<button class="btn" type="button" data-close>Annulla</button>':""}</div></form>
+  ${list.length?`<div class="notes">${list.map(n=>`<article class="note"><div class="meta"><span class="tag ${esc(n.tag)}">${esc(n.tag)}</span><span class="num">${n.creata?new Date(n.creata).toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):""}${ex(n)}</span></div><p>${esc(n.testo)}</p><div class="meta"><span></span><span><button class="link" type="button" data-edit="note" data-id="${n.id}">modifica</button> ${delBtn("note",n.id)}</span></div></article>`).join("")}</div>`:`<div class="empty">Ancora nessuna nota.</div>`}`;
+}
+
+/* ---------- Eventi ---------- */
+const FIELDS={
+  lotti:{data:"l-data",mercato:"l-mercato",specie:"l-specie",calibro:"l-calibro",kg:"l-kg",cassette:"l-cassette",base:"l-base",richiesta:"l-richiesta",tetto:"l-tetto",battuta:"l-battuta",stato:"l-stato",note:"l-note"},
+  richieste:{specie:"r-specie",calibro:"r-calibro",kg:"r-kg",prezzoCliente:"r-prezzo",consegna:"r-consegna",stato:"r-stato",note:"r-note"},
+  listini:{fornitore:"p-fornitore",specie:"p-specie",calibro:"p-calibro",prezzo:"p-prezzo",data:"p-data",zona:"p-zona",condizioni:"p-condizioni"},
+  note:{testo:"n-testo",tag:"n-tag"}
+};
+const NUMS=["kg","cassette","base","tetto","battuta","prezzoCliente","prezzo"];
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  if(t.dataset.tab){S.tab=t.dataset.tab;S.form=null;S.confirm=null;render();scrollTo(0,0);return;}
+  if(t.dataset.go){S.tab=t.dataset.go;S.form=null;render();scrollTo(0,0);return;}
+  if(t.dataset.new){ if(t.dataset.gotab) S.tab=t.dataset.gotab; else if(t.dataset.new==="lotti") S.tab="aste"; S.form={kind:t.dataset.new,data:{}}; render(); document.getElementById("frm")?.scrollIntoView({block:"nearest"}); document.querySelector("#frm input:not([type=date]), #frm textarea")?.focus(); return;}
+  if(t.dataset.edit){ const o=S[t.dataset.edit].find(x=>x.id===t.dataset.id); S.form={kind:t.dataset.edit,data:{...o}}; render(); document.getElementById("frm")?.scrollIntoView({block:"nearest"}); return;}
+  if(t.hasAttribute("data-close")){S.form=null;render();return;}
+  if(t.dataset.ask){S.confirm=t.dataset.ask+t.dataset.id;render();return;}
+  if(t.hasAttribute("data-cancel")){S.confirm=null;render();return;}
+  if(t.dataset.del){S.confirm=null;remove(t.dataset.del,t.dataset.id);return;}
+  if(t.dataset.cycle){ const kind=t.dataset.cycle, arr=kind==="lotti"?STATI_LOTTO:STATI_RICH; const o=S[kind].find(x=>x.id===t.dataset.id); const i=arr.findIndex(a=>a[0]===o.stato); const next=arr[(i+1)%arr.length][0]; patch(kind,o.id,{stato:next}); return;}
+});
+document.addEventListener("submit",e=>{
+  e.preventDefault();
+  const f=e.target;
+  if(f.id==="cfg"){ document.activeElement?.blur(); const g=id=>document.getElementById(id).value; saveCfg({cliente:g("g-cliente").trim()||"Cliente",contatto:g("g-contatto").trim(),margine:num(g("g-margine")),trasporto:num(g("g-trasporto")),imballo:num(g("g-imballo")),calo:num(g("g-calo")),budgetGiorno:num(g("g-budget")),note:g("g-note")}); return; }
+  const kind=f.dataset.kind, map=FIELDS[kind], o={...(S.form?.kind===kind?S.form.data:{})};
+  for(const [k,id] of Object.entries(map)){ const v=document.getElementById(id).value; o[k]=NUMS.includes(k)?(v.trim()===""?"":num(v)):v.trim(); }
+  const err=document.getElementById("ferr");
+  const miss= kind==="note"? (!o.testo?"Scrivi il testo della nota.":"") : kind==="listini"? (!o.fornitore||!o.specie||!o.prezzo?"Servono fornitore, specie e prezzo.":"") : (!o.specie?"Scrivi la specie.":"");
+  if(miss){err.textContent=miss;err.hidden=false;return;}
+  if(kind==="note"&&!o.creata) o.creata=new Date().toISOString();
+  if(o.esempio) delete o.esempio;
+  S.form=null; f.reset(); f.querySelectorAll("textarea,input").forEach(x=>x.value=""); save(kind,o); render();
+});
+let calcT;
+document.addEventListener("input",e=>{
+  const id=e.target.id;
+  if(id==="fq"){S.filter.q=e.target.value;render();return;}
+  if(id==="fq2"){S.fq=e.target.value;render();return;}
+  if(id==="cp"){S.calc={p:e.target.value};render();return;}
+  if(["cm","ct","ci","cc"].includes(id)){ const key={cm:"margine",ct:"trasporto",ci:"imballo",cc:"calo"}[id]; S.cfg[key]=e.target.value; render(); clearTimeout(calcT); calcT=setTimeout(()=>saveCfg({[key]:num(S.cfg[key])}),900); }
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="fm"){S.filter.mercato=e.target.value;render();}
+  if(e.target.id==="fs"){S.filter.stato=e.target.value;render();}
+});
+
+render(); connect();
+</script>
