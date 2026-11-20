@@ -252,9 +252,9 @@ tr.row.on td{background:var(--panel-3)}
   <p class="note">Gli agenti della sede sono una simulazione; listini, fornitori, budget, aste, social ed email sono dati salvati che puoi modificare. Le email non partono davvero: Argo HQ prepara il testo da copiare nella tua posta. CAR = Centro Agroalimentare Roma.</p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script src="lib/CSS2DRenderer.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -598,8 +598,8 @@ function start3d(){
   host.appendChild(renderer.domElement);
   const lr=new THREE.CSS2DRenderer();Object.assign(lr.domElement.style,{position:'absolute',inset:'0',pointerEvents:'none'});host.appendChild(lr.domElement);
   const scene=new THREE.Scene();scene.background=new THREE.Color('#030a18');scene.fog=new THREE.Fog('#030a18',60,130);
-  const cam=new THREE.PerspectiveCamera(40,1,.1,400);cam.position.set(0,50,47);ctl.target.set(0,0,3);
-  const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.target.set(0,0,0);ctl.enableDamping=true;ctl.maxPolarAngle=1.32;ctl.minDistance=10;ctl.maxDistance=100;
+  const cam=new THREE.PerspectiveCamera(40,1,.1,400);cam.position.set(0,50,47);
+  const ctl=new THREE.OrbitControls(cam,renderer.domElement);ctl.target.set(0,0,3);ctl.enableDamping=true;ctl.maxPolarAngle=1.32;ctl.minDistance=10;ctl.maxDistance=100;
   scene.add(new THREE.HemisphereLight('#a8cfff','#061024',.55));
   const sun=new THREE.DirectionalLight('#fff4e0',.9);sun.position.set(-25,45,20);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-40,right:40,top:40,bottom:-40,near:1,far:130});scene.add(sun);
   const M=(c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.65,metalness:.12},o));
@@ -707,7 +707,7 @@ function start3d(){
   const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
   renderer.domElement.addEventListener('click',e=>{const r=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(mouse,cam);
     const hits=ray.intersectObjects(AG.flatMap(a=>a.g.children.filter(c=>c.userData.agent)),false);if(hits.length)select(hits[0].object.userData.agent);});
-  function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();}
+  function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);lr.setSize(w,h);cam.aspect=w/h;const a=w/h;cam.fov=a>=1.15?40:Math.min(70,2*Math.atan(Math.tan(20*Math.PI/180)*1.15/a)*180/Math.PI);cam.updateProjectionMatrix();}
   window.__resize3d=resize;new ResizeObserver(resize).observe(host);resize();
   const goal={pos:null,tgt:null};
   function setView(v){view=v;document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===v?'true':'false'));
@@ -770,7 +770,8 @@ $('b-play').onclick=()=>{paused=!paused;$('b-play').textContent=paused?'▶ Ripr
 
 addLog(AG[0],'apre il turno: asta alle 7:00, CAR aperto dalle 3:00','dir');
 renderReqs();route();select(AG[5]);
-if(!start3d()){setInterval(()=>{if(!paused)sim(.25*speed);renderTeam();$('clk').textContent=hhmm();},250);}
+let ok3d=false;try{ok3d=start3d();}catch(e){console.error(e);const w=$('world');const m=document.createElement('div');m.className='loading';m.textContent='Il mondo 3D non parte su questo dispositivo ('+(e&&e.message||e)+'). Gli strumenti funzionano lo stesso.';w.appendChild(m);}
+if(!ok3d){setInterval(()=>{if(!paused)sim(.25*speed);renderTeam();$('clk').textContent=hhmm();},250);}
 initData();
 })();
 </script>
