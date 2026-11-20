@@ -133,7 +133,7 @@ sm = np.empty(N); st = 0.0
 for i in range(0, N, 48):  # a blocchi di 1 ms
     tgt = act[i]; a = a_att if tgt > st else a_rel
     st += (tgt - st) * (1 - (1 - a) ** 48); sm[i:i + 48] = st
-duck = 10 ** (-9 * sm / 20)
+duck = 10 ** (-cfg.get('duck_db', 9) * sm / 20)
 mus *= duck[:, None]
 mus /= np.abs(mus).max() / 0.6
 sf.write(out_m, mus.astype(np.float32), SR, subtype='FLOAT')

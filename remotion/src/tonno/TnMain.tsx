@@ -42,7 +42,7 @@ export const ObesoIll: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const TnMain: React.FC = () => (
+export const TnMain: React.FC<{subs?: boolean}> = ({subs = true}) => (
   <AbsoluteFill style={{backgroundColor: C.navyDeep}}>
     <Photos shots={TN_SHOTS} />
     <Grade />
@@ -64,7 +64,7 @@ export const TnMain: React.FC = () => (
     <S k="cucina" render={(d, t) => <Cucina dur={d} t0={t} photos={{rosso: 'tn_sashimi', gialla: null, obeso: 'tn_tartare'}} />} />
     <Swooshes times={[3.4, 10.5, 17.2, 21.95, 29.75, 34.12, 38.45, 46.45, 47.98, 49.95, 54.33, 60.25, 65.15, 69.95, 72.25, 79.45]} />
     <Labels shots={TN_SHOTS} />
-    <Subs groups={words as never} hide={TN_HIDE_SUBS} />
+    {subs && <Subs groups={words as never} hide={TN_HIDE_SUBS} />}
     <S k="poll" render={(d, t) => <Poll dur={d + 10} t0={t} photos={hookPh as never} />} />
     <Header logoAt={TN_LOGO_AT} />
     <Progress total={TN_TOTAL} />

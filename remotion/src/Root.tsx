@@ -10,6 +10,7 @@ import {RV_TOTAL} from './rv/timeline';
 import {ObesoIll, TnMain} from './tonno/TnMain';
 import {TN_TOTAL} from './tonno/timeline';
 import {TnCover} from './tonno/Cover';
+import {TnFinal, TN5_TOTAL} from './tonno/TnFinal';
 import {MapStill, MAPS} from './tonno/Kit';
 
 export const Root: React.FC = () => (
@@ -20,6 +21,7 @@ export const Root: React.FC = () => (
     <Composition id="Tonno" component={TnMain} durationInFrames={Math.round(TN_TOTAL * FPS)} fps={FPS} width={W} height={H} />
     <Still id="TnMapWorld" component={() => <MapStill m="world" />} width={Math.round(MAPS.world.w * MAPS.world.k)} height={Math.round(MAPS.world.h * MAPS.world.k)} />
     <Still id="TnMapMed" component={() => <MapStill m="med" />} width={Math.round(MAPS.med.w * MAPS.med.k)} height={Math.round(MAPS.med.h * MAPS.med.k)} />
+    <Composition id="TonnoFinale" component={TnFinal} durationInFrames={Math.round(TN5_TOTAL * FPS)} fps={FPS} width={W} height={H} />
     <Still id="TnCover" component={TnCover} width={W} height={H} />
     <Still id="TnObesoIll" component={ObesoIll} width={W} height={H} />
     <Still id="RvCover" component={RvCover} width={W} height={H} />
