@@ -1,18 +1,18 @@
 <title>Argo HQ</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,700;1,700;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: barra del marchio + schede (Sede 3D e strumenti). Sede: mondo 3D a isole + pannello supervisione; strumenti: tabelle e moduli su dati salvati. Tema unico notturno, colori Argo Maris (navy, argento, giallo, ciano rotte). */
 :root{
   color-scheme: dark;
-  --deep:#040b19; --navy:#071631; --panel:#0b1c3a; --panel-2:#0f2548; --panel-3:#16305b; --line:#1d3866;
-  --ink:#e3eaf3; --ink-dim:#93a8c4; --ink-faint:#6c84a5;
+  --deep:#06101f; --navy:#081a36; --panel:#0d1f3d; --panel-2:#12284c; --panel-3:#1a3560; --line:#213f6e;
+  --ink:#eef3f9; --ink-dim:#a4b6cf; --ink-faint:#7890b0;
   --yellow:#ffc81e; --cyan:#39d3ff; --silver:#d9e1ea;
   --d-dir:#ffc81e; --d-forn:#43d18c; --d-social:#ff6fb8; --d-cassa:#ffa53a; --d-clienti:#4ea8ff; --d-aste:#ff6450; --d-car:#ad8cff; --d-email:#39d3ff; --d-hub:#39d3ff;
   --ok:#43d18c; --warn:#ffc81e; --bad:#ff6b6b;
-  --f-brand:"Exo 2","Segoe UI",system-ui,sans-serif;
-  --f-body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-brand:"Manrope",system-ui,sans-serif;--f-logo:"Exo 2","Segoe UI",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
@@ -164,6 +164,49 @@ tr.row.on td{background:var(--panel-3)}
 .toast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--panel-3);border:1px solid var(--line);color:var(--ink);padding:10px 14px;border-radius:8px;font-size:13px;z-index:20;box-shadow:0 10px 30px rgba(0,0,0,.4)}
 .banner{background:rgba(255,200,30,.1);border:1px solid rgba(255,200,30,.4);color:var(--ink);border-radius:8px;padding:10px 12px;font-size:13px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+/* ---- Stile amichevole ---- */
+body{font-size:14.5px;line-height:1.45}
+.wrap{gap:16px}
+.brand h1{font-family:var(--f-logo)}
+.hello{flex:1 1 320px;min-width:0;max-width:640px;background:linear-gradient(100deg,rgba(57,211,255,.10),rgba(255,200,30,.08));border:1px solid var(--line);border-radius:16px;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.hello .wave{font-size:26px;line-height:1}
+.hello b{display:block;font-size:16px}
+.hello span{color:var(--ink-dim);font-size:13.5px}
+.tag{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-size:12px;font-weight:600;border-radius:999px;padding:4px 10px}
+.tag.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
+nav.tabs{gap:6px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:16px;scrollbar-width:none}
+nav.tabs a{border-radius:11px;border:0;padding:9px 14px;font-size:14px}
+nav.tabs a .ic{font-size:16px;line-height:1}
+nav.tabs a:hover{background:var(--panel-2)}
+nav.tabs a[aria-current="page"]{background:var(--yellow);color:#1a1300;box-shadow:none}
+nav.tabs a[aria-current="page"] .n{background:rgba(26,19,0,.15);color:#1a1300}
+.kpi{border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.kpi .ki{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex:none;background:var(--panel-3)}
+.kpi small{text-transform:none;letter-spacing:0;font-size:12.5px}
+.kpi b{font-family:var(--f-body);font-weight:800;font-size:20px}
+.stage{border-radius:20px}
+.grp{border-radius:999px;background:rgba(6,16,31,.88)}
+.grp button{padding:7px 13px;font-weight:600}
+.grp button[aria-pressed="true"]{background:var(--yellow);color:#1a1300}
+.panel{border-radius:18px;padding:16px}
+.panel h2{font-size:16px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:800}
+.req{border-radius:14px}
+.btn{border-radius:999px;padding:7px 14px;font-size:13px}
+.btn.sm{padding:4px 10px}
+.av{font-size:20px}
+.lbl .ini{font-size:12px;width:22px;height:22px}
+.detail h3,.sub3{text-transform:none;letter-spacing:0;font-size:13px;color:var(--ink-dim);font-weight:700}
+th{text-transform:none;letter-spacing:0;font-size:12px}
+.pill{font-family:var(--f-body);font-weight:600;border-radius:999px;padding:2px 9px}
+.card,.col,.post,.inbox button,.msg{border-radius:14px}
+select,input[type=text],input[type=number],input[type=date],textarea{border-radius:10px;padding:8px 10px}
+.col h3{text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);font-weight:800}
+.tool-head h2{font-size:24px;font-weight:800}
+.legend{display:none}
+th.num{font-family:var(--f-body)}
+.toast{border-radius:999px;padding:10px 18px}
+@media (max-width:520px){.kpi{padding:10px 12px}.kpi .ki{display:none}.kpi b{font-size:17px}}
+@media (max-width:700px){.isl em{display:none}.grp button{padding:6px 10px;font-size:12px}.hello{order:3;flex-basis:100%}}
 </style>
 
 <div class="wrap">
@@ -172,27 +215,28 @@ tr.row.on td{background:var(--panel-3)}
       <img src="argo-logo.png" alt="Logo Argo Maris">
       <div><h1>ARGO <span>HQ</span></h1><p>Argo Maris · sede operativa del broker ittico</p></div>
     </div>
+    <div class="hello" id="hello"><span class="wave" aria-hidden="true">👋</span><div><b id="hello-t">Buongiorno!</b><span id="hello-s">Sto preparando il riepilogo della giornata…</span></div></div>
     <div class="status"><span>Turno <b id="clk">05:30</b></span><span id="dbstate" class="tag">Collegamento dati…</span></div>
   </div>
 
   <nav class="tabs" id="tabs" aria-label="Sezioni">
-    <a href="#sede" data-v="sede">Sede 3D</a>
-    <a href="#listini" data-v="listini">Listini</a>
-    <a href="#confronto" data-v="confronto">Confronto prezzi</a>
-    <a href="#fornitori" data-v="fornitori">Fornitori <span class="n" id="n-forn">0</span></a>
-    <a href="#budget" data-v="budget">Budget</a>
-    <a href="#aste" data-v="aste">Aste <span class="n" id="n-aste">0</span></a>
-    <a href="#social" data-v="social">Social <span class="n" id="n-social">0</span></a>
-    <a href="#email" data-v="email">Email <span class="n" id="n-email">0</span></a>
+    <a href="#sede" data-v="sede"><span class="ic" aria-hidden="true">🏝️</span>Sede 3D</a>
+    <a href="#listini" data-v="listini"><span class="ic" aria-hidden="true">📋</span>Listini</a>
+    <a href="#confronto" data-v="confronto"><span class="ic" aria-hidden="true">⚖️</span>Confronto prezzi</a>
+    <a href="#fornitori" data-v="fornitori"><span class="ic" aria-hidden="true">⚓</span>Fornitori <span class="n" id="n-forn">0</span></a>
+    <a href="#budget" data-v="budget"><span class="ic" aria-hidden="true">💶</span>Budget</a>
+    <a href="#aste" data-v="aste"><span class="ic" aria-hidden="true">🔨</span>Aste <span class="n" id="n-aste">0</span></a>
+    <a href="#social" data-v="social"><span class="ic" aria-hidden="true">📣</span>Social <span class="n" id="n-social">0</span></a>
+    <a href="#email" data-v="email"><span class="ic" aria-hidden="true">✉️</span>Email <span class="n" id="n-email">0</span></a>
   </nav>
 
   <div class="kpis">
-    <div class="kpi"><small>Budget residuo mese</small><b id="k-res">—</b></div>
-    <div class="kpi"><small>Speso / previsto</small><b id="k-spe">—</b></div>
-    <div class="kpi"><small>Lotti all'asta</small><b id="k-lot">—</b></div>
-    <div class="kpi"><small>Email da gestire</small><b id="k-mail">—</b></div>
-    <div class="kpi"><small>Gambero rosso · CAR</small><b id="k-rosso">—</b></div>
-    <div class="kpi"><small>Gambero viola · CAR</small><b id="k-viola">—</b></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">💶</span><div><small>Budget residuo mese</small><b id="k-res">—</b></div></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">📊</span><div><small>Speso / previsto</small><b id="k-spe">—</b></div></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">🔨</span><div><small>Lotti all'asta</small><b id="k-lot">—</b></div></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">✉️</span><div><small>Email da gestire</small><b id="k-mail">—</b></div></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">🦐</span><div><small>Gambero rosso · CAR</small><b id="k-rosso">—</b></div></div>
+    <div class="kpi"><span class="ki" aria-hidden="true">🦐</span><div><small>Gambero viola · CAR</small><b id="k-viola">—</b></div></div>
   </div>
   <div id="banner"></div>
 
@@ -218,7 +262,7 @@ tr.row.on td{background:var(--panel-3)}
       </div>
       <aside>
         <section class="panel">
-          <h2>Da approvare <span class="count zero" id="apcount">0</span></h2>
+          <h2>Serve il tuo OK <span class="count zero" id="apcount">0</span></h2>
           <div class="stack" id="appr"></div>
         </section>
         <section class="panel detail" id="detail"></section>
@@ -226,14 +270,14 @@ tr.row.on td{background:var(--panel-3)}
     </div>
     <div class="lower" style="margin-top:12px">
       <section class="panel">
-        <h2>Equipaggio</h2>
+        <h2>La squadra</h2>
         <div class="tablewrap"><table class="min">
           <thead><tr><th>Agente</th><th>Stato</th><th>Compito in corso</th><th>Avanzamento</th><th>Dove</th></tr></thead>
           <tbody id="team"></tbody>
         </table></div>
       </section>
       <section class="panel">
-        <h2>Registro attività</h2>
+        <h2>Cosa sta succedendo</h2>
         <div class="filters" id="filters"></div>
         <ul class="log" id="log"></ul>
       </section>
@@ -273,6 +317,9 @@ async function copy(text,btn){try{await navigator.clipboard.writeText(text);toas
 /* =========================================================
    DATI (capability db): prodotti, fornitori, budget, spese, aste, social, email, listini
    ========================================================= */
+const G={open:0,mail:0,req:0};
+function greet(){const h=new Date().getHours();$('hello-t').textContent=(h<13?'Buongiorno':h<18?'Buon pomeriggio':'Buonasera')+'! La squadra è al lavoro.';
+  const p=[];if(G.req)p.push(G.req+(G.req>1?' decisioni aspettano':' decisione aspetta')+' il tuo OK');p.push(G.open+' lott'+(G.open===1?'o':'i')+' all\'asta');p.push(G.mail+' email da gestire');$('hello-s').textContent='Oggi: '+p.join(' · ')+'.';}
 const S={prodotti:[],fornitori:[],budget:[],spese:[],aste:[],social:[],email:[],listini:[]};
 let db=null,sample=null,dbReady=false;
 const COLS=Object.keys(S);
@@ -317,6 +364,7 @@ function updCounters(){
   $('k-lot').textContent=dbReady||S.aste.length?open:'—';$('k-mail').textContent=dbReady||S.email.length?mail:'—';
   const r=findProd(/rosso/i),v=findProd(/viola/i);
   $('k-rosso').textContent=r?eur2(r.prezzoCar)+' €/kg':'—';$('k-viola').textContent=v?eur2(v.prezzoCar)+' €/kg':'—';
+  G.open=open;G.mail=mail;greet();
 }
 
 /* =========================================================
@@ -507,21 +555,21 @@ const openLot=()=>pick(S.aste.filter(a=>a.stato==='aperta'))||null;
 const anyProd=re=>findProd(re)||null;
 // compiti: testo (stringa o funzione che legge i dati), categoria, isola di destinazione, approvazione
 const AG=[
- {id:'nereo',name:'Nereo',role:'Direttore',isl:'dir',about:'Coordina l\'equipaggio, fissa gli obiettivi del giorno e risponde a te.',resp:['Obiettivi e margini','Accordi con flotte e grossisti','Riunione del mattino'],
+ {id:'nereo',ico:'🧭',name:'Nereo',role:'Direttore',isl:'dir',about:'Coordina l\'equipaggio, fissa gli obiettivi del giorno e risponde a te.',resp:['Obiettivi e margini','Accordi con flotte e grossisti','Riunione del mattino'],
   tasks:[['Rivede i margini della settimana','dir'],['Controlla il budget del mese con Perla','fin','cassa'],['Segue la sessione d\'asta','ast','aste'],['Firma l\'accordo con un peschereccio','acq',null,{t:'Firmare un accordo annuale con un peschereccio di Mazara'}],['Riunione dell\'equipaggio','dir','HUB']]},
- {id:'teti',name:'Teti',role:'Fornitori',isl:'forn',about:'Gestisce pescherecci e cooperative: qualità, certificati di cattura, ordini e ritiri.',resp:['Certificati e tracciabilità','Ordini ai pescherecci','Valutazione fornitori'],
+ {id:'teti',ico:'⚓',name:'Teti',role:'Fornitori',isl:'forn',about:'Gestisce pescherecci e cooperative: qualità, certificati di cattura, ordini e ritiri.',resp:['Certificati e tracciabilità','Ordini ai pescherecci','Valutazione fornitori'],
   tasks:[[()=>{const f=pick(S.fornitori.filter(x=>x.stato==='attivo'));return f?'Verifica i certificati di '+f.nome:'Verifica i certificati di cattura';},'acq'],[()=>{const f=pick(S.fornitori);return f?'Ordina a '+f.nome+' ('+(f.porto||'')+')':'Ordina il pescato del giorno';},'acq'],['Coordina i ritiri con il CAR','car','car'],['Accredita un nuovo fornitore','acq',null,{t:'Accreditare un nuovo fornitore in valutazione'}],['Consegna le fatture a Perla','fin','cassa']]},
- {id:'rio',name:'Rio',role:'Social media',isl:'social',about:'Racconta il pescato su TikTok e Instagram e porta clienti al marchio Argo Maris.',resp:['Reel e dirette','Calendario contenuti','Campagne sponsorizzate'],
+ {id:'rio',ico:'📣',name:'Rio',role:'Social media',isl:'social',about:'Racconta il pescato su TikTok e Instagram e porta clienti al marchio Argo Maris.',resp:['Reel e dirette','Calendario contenuti','Campagne sponsorizzate'],
   tasks:[[()=>{const p=pick(S.social.filter(x=>x.stato==='bozza'||x.stato==='idea'));return p?'Lavora al post "'+p.titolo+'"':'Monta il reel del giorno';},'mkt'],['Risponde ai commenti','mkt'],['Diretta TikTok dalla sala aste','mkt','aste'],['Prepara una campagna sponsorizzata','mkt',null,{t:'Avviare una sponsorizzata da 300 € verso i ristoranti di Roma'}],['Raccoglie recensioni dai clienti','ven','clienti']]},
- {id:'perla',name:'Perla',role:'Cassa & budget',isl:'cassa',about:'Tiene cassa, pagamenti e budget mensile; segnala gli scostamenti.',resp:['Incassi e riconciliazioni','Pagamenti fornitori','Budget e scostamenti'],
+ {id:'perla',ico:'💶',name:'Perla',role:'Cassa & budget',isl:'cassa',about:'Tiene cassa, pagamenti e budget mensile; segnala gli scostamenti.',resp:['Incassi e riconciliazioni','Pagamenti fornitori','Budget e scostamenti'],
   tasks:[['Riconcilia gli incassi d\'asta','fin'],['Prepara un pagamento a un fornitore','fin',null,{t:'Pagare la fattura di un peschereccio fornitore'}],['Porta il report di cassa al direttore','fin','dir'],[()=>{const b=budgetNow();return b?'Controlla le voci di budget di '+b.id:'Aggiorna il budget del mese';},'fin'],['Programma i pagamenti a 30 giorni','fin','forn']]},
- {id:'marco',name:'Marco',role:'Clienti',isl:'clienti',about:'Segue ristoranti, pescherie e grossisti: ordini, offerte e consegne.',resp:['Ordini e preventivi','Rapporto con gli chef','Reclami e resi'],
+ {id:'marco',ico:'🤝',name:'Marco',role:'Clienti',isl:'clienti',about:'Segue ristoranti, pescherie e grossisti: ordini, offerte e consegne.',resp:['Ordini e preventivi','Rapporto con gli chef','Reclami e resi'],
   tasks:[['Prende un ordine da un ristorante di Roma','ven'],['Propone uno sconto fedeltà','ven',null,{t:'Applicare uno sconto dell\'8% a un ristorante cliente'}],['Conferma la consegna del mattino','car','car'],['Prenota un lotto per un cliente','ast','aste'],['Invia il listino del giorno agli chef','ven']]},
- {id:'dario',name:'Dario',role:'Battitore aste',isl:'aste',about:'Prepara il catalogo, batte i lotti e chiude le sessioni d\'asta.',resp:['Catalogo lotti','Prezzi di riserva','Chiusura sessione'],
+ {id:'dario',ico:'🔨',name:'Dario',role:'Battitore aste',isl:'aste',about:'Prepara il catalogo, batte i lotti e chiude le sessioni d\'asta.',resp:['Catalogo lotti','Prezzi di riserva','Chiusura sessione'],
   tasks:[[()=>{const l=openLot();return l?'Batte il lotto '+l.lotto+' · '+l.specie:'Prepara il catalogo dei lotti';},'ast'],[()=>{const l=openLot();return l?'Propone la riserva del lotto '+l.lotto:'Propone un prezzo di riserva';},'ast',null,{t:'Confermare il prezzo di riserva del prossimo lotto'}],['Ritira le schede qualità','acq','forn'],['Chiude gli incassi della sessione','fin','cassa'],['Pubblica il catalogo online','ast']]},
- {id:'orca',name:'Orca',role:'CAR & prezzi',isl:'car',about:'Presidia il CAR, Centro Agroalimentare Roma: rileva i prezzi del mercato ittico, aggiorna i listini e organizza le consegne.',resp:['Rilevazione prezzi al CAR','Listino del giorno','Consegne e camion frigo'],
+ {id:'orca',ico:'🐋',name:'Orca',role:'CAR & prezzi',isl:'car',about:'Presidia il CAR, Centro Agroalimentare Roma: rileva i prezzi del mercato ittico, aggiorna i listini e organizza le consegne.',resp:['Rilevazione prezzi al CAR','Listino del giorno','Consegne e camion frigo'],
   tasks:[[()=>{const p=anyProd(/rosso/i);return p?'Rileva al CAR il gambero rosso: '+eur2(p.prezzoCar)+' €/kg':'Rileva i prezzi al mercato ittico del CAR';},'car'],['Confronta il listino con il CAR','car'],['Propone un ritocco al listino','car',null,{t:'Abbassare del 4% il listino del gambero viola per allinearlo al CAR'}],['Concorda le fasce di consegna','car','clienti'],['Traccia il camion frigo FR-02 (−1,5 °C)','car']]},
- {id:'iris',name:'Iris',role:'Email & segreteria',isl:'email',about:'Legge la posta, prepara le risposte e smista le richieste ai reparti.',resp:['Smistamento posta','Bozze di risposta','Agenda e promemoria'],
+ {id:'iris',ico:'✉️',name:'Iris',role:'Email & segreteria',isl:'email',about:'Legge la posta, prepara le risposte e smista le richieste ai reparti.',resp:['Smistamento posta','Bozze di risposta','Agenda e promemoria'],
   tasks:[[()=>{const m=pick(S.email.filter(x=>x.stato!=='inviata'&&x.stato!=='archiviata'));return m?'Prepara la risposta a '+m.da:'Controlla la casella di posta';},'mail'],['Smista le richieste ai reparti','mail'],['Porta a Marco una richiesta di preventivo','ven','clienti'],['Invia un preventivo importante','mail',null,{t:'Inviare un preventivo da 6.800 € a un grossista'}],['Aggiorna l\'agenda del direttore','mail','dir']]},
 ];
 let paused=false,speed=1,simMin=5*60+30,sel=null,view='over',reqId=0;
@@ -536,7 +584,7 @@ filters();
 function addLog(a,txt,cat){logItems.unshift({t:hhmm(),a,txt,cat});if(logItems.length>80)logItems.pop();renderLog();}
 function renderLog(){const it=logItems.filter(l=>logFilter==='all'||l.a.isl===logFilter).slice(0,40);
   $('log').innerHTML=it.length?it.map(l=>'<li><time>'+l.t+'</time><span><b style="color:'+ISL[l.a.isl].c+'">'+l.a.name+'</b> '+esc(l.txt)+' <span class="chip" style="background:'+CAT[l.cat].c+'">'+CAT[l.cat].n+'</span></span></li>').join(''):'<li><span></span><span class="empty">Nessuna attività per questa isola.</span></li>';}
-function renderReqs(){const c=$('apcount');c.textContent=reqs.length;c.classList.toggle('zero',!reqs.length);const box=$('appr');
+function renderReqs(){G.req=reqs.length;greet();const c=$('apcount');c.textContent=reqs.length;c.classList.toggle('zero',!reqs.length);const box=$('appr');
   if(!reqs.length){box.innerHTML='<p class="empty">Nessuna decisione in attesa. Pagamenti, accordi, sconti, riserve d\'asta, sponsorizzate e preventivi importanti si fermano qui finché non decidi tu.</p>';return;}
   box.innerHTML='';reqs.forEach(r=>{const d=document.createElement('div');d.className='req';
     d.innerHTML='<p><b style="color:'+ISL[r.a.isl].c+'">'+r.a.name+'</b> chiede di: '+esc(low(r.t))+'</p><small>In attesa dalle '+r.at+' · '+ISL[r.a.isl].n+'</small>';
@@ -551,13 +599,13 @@ function stateInfo(a){if(paused)return['In pausa','p-dim'];if(a.state==='wait')r
 function whereIs(a){let best=null,bd=1e9;for(const k in ISL){const s=ISL[k],d=Math.hypot(a.x-s.cx,a.z-s.cz);if(d<bd){bd=d;best=k;}}if(bd<6.5)return ISL[best].n;if(Math.hypot(a.x,a.z)<HUB+.5)return'Hub centrale';return'Passerella';}
 function renderTeam(){const tb=$('team');let h='';
   AG.forEach(a=>{const [s,cls]=stateInfo(a),pc=a.state==='work'&&!a.meeting?Math.round(Math.min(1,a.t/a.dur)*100):0;
-    h+='<tr class="row'+(a===sel?' on':'')+'" tabindex="0" data-ag="'+a.id+'"><td><span style="display:flex;gap:8px;align-items:center"><span class="av" style="width:28px;height:28px;font-size:13px;background:'+ISL[a.isl].c+'">'+a.name[0]+'</span><span><b>'+a.name+'</b><br><span style="color:var(--ink-dim);font-size:12px">'+a.role+'</span></span></span></td><td><span class="pill '+cls+'">'+s+'</span></td><td><span class="chip" style="background:'+CAT[a.task.cat].c+'">'+CAT[a.task.cat].n+'</span> '+esc(a.task.t)+'</td><td><div class="prog"><i style="width:'+pc+'%;background:'+CAT[a.task.cat].c+'"></i></div></td><td style="color:var(--ink-dim)">'+whereIs(a)+'</td></tr>';});
+    h+='<tr class="row'+(a===sel?' on':'')+'" tabindex="0" data-ag="'+a.id+'"><td><span style="display:flex;gap:8px;align-items:center"><span class="av" style="width:28px;height:28px;font-size:13px;background:'+ISL[a.isl].c+'">'+a.ico+'</span><span><b>'+a.name+'</b><br><span style="color:var(--ink-dim);font-size:12px">'+a.role+'</span></span></span></td><td><span class="pill '+cls+'">'+s+'</span></td><td><span class="chip" style="background:'+CAT[a.task.cat].c+'">'+CAT[a.task.cat].n+'</span> '+esc(a.task.t)+'</td><td><div class="prog"><i style="width:'+pc+'%;background:'+CAT[a.task.cat].c+'"></i></div></td><td style="color:var(--ink-dim)">'+whereIs(a)+'</td></tr>';});
   tb.innerHTML=h;tb.querySelectorAll('tr').forEach(tr=>{const a=AG.find(x=>x.id===tr.dataset.ag);tr.onclick=()=>select(a);tr.onkeydown=e=>{if(e.key==='Enter')select(a);};});}
 function upcoming(a){const out=a.queue.slice(0,3).map(t=>({t:t.t,cat:t.cat,mine:true}));let i=a.ti;while(out.length<3){const t=a.tasks[i%a.tasks.length];out.push({t:typeof t.t==='function'?t.t():t.t,cat:t.cat,ap:t.ap});i++;}return out;}
 function renderDetail(){const el=$('detail'),a=sel;
   if(!a){el.innerHTML='<h2>Scheda agente</h2><p class="empty">Seleziona un agente nella sede o nella tabella.</p>';return;}
   const [s,cls]=stateInfo(a);
-  el.innerHTML='<h2>Scheda agente <span class="pill '+cls+'">'+s+'</span></h2><div class="who"><span class="av" style="background:'+ISL[a.isl].c+'">'+a.name[0]+'</span><span><b>'+a.name+'</b><span>'+a.role+' · '+ISL[a.isl].n+'</span></span></div><p>'+esc(a.about)+'</p>'+
+  el.innerHTML='<h2>Scheda agente <span class="pill '+cls+'">'+s+'</span></h2><div class="who"><span class="av" style="background:'+ISL[a.isl].c+'">'+a.ico+'</span><span><b>'+a.name+'</b><span>'+a.role+' · '+ISL[a.isl].n+'</span></span></div><p>'+esc(a.about)+'</p>'+
   '<h3>Responsabilità</h3><ul class="q">'+a.resp.map(r=>'<li>• '+esc(r)+'</li>').join('')+'</ul><h3>Ora</h3><ul class="q"><li><span class="chip" style="background:'+CAT[a.task.cat].c+'">'+CAT[a.task.cat].n+'</span> '+esc(a.task.t)+'</li></ul>'+
   '<h3>Prossimi compiti</h3><ul class="q">'+upcoming(a).map(t=>'<li><span class="chip" style="background:'+CAT[t.cat].c+'">'+CAT[t.cat].n+'</span> '+esc(t.t)+(t.mine?' <span style="color:var(--yellow);font-size:11.5px">· assegnato da te</span>':'')+(t.ap?' <span style="color:var(--warn);font-size:11.5px">· serve il tuo OK</span>':'')+'</li>').join('')+'</ul>'+
   '<h3>Assegna un compito</h3><form class="f" id="assign"><input type="text" id="as-t" aria-label="Compito" placeholder="Es. Chiama il ristorante per l\'ordine di domani" maxlength="90"><div style="display:flex;gap:6px"><select id="as-c" aria-label="Tipo">'+Object.entries(CAT).map(([k,c])=>'<option value="'+k+'"'+(k===a.tasks[0].cat?' selected':'')+'>'+c.n+'</option>').join('')+'</select><select id="as-r" aria-label="Dove"><option value="">Alla sua isola</option>'+Object.entries(ISL).map(([k,d])=>'<option value="'+k+'">'+d.n+'</option>').join('')+'</select></div><button class="btn pri" type="submit">Assegna a '+a.name+'</button></form>';
@@ -700,7 +748,7 @@ function start3d(){
     const ring=new THREE.Mesh(new THREE.RingGeometry(.7,.9,32),new THREE.MeshBasicMaterial({color:'#ffc81e',side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;ring.position.y=.05;ring.visible=false;g.add(ring);
     scene.add(g);
     const wrap=document.createElement('div');Object.assign(wrap.style,{display:'flex',flexDirection:'column',alignItems:'center'});
-    const el=document.createElement('div');el.className='lbl';el.innerHTML='<span class="ini" style="background:'+col+'">'+a.name[0]+'</span>'+a.name+'<span class="bang">!</span>';el.style.pointerEvents='auto';el.onclick=()=>select(a);
+    const el=document.createElement('div');el.className='lbl';el.innerHTML='<span class="ini" style="background:'+col+'">'+a.ico+'</span>'+a.name+'<span class="bang">!</span>';el.style.pointerEvents='auto';el.onclick=()=>select(a);
     const bub=document.createElement('div');bub.className='bubble';bub.hidden=true;wrap.append(el,bub);
     const lo=new THREE.CSS2DObject(wrap);lo.position.set(0,2.75,0);g.add(lo);
     Object.assign(a,{g,legL,legR,armL,armR,selRing:ring,lblEl:el,bub});});
