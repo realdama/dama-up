@@ -74,31 +74,34 @@ export const toS = (p: P, cam: Cam): P => {
 };
 export const lerpCam = (a: Cam, b: Cam, z: number): Cam => ({cx: a.cx + (b.cx - a.cx) * z, cy: a.cy + (b.cy - a.cy) * z, w: a.w * Math.pow(b.w / a.w, z)});
 
-export const WideBase: React.FC<{cam: Cam; tropics?: number; hi?: ('italy' | 'spain' | 'croatia')[]}> = ({cam, tropics = 0, hi = []}) => {
-  const h = (cam.w * H) / W;
+// Mappa pre-renderizzata in PNG (il tracciato vettoriale costa troppo a ogni fotogramma)
+export const MAPS = {
+  world: {x0: -11119.5, y0: -8849.2, w: 17791.2, h: 13423.5, k: 0.33, src: 'tn_map_world.png'},
+  med: {x0: -1600, y0: -6600, w: 4800, h: 3200, k: 1.0, src: 'tn_map_med.png'},
+};
+export const MapSvg: React.FC<{x0: number; y0: number; w: number; h: number; k: number}> = ({x0, y0, w, h, k}) => (
+  <svg width={w * k} height={h * k} viewBox={`${x0} ${y0} ${w} ${h}`} style={{position: 'absolute', left: 0, top: 0}}>
+    <path d={wide.land} fill={C.land} stroke="rgba(160,180,220,.45)" strokeWidth={1.2 / k} />
+    <path d={wide.spain} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2 / k} />
+    <path d={wide.croatia} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2 / k} />
+    <path d={wide.italy} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2.4 / k} />
+  </svg>
+);
+export const MapStill: React.FC<{m: 'world' | 'med'}> = ({m}) => <MapSvg {...MAPS[m]} />;
+
+export const WideBase: React.FC<{cam: Cam; tropics?: number; hi?: string[]}> = ({cam, tropics = 0}) => {
+  const k = W / cam.w;
+  const m = cam.w < 2600 && cam.cx > -1000 ? MAPS.med : MAPS.world;
   const [tN, tS] = wide.tropics;
+  const s0 = toS([m.x0, m.y0], cam);
+  const tN_ = toS([0, tN], cam)[1];
+  const tS_ = toS([0, tS], cam)[1];
   return (
-    <svg width={W} height={H} viewBox={`${cam.cx - cam.w / 2} ${cam.cy - h / 2} ${cam.w} ${h}`} style={{position: 'absolute'}}>
-      <defs>
-        <radialGradient id="wsea" cx="50%" cy="45%" r="75%">
-          <stop offset="0%" stopColor="#10284d" />
-          <stop offset="100%" stopColor="#040b18" />
-        </radialGradient>
-        <linearGradient id="trop" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,140,40,0)" />
-          <stop offset="30%" stopColor="rgba(255,150,40,.35)" />
-          <stop offset="50%" stopColor="rgba(255,190,60,.45)" />
-          <stop offset="70%" stopColor="rgba(255,150,40,.35)" />
-          <stop offset="100%" stopColor="rgba(255,140,40,0)" />
-        </linearGradient>
-      </defs>
-      <rect x={-30000} y={-30000} width={60000} height={60000} fill="url(#wsea)" />
-      {tropics > 0 && <rect x={-30000} y={tN} width={60000} height={(tS - tN) * tropics} fill="url(#trop)" />}
-      <path d={wide.land} fill={C.land} stroke="rgba(160,180,220,.35)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
-      {hi.includes('spain') && <path d={wide.spain} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2} vectorEffect="non-scaling-stroke" />}
-      {hi.includes('croatia') && <path d={wide.croatia} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2} vectorEffect="non-scaling-stroke" />}
-      <path d={wide.italy} fill="#3a5799" stroke="#cfd9ef" strokeWidth={2.4} vectorEffect="non-scaling-stroke" />
-    </svg>
+    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, #10284d, #040b18 80%)', overflow: 'hidden'}}>
+      <Img src={staticFile('img/' + m.src)} style={{position: 'absolute', left: s0[0], top: s0[1], width: m.w * k, height: m.h * k, maxWidth: 'none', mixBlendMode: 'normal'}} />
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 45%, rgba(16,40,77,0) 40%, rgba(4,11,24,.75) 100%)'}} />
+      {tropics > 0 && <div style={{position: 'absolute', left: 0, width: W, top: tN_, height: (tS_ - tN_) * tropics, background: 'linear-gradient(180deg, rgba(255,140,40,0), rgba(255,150,40,.35) 30%, rgba(255,190,60,.45) 50%, rgba(255,150,40,.35) 70%, rgba(255,140,40,0))', mixBlendMode: 'screen'}} />}
+    </AbsoluteFill>
   );
 };
 
