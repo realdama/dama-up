@@ -1,9 +1,8 @@
 import React from 'react';
 import {AbsoluteFill, Img, interpolate, Easing, staticFile, random} from 'remotion';
 import {C, FPS, H, W} from '../theme';
-import {SceneWrap} from '../Maps';
 import {Tuna, TC, TNAME, Species} from './Tuna';
-import {BlurPhoto, Chip, GRAD, NavyBg, Pill, TopCard, clamp, fmt, sp, useAt} from './Kit';
+import {BlurPhoto, Chip, GRAD, NavyBg, Pill, TopCard, clamp, fmt, sp, useAt, SceneWrap} from './Kit';
 
 const SPECIES: Species[] = ['rosso', 'gialla', 'obeso'];
 

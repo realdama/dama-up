@@ -1,10 +1,9 @@
 import React from 'react';
 import {AbsoluteFill, Img, interpolate, Easing, staticFile, random} from 'remotion';
 import {C, H, W} from '../theme';
-import {SceneWrap} from '../Maps';
 import {Sparkles} from '../rv/Fx';
 import {Tuna, TC, TNAME, Species} from './Tuna';
-import {BlurPhoto, Cam, Check, Chip, GRAD, NavyBg, P, Person, Pill, TopCard, WP, WideBase, clamp, fmt, lerpCam, sp, toS, useAt} from './Kit';
+import {BlurPhoto, Cam, Check, Chip, GRAD, NavyBg, P, Person, Pill, TopCard, WP, WideBase, clamp, fmt, lerpCam, sp, toS, useAt, SceneWrap} from './Kit';
 
 const SPECIES: Species[] = ['rosso', 'gialla', 'obeso'];
 

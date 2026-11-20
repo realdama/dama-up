@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, interpolate, Easing, spring, staticFile, useCurrentFrame} from 'remotion';
 import {C, FPS, H, W} from '../theme';
-import {Bubbles, Rays} from '../rv/Fx';
+import {Bubbles} from '../rv/Fx';
 import {TC} from './Tuna';
 import wide from './wide.json';
 
@@ -30,17 +30,31 @@ export const TopCard: React.FC<{txt: string; f: number}> = ({txt, f}) => {
   );
 };
 
+// Raggi di luce senza filtro blur (veloci da renderizzare)
+export const FastRays: React.FC<{opacity?: number}> = ({opacity = 0.5}) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{opacity, mixBlendMode: 'screen', overflow: 'hidden'}}>
+      {[0, 1, 2, 3, 4].map((i) => {
+        const x = 40 + i * 230 + Math.sin(f / 50 + i * 1.7) * 60;
+        const o = 0.12 + 0.08 * Math.sin(f / 35 + i * 2.1);
+        return <div key={i} style={{position: 'absolute', left: x, top: -200, width: 200, height: H * 1.1, transform: `rotate(${14 + i * 3}deg)`, transformOrigin: '50% 0%', background: `linear-gradient(90deg, rgba(190,225,255,0), rgba(190,225,255,${o}) 50%, rgba(190,225,255,0)), linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(4,11,24,1) 85%)`, backgroundBlendMode: 'multiply', WebkitMaskImage: 'linear-gradient(180deg, #000, transparent 85%)'}} />;
+      })}
+    </AbsoluteFill>
+  );
+};
+
 export const NavyBg: React.FC<{tint?: string}> = ({tint}) => (
   <>
     <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 35%, ${tint ?? '#18305c'} 0%, #0b1a33 55%, #040b18 100%)`}} />
-    <Rays opacity={0.5} />
+    <FastRays opacity={0.6} />
     <Bubbles n={16} />
   </>
 );
 
 export const BlurPhoto: React.FC<{src: string; dark?: number}> = ({src, dark = 0.5}) => (
   <AbsoluteFill>
-    <Img src={staticFile(`img/${src}.jpg`)} style={{width: W, height: H, objectFit: 'cover', transform: 'scale(1.3)', filter: `blur(22px) brightness(${dark}) saturate(1.2)`}} />
+    <Img src={staticFile(`img/${src}_blur.jpg`)} style={{width: W, height: H, objectFit: 'cover', filter: `brightness(${dark / 0.5})`}} />
   </AbsoluteFill>
 );
 
@@ -112,3 +126,11 @@ export const Person: React.FC<{h: number; color?: string}> = ({h, color = '#dfe6
     <path d="M6 22 Q18 17 30 22 L32 56 L26 56 L25 98 L19 98 L18 62 L17 98 L11 98 L10 56 L4 56 Z" fill={color} />
   </svg>
 );
+
+// Comparsa/uscita scena solo in opacità (niente blur: molto più veloce)
+export const SceneWrap: React.FC<{dur: number; children: React.ReactNode}> = ({dur, children}) => {
+  const f = useCurrentFrame();
+  const o = interpolate(f, [0, 8, dur - 8, dur], [0, 1, 1, 0], clamp);
+  const sc = interpolate(f, [0, 8], [1.04, 1], clamp);
+  return <AbsoluteFill style={{opacity: o, transform: `scale(${sc})`}}>{children}</AbsoluteFill>;
+};

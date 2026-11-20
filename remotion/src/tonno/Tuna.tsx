@@ -21,7 +21,9 @@ export const Tuna: React.FC<{sp: Species; w: number; flip?: boolean; f?: number;
   const body = `M10 ${y(2)} C40 ${y(-40)} 120 ${y(-52)} 200 ${y(-50)} C260 ${y(-48)} 300 ${y(-30)} 332 ${y(-8) + 0.3} L340 80 L332 ${y(8)} C300 ${y(30)} 260 ${y(46)} 200 ${y(47)} C120 ${y(48)} 40 ${y(38)} 10 ${y(2)} Z`;
   const fin2 = s.fin2;
   return (
-    <svg width={w} height={w * 0.45} viewBox="0 -40 400 240" style={{overflow: 'visible', transform: flip ? 'scaleX(-1)' : undefined, filter: glow ? `drop-shadow(0 0 22px ${glow})` : 'drop-shadow(0 18px 24px rgba(0,0,0,.45))', ...style}}>
+    <div style={{position: 'relative', width: w, height: w * 0.45, display: 'inline-block', ...style}}>
+    {glow && <div style={{position: 'absolute', left: '-6%', top: '0%', width: '112%', height: '100%', background: `radial-gradient(ellipse at 45% 50%, ${glow} 0%, rgba(0,0,0,0) 62%)`}} />}
+    <svg width={w} height={w * 0.45} viewBox="0 -40 400 240" style={{position: 'relative', overflow: 'visible', transform: flip ? 'scaleX(-1)' : undefined}}>
       <defs>
         <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={s.top} />
@@ -60,5 +62,6 @@ export const Tuna: React.FC<{sp: Species; w: number; flip?: boolean; f?: number;
       {/* bocca */}
       <path d={`M12 ${y(4)} L30 ${y(6)}`} stroke="rgba(10,25,50,.6)" strokeWidth="2.5" />
     </svg>
+    </div>
   );
 };
