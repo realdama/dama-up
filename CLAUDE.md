@@ -176,3 +176,12 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
   github.com/Nutlope/hallmark, github.com/Leonxlnx/taste-skill, VoltAgent/awesome-design-md.
   I loro script (theme.mjs photos, sloplint) possono essere bloccati dal classificatore: usare le
   regole come guida e verificare con Playwright proprio.
+- SEZIONE 3D "Il pescato" (20/11/2026, riferimento: video "Websites in 2026" di wearebrand.io =
+  scena 3D guidata dallo scroll): `sito/ocean3d.js` + three.js r160 in `sito/vendor/` (niente CDN).
+  Sezione alta 760vh con scena fissa: nave portacontainer vista dall'alto su oceano low-poly → tuffo
+  sott'acqua → 5 stazioni (pesce azzurro, pesce bianco, tonno/grandi pelagici, crostacei, molluschi:
+  categorie generiche, l'utente non vuole specie troppo specifiche) → stacco su "box del CAR" con
+  cassa di polistirolo, ghiaccio e container refrigerato col logo. Capitoli HTML sovrapposti, barra
+  laterale cliccabile, cornice HUD gialla. Senza WebGL o con movimento ridotto: schede con foto.
+  Bug già risolti: InstancedMesh.frustumCulled=false (sennò spariscono), colori da g0.userData nel merge.
+  Test: Playwright con --use-angle=swiftshader, screenshot a vari punti dello scroll.

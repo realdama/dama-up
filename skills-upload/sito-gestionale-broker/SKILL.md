@@ -51,6 +51,15 @@ Lavorare in autonomia, risposte brevi in italiano, commit + push sul branch di s
 - Ticker di parole chiave (GDO, HoReCa, Import mondiale, CAR Roma, Catena del freddo…).
 - Rispettare `prefers-reduced-motion`. Nessun numero inventato nei grafici.
 
+## 2b. Scena 3D guidata dallo scroll (stile "Websites in 2026")
+- three.js scaricato con `npm pack three@0.160.0` e copiato in `sito/vendor/` (modulo ES, nessun CDN).
+- Modelli tutti procedurali (nave = Shape estrusa + container InstancedMesh; pesci = ellissoide con
+  colori dorso/ventre + coda/pinne estruse, uniti con un merge proprio; gamberi = sfere su arco;
+  polpo = TubeGeometry), oceano low-poly con onde sulla CPU, fog diversa sopra/sotto l'acqua.
+- Camera su chiavi (progresso scroll 0..1) con smoothstep e "cut" coperto da dissolvenza; capitoli
+  HTML che entrano/escono per intervallo; render solo quando la sezione è visibile.
+- InstancedMesh: frustumCulled=false. Fallback statico senza WebGL o con reduced-motion.
+
 ## 3. Gestionale (Node ≥22.13, zero dipendenze)
 - `server.js`: `node:http` + `node:sqlite`; serve il sito su `/` e l'app su `/app/`; API `/app/api/*`.
 - `schema.js`: UNA definizione per entità (campi, tipi, ref, list, righe) che genera tabelle

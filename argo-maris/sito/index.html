@@ -27,7 +27,7 @@
     </a>
     <nav class="nav" id="nav" aria-label="Sezioni">
       <a href="#rotte">Rotte</a>
-      <a href="#casse">Prodotti</a>
+      <a href="#pescato">Il pescato</a>
       <a href="#canali">GDO e HoReCa</a>
       <a href="#box">Il box al CAR</a>
       <a href="#listino">Listino</a>
@@ -103,20 +103,58 @@
   </div>
 </section>
 
-<!-- 3 · Le casse: prodotti -->
-<section class="crates" id="casse" aria-labelledby="h-casse">
-  <div class="container">
-    <h2 id="h-casse">Quello che passa dalle nostre casse</h2>
-    <ul class="crate-grid">
-      <li class="crate"><div class="crate-box"><img src="img/crostacei.jpg" alt="" width="1920" height="1424" loading="lazy"></div><p><b>Gambero rosso</b> Mediterraneo, fresco</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/scampi.jpg" alt="" width="1024" height="534" loading="lazy"></div><p><b>Scampi</b> Adriatico e Atlantico</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/tonno.jpg" alt="" width="1024" height="684" loading="lazy"></div><p><b>Tonno</b> intero, lombi e tranci</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/salmone.jpg" alt="" width="1024" height="684" loading="lazy"></div><p><b>Salmone</b> filetti e pezzi interi</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/sgombri.jpg" alt="" width="1024" height="760" loading="lazy"></div><p><b>Pesce azzurro</b> sgombri, alici, sardine</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/cozze.jpg" alt="" width="1024" height="684" loading="lazy"></div><p><b>Molluschi</b> cozze, vongole, polpo</p></li>
-      <li class="crate"><div class="crate-box"><img src="img/congelato.jpg" alt="" width="1920" height="1920" loading="lazy"></div><p><b>Surgelati</b> gamberi e filetti a −18&nbsp;°C</p></li>
-      <li class="crate crate-ask"><div class="crate-box"><a href="#listino">Cerchi altro?<span>Scrivici specie e pezzatura</span></a></div><p><b>Su richiesta</b> pesce di nicchia</p></li>
-    </ul>
+<!-- 3 · Il pescato: viaggio 3D guidato dallo scroll (senza WebGL o con movimento ridotto: schede statiche) -->
+<section class="catch" id="pescato" aria-labelledby="h-pescato">
+  <div class="catch-sticky">
+  <div class="catch-stage" aria-hidden="true">
+    <canvas class="catch-canvas"></canvas>
+    <div class="catch-fade"></div>
+    <div class="catch-hud"><span class="hud-frame"></span></div>
+  </div>
+  <div class="container catch-intro">
+    <h2 id="h-pescato">Il pescato che trattiamo</h2>
+    <p class="lead">Dal mare aperto al box: scorri e segui il viaggio.</p>
+  </div>
+
+  <ol class="chapters">
+    <li class="chapter" data-from="0" data-to="0.2">
+      <img src="img/sgombri.jpg" alt="" width="1024" height="760" loading="lazy">
+      <div><h3>Dagli oceani del mondo</h3><p>Navi e container refrigerati portano il pescato fino a Roma.</p></div>
+    </li>
+    <li class="chapter" data-from="0.24" data-to="0.34">
+      <img src="img/sgombri.jpg" alt="" width="1024" height="760" loading="lazy">
+      <div><h3>Pesce azzurro</h3><p>Il pesce di tutti i giorni, fresco su ghiaccio.</p></div>
+    </li>
+    <li class="chapter" data-from="0.36" data-to="0.46">
+      <img src="img/orate.jpg" alt="" width="683" height="1024" loading="lazy">
+      <div><h3>Pesce bianco</h3><p>Pesce da banco e da cucina, pescato e allevato.</p></div>
+    </li>
+    <li class="chapter" data-from="0.48" data-to="0.58">
+      <img src="img/tonno.jpg" alt="" width="1024" height="684" loading="lazy">
+      <div><h3>Tonno e grandi pelagici</h3><p>Interi, lombi e tranci per il banco e la cucina.</p></div>
+    </li>
+    <li class="chapter" data-from="0.6" data-to="0.7">
+      <img src="img/crostacei.jpg" alt="" width="1920" height="1424" loading="lazy">
+      <div><h3>Crostacei</h3><p>Gamberi, scampi e astici, freschi e surgelati.</p></div>
+    </li>
+    <li class="chapter" data-from="0.72" data-to="0.82">
+      <img src="img/cozze.jpg" alt="" width="1024" height="684" loading="lazy">
+      <div><h3>Molluschi</h3><p>Polpi, seppie, cozze e vongole.</p></div>
+    </li>
+    <li class="chapter" data-from="0.86" data-to="1.01">
+      <img src="img/congelato.jpg" alt="" width="1920" height="1920" loading="lazy">
+      <div><h3>Fresco o surgelato, al box del CAR</h3><p>Poi su ruote refrigerate verso GDO e HoReCa.</p><a class="btn primary" href="#listino">Chiedi il listino</a></div>
+    </li>
+  </ol>
+  <nav class="catch-rail" aria-label="Capitoli del viaggio">
+    <button type="button" data-go="0.05">Oceani</button>
+    <button type="button" data-go="0.28">Azzurro</button>
+    <button type="button" data-go="0.40">Bianco</button>
+    <button type="button" data-go="0.52">Tonno</button>
+    <button type="button" data-go="0.64">Crostacei</button>
+    <button type="button" data-go="0.76">Molluschi</button>
+    <button type="button" data-go="0.93">Al box</button>
+  </nav>
   </div>
 </section>
 
@@ -231,7 +269,7 @@
       <p class="mast-word">Argo <b>Maris</b></p>
       <p class="mast-line">Import e smistamento di prodotto ittico al Centro Agroalimentare Roma.</p>
       <nav class="mast-links" aria-label="Piè di pagina">
-        <a href="#rotte">Rotte</a><a href="#casse">Prodotti</a><a href="#canali">GDO e HoReCa</a><a href="#listino">Listino</a><a href="/app/">Area clienti e app</a>
+        <a href="#rotte">Rotte</a><a href="#pescato">Il pescato</a><a href="#canali">GDO e HoReCa</a><a href="#listino">Listino</a><a href="/app/">Area clienti e app</a>
       </nav>
     </div>
   </div>
@@ -239,5 +277,6 @@
 </footer>
 
 <script src="script.js"></script>
+<script type="module" src="ocean3d.js"></script>
 </body>
 </html>
