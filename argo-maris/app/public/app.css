@@ -288,3 +288,7 @@ table.compare td.best b{color:var(--ok)}
   table.compare th:first-child{background:var(--ice);z-index:3}
   table.compare td.prod .cell-thumb{display:none}
 }
+
+/* accesso: la sede al CAR come sfondo */
+.login{background:linear-gradient(100deg,oklch(17% 0.055 264 / .94) 0%,oklch(21.5% 0.07 264 / .78) 55%,oklch(21.5% 0.07 264 / .35) 100%),url(sede-car.jpg) center 25%/cover no-repeat}
+.kpi span a{color:inherit;font-weight:700}

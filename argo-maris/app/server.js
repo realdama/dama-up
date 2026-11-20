@@ -316,6 +316,7 @@ function dashboard() {
   const q = (sql, ...a) => db.prepare(sql).get(...a);
   const kpi = {
     ordini_aperti: q("SELECT COUNT(*) n FROM ordini WHERE stato IN ('Bozza','Confermato','In preparazione','In consegna')").n,
+    richieste_nuove: q("SELECT COUNT(*) n FROM richieste WHERE stato='Nuova'").n,
     venduto_mese: q("SELECT COALESCE(SUM(totale),0) v FROM ordini WHERE data>=? AND stato<>'Annullato'", m0).v,
     margine_mese: q("SELECT COALESCE(SUM(margine),0) v FROM ordini WHERE data>=? AND stato<>'Annullato'", m0).v,
     da_incassare: q("SELECT COALESCE(SUM(totale-COALESCE(pagato,0)),0) v FROM fatture WHERE tipo IN ('Vendita','Provvigione') AND stato NOT IN ('Pagata','Annullata','Bozza')").v,
@@ -633,6 +634,24 @@ Usa elenchi puntati brevi; niente tabelle larghe.`,
   });
 }
 
+// ---------------------------------------------------------------- richieste dal sito (pubblico, senza login)
+const richiesteIp = new Map();
+function richiestaPubblica(req, b) {
+  if (b.sito_web) return { ok: true }; // campo trappola per i bot
+  const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress;
+  const now = Date.now(); const list = (richiesteIp.get(ip) || []).filter(t => now - t < 10 * 60e3);
+  if (list.length >= 5) throw new HttpError(429, 'Troppe richieste in poco tempo');
+  const t = v => String(v ?? '').trim();
+  const nome = t(b.nome).slice(0, 160), email = t(b.email).slice(0, 160), messaggio = t(b.messaggio).slice(0, 2000);
+  if (!nome || !messaggio || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new HttpError(400, 'Compila nome, email e cosa cerchi');
+  const canale = ['GDO', 'HoReCa', 'Pescheria', 'Altro'].includes(b.canale) ? b.canale : 'Altro';
+  list.push(now); richiesteIp.set(ip, list);
+  const r = db.prepare("INSERT INTO richieste (ricevuta, nome, email, telefono, canale, messaggio, stato) VALUES (datetime('now','localtime'),?,?,?,?,?,'Nuova')")
+    .run(nome, email, t(b.telefono).slice(0, 40) || null, canale, messaggio);
+  log({ username: 'sito' }, 'creato', 'richieste', Number(r.lastInsertRowid), nome);
+  return { ok: true };
+}
+
 // ---------------------------------------------------------------- HTTP
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.png': 'image/png', '.json': 'application/json', '.ico': 'image/x-icon', '.webp': 'image/webp', '.webmanifest': 'application/manifest+json' };
 function send(res, code, body, type = 'application/json; charset=utf-8', extra = {}) {
@@ -674,6 +693,7 @@ async function api(req, res, url) {
     const secure = req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
     return send(res, 200, { ok: true }, undefined, { 'Set-Cookie': `am_sess=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=43200${secure}` });
   }
+  if (parts[0] === 'pubblico' && parts[1] === 'richiesta' && method === 'POST') return send(res, 201, richiestaPubblica(req, await readBody(req, 2e4)));
   const user = currentUser(req);
   if (!user) throw new HttpError(401, 'Accesso richiesto');
   if (parts[0] === 'logout') { db.prepare('DELETE FROM sessioni WHERE token=?').run(parseCookies(req).am_sess); return send(res, 200, { ok: true }, undefined, { 'Set-Cookie': 'am_sess=; Path=/; Max-Age=0' }); }

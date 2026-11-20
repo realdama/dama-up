@@ -33,6 +33,7 @@ const ICONS = {
   key: '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/>',
   gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
   list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  inbox: '<path d="M3 13l3-8h12l3 8v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 13h5l1 3h6l1-3h5"/>',
   tag: '<path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/>',
   spark: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>',
   compare: '<path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/>',
@@ -73,8 +74,8 @@ function labelOf(ent, r) {
   }
 }
 const BADGE = {
-  ok: ['Consegnato', 'Consegnata', 'Pagata', 'Chiuso'], teal: ['Fatturato', 'Inviata SDI'], info: ['Confermato', 'Emessa', 'Emesso', 'In viaggio', 'In consegna'],
-  warn: ['Bozza', 'Pianificata', 'In preparazione', 'In carico', 'Parzialmente pagata'], bad: ['Annullato', 'Annullata', 'Insoluta', 'Problema', 'Scaduta'],
+  ok: ['Diventata cliente', 'Listino inviato', 'Consegnato', 'Consegnata', 'Pagata', 'Chiuso'], teal: ['Fatturato', 'Inviata SDI'], info: ['Confermato', 'Emessa', 'Emesso', 'In viaggio', 'In consegna'],
+  warn: ['Nuova', 'In lavorazione', 'Bozza', 'Pianificata', 'In preparazione', 'In carico', 'Parzialmente pagata'], bad: ['Annullato', 'Annullata', 'Insoluta', 'Problema', 'Scaduta'],
 };
 const badge = v => { if (!v) return ''; const k = Object.keys(BADGE).find(k => BADGE[k].includes(v)); return `<span class="badge ${k ? 'b-' + k : ''}">${esc(v)}</span>`; };
 const isOverdue = r => r.scadenza && r.scadenza < today() && !['Pagata', 'Annullata', 'Bozza'].includes(r.stato) && r.tipo !== 'Nota di credito';
@@ -108,7 +109,7 @@ async function boot() {
 function buildNav() {
   const E = S.schema.entities;
   const items = {
-    'Operatività': [['#/', 'Dashboard', 'home'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/e/ddt', 'DDT', 'file'], ['#/e/spedizioni', 'Spedizioni', 'truck']],
+    'Operatività': [['#/', 'Dashboard', 'home'], ['#/e/richieste', 'Richieste dal sito', 'inbox'], ['#/e/ordini', 'Ordini', 'clipboard'], ['#/e/ddt', 'DDT', 'file'], ['#/e/spedizioni', 'Spedizioni', 'truck']],
     'Acquisti e prezzi': [['#/confronto', 'Confronto prezzi', 'compare'], ['#/e/listini', 'Listini fornitori', 'tag'], ['#/ai', 'Assistente AI', 'spark']],
     'Amministrazione': [['#/e/fatture', 'Fatture', 'euro'], ['#/e/pagamenti', 'Incassi e pagamenti', 'wallet'], ['#/scadenzario', 'Scadenzario', 'alarm']],
     'Anagrafiche': ['clienti', 'fornitori', 'prodotti', 'vettori', 'mezzi'].map(k => ['#/e/' + k, E[k].label, E[k].icon]),
@@ -177,7 +178,7 @@ async function viewDashboard() {
   v.innerHTML = `
     <div class="kpis">
       ${kpi('Venduto del mese', money(k.venduto_mese), `margine ${money(k.margine_mese)}`, 'dark')}
-      ${kpi('Ordini aperti', k.ordini_aperti, `${k.spedizioni_attive} spedizioni attive`)}
+      ${kpi('Ordini aperti', k.ordini_aperti, `${k.spedizioni_attive} spedizioni attive · <a href="#/e/richieste">${k.richieste_nuove} richieste dal sito</a>`)}
       ${kpi('Da incassare', money(k.da_incassare), `di cui scaduto ${money(k.scaduto)}`, k.scaduto > 0 ? 'alert' : '')}
       ${kpi('Da pagare ai fornitori', money(k.da_pagare), `${k.in_turno_oggi} persone in turno oggi`)}
     </div>

@@ -29,6 +29,17 @@ Lavorare in autonomia, risposte brevi in italiano, commit + push sul branch di s
 - Verifica: Playwright screenshot 1440 e 390 px, `scrollWidth` = larghezza (niente scroll
   orizzontale). Per le pagine intere forzare `loading=eager` e `.reveal{opacity:1}`.
 
+## 1b. MAI lo stesso sito due volte
+- L'utente ha bocciato il primo sito perché "sempre uguale". Prima di disegnare leggere Hallmark
+  (`references/direction.md`, percorso custom) e taste-skill: niente hero diviso standard + tre
+  schede + passi numerati + banda con form + footer con logo enorme come piano di default.
+- Un'idea sola, vera solo per questo cliente, che regge tutta la pagina (Argo Maris v3: il tabellone
+  arrivi e il pavimento del box al CAR). Colori presi dalle foto/logo del cliente, non dalla categoria.
+- Regole fisse: colori e font solo come token; titoli interi (mai una parola colorata o in corsivo da
+  sola); niente etichette in maiuscolo spaziato; niente numeri, recensioni o loghi inventati; un dato
+  mancante = segnaposto tratteggiato; ogni animazione lunga ha un pulsante di pausa e si ferma con
+  prefers-reduced-motion; overflow-x: clip; focus visibile; form che invia davvero (al gestionale).
+
 ## 2. Grafiche futuristiche (rotte import, schemi)
 - Mappa mondo a puntini: `python3 -I argo-maris/tools/dotmap.py ne_110m_land.geojson`
   (Natural Earth da raw.githubusercontent.com) → un solo `<path>` con `h0` + linecap round.

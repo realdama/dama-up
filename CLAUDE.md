@@ -160,3 +160,19 @@ Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills
   senza, l'AI risulta "non attiva" e il resto funziona. Canale cliente/ordine (GDO, HoReCa, …) e
   prezzi prodotto per canale. Foto prodotti e allegati in DATA_DIR/uploads (servite solo con login).
   Test AI senza chiave: finto server Messages con ANTHROPIC_BASE_URL=http://localhost:4010.
+- SITO v3 "UNICO" (20/11/2026, l'utente: "fai sempre le stesse cose uguali, fai qualcosa di unico"):
+  rifatto da zero con le regole delle skill Hallmark (percorso custom) e taste-skill, NON il modello
+  hero+tre schede+passi+form. Idea: il tabellone e il pavimento del box al CAR. Hero = foto della
+  sede a destra + tabellone arrivi split-flap (Red Hat Mono) che gira, pulsante Ferma; Rotte = mappa
+  a puntini cliccabile (5 zone, rotta gialla animata verso "Roma, CAR"); Casse = prodotti in casse
+  bianche sul rosso del pavimento; GDO/HoReCa = interruttore; Percorso = 4 tappe + nastro con casse;
+  Il box al CAR (CAR, Guidonia Montecelio + segnaposto box/telefono); form "Ricevi il listino" che
+  salva in gestionale → "Richieste dal sito" (POST /api/pubblico/richiesta, anti-bot + limite IP).
+  Colori dal logo e dalla foto: blu notte, bianco casse, giallo segnaletica, rosso pavimento; font
+  Archivo (titoli interi in corsivo 800, mai una parola sola in corsivo), niente etichette maiuscole
+  spaziate, niente ciano su blu. Regole Hallmark/taste: niente numeri inventati, niente didascalie.
+  Le zone di origine e le specie sono di esempio: da confermare con l'utente.
+- Skill di design dell'utente (installate dallo script ambiente, qui clonate a mano se mancano):
+  github.com/Nutlope/hallmark, github.com/Leonxlnx/taste-skill, VoltAgent/awesome-design-md.
+  I loro script (theme.mjs photos, sloplint) possono essere bloccati dal classificatore: usare le
+  regole come guida e verificare con Playwright proprio.

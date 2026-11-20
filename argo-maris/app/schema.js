@@ -181,6 +181,21 @@ const entities = {
       { name: 'note', label: 'Note', type: 'text', wide: true, list: true },
     ],
   },
+  richieste: {
+    label: 'Richieste dal sito', singular: 'Richiesta', icon: 'inbox', group: 'Operatività', display: "COALESCE(nome, 'Richiesta')",
+    defaultSort: 'id DESC',
+    fields: [
+      { name: 'ricevuta', label: 'Ricevuta il', type: 'datetime', readonly: true, list: true },
+      { name: 'nome', label: 'Nome e azienda', type: 'text', required: true, list: true, wide: true },
+      { name: 'email', label: 'Email', type: 'email', list: true },
+      { name: 'telefono', label: 'Telefono', type: 'tel', list: true },
+      { name: 'canale', label: 'Canale', type: 'select', options: ['GDO', 'HoReCa', 'Pescheria', 'Altro'], list: true, badge: true },
+      { name: 'messaggio', label: 'Cosa cerca', type: 'textarea', wide: true },
+      { name: 'stato', label: 'Stato', type: 'select', options: ['Nuova', 'In lavorazione', 'Listino inviato', 'Diventata cliente', 'Archiviata'], default: 'Nuova', list: true, badge: true },
+      { name: 'cliente_id', label: 'Cliente collegato', type: 'ref', ref: 'clienti' },
+      { name: 'note', label: 'Note interne', type: 'textarea', wide: true },
+    ],
+  },
   listini: {
     label: 'Listini fornitori', singular: 'Listino', icon: 'tag', group: 'Acquisti e prezzi', display: "COALESCE(titolo, 'Listino') || ' ' || COALESCE(data, '')",
     defaultSort: 'data DESC, id DESC',
