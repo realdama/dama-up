@@ -114,6 +114,7 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
 - `videos/`: MP4 finali consegnati.
 
 ## Storico video
+- 2026-11-20 — Tonno v2: l'utente ha detto "troppo veloce": NIENTE atempo 1,04 (voce a velocità naturale), pause tra parole 0,16 s, virgola 0,26, fine frase 0,40; pause attenuate -10 dB (DNSMOS 3,19); musica 0,34. Video riallineato senza nuovo render con ffmpeg trim/setpts a tratti (ancore sulle frasi). Render veloce: niente blur CSS, --scale=0,75 + upscale lanczos.
 - 2026-11-20 — "Il tonno è tutto uguale?" (vocale "Via Paolo Buzzi 180 45"): 95,6 s, nessuna frase tagliata (tutto verificato:
   quota IT 2026-28 6.182,61 t/anno +17% sul 2025 = decreto Masaf 1/4/2026, 50% alla Sicilia; ICCAT piano 2006; asta Toyosu
   gen. 2026 510 mln yen ≈ 3,2 mln $). Voce DNSMOS 3,18 = originale, Whisper prob 0,942→0,960. Codice `remotion/src/tonno/`
