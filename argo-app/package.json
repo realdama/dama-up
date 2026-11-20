@@ -1,0 +1,9 @@
+{
+  "name": "argo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ARGO, assistente personale vocale",
+  "main": "server.js",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node server.js" }
+}
