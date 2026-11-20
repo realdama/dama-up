@@ -118,3 +118,11 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
 - 2026-11-17 — Gambero rosso di Mazara del Vallo (v2, vocale "Via Paolo Buzzi 180 35"):
   59,6 s; tagliata la frase sulle "flotte"; logo su "Dama Reservèe" a 55,7 s.
+
+## App social (Dama Social)
+- Pagina: https://claude.ai/artifact/Cfyi4QXo6VR9CCAkeN5tbm (sorgente `social/dama-social.html`).
+- Bacheca Idee → Pronti → Pubblicati, salvata nel db dell'artifact (collezione `posts`: titolo,
+  piattaforma tiktok|instagram|entrambi, data YYYY-MM-DD, stato idea|pronto|pubblicato, didascalia).
+  Bottoni Claude: "Scrivi didascalia" e "5 idee". Dopo ogni video consegnato: aggiungere il post
+  con ArtifactData (stato "pronto", didascalia del video).
+- `.claude/settings.json`: enableAllProjectMcpServers = tutti i server MCP del progetto attivi in ogni chat.

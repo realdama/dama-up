@@ -1,0 +1,196 @@
+<title>Dama Social</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;800&display=swap">
+<style>
+/* Layout: brand band on top, one "new post" bar, then a 3-lane board (Idee → Pronti → Pubblicati) that stacks on phones. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --ink:#0E1A2E; --muted:#5B6678; --line:#D9DEE6;
+  --navy:#0E1A2E; --silver:#C9CFD8; --accent:#E8901A; --accent-ink:#0E1A2E;
+  --tiktok:#0E1A2E; --insta:#B4246A; --ok:#1F8A4C;
+  --display:"Cinzel",Georgia,serif; --body:"Inter",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#08111F; --surface:#111D31; --ink:#E9EDF3; --muted:#9AA6B8; --line:#24324A;
+  --silver:#8C96A6; --accent:#FFB447; --tiktok:#C9CFD8; --insta:#F07AB0; --ok:#4CC27E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#08111F; --surface:#111D31; --ink:#E9EDF3; --muted:#9AA6B8; --line:#24324A;
+  --silver:#8C96A6; --accent:#FFB447; --tiktok:#C9CFD8; --insta:#F07AB0; --ok:#4CC27E; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45}
+.brand{background:#0E1A2E;color:#E9EDF3;margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 18px);border-bottom:6px solid #C9CFD8}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand .wrap{padding-block:0 18px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-family:var(--display);font-size:1.6rem;letter-spacing:.08em;margin:0;line-height:1.1}
+.brand small{display:block;font-size:.7rem;letter-spacing:.3em;color:#C9CFD8;margin-top:4px}
+.stats{display:flex;gap:16px;font-variant-numeric:tabular-nums;font-size:.85rem;color:#C9CFD8}
+.stats b{color:#FFB447;font-size:1.1rem;margin-right:4px}
+main.wrap{padding-block:20px 40px;display:grid;gap:18px}
+.bar{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:10px}
+.bar h2{margin:0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+input,select,textarea,button{font:inherit;color:inherit}
+input,select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;min-width:0}
+#f-title{flex:1 1 260px}
+textarea{width:100%;resize:vertical;min-height:90px}
+button{cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);padding:8px 12px;font-weight:600}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);border-color:var(--accent);color:#0E1A2E}
+button.ghost{border-color:transparent;background:transparent;color:var(--muted);padding:6px 8px}
+button:disabled{opacity:.5;cursor:wait}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+@media (max-width:820px){.board{grid-template-columns:1fr}}
+.lane{display:grid;gap:10px;min-width:0}
+.lane>header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:6px}
+.lane>header h3{margin:0;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.lane>header span{color:var(--muted);font-variant-numeric:tabular-nums}
+.lane[data-s="pronto"]>header{border-color:var(--accent)}
+.lane[data-s="pubblicato"]>header{border-color:var(--ok)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:8px;min-width:0}
+.meta{display:flex;gap:8px;align-items:center;font-size:.78rem;color:var(--muted);flex-wrap:wrap}
+.chip{font-weight:800;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1.5px solid currentColor}
+.chip.tiktok{color:var(--tiktok)} .chip.instagram{color:var(--insta)} .chip.entrambi{color:var(--accent)}
+.card h4{margin:0;font-size:1rem;text-wrap:balance;overflow-wrap:anywhere}
+.cap{white-space:pre-wrap;font-size:.86rem;color:var(--muted);overflow-wrap:anywhere;max-height:9.5em;overflow:auto}
+.actions{display:flex;flex-wrap:wrap;gap:6px}
+.actions button{font-size:.8rem;padding:6px 9px}
+.empty{color:var(--muted);font-size:.85rem;border:1px dashed var(--line);border-radius:10px;padding:14px}
+.note{font-size:.82rem;color:var(--muted)}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#0E1A2E;color:#fff;padding:9px 14px;border-radius:8px;font-size:.85rem}
+.edit{display:grid;gap:8px}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+</style>
+
+<header class="brand"><div class="wrap">
+  <div><h1>DAMA RESERVÈE</h1><small>— SOCIAL · TIKTOK + INSTAGRAM —</small></div>
+  <div class="stats" id="stats"></div>
+</div></header>
+
+<main class="wrap">
+  <form class="bar" id="new">
+    <h2>Nuovo post</h2>
+    <div class="row">
+      <input id="f-title" placeholder="Di cosa parla? es. Gambero rosso di Mazara" required>
+      <select id="f-plat" aria-label="Piattaforma"><option value="tiktok">TikTok</option><option value="instagram">Instagram</option><option value="entrambi">Entrambi</option></select>
+      <input id="f-date" type="date" aria-label="Data di uscita">
+      <button class="primary" type="submit">Aggiungi</button>
+      <button type="button" id="ideas" hidden>✦ 5 idee da Claude</button>
+    </div>
+    <p class="note" id="status">Caricamento…</p>
+  </form>
+
+  <section class="board" id="board">
+    <div class="lane" data-s="idea"><header><h3>Idee</h3><span></span></header><div class="list"></div></div>
+    <div class="lane" data-s="pronto"><header><h3>Pronti da pubblicare</h3><span></span></header><div class="list"></div></div>
+    <div class="lane" data-s="pubblicato"><header><h3>Pubblicati</h3><span></span></header><div class="list"></div></div>
+  </section>
+</main>
+<div id="toast" hidden></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const NEXT={idea:"pronto",pronto:"pubblicato",pubblicato:null};
+const NEXT_LABEL={idea:"Pronto →",pronto:"Pubblicato ✓"};
+const PLAT={tiktok:"TikTok",instagram:"Instagram",entrambi:"TikTok + IG"};
+const BRAND=`Canale "Dama Reservèe": exclusive seafood, prodotti ittici di nicchia italiani (gambero rosso di Mazara, gambero viola, ricci, ostriche…). Tono: esperto, caldo, diretto, in italiano. Regole: mai firmare "Manuel Desio" né citare "Mare Italia"; niente crediti foto; niente em dash; chiudere con una domanda tipo "scrivilo nei commenti". Fatti solo veri e verificabili.`;
+let db=null, sample=null, posts=[], editing=null, busy=new Set();
+
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2200)}
+function fmt(d){if(!d)return"senza data";const [y,m,g]=d.split("-");return `${g}/${m}/${y}`}
+function today(){return new Date().toISOString().slice(0,10)}
+
+function render(){
+  for(const lane of document.querySelectorAll(".lane")){
+    const s=lane.dataset.s, list=lane.querySelector(".list");
+    const items=posts.filter(p=>p.stato===s).sort((a,b)=>(a.data||"9").localeCompare(b.data||"9")*(s==="pubblicato"?-1:1));
+    lane.querySelector("header span").textContent=items.length;
+    list.replaceChildren();
+    list.style.display="grid";list.style.gap="10px";
+    if(!items.length){const e=document.createElement("div");e.className="empty";
+      e.textContent=s==="idea"?"Nessuna idea. Scrivila sopra o chiedi 5 idee a Claude.":s==="pronto"?"Sposta qui i post con video e didascalia pronti.":"Qui finiscono i post usciti.";list.append(e);continue}
+    for(const p of items) list.append(card(p));
+  }
+  const n=s=>posts.filter(p=>p.stato===s).length;
+  $("#stats").innerHTML="";
+  for(const [k,l] of [["idea","idee"],["pronto","pronti"],["pubblicato","usciti"]]){const d=document.createElement("span");d.innerHTML=`<b>${n(k)}</b>`;d.append(l);$("#stats").append(d)}
+}
+
+function card(p){
+  const c=document.createElement("article");c.className="card";
+  const meta=document.createElement("div");meta.className="meta";
+  const chip=document.createElement("span");chip.className="chip "+p.piattaforma;chip.textContent=PLAT[p.piattaforma]||p.piattaforma;
+  const d=document.createElement("span");d.textContent=fmt(p.data);
+  if(p.data&&p.data<today()&&p.stato!=="pubblicato"){d.textContent+=" · in ritardo";d.style.color="var(--insta)"}
+  meta.append(chip,d);
+  c.append(meta);
+  if(editing===p.id){
+    const f=document.createElement("div");f.className="edit";
+    f.innerHTML=`<input id="e-t-${p.id}"><div class="row"><select id="e-p-${p.id}"><option value="tiktok">TikTok</option><option value="instagram">Instagram</option><option value="entrambi">Entrambi</option></select><input type="date" id="e-d-${p.id}"></div><textarea id="e-c-${p.id}" placeholder="Didascalia"></textarea>`;
+    f.querySelector("input").value=p.titolo;f.querySelector("select").value=p.piattaforma;
+    f.querySelector("input[type=date]").value=p.data||"";f.querySelector("textarea").value=p.didascalia||"";
+    const a=document.createElement("div");a.className="actions";
+    a.append(btn("Salva",async()=>{await save(p.id,{titolo:f.querySelector("input").value.trim()||p.titolo,piattaforma:f.querySelector("select").value,data:f.querySelector("input[type=date]").value,didascalia:f.querySelector("textarea").value});editing=null;render()},"primary"),btn("Annulla",()=>{editing=null;render()},"ghost"));
+    c.append(f,a);return c;
+  }
+  const h=document.createElement("h4");h.textContent=p.titolo;c.append(h);
+  if(p.didascalia){const cap=document.createElement("div");cap.className="cap";cap.textContent=p.didascalia;c.append(cap)}
+  const a=document.createElement("div");a.className="actions";
+  if(NEXT[p.stato]) a.append(btn(NEXT_LABEL[p.stato],()=>save(p.id,{stato:NEXT[p.stato]}),"primary"));
+  if(sample&&p.stato!=="pubblicato"){const b=btn(busy.has(p.id)?"Scrivo…":(p.didascalia?"↻ Riscrivi didascalia":"✦ Scrivi didascalia"),()=>writeCaption(p));b.disabled=busy.has(p.id);a.append(b)}
+  if(p.didascalia) a.append(btn("Copia",()=>copy(p.didascalia)));
+  a.append(btn("Modifica",()=>{editing=p.id;render()},"ghost"),btn("Elimina",()=>del(p),"ghost"));
+  c.append(a);return c;
+}
+function btn(t,fn,cls){const b=document.createElement("button");b.type="button";b.textContent=t;if(cls)b.className=cls;b.onclick=fn;return b}
+
+async function copy(t){try{await navigator.clipboard.writeText(t);toast("Didascalia copiata")}catch{toast("Copia non riuscita: seleziona il testo a mano")}}
+async function save(id,patch){if(!db)return;try{await db.collection("posts").doc(id).update(patch)}catch(e){toast("Non salvato: "+(e.code||"errore"))}}
+const pendingDel=new Set();
+async function del(p){
+  if(!pendingDel.has(p.id)){pendingDel.add(p.id);toast("Premi di nuovo Elimina per confermare");setTimeout(()=>pendingDel.delete(p.id),4000);return}
+  try{await db.collection("posts").doc(p.id).delete();toast("Eliminato")}catch(e){toast("Non eliminato: "+(e.code||"errore"))}
+}
+
+async function writeCaption(p){
+  busy.add(p.id);render();
+  try{
+    const where=p.piattaforma==="instagram"?"Instagram (prima riga che regge il taglio '… altro', corpo breve, 3 hashtag)":p.piattaforma==="tiktok"?"TikTok (max 300 caratteri, 3-5 hashtag)":"TikTok e Instagram (max 300 caratteri, 3-5 hashtag)";
+    const r=await sample(`${BRAND}\n\nScrivi UNA didascalia per ${where} sul post: "${p.titolo}".${p.didascalia?`\nVersione precedente da migliorare:\n${p.didascalia}`:""}\nRispondi solo con il testo della didascalia, pronto da incollare.`,{modelTier:"default"});
+    await save(p.id,{didascalia:r.text.trim()});toast("Didascalia pronta");
+  }catch(e){toast(e.code==="not_granted"?"Claude non autorizzato in questa pagina":"Claude non ha risposto, riprova")}
+  busy.delete(p.id);render();
+}
+
+async function ideas(){
+  const b=$("#ideas");b.disabled=true;b.textContent="Penso…";
+  try{
+    const esistenti=posts.map(p=>p.titolo).join("; ")||"nessuno";
+    const list=await sample.json(`${BRAND}\n\nProponi 5 idee di video brevi (TikTok/Reel) per il canale, diverse da: ${esistenti}.\nRispondi SOLO con un array JSON di 5 stringhe, ciascuna un titolo di max 60 caratteri.`,{modelTier:"default"});
+    if(Array.isArray(list)){for(const t of list.slice(0,5)) await db.collection("posts").add({titolo:String(t),piattaforma:"tiktok",data:"",stato:"idea",didascalia:"",creato:Date.now()});toast("5 idee aggiunte")}
+  }catch(e){toast("Claude non ha risposto, riprova")}
+  b.disabled=false;b.textContent="✦ 5 idee da Claude";
+}
+
+$("#new").addEventListener("submit",async e=>{
+  e.preventDefault();if(!db){toast("Archivio non disponibile");return}
+  const t=$("#f-title").value.trim();if(!t)return;
+  try{await db.collection("posts").add({titolo:t,piattaforma:$("#f-plat").value,data:$("#f-date").value,stato:"idea",didascalia:"",creato:Date.now()});$("#f-title").value="";toast("Aggiunto alle idee")}
+  catch(err){toast("Non salvato: "+(err.code||"errore"))}
+});
+$("#ideas").onclick=ideas;
+
+render();
+(async()=>{
+  db=await claude.use("db");
+  if(!db){$("#status").textContent="Archivio non disponibile: apri la pagina da claude.ai con il tuo account.";return}
+  const timer=setTimeout(()=>{$("#status").textContent="Archivio lento a rispondere, i dati potrebbero non essere aggiornati."},10000);
+  db.collection("posts").onSnapshot(s=>{
+    posts=s.docs.map(d=>({id:d.id,...d.data()}));
+    if(!s.metadata.fromCache){clearTimeout(timer);$("#status").textContent="Salvato in automatico. I post passano da Idee a Pronti a Pubblicati."}
+    render();
+  },e=>{clearTimeout(timer);$("#status").textContent="Archivio non raggiungibile ("+e.code+")."});
+  sample=await claude.use("sample");
+  if(sample){$("#ideas").hidden=false;render()}
+})();
+</script>
