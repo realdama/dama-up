@@ -17,6 +17,7 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   profondità, checklist ✓/✗, sondaggio finale a schermo diviso, logo con riflesso argento.
 - Hook nei primi 2 s (titolo grande + foto più spettacolare). CTA "scrivilo nei commenti" + logo.
 - Mai firma "Manuel Desio" né "Mare Italia". Mai crediti nelle descrizioni.
+- (Progetti web Argo Maris: vedi la sezione in fondo e la skill `sito-gestionale-broker`.)
 
 ## Audio — REGOLA ATTUALE (sostituisce le catene sotto; l'utente ha giudicato "pessima" la v3)
 - Misurare SEMPRE con DNSMOS (`pipeline/mos.py`, pacchetto speechmos, confronto a pari RMS):
@@ -128,3 +129,75 @@ Strumenti da usare SEMPRE: Remotion, HyperFrames, OpenMontage, ffmpeg, Whisper, 
   Foto viola: Commons "Gamba de Palamós" (CC0) = Aristeus antennatus.
 - 2026-11-17 — Gambero rosso di Mazara del Vallo (v2, vocale "Via Paolo Buzzi 180 35"):
   59,6 s; tagliata la frase sulle "flotte"; logo su "Dama Reservèe" a 55,7 s.
+
+# Argo Maris — sito e gestionale broker (memoria progetti web)
+
+Seconda attività dell'utente: **Argo Maris**, broker/import ittico con sede al **CAR**
+(Centro Agroalimentare Roma), importa da tutto il mondo, clienti **GDO** e **HoReCa**.
+Per siti/app/grafiche seguire la skill `sito-gestionale-broker` (`.claude/skills/`).
+- Codice in `argo-maris/`: `sito/` (vetrina statica), `app/` (gestionale Node ≥22.13 + node:sqlite,
+  zero dipendenze: `cd argo-maris/app && node server.js` → sito `/`, gestionale `/app/`,
+  login iniziale admin/argomaris), `tools/dotmap.py` (mappa mondo a puntini).
+- LOGO UFFICIALE Argo Maris (dato dall'utente, usarlo SEMPRE): `argo-maris/assets/logo_argo_maris_originale.png`
+  (cerchio blu notte, mappa mondo con rotte ciano, "ARGO" argento corsivo, "MARIS" giallo, peschereccio
+  con tricolore). Ritagli tondi: `sito/img/logo.png|logo-180.png|favicon.png`, `app/public/logo.png`.
+  Foto sede al CAR con insegne: `assets/sede_car_originale.png` → `sito/img/sede-car.jpg`.
+- Identità visiva (dal logo, sostituisce menta/DM Serif): blu notte #0a1a3d/#050d24, giallo #ffd21f,
+  blu #1d5fd1, ciano #3fd6f5, argento (gradiente); titoli Exo 2 800-900 corsivo, testo Manrope;
+  marchio scritto "ARGO" argento + "MARIS" giallo. Dal sito mareitaliasrl.com solo l'impaginazione:
+  mai copiarne testi, dati, foto. Telefono, indirizzo, P. IVA = segnaposto finché
+  l'utente non li dà. Nel gestionale i dati aziendali vanno in Impostazioni (servono per l'XML).
+- Parole chiave da usare: CAR Roma, import mondiale, GDO, HoReCa, catena del freddo, tracciabilità.
+  Grafiche "futuristiche": mappa a puntini con rotte neon verso "ROMA · CAR", schema
+  Import → CAR → GDO/HoReCa, ticker parole chiave, font JetBrains Mono, neon #5ff3e6.
+- Nessun numero inventato (anni di attività, flotte, paesi) sul sito: chiedere all'utente.
+- Ambiente cloud dama-up: aggiunti host mareitaliasrl.com e www.mareitaliasrl.com.
+- Storico: 2026-11-18 sito + gestionale v1 (ordini, DDT, fatture/FatturaPA, incassi,
+  scadenzario, spedizioni, vettori, mezzi, dipendenti, turni, utenti, registro, backup, CSV);
+  poi sezione "Rete globale" futuristica (CAR, import mondo, GDO/HoReCa).
+- ONLINE su Railway (progetto "argo-maris", servizio "argo-maris-web", regione iad, volume /data
+  con DATA_DIR=/data): sito https://argo-maris-web-production.up.railway.app/ e gestionale
+  https://argo-maris-web-production.up.railway.app/app/. Deploy automatico a ogni push sul branch
+  collegato (claude/admiring-curie-xpyj2t, cartella argo-maris/).
+- APP sul telefono = il gestionale è una PWA installabile (manifest.webmanifest, sw.js, icone
+  icon-192/512/maskable/apple-touch dal logo, barra in basso su mobile, pulsante «Installa l'app»;
+  su iPhone: Safari → Condividi → Aggiungi alla schermata Home). Niente App Store per ora. Password admin iniziale nella
+  variabile ADMIN_PASSWORD del servizio (mai scriverla nel repo).
+- PREZZI E AI (nov. 2026): menu "Acquisti e prezzi" = Confronto prezzi (`#/confronto`: ultimo listino
+  Attivo per fornitore affiancato, verde il più basso, ▲▼ vs listino precedente, prezzo suggerito =
+  miglior acquisto + ricarico GDO/HoReCa/Pescheria da Impostazioni, pulsante Ordina), Listini fornitori
+  (foto/PDF → «Leggi con AI» = Claude `claude-opus-5-5` con output JSON a schema, righe da controllare
+  prima di salvare), Assistente AI (domande sui listini/vendite, effort low). SDK `@anthropic-ai/sdk`
+  (unica dipendenza, in argo-maris/package.json). Serve la variabile ANTHROPIC_API_KEY su Railway:
+  senza, l'AI risulta "non attiva" e il resto funziona. Canale cliente/ordine (GDO, HoReCa, …) e
+  prezzi prodotto per canale. Foto prodotti e allegati in DATA_DIR/uploads (servite solo con login).
+  Test AI senza chiave: finto server Messages con ANTHROPIC_BASE_URL=http://localhost:4010.
+- SITO v3 "UNICO" (20/11/2026, l'utente: "fai sempre le stesse cose uguali, fai qualcosa di unico"):
+  rifatto da zero con le regole delle skill Hallmark (percorso custom) e taste-skill, NON il modello
+  hero+tre schede+passi+form. Idea: il tabellone e il pavimento del box al CAR. Hero = foto della
+  sede a destra + tabellone arrivi split-flap (Red Hat Mono) che gira, pulsante Ferma; Rotte = mappa
+  a puntini cliccabile (5 zone, rotta gialla animata verso "Roma, CAR"); Casse = prodotti in casse
+  bianche sul rosso del pavimento; GDO/HoReCa = interruttore; Percorso = 4 tappe + nastro con casse;
+  Il box al CAR (CAR, Guidonia Montecelio + segnaposto box/telefono); form "Ricevi il listino" che
+  salva in gestionale → "Richieste dal sito" (POST /api/pubblico/richiesta, anti-bot + limite IP).
+  Colori dal logo e dalla foto: blu notte, bianco casse, giallo segnaletica, rosso pavimento; font
+  Archivo (titoli interi in corsivo 800, mai una parola sola in corsivo), niente etichette maiuscole
+  spaziate, niente ciano su blu. Regole Hallmark/taste: niente numeri inventati, niente didascalie.
+  Le zone di origine e le specie sono di esempio: da confermare con l'utente.
+- Skill di design dell'utente (installate dallo script ambiente, qui clonate a mano se mancano):
+  github.com/Nutlope/hallmark, github.com/Leonxlnx/taste-skill, VoltAgent/awesome-design-md.
+  I loro script (theme.mjs photos, sloplint) possono essere bloccati dal classificatore: usare le
+  regole come guida e verificare con Playwright proprio.
+- SEZIONE 3D "Il pescato" (20/11/2026, riferimento: video "Websites in 2026" di wearebrand.io =
+  scena 3D guidata dallo scroll): `sito/ocean3d.js` + three.js r160 in `sito/vendor/` (niente CDN).
+  Sezione alta 760vh con scena fissa: nave portacontainer vista dall'alto su oceano low-poly → tuffo
+  sott'acqua → 5 stazioni (pesce azzurro, pesce bianco, tonno/grandi pelagici, crostacei, molluschi:
+  categorie generiche, l'utente non vuole specie troppo specifiche) → stacco su "box del CAR" con
+  cassa di polistirolo, ghiaccio e container refrigerato col logo. Capitoli HTML sovrapposti, barra
+  laterale cliccabile, cornice HUD gialla. Senza WebGL o con movimento ridotto: schede con foto.
+  v2 ("fai tu un bel lavoro"): mappa d'ambiente PMREM (riflessi argento), corpo dei pesci a tornio
+  affusolato + nuoto nel vertex shader (onBeforeCompile, coda che ondeggia), raggi di luce sott'acqua,
+  nome ARGO MARIS sulle fiancate (CanvasTexture), gamberi con antenne curve e zampe, polpo con mantello,
+  occhi e tentacoli affusolati a sfere con ventose.
+  Bug già risolti: InstancedMesh.frustumCulled=false (sennò spariscono), colori da g0.userData nel merge.
+  Test: Playwright con --use-angle=swiftshader, screenshot a vari punti dello scroll.

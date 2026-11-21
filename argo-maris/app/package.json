@@ -1,0 +1,9 @@
+{
+  "name": "argo-maris",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sito e gestionale broker ittico Argo Maris",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=22.13" }
+}
